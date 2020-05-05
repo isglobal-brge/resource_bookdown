@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Setup | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="8 Setup | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>17 References | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="17 References | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Setup | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="17 References | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Setup | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="17 References | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="resourcer.html"/>
-<link rel="next" href="statistical-analyses-from-different-resources.html"/>
+<link rel="prev" href="useful-information.html"/>
+
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.3" data-path="useful-information.html"><a href="useful-information.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
 </ul></li>
 <li class="part"><span><b>V Appendix</b></span></li>
-<li class="chapter" data-level="17" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>17</b> Bibliography</a></li>
+<li class="chapter" data-level="17" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>17</b> References</a></li>
 </ul>
 
       </nav>
@@ -227,60 +227,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Setup</h1>
-<p>As describe in <a href="resourcer.html#resourcer">a previous Chapter</a> the <code>resourcer</code> R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.rdata</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
-<p>In order to achive this <code>resourcer</code> extension, two <code>R6</code> classes have been implemented:</p>
-<ul>
-<li><code>GDSFileResourceResolver</code> class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a <code>GDSFileResourceClient</code> object instance from an assigned resource.</li>
-<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it’s this connection handle to the GDS file that will be used.</li>
-</ul>
-<div id="required-datashield-packages-in-the-opal-server" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Required DataSHIELD packages in the opal server</h2>
-<p>Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal"></span>
-<img src="fig/add_packages_opal.png" alt="Installed packages in the test opal server" width="921" />
-<p class="caption">
-Figure 8.1: Installed packages in the test opal server
-</p>
-</div>
-<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled into the opal server</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal2"></span>
-<img src="fig/add_packages_opal_2.png" alt="Description how `dsOmics` package was intalled into the test opal server" width="422" />
-<p class="caption">
-Figure 8.2: Description how <code>dsOmics</code> package was intalled into the test opal server
-</p>
-</div>
-</div>
-<div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Required R Packages in the client site (e.g. local machine)</h2>
-<p>In order to reproduce the results obtained in this part, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="setup.html#cb14-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-2"><a href="setup.html#cb14-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-3"><a href="setup.html#cb14-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-4"><a href="setup.html#cb14-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-5"><a href="setup.html#cb14-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="setup.html#cb15-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb15-2"><a href="setup.html#cb15-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb15-3"><a href="setup.html#cb15-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb15-4"><a href="setup.html#cb15-4"></a><span class="kw">library</span>(dsOmicsClient)</span></code></pre></div>
-<p><strong>Notes</strong>:</p>
-<p>For advanced users willing to use <code>DSLite</code>, the server side packages needs to be installed as well:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="setup.html#cb16-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;resourcer&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb16-2"><a href="setup.html#cb16-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSLite&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb16-3"><a href="setup.html#cb16-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmics&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb16-4"><a href="setup.html#cb16-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBase&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div id="references" class="section level1" number="17">
+<h1><span class="header-section-number">17</span> References</h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="resourcer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistical-analyses-from-different-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="useful-information.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

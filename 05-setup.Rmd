@@ -58,3 +58,11 @@ devtools::install_github("datashield/DSLite", dependencies = TRUE)
 devtools::install_github("isglobal-brge/dsOmics", dependencies = TRUE)
 devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = TRUE)
 ```
+
+
+
+## Session Info {-}
+
+```{r sessionInfo, echo=FALSE, results='asis'}
+prettySessionInfo()
+```

@@ -1,1 +1,9 @@
 # Extending the resources to Geographical Information System (GIS) analyses {#GIS}
+
+
+
+## Session Info {-}
+
+```{r sessionInfo, echo=FALSE, results='asis'}
+prettySessionInfo()
+```

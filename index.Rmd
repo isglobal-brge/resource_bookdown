@@ -3,8 +3,8 @@ title: "Orchestrating non-disclosive big data analyses of shared data from diffe
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-output_dir: "doc"
-bibliography: [resource.bib]
+output_dir: "docs"
+bibliography: [resource.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 ---
@@ -34,4 +34,12 @@ The fourth part, Developers, provides information about how to develop DataSHIEL
 Finally, the Appendix highlights our contributors.
 
 If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+
+```{r include=FALSE}
+## automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
 
