@@ -1,0 +1,7 @@
+# Useful information
+
+## How to install R packages into OPAL server from R
+
+## How to check whether there are open R sesions in the OPAL server
+
+## How 

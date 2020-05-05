@@ -1,0 +1,36 @@
+--- 
+title: "Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [resource.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
+```
+
+# Wellcome {-}
+
+
+<img src="fig/datashield.jpg" width="200" align="right" style="margin: 0 1em 0 1em" /></a> 
+
+This is the website for “non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, a book that provides users with some common workflows for the non-disclosive analysis of biomedical data with [R](https://cran.r-project.org/) and [DataSHIELD](http://www.datashield.ac.uk/) from different resources. This book will teach you how to use the `r BiocStyle::CRANpkg("resourcer")` to perform any statistcal analysis of data from different studies and having data in different formats (e.g., CSV, SPSS, R class, ...). In particular, we focus on illustrating how to deal with Big Data by providing several examples from omic and geographical settings. We use cutting-edge Bioconductor tools to perform transcriptomic, epigenomic and genomic data analyses. Serveral R packages are used to perform analysis of geospatial data. We also provide examples of how performing non-disclosive analyses using secure SHELL commands by allowing the use of specific software that properly deals with Big Data outside R. This material serves as an online companion for the manuscript “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+
+
+While we focus here genomic and geoespatial data, dozens of data analysis aplications interested in performing non-disclosive analysis having data in any specific format could be carried out. By learning the grammar of DataSHILED workflows, we hope to provide you a starting point for the exploration of your own data, whether it be omic, geospatial or otherwise.
+
+This book is organized into four parts. In the Preamble, we introduce the book and provides a tutorial for key data infrastructure useful for omic and geospatial data that are used throughout omic association and GIS analyses.
+
+The second part, Focus Topics, dive into information for learning DataSHIELD (we assume that users already know R). This part includes an overview of the framework for non-disclosive analyses using any resource which is one of the key advances provided in this work. 
+
+The third part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. 
+
+The fourth part, Developers, provides information about how to develop DataSHIELD packages and some useful answers to questions that developers or end users may face whe using our proposed infrastructure.
+
+Finally, the Appendix highlights our contributors.
+
+If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+

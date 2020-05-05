@@ -1,0 +1,102 @@
+# Statistical analyses from different resources
+
+Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file. This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
+
+Let us start by illustrating how to analyze one data set. 
+
+
+```{r cnsim1}
+library(DSI)
+library(DSIOpal)
+library(dsBaseClient)
+
+# prepare login data and resource to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM2", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resource
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+
+# coerce ResourceClient objects to a data.frame called 'D'
+datashield.assign.expr(conns, symbol = "D", 
+                       expr = quote(as.resource.data.frame(res)))
+```
+
+Then we can inspect the type of data we have
+
+```{r view_D}
+ds.class("D")
+ds.colnames("diab")
+```
+
+Perform some data descriptive analyses
+
+```{r descr_D}
+ds.table1D("diab$DIS_DIAB")
+ds.table2D("diab$DIS_DIAB", "cnsi")
+```
+
+Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)
+
+```{r glm_D}
+mod <- ds.glm(DIS_DIAB ~ LAB_TRIG + GENDER, 
+       data = "diab" , family="binomial")
+mod$coeff
+```
+
+As usual the connection must be closed
+
+```{r close_conn_D}
+datashield.logout(conns)
+```
+
+
+We can perform non-disclosive analyses of the three databases as if there were merged in a single database by using DataSHIELD as following
+
+```{r anal_three}
+# prepare login data and resources to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM2", driver = "OpalDriver")
+builder$append(server = "study3", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM3", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resources
+conns <- datashield.login(logins = logindata, assign = TRUE, symbol = "res")
+
+
+# coerce ResourceClient objects to data.frames
+datashield.assign.expr(conns, symbol = "D", 
+                       expr = quote(as.resource.data.frame(res)))
+
+ds.class("D")
+
+# note that some dsBase functions do not like that the data.frame has multiple and different classes
+# (despite all are data.frames). Then query colnames one by one:
+lapply(conns, function(conn) {ds.colnames("D", datasources = conn)})
+```
+
+
+Now, any statistical analysis is perfomed as having pooled data but without having access to sensitive information. For instance
+
+```{r table_3D}
+ds.table1D("D$GENDER")
+```
+
+
+Finally, do not forget to close the connection
+
+```{r close_conn_D}
+datashield.logout(conns)
+```

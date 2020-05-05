@@ -1,0 +1,202 @@
+# The resourcer package {#resourcer}
+
+The `resourcer` package is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
+
+The main concepts are:
+
+* _Resource_, access to a resource (dataset or computation unit) is described by an object with URL, optional credentials and optional data format properties,
+* _ResourceResolver_, a _ResourceClient_ factory based on the URL scheme and available in a resolvers registry,
+* _ResourceClient_, realizes the connection with the dataset or the computation unit described by a _Resource_,
+* _FileResourceGetter_, connect to a file described by a resource,
+* _DBIResourceConnector_, establish a [DBI](https://www.r-dbi.org/) connection.
+
+## File Resources
+
+These are resources describing a file. If the file is in a remote location, it must be downloaded before being read. The data format specification of the resource helps to find the appropriate file reader.
+
+### File Getter
+
+The file locations supported by default are: 
+
+* `file`, local file system, 
+* `http`(s), web address, basic authentication, 
+* `gridfs`, MongoDB file store,
+* `scp`, file copy through SSH,
+* `opal`, [Opal](https://www.obiba.org/pages/products/opal/) file store. 
+
+This can be easily applied to other file locations by extending the _FileResourceGetter_ class. An instance of the new file resource getter is to be registered so that the _FileResourceResolver_ can operate as expected.
+
+```{r eval=FALSE}
+resourcer::registerFileResourceGetter(MyFileLocationResourceGetter()$new())
+```
+
+### File Data Format
+
+The data format specified within the _Resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
+
+* the data formats that have a reader in [tidyverse](https://www.tidyverse.org/): [readr](https://readr.tidyverse.org/) (`csv`, `csv2`, `tsv`, `ssv`, `delim`), [haven](https://haven.tidyverse.org/) (`spss`, `sav`, `por`, `dta`, `stata`, `sas`, `xpt`), [readxl](https://readxl.tidyverse.org/) (`excel`, `xls`, `xlsx`). This can be easily applied to other data file formats by extending the _FileResourceClient_ class.
+* the R data format that can be loaded in a child R environment from which object of interest will be retrieved.
+
+Usage example that reads a local SPSS file:
+
+```{r eval=FALSE}
+# make a SPSS file resource
+res <- resourcer::newResource(
+  name = "CNSIM1",
+  url = "file:///data/CNSIM1.sav",
+  format = "spss"
+)
+# coerce the csv file in the opal server to a data.frame
+df <- as.data.frame(res)
+```
+
+To support other file data format, extend the _FileResourceClient_ class with the new data format reader implementation. Associate factory class, an extension of the _ResourceResolver_ class is also to be implemented and registered.
+
+```{r eval=FALSE}
+resourcer::registerResourceResolver(MyFileFormatResourceResolver$new())
+```
+
+## Database Resources
+
+### DBI Connectors
+
+[DBI](https://www.r-dbi.org/) is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Then any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource's URL. For instance a resource URL starting with `postgres://` will require the [RPostgres](https://rpostgres.r-dbi.org/) driver. To separate the DBI connector instanciation from the DBI interface interactions in the _SQLResourceClient_, a _DBIResourceConnector_ registry is to be populated. The currently supported SQL database connectors are:
+
+* `mariadb` MariaDB connector,
+* `mysql` MySQL connector,
+* `postgres` or `postgresql` Postgres connector,
+* `presto`, `presto+http` or `presto+https` [Presto](https://prestodb.io/) connector,
+* `spark`, `spark+http` or `spark+https` [Spark](https://spark.apache.org/) connector.
+
+To support another SQL database having a DBI driver, extend the _DBIResourceConnector_ class and register it:
+
+```{r eval=FALSE}
+resourcer::registerDBIResourceConnector(MyDBResourceConnector$new())
+```
+
+### Use dplyr
+
+Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using [dplyr](https://dplyr.tidyverse.org/) which will delegate as much as possible operations to the database.
+
+### Document Databases
+
+NoSQL databases can be described by a resource. The [nodbi](https://docs.ropensci.org/nodbi/) can be used here. Currently only connection to MongoDB database is supported using URL scheme `mongodb` or `mongodb+srv`.
+
+## Computation Resources
+
+Computation resources are resources on which tasks/commands can be triggerred and from which resulting data can be retrieved.
+
+Example of computation resource that connects to a server through SSH:
+
+```{r eval=FALSE}
+# make an application resource on a ssh server
+res <- resourcer::newResource(
+  name = "supercomp1",
+  url = "ssh://server1.example.org/work/dir?exec=plink,ls",
+  identity = "sshaccountid",
+  secret = "sshaccountpwd"
+)
+# get ssh client from resource object
+client <- resourcer::newResourceClient(res) # does a ssh::ssh_connect()
+# execute commands
+files <- client$exec("ls") # exec 'cd /work/dir && ls'
+# release connection
+client$close() # does ssh::ssh_disconnect(session)
+```
+
+## Extending Resources {#extending_resources}
+
+There are several ways to extend the Resources handling. These are based on different R6 classes having a `isFor(resource)` function:
+
+* If the resource is a file located at a place not already handled, write a new _FileResourceGetter_ subclass and register an instance of it with the function `registerFileResourceGetter()`.
+* If the resource is a SQL engine having a DBI connector defined, write a new _DBIResourceConnector_ subclass and register an instance of it with the function `registerDBIResourceConnector()`.
+* If the resource is in a domain specific web application or database, write a new _ResourceResolver_ subclass and register an instance of it with the function `registerResourceResolver()`. This _ResourceResolver_ object will create the appropriate _ResourceClient_ object that matches your needs.
+
+The design of the URL that will describe your new resource should not overlap an existing one, otherwise the different registries will return the first instance for which the `isFor(resource)` is `TRUE`. In order to distinguish resource locations, the URL's scheme can be extended, for instance the scheme for accessing a file in a Opal server is `opal+https` so that the credentials be applied as needed by Opal.
+
+
+## API declaration of a new resource
+
+It is possible to declare a resource that is to be resolved by an R package that uses the `resourcer` API. This figure illustrate how to declare a new reource called VCF2GDS that load Variant Calling Format files into Genomic Data Storage objects that can be managed whiting R. This will be further illustrated when analyzing omic data analysis in this [Section](#omic_extension).
+
+```{r testDeclaration, echo=FALSE, fig.cap="Declaration of a resource corresponding to a VCF2GDS format", fig.align='center'}
+knitr::include_graphics("fig/opal_resources_API.png")
+```
+
+
+## Examples with different resources
+
+Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-test.obiba.org which has the following reources 
+
+```{r testResources2, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-test.obiba.org", fig.align='center'}
+knitr::include_graphics("fig/opal_resources.png", dpi=NA)
+```
+
+Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.
+
+### TSV file into a tibble or data.frame
+
+This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided
+
+```{r load_tsv}
+library(DSI)
+library(DSOpal)
+library(dsBaseClient)
+
+# access to the 'brge' resource (NOTE: test.brge is need since the project
+# is called test)
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.brge", driver = "OpalDriver")
+logindata <- builder$build()
+
+# the resource is loaded into R as the object 'res' 
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+# the resource is assigned to a data.frame
+# Assign to the original R class (e.g ExpressionSet)
+datashield.assign.expr(conns, symbol = "dat", 
+                       expr = quote(as.resource.data.frame(res)))
+
+ds.class("dat")
+
+# logout the connection
+datashield.logout(conns)
+```
+
+
+### .Rdata file into a specific R object
+
+Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
+
+```{r load_eSet}
+# prepare login data and resource to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE80970", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resource (to 'res' symbol)
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+# coerce ResourceClient objects to a data.frame called 'DF' 
+# NOTE: as.data.frame exists for `ExpressionSet` objects
+datashield.assign.expr(conns, symbol = "DF",  
+                       expr = quote(as.resource.data.frame(res)))
+
+ds.class("DF")
+
+# we can also coerce ResourceClient objects to their original format.
+# This will allow the analyses with specific R/Bioconductor packages
+datashield.assign.expr(conns, symbol = "ES", 
+                       expr = quote(as.resource.object(res)))
+
+ds.class("ES")
+
+# logout the connection
+datashield.logout(conns)
+```
