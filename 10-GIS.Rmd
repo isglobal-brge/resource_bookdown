@@ -2,8 +2,3 @@
 
 
 
-## Session Info {-}
-
-```{r sessionInfo10, echo=FALSE, results='asis'}
-prettySessionInfo()
-```

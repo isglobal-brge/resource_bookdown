@@ -166,9 +166,3 @@ base::assign(x = "D", value = someValue, envir = parent.frame())
 
 See also the [Advanced R - Environments](http://adv-r.had.co.nz/Environments.html) documentation to learn more about environments.
 
-
-## Session Info {-}
-
-```{r sessionInfo11, echo=FALSE, results='asis'}
-prettySessionInfo()
-```

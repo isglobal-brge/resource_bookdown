@@ -13,11 +13,6 @@ link-citations: yes
 knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
-```{r load_function, echo=FALSE}
-devtools::source_url("https://raw.githubusercontent.com/Bioconductor/OSCABase/master/package/R/prettySessionInfo.R")
-devtools::source_url("https://raw.githubusercontent.com/Bioconductor/OSCABase/master/package/R/setupHTML.R")
-setupHTML()
-```
 
 # Wellcome {-}
 

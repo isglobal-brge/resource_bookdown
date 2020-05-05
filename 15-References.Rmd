@@ -1,1 +1,9 @@
+## Session Info {-}
+
+```{r sessionInfo, echo=FALSE, results='asis'}
+sessionInfo()
+```
+
+
+
 # Bibliography
