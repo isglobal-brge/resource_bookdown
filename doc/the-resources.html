@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 R/Bioconductor data infrastructures | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="2 R/Bioconductor data infrastructures | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>6 The resources | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="6 The resources | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 R/Bioconductor data infrastructures | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="6 The resources | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 R/Bioconductor data infrastructures | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="6 The resources | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction.html"/>
-<link rel="next" href="opal.html"/>
+<link rel="prev" href="dsi-datashield-interface-implementation-for-opal-data-repository.html"/>
+<link rel="next" href="resourcer.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -132,7 +132,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="rbioconductor-data-infrastructures.html"><a href="rbioconductor-data-infrastructures.html"><i class="fa fa-check"></i><b>2</b> R/Bioconductor data infrastructures</a></li>
-<li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="3" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>3</b> OPAL</a></li>
 <li class="chapter" data-level="4" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>4</b> DataSHIELD</a>
 <ul>
@@ -144,6 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.3" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#options"><i class="fa fa-check"></i><b>5.3</b> Options</a></li>
 </ul></li>
+<li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="the-resources.html"><a href="the-resources.html"><i class="fa fa-check"></i><b>6</b> The resources</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="the-resources.html"><a href="the-resources.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
@@ -226,20 +226,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rbioconductor-data-infrastructures" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> R/Bioconductor data infrastructures</h1>
+<div id="the-resources" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> The resources</h1>
+<div id="introduction-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction</h2>
+<p>Resources are datasets or computation units which location is described by a URL and access is protected by credentials. When assigned to a R/DataSHIELD server session, remote big/complex datasets or high performance computers are made accessible to data analysts.</p>
+<p>Instead of storing the data in Opal’s database, only the way to access them is to be defined: the datasets are kept in their original format and location (a SQL database, a SPSS file, R object, etc.) and are read directly from the R/DataSHIELD server-side session. Then as soon as there is a R reader for the dataset or a connector for the analysis services, a resource can be defined. Opal takes care of the DataSHIELD permissions (a DS user cannot see the resource’s credentials) and of the resources assignment to a R/DataSHIELD session (see Figure <a href="the-resources.html#fig:resources">6.1</a>)</p>
+<div class="figure" style="text-align: center"><span id="fig:resources"></span>
+<img src="fig/resourcer_fig.jpg" alt="Resources: a new DataSHIELD infrastructure" width="40%" />
+<p class="caption">
+Figure 6.1: Resources: a new DataSHIELD infrastructure
+</p>
+</div>
+</div>
+<div id="types-of-resources" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Types of resources</h2>
+<p>The data format refers to the intrinsic structure of the data. A very common family of data formats is the <a href="https://en.wikipedia.org/wiki/Table_(information)">tabular format</a> which is made of rows (entities, records, observations etc.) and columns (variables, fields, vectors etc.). Examples of tabular formats are the <a href="https://en.wikipedia.org/wiki/Delimiter-separated_values">delimiter-separated values formats</a> (CSV, TSV etc.), the <a href="https://en.wikipedia.org/wiki/Spreadsheet">spreadsheet</a> data formats (Microsoft Excel, LibreOffice Calc, Google Sheets etc.), some proprietary statistical software data formats (SPSS, SAS, Stata etc.), the <a href="https://en.wikipedia.org/wiki/Table_(database)">database tables</a> that can be stored in structured database management systems that are row-oriented (MySQL, MariaDB, PostgreSQL, Oracle, SQLite etc.) or column-oriented (Apache Cassandra, Apache Parquet, MariaDB ColumnStore, BigTable etc.), or in semi-structured database management systems such as the documented-oriented databases (MongoDB, Redis, CouchDB, Elasticsearch etc.).</p>
+<p>When the data model is getting complex (data types and objects relationships), a domain-specific data format is sometimes designed to handle this complexity so that statistical analysis and data retrieval can be executed as efficiently as possible. Examples of domain-specific data formats are encountered in the omic or geospatial fields of research that are described in the Workflows part: <a href="Omic.html#Omic">Omic</a> and <a href="GIS.html#GIS">Geospatial</a>. A data format can also include some additional features such as data compression, encoding or encryption. Each data format requires an appropriate reader software library or application to extract the information or perform data aggregation or filtering operations.</p>
+<p>We have prepared a test environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: <a href="https://opal-test.obiba.org">opal-test.obiba.org</a>. This figure illustrate the resources which are available for the <code>test</code> project and can serve as a starting example of the different types of resources that can be dealt with</p>
+<div class="figure" style="text-align: center"><span id="fig:testResources"></span>
+<img src="fig/opal_resources.png" alt="Resources from a test enviroment available at https://opal-test.obiba.org"  />
+<p class="caption">
+Figure 6.2: Resources from a test enviroment available at <a href="https://opal-test.obiba.org" class="uri">https://opal-test.obiba.org</a>
+</p>
+</div>
+<p>As it can be seen, the data storage can simply be a file to be accessed directly from the host’s file system or to be downloaded from a remote location. More advanced data storage systems are software applications that expose an interface to query, extract or analyse the data. These applications can make use of a standard programming interface (e.g. SQL) or expose specific web services (e.g. based on the HTTP communication protocol) or provide a software library (in different programming languages) to access the data. These different ways of accessing the data are not exclusive from each other. In some cases the micro-data cannot be extracted, only computation services that return aggregated data are provided. The data storage system can also apply security rules, requiring authentication and proper authorisations to access or analyse the data.</p>
+<p>We call resource this data or computation access description. A resource will have the following properties: (1) the location of the data or of the computation services, (2) the data format (if this information cannot be inferred from the location property), (3) the access credentials (if some apply).</p>
+<p>The resource location description will make use of the web standard described in the <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> “Uniform Resource Identifier (URI): Generic Syntax”. More specifically, the Uniform Resource Locator (URL) specification is what we need for defining the location of the data or computation resource: the term Uniform allows to describe the resource the same way, independently of its type, location and usage context; the term Resource does not limit the scope of what might be a resource, e.g. a document, a service, a collection of resources, or even abstract concepts (operations, relationships, etc.); the term Locator both identifies the resource and provides a means of locating it by describing its access mechanism (e.g. the network location). The URL syntax is composed of several parts: (1) a scheme, that describes how to access the resource, e.g. the communication protocols “https” (secured HTTP communication), “ssh” (secured shell, for issuing commands on a remote server), or “s3” (for accessing Amazon Web Service S3 file store services), (2) an authority (optional), e.g. a server name address, (3) a path that identifies/locates the resource in a hierarchical way and that can be altered by query parameters.</p>
+<p>The resource’s data format might be inferred from the path part of the URL, by using the file name suffix for instance. Nevertheless, sometimes it is not possible to identify the data format because the path could make sense only for the data storage system, for example when a file store designates a document using an obfuscated string identifier or when a text-based data format is compressed as a zip archive. The format property can provide this information.</p>
+<p>Despite the authority part of the URL can contain some user information (such as the username and password), it is discouraged to use this capability for security considerations. The resource’s credentials property will be used instead, and will be composed of an identifier sub-property and a secret sub-property, which can be used for authenticating with a username/password, or an access token, or any other credentials encoded string. The advantage of separating the credentials property from the resource location property is that a user with limited permissions could have access to the resource’s location information while the credentials are kept secret.</p>
+<p>Once a resource has been formally defined, it should be possible to build programmatically a connection object that will make use of the described data or computation services. This resource description is not bound to a specific programmatic language (the URL property is a web standard, other properties are simple strings) and does not enforce the use of a specific software application for building, storing and interpreting a resource object.</p>
+<p><a href="resourcer.html#resourcer">Next Section</a> describes the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package which is an R implementation of the data and computation resources description and connection. There the reader can see some examples of how dealing with different resources in DataSHIELD.</p>
 
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="opal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dsi-datashield-interface-implementation-for-opal-data-repository.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resourcer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

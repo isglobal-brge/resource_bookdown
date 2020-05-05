@@ -1,4 +1,2 @@
-# (PART) Focus Topics {-}
-
 # OPAL
 

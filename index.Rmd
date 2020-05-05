@@ -3,6 +3,7 @@ title: "Orchestrating non-disclosive big data analyses of shared data from diffe
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
+output_dir: "doc"
 bibliography: [resource.bib]
 biblio-style: apalike
 link-citations: yes

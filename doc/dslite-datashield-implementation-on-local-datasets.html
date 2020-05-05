@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14 DataSHIELD Implementation on Local Datasets: DSLite | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="14 DataSHIELD Implementation on Local Datasets: DSLite | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14 DataSHIELD Implementation on Local Datasets: DSLite | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,11 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14 DataSHIELD Implementation on Local Datasets: DSLite | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   
   
   
 
-<meta name="author" content="Yannick Marcon, Tom Bishop, …, and Juan R Gonzalez" />
 
 
 <meta name="date" content="2020-05-05" />
@@ -31,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="extending-the-resources-to-geographical-information-system-gis-analyses.html"/>
+<link rel="prev" href="GIS.html"/>
 <link rel="next" href="creating-datashield-packages.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -132,58 +131,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Wellcome</a></li>
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="rbioconductor-data-infrastructure.html"><a href="rbioconductor-data-infrastructure.html"><i class="fa fa-check"></i><b>2</b> R/Bioconductor data infrastructure</a></li>
-<li class="part"><span><b>II Focus Topics</b></span></li>
+<li class="chapter" data-level="2" data-path="rbioconductor-data-infrastructures.html"><a href="rbioconductor-data-infrastructures.html"><i class="fa fa-check"></i><b>2</b> R/Bioconductor data infrastructures</a></li>
 <li class="chapter" data-level="3" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>3</b> OPAL</a></li>
-<li class="chapter" data-level="4" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>4</b> DataSHIELD</a></li>
-<li class="chapter" data-level="5" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html"><i class="fa fa-check"></i><b>5</b> DSI: DataSHIELD Interface implementation for Opal data repository,</a></li>
-<li class="chapter" data-level="6" data-path="the-resources.html"><a href="the-resources.html"><i class="fa fa-check"></i><b>6</b> The resources</a></li>
-<li class="chapter" data-level="7" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html"><i class="fa fa-check"></i><b>7</b> The resourcer package</a>
+<li class="chapter" data-level="4" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>4</b> DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#file-resources"><i class="fa fa-check"></i><b>7.1</b> File Resources</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#file-getter"><i class="fa fa-check"></i><b>7.1.1</b> File Getter</a></li>
-<li class="chapter" data-level="7.1.2" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#file-data-format"><i class="fa fa-check"></i><b>7.1.2</b> File Data Format</a></li>
+<li class="chapter" data-level="4.1" data-path="datashield.html"><a href="datashield.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#database-resources"><i class="fa fa-check"></i><b>7.2</b> Database Resources</a>
+<li class="chapter" data-level="5" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html"><i class="fa fa-check"></i><b>5</b> DSI: DataSHIELD Interface implementation for Opal data repository</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#dbi-connectors"><i class="fa fa-check"></i><b>7.2.1</b> DBI Connectors</a></li>
-<li class="chapter" data-level="7.2.2" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#use-dplyr"><i class="fa fa-check"></i><b>7.2.2</b> Use dplyr</a></li>
-<li class="chapter" data-level="7.2.3" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#document-databases"><i class="fa fa-check"></i><b>7.2.3</b> Document Databases</a></li>
+<li class="chapter" data-level="5.1" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#class-structure"><i class="fa fa-check"></i><b>5.1</b> Class Structure</a></li>
+<li class="chapter" data-level="5.2" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2</b> Higher Level Functions</a></li>
+<li class="chapter" data-level="5.3" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#options"><i class="fa fa-check"></i><b>5.3</b> Options</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#computation-resources"><i class="fa fa-check"></i><b>7.3</b> Computation Resources</a></li>
-<li class="chapter" data-level="7.4" data-path="the-resourcer-package.html"><a href="the-resourcer-package.html#extending-resources"><i class="fa fa-check"></i><b>7.4</b> Extending Resources</a></li>
+<li class="part"><span><b>II Focus Topics</b></span></li>
+<li class="chapter" data-level="6" data-path="the-resources.html"><a href="the-resources.html"><i class="fa fa-check"></i><b>6</b> The resources</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="the-resources.html"><a href="the-resources.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="the-resources.html"><a href="the-resources.html#types-of-resources"><i class="fa fa-check"></i><b>6.2</b> Types of resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer package</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.1</b> File Resources</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.1.1</b> File Getter</a></li>
+<li class="chapter" data-level="7.1.2" data-path="resourcer.html"><a href="resourcer.html#file-data-format"><i class="fa fa-check"></i><b>7.1.2</b> File Data Format</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>7.2</b> Database Resources</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#dbi-connectors"><i class="fa fa-check"></i><b>7.2.1</b> DBI Connectors</a></li>
+<li class="chapter" data-level="7.2.2" data-path="resourcer.html"><a href="resourcer.html#use-dplyr"><i class="fa fa-check"></i><b>7.2.2</b> Use dplyr</a></li>
+<li class="chapter" data-level="7.2.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>7.2.3</b> Document Databases</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>7.3</b> Computation Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>7.4</b> Extending Resources</a></li>
+<li class="chapter" data-level="7.5" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>7.5</b> API declaration of a new resource</a></li>
+<li class="chapter" data-level="7.6" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>7.6</b> Examples with different resources</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.6.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="7.6.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>7.6.2</b> .Rdata file into a specific R object</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>III Workflows</b></span></li>
 <li class="chapter" data-level="8" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>8</b> Setup</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="setup.html"><a href="setup.html#required-opal-server-with-resources"><i class="fa fa-check"></i><b>8.1</b> Required Opal server with resources</a></li>
-<li class="chapter" data-level="8.2" data-path="setup.html"><a href="setup.html#required-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>8.2</b> Required DataSHIELD packages in the opal server</a></li>
-<li class="chapter" data-level="8.3" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>8.3</b> Required R Packages in the client site (e.g. local machine)</a></li>
+<li class="chapter" data-level="8.1" data-path="setup.html"><a href="setup.html#required-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>8.1</b> Required DataSHIELD packages in the opal server</a></li>
+<li class="chapter" data-level="8.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>8.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="workflows.html"><a href="workflows.html"><i class="fa fa-check"></i>Workflows</a></li>
 <li class="chapter" data-level="9" data-path="statistical-analyses-from-different-resources.html"><a href="statistical-analyses-from-different-resources.html"><i class="fa fa-check"></i><b>9</b> Statistical analyses from different resources</a></li>
-<li class="chapter" data-level="10" data-path="using-the-resources-for-transcriptomic-and-epigenomic-data-analysis-with-bioconductor.html"><a href="using-the-resources-for-transcriptomic-and-epigenomic-data-analysis-with-bioconductor.html"><i class="fa fa-check"></i><b>10</b> Using the resources for transcriptomic and epigenomic data analysis with Bioconductor</a></li>
+<li class="chapter" data-level="10" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>10</b> Using the resources for transcriptomic and epigenomic data analysis with Bioconductor</a></li>
 <li class="chapter" data-level="11" data-path="extending-the-resources-to-deal-with-vcf-file-in-genomic-data-analysis-gwas-with-bioconductor.html"><a href="extending-the-resources-to-deal-with-vcf-file-in-genomic-data-analysis-gwas-with-bioconductor.html"><i class="fa fa-check"></i><b>11</b> Extending the resources to deal with VCF file in genomic data analysis: GWAS with Bioconductor</a></li>
-<li class="chapter" data-level="12" data-path="extending-the-resources-to-shell-programs-gwas-with-plink.html"><a href="extending-the-resources-to-shell-programs-gwas-with-plink.html"><i class="fa fa-check"></i><b>12</b> Extending the resources to SHELL programs: GWAS with PLINK</a></li>
-<li class="chapter" data-level="13" data-path="extending-the-resources-to-geographical-information-system-gis-analyses.html"><a href="extending-the-resources-to-geographical-information-system-gis-analyses.html"><i class="fa fa-check"></i><b>13</b> Extending the resources to Geographical Information System (GIS) analyses</a></li>
-<li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="14" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html"><i class="fa fa-check"></i><b>14</b> DataSHIELD Implementation on Local Datasets: DSLite</a>
+<li class="chapter" data-level="12" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>12</b> Extending the resources to SHELL programs: GWAS with PLINK</a></li>
+<li class="chapter" data-level="13" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>13</b> Extending the resources to Geographical Information System (GIS) analyses</a></li>
+<li class="part"><span><b>IV Developers</b></span></li>
+<li class="chapter" data-level="14" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>14</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#introduction-1"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
-<li class="chapter" data-level="14.2" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#development-environment-setup"><i class="fa fa-check"></i><b>14.2</b> Development Environment Setup</a>
+<li class="chapter" data-level="14.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#introduction-2"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>14.2</b> Development Environment Setup</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#datashield-packages"><i class="fa fa-check"></i><b>14.2.1</b> DataSHIELD Packages</a></li>
-<li class="chapter" data-level="14.2.2" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#test-datasets"><i class="fa fa-check"></i><b>14.2.2</b> Test Datasets</a></li>
-<li class="chapter" data-level="14.2.3" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#r-package-development-tools"><i class="fa fa-check"></i><b>14.2.3</b> R Package Development Tools</a></li>
+<li class="chapter" data-level="14.2.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-packages"><i class="fa fa-check"></i><b>14.2.1</b> DataSHIELD Packages</a></li>
+<li class="chapter" data-level="14.2.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#test-datasets"><i class="fa fa-check"></i><b>14.2.2</b> Test Datasets</a></li>
+<li class="chapter" data-level="14.2.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#r-package-development-tools"><i class="fa fa-check"></i><b>14.2.3</b> R Package Development Tools</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.3</b> DataSHIELD Development Flow</a>
+<li class="chapter" data-level="14.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.3</b> DataSHIELD Development Flow</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#dsliteserver"><i class="fa fa-check"></i><b>14.3.1</b> DSLiteServer</a></li>
-<li class="chapter" data-level="14.3.2" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#datashield-configuration"><i class="fa fa-check"></i><b>14.3.2</b> DataSHIELD Configuration</a></li>
-<li class="chapter" data-level="14.3.3" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#datashield-sessions"><i class="fa fa-check"></i><b>14.3.3</b> DataSHIELD Sessions</a></li>
-<li class="chapter" data-level="14.3.4" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#debugging"><i class="fa fa-check"></i><b>14.3.4</b> Debugging</a></li>
-<li class="chapter" data-level="14.3.5" data-path="datashield-implementation-on-local-datasets-dslite.html"><a href="datashield-implementation-on-local-datasets-dslite.html#limitations"><i class="fa fa-check"></i><b>14.3.5</b> Limitations</a></li>
+<li class="chapter" data-level="14.3.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#dsliteserver"><i class="fa fa-check"></i><b>14.3.1</b> DSLiteServer</a></li>
+<li class="chapter" data-level="14.3.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-configuration"><i class="fa fa-check"></i><b>14.3.2</b> DataSHIELD Configuration</a></li>
+<li class="chapter" data-level="14.3.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-sessions"><i class="fa fa-check"></i><b>14.3.3</b> DataSHIELD Sessions</a></li>
+<li class="chapter" data-level="14.3.4" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#debugging"><i class="fa fa-check"></i><b>14.3.4</b> Debugging</a></li>
+<li class="chapter" data-level="14.3.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>14.3.5</b> Limitations</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
@@ -193,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.2" data-path="useful-information.html"><a href="useful-information.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
 <li class="chapter" data-level="16.3" data-path="useful-information.html"><a href="useful-information.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
 </ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
 </ul>
 
       </nav>
@@ -210,9 +226,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="datashield-implementation-on-local-datasets-dslite" class="section level1" number="14">
-<h1><span class="header-section-number">14</span> DataSHIELD Implementation on Local Datasets: DSLite</h1>
-<div id="introduction-1" class="section level2" number="14.1">
+<div id="dslite-datashield-implementation-on-local-datasets" class="section level1" number="14">
+<h1><span class="header-section-number">14</span> DSLite: DataSHIELD Implementation on Local Datasets</h1>
+<div id="introduction-2" class="section level2" number="14.1">
 <h2><span class="header-section-number">14.1</span> Introduction</h2>
 <p>DSLite is a serverless <a href="https://github.com/datashield/DSI/">DataSHIELD Interface (DSI)</a> implementation which purpose is to mimic
 the behavior of a distant (virtualized or barebone) data repository server (see <a href="https://github.com/datashield/DSOpal">DSOpal</a> for instance). The
@@ -259,24 +275,24 @@ datasets that are being analyzed must be fully accessible in the local environme
 </ul>
 <p>See the R documentation of the DSLiteServer class for details.</p>
 <p>As an example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-1"></a><span class="kw">library</span>(DSLite)</span>
-<span id="cb9-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-2"></a><span class="co"># prepare test data in a light DS server</span></span>
-<span id="cb9-3"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-3"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM1&quot;</span>)</span>
-<span id="cb9-4"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-4"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM2&quot;</span>)</span>
-<span id="cb9-5"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-5"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM3&quot;</span>)</span>
-<span id="cb9-6"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-6"></a>dslite.server &lt;-<span class="st"> </span><span class="kw">newDSLiteServer</span>(<span class="dt">tables=</span><span class="kw">list</span>(<span class="dt">CNSIM1=</span>CNSIM1, <span class="dt">CNSIM2=</span>CNSIM2, <span class="dt">CNSIM3=</span>CNSIM3))</span>
-<span id="cb9-7"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-7"></a><span class="co"># load corresponding DataSHIELD login data</span></span>
-<span id="cb9-8"><a href="datashield-implementation-on-local-datasets-dslite.html#cb9-8"></a><span class="kw">data</span>(<span class="st">&quot;logindata.dslite.cnsim&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-1"></a><span class="kw">library</span>(DSLite)</span>
+<span id="cb29-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-2"></a><span class="co"># prepare test data in a light DS server</span></span>
+<span id="cb29-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-3"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM1&quot;</span>)</span>
+<span id="cb29-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-4"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM2&quot;</span>)</span>
+<span id="cb29-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-5"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM3&quot;</span>)</span>
+<span id="cb29-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-6"></a>dslite.server &lt;-<span class="st"> </span><span class="kw">newDSLiteServer</span>(<span class="dt">tables=</span><span class="kw">list</span>(<span class="dt">CNSIM1=</span>CNSIM1, <span class="dt">CNSIM2=</span>CNSIM2, <span class="dt">CNSIM3=</span>CNSIM3))</span>
+<span id="cb29-7"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-7"></a><span class="co"># load corresponding DataSHIELD login data</span></span>
+<span id="cb29-8"><a href="dslite-datashield-implementation-on-local-datasets.html#cb29-8"></a><span class="kw">data</span>(<span class="st">&quot;logindata.dslite.cnsim&quot;</span>)</span></code></pre></div>
 <p>The previous example can be simplified using the set-up functions based on the provided test datasets:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb10-1"></a><span class="kw">library</span>(DSLite)</span>
-<span id="cb10-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb10-2"></a><span class="co"># load CNSIM test data</span></span>
-<span id="cb10-3"><a href="datashield-implementation-on-local-datasets-dslite.html#cb10-3"></a>logindata.dslite.cnsim &lt;-<span class="st"> </span><span class="kw">setupCNSIMTest</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb30-1"></a><span class="kw">library</span>(DSLite)</span>
+<span id="cb30-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb30-2"></a><span class="co"># load CNSIM test data</span></span>
+<span id="cb30-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb30-3"></a>logindata.dslite.cnsim &lt;-<span class="st"> </span><span class="kw">setupCNSIMTest</span>()</span></code></pre></div>
 </div>
 <div id="datashield-configuration" class="section level3" number="14.3.2">
 <h3><span class="header-section-number">14.3.2</span> DataSHIELD Configuration</h3>
 <p>The DataSHIELD configuration (aggregate and assign functions, R options) is automatically discovered by inspecting the R packages installed and having some DataSHIELD settings defined, either in their <code>DESCRIPTION</code> file or in a <code>DATASHIELD</code> file.</p>
 <p>This default configuration extracting function is:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb11-1"></a>DSLite<span class="op">::</span><span class="kw">defaultDSConfiguration</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb31-1"></a>DSLite<span class="op">::</span><span class="kw">defaultDSConfiguration</span>()</span></code></pre></div>
 <p>The list of the DataSHIELD R packages to be inspected (or excluded) when building the default configuration can be specified as parameters of <code>defaultDSConfiguration()</code>.</p>
 <p>The DataSHIELD configuration can be specified at DSLiteServer creation time or afterwards with some DSLiteServer methods that can be used to verify or modify the DSLiteServer configuration:</p>
 <ul>
@@ -290,8 +306,8 @@ datasets that are being analyzed must be fully accessible in the local environme
 </ul>
 <p>See the R documentation of the DSLiteServer class for details.</p>
 <p>As an example:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb12-1"></a><span class="co"># verify configuration</span></span>
-<span id="cb12-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb12-2"></a>dslite.server<span class="op">$</span><span class="kw">config</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb32-1"></a><span class="co"># verify configuration</span></span>
+<span id="cb32-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb32-2"></a>dslite.server<span class="op">$</span><span class="kw">config</span>()</span></code></pre></div>
 </div>
 <div id="datashield-sessions" class="section level3" number="14.3.3">
 <h3><span class="header-section-number">14.3.3</span> DataSHIELD Sessions</h3>
@@ -301,26 +317,26 @@ datasets that are being analyzed must be fully accessible in the local environme
 <p class="caption">DSLite architecture</p>
 </div>
 <p>After performing the login DataSHIELD phase, the DSLiteServer holds the different DataSHIELD server side sessions, i.e. R environments identified by an ID. These IDs are also stored within the DataSHIELD connection objects that are the result of the <code>datashield.login()</code> call. The folllowing example shows how to access these session IDs:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-1"></a><span class="co"># datashield logins and assignments</span></span>
-<span id="cb13-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-2"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata.dslite.cnsim, <span class="dt">assign=</span><span class="ot">TRUE</span>)</span>
-<span id="cb13-3"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-3"></a><span class="co"># get the session ID of &quot;sim1&quot; node connection object</span></span>
-<span id="cb13-4"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-4"></a>conns<span class="op">$</span>sim1<span class="op">@</span>sid</span>
-<span id="cb13-5"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-5"></a><span class="co"># the same ID is in the DSLiteServer</span></span>
-<span id="cb13-6"><a href="datashield-implementation-on-local-datasets-dslite.html#cb13-6"></a>dslite.server<span class="op">$</span><span class="kw">hasSession</span>(conns<span class="op">$</span>sim1<span class="op">@</span>sid)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-1"></a><span class="co"># datashield logins and assignments</span></span>
+<span id="cb33-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-2"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata.dslite.cnsim, <span class="dt">assign=</span><span class="ot">TRUE</span>)</span>
+<span id="cb33-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-3"></a><span class="co"># get the session ID of &quot;sim1&quot; node connection object</span></span>
+<span id="cb33-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-4"></a>conns<span class="op">$</span>sim1<span class="op">@</span>sid</span>
+<span id="cb33-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-5"></a><span class="co"># the same ID is in the DSLiteServer</span></span>
+<span id="cb33-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb33-6"></a>dslite.server<span class="op">$</span><span class="kw">hasSession</span>(conns<span class="op">$</span>sim1<span class="op">@</span>sid)</span></code></pre></div>
 </div>
 <div id="debugging" class="section level3" number="14.3.4">
 <h3><span class="header-section-number">14.3.4</span> Debugging</h3>
 <p>Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developping.</p>
 <p>For instance, this code adds an aggregate function <code>print()</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb14-1"></a><span class="co"># add a print method to configuration</span></span>
-<span id="cb14-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb14-2"></a>dslite.server<span class="op">$</span><span class="kw">aggregateMethod</span>(<span class="st">&quot;print&quot;</span>, <span class="cf">function</span>(x){ <span class="kw">print</span>(x) })</span>
-<span id="cb14-3"><a href="datashield-implementation-on-local-datasets-dslite.html#cb14-3"></a><span class="co"># and use it to print the D symbol</span></span>
-<span id="cb14-4"><a href="datashield-implementation-on-local-datasets-dslite.html#cb14-4"></a><span class="kw">datashield.aggregate</span>(conns, <span class="kw">quote</span>(<span class="kw">print</span>(D)))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb34-1"></a><span class="co"># add a print method to configuration</span></span>
+<span id="cb34-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb34-2"></a>dslite.server<span class="op">$</span><span class="kw">aggregateMethod</span>(<span class="st">&quot;print&quot;</span>, <span class="cf">function</span>(x){ <span class="kw">print</span>(x) })</span>
+<span id="cb34-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb34-3"></a><span class="co"># and use it to print the D symbol</span></span>
+<span id="cb34-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb34-4"></a><span class="kw">datashield.aggregate</span>(conns, <span class="kw">quote</span>(<span class="kw">print</span>(D)))</span></code></pre></div>
 <p>Another option is to get a symbol value from the server into the client environment. This can be very helpful for complex data structures. The following example illustrates usage of a shortcut function that iterates over all the connection objects and get the corresponding symbol value:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb15-1"></a><span class="co"># get data represented by symbol D for each DataSHIELD connection</span></span>
-<span id="cb15-2"><a href="datashield-implementation-on-local-datasets-dslite.html#cb15-2"></a>data &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns, <span class="st">&quot;D&quot;</span>)</span>
-<span id="cb15-3"><a href="datashield-implementation-on-local-datasets-dslite.html#cb15-3"></a><span class="co"># get data represented by symbol D from a specific DataSHIELD connection</span></span>
-<span id="cb15-4"><a href="datashield-implementation-on-local-datasets-dslite.html#cb15-4"></a>data1 &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns<span class="op">$</span>sim1, <span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb35-1"></a><span class="co"># get data represented by symbol D for each DataSHIELD connection</span></span>
+<span id="cb35-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb35-2"></a>data &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns, <span class="st">&quot;D&quot;</span>)</span>
+<span id="cb35-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb35-3"></a><span class="co"># get data represented by symbol D from a specific DataSHIELD connection</span></span>
+<span id="cb35-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb35-4"></a>data1 &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns<span class="op">$</span>sim1, <span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 </div>
 <div id="limitations" class="section level3" number="14.3.5">
 <h3><span class="header-section-number">14.3.5</span> Limitations</h3>
@@ -328,14 +344,14 @@ datasets that are being analyzed must be fully accessible in the local environme
 <h4><span class="header-section-number">14.3.5.1</span> Function Parameters Parser</h4>
 <p>The main difference with a regular DSI implementation (such as the one of DSOpal) is that the arguments of the DataSHIELD functional calls are not parsed in DSLite. The only R language element that is inspected and handled is the name of the functions, that are replaced by the ones defined in the DataSHIELD configuration.</p>
 <p>For instance the following expression, which includes a function call in the formula, is valid for the DSLiteServer but not for Opal:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb16-1"></a><span class="kw">someregression</span>(D<span class="op">$</span>height <span class="op">~</span><span class="st"> </span>D<span class="op">$</span>diameter <span class="op">+</span><span class="st"> </span><span class="kw">poly</span>(D<span class="op">$</span>length,<span class="dv">3</span>,<span class="dt">raw=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb36-1"></a><span class="kw">someregression</span>(D<span class="op">$</span>height <span class="op">~</span><span class="st"> </span>D<span class="op">$</span>diameter <span class="op">+</span><span class="st"> </span><span class="kw">poly</span>(D<span class="op">$</span>length,<span class="dv">3</span>,<span class="dt">raw=</span><span class="ot">TRUE</span>))</span></code></pre></div>
 <p>As a consequence, DataSHIELD R package development can take advantage of DSLite flexibility for speeding development but will never replace testing on a regular DataSHIELD infrastructure using DSOpal.</p>
 </div>
 <div id="server-side-environments" class="section level4" number="14.3.5.2">
 <h4><span class="header-section-number">14.3.5.2</span> Server Side Environments</h4>
 <p>For each of the DataSHIELD node, the server side code is evaluated within an environment that has no parent, i.e. detached from the global environment where the client code is executed. Some R functions have a parameter that allows to specify to which environment they apply, for instance <code>assign()</code>, <code>get()</code>, <code>eval()</code>, <code>as.formula()</code>, etc. Their <code>env</code> (or <code>envir</code>) parameter default value is <code>parent.frame()</code> which is the global environment when executed in Opal’s R server, because it is the parent frame of the package’s namespace where the function is defined. In DSLiteServer, the parent frame must be the environment where the server code is evaluated. In order to be consistent between these two execution contexts (Opal R server and DSLiteServer), you must specify the <code>env</code> (or <code>envir</code>) value explicitly to be <code>parent.frame()</code>, which is the parent frame of the block being executed (either the global environment in Opal context, or the environment defined in DSLiteServer).</p>
 <p>Example of a valid server side piece of code that assigns a value to a symbol in the DataSHIELD server’s environment (being the Opal R server’s global environment or a DSLiteServer’s environment):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="datashield-implementation-on-local-datasets-dslite.html#cb17-1"></a>base<span class="op">::</span><span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">value =</span> someValue, <span class="dt">envir =</span> <span class="kw">parent.frame</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb37-1"></a>base<span class="op">::</span><span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">value =</span> someValue, <span class="dt">envir =</span> <span class="kw">parent.frame</span>())</span></code></pre></div>
 <p>See also the <a href="http://adv-r.had.co.nz/Environments.html">Advanced R - Environments</a> documentation to learn more about environments.</p>
 
 </div>
@@ -347,7 +363,7 @@ datasets that are being analyzed must be fully accessible in the local environme
           </div>
         </div>
       </div>
-<a href="extending-the-resources-to-geographical-information-system-gis-analyses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="GIS.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="creating-datashield-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

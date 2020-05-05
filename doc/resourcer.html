@@ -132,7 +132,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="rbioconductor-data-infrastructures.html"><a href="rbioconductor-data-infrastructures.html"><i class="fa fa-check"></i><b>2</b> R/Bioconductor data infrastructures</a></li>
-<li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="3" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>3</b> OPAL</a></li>
 <li class="chapter" data-level="4" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>4</b> DataSHIELD</a>
 <ul>
@@ -144,6 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.3" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#options"><i class="fa fa-check"></i><b>5.3</b> Options</a></li>
 </ul></li>
+<li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="the-resources.html"><a href="the-resources.html"><i class="fa fa-check"></i><b>6</b> The resources</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="the-resources.html"><a href="the-resources.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
@@ -378,26 +378,27 @@ Figure 7.2: Resources from a test enviroment available at <a href="https://opal-
 <div id="rdata-file-into-a-specific-r-object" class="section level3" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> .Rdata file into a specific R object</h3>
 <p>Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="resourcer.html#cb9-1"></a><span class="co"># access to the &#39;GSE80970&#39; resource </span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="resourcer.html#cb9-1"></a><span class="co"># prepare login data and resource to assign</span></span>
 <span id="cb9-2"><a href="resourcer.html#cb9-2"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
 <span id="cb9-3"><a href="resourcer.html#cb9-3"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
 <span id="cb9-4"><a href="resourcer.html#cb9-4"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
 <span id="cb9-5"><a href="resourcer.html#cb9-5"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.GSE80970&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
 <span id="cb9-6"><a href="resourcer.html#cb9-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
 <span id="cb9-7"><a href="resourcer.html#cb9-7"></a></span>
-<span id="cb9-8"><a href="resourcer.html#cb9-8"></a><span class="co"># the resource is loaded into R as the object &#39;res&#39; </span></span>
+<span id="cb9-8"><a href="resourcer.html#cb9-8"></a><span class="co"># login and assign resource (to &#39;res&#39; symbol)</span></span>
 <span id="cb9-9"><a href="resourcer.html#cb9-9"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
 <span id="cb9-10"><a href="resourcer.html#cb9-10"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
 <span id="cb9-11"><a href="resourcer.html#cb9-11"></a></span>
-<span id="cb9-12"><a href="resourcer.html#cb9-12"></a><span class="co"># the resource can be assigned to a data.frame (as.data.frame exists for `ExpressionSet`s)</span></span>
-<span id="cb9-13"><a href="resourcer.html#cb9-13"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;DF&quot;</span>, </span>
-<span id="cb9-14"><a href="resourcer.html#cb9-14"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
-<span id="cb9-15"><a href="resourcer.html#cb9-15"></a></span>
-<span id="cb9-16"><a href="resourcer.html#cb9-16"></a><span class="kw">ds.class</span>(<span class="st">&quot;DF&quot;</span>)</span></code></pre></div>
+<span id="cb9-12"><a href="resourcer.html#cb9-12"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;DF&#39; </span></span>
+<span id="cb9-13"><a href="resourcer.html#cb9-13"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: as.data.frame exists for `ExpressionSet` objects</span></span>
+<span id="cb9-14"><a href="resourcer.html#cb9-14"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;DF&quot;</span>,  </span>
+<span id="cb9-15"><a href="resourcer.html#cb9-15"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
+<span id="cb9-16"><a href="resourcer.html#cb9-16"></a></span>
+<span id="cb9-17"><a href="resourcer.html#cb9-17"></a><span class="kw">ds.class</span>(<span class="st">&quot;DF&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="resourcer.html#cb11-1"></a><span class="co"># and also in their original format, allowing the analyses with specific R/Bioconductor packages</span></span>
-<span id="cb11-2"><a href="resourcer.html#cb11-2"></a></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="resourcer.html#cb11-1"></a><span class="co"># we can also coerce ResourceClient objects to their original format.</span></span>
+<span id="cb11-2"><a href="resourcer.html#cb11-2"></a><span class="co"># This will allow the analyses with specific R/Bioconductor packages</span></span>
 <span id="cb11-3"><a href="resourcer.html#cb11-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;ES&quot;</span>, </span>
 <span id="cb11-4"><a href="resourcer.html#cb11-4"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
 <span id="cb11-5"><a href="resourcer.html#cb11-5"></a></span>
