@@ -1,1 +1,11 @@
 # Using the resources for transcriptomic and epigenomic data analysis with Bioconductor {#Omic}
+
+
+
+
+
+## Session Info {-}
+
+```{r sessionInfo7, echo=FALSE, results='asis'}
+prettySessionInfo()
+```

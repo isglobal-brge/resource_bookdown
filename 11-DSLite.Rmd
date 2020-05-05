@@ -169,6 +169,6 @@ See also the [Advanced R - Environments](http://adv-r.had.co.nz/Environments.htm
 
 ## Session Info {-}
 
-```{r sessionInfo, echo=FALSE, results='asis'}
+```{r sessionInfo11, echo=FALSE, results='asis'}
 prettySessionInfo()
 ```

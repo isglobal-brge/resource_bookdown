@@ -200,3 +200,10 @@ ds.class("ES")
 # logout the connection
 datashield.logout(conns)
 ```
+
+
+## Session Info {-}
+
+```{r sessionInfo5, echo=FALSE, results='asis'}
+prettySessionInfo()
+```

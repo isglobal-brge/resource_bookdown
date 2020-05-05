@@ -63,6 +63,6 @@ devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = T
 
 ## Session Info {-}
 
-```{r sessionInfo, echo=FALSE, results='asis'}
+```{r sessionInfo5b, echo=FALSE, results='asis'}
 prettySessionInfo()
 ```

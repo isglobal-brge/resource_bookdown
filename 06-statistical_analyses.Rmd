@@ -56,3 +56,9 @@ datashield.logout(conns)
 ```
 
 
+## Session Info {-}
+
+```{r sessionInfo6, echo=FALSE, results='asis'}
+prettySessionInfo()
+```
+

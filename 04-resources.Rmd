@@ -4,6 +4,8 @@
 
 ## Introduction
 
+Developing and implementing new algorithms to perform advanced data analyses under DataSHIELD framework is a current active line of research. However, the analysis of big data within DataSHIELD has some limitations. Some of them are related to how data is managed in Opal and others are related to how to perform statistical analyses of big data within the R environment. Opal databases do not properly manage large amounts of information and, second, it requires moving data from original repositories that is inefficient. We have overcome the problem related to DataSHIELD big data management by developing  a new data infrastructure within Opal: __the resources__.
+
 Resources are datasets or computation units which location is described by a URL and access is protected by credentials. When assigned to a R/DataSHIELD server session, remote big/complex datasets or high performance computers are made accessible to data analysts.
 
 Instead of storing the data in Opal’s database, only the way to access them is to be defined: the datasets are kept in their original format and location (a SQL database, a SPSS file, R object, etc.) and are read directly from the R/DataSHIELD server-side session. Then as soon as there is a R reader for the dataset or a connector for the analysis services, a resource can be defined. Opal takes care of the DataSHIELD permissions (a DS user cannot see the resource’s credentials) and of the resources assignment to a R/DataSHIELD session (see Figure \@ref(fig:resources))

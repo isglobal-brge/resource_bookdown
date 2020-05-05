@@ -4,6 +4,6 @@
 
 ## Session Info {-}
 
-```{r sessionInfo, echo=FALSE, results='asis'}
+```{r sessionInfo10, echo=FALSE, results='asis'}
 prettySessionInfo()
 ```
