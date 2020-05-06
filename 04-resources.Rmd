@@ -1,6 +1,6 @@
 # (PART) Focus Topics {-}
 
-# The resources
+# The resources {#resources}
 
 Developing and implementing new algorithms to perform advanced data analyses under DataSHIELD framework is a current active line of research. However, the analysis of big data within DataSHIELD has some limitations. Some of them are related to how data is managed in Opal and others are related to how to perform statistical analyses of big data within the R environment. Opal databases do not properly manage large amounts of information and, second, it requires moving data from original repositories that is inefficient. We have overcome the problem related to DataSHIELD big data management by developing  a new data infrastructure within Opal: __the resources__.
 
