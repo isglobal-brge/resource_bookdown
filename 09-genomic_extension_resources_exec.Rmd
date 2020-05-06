@@ -1,1 +1,0 @@
-# Extending the resources to SHELL programs: GWAS with PLINK {#omic_extension}

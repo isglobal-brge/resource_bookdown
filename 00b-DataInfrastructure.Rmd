@@ -1,2 +1,0 @@
-# R/Bioconductor data infrastructures
-

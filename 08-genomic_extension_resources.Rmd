@@ -1,1 +1,0 @@
-# Extending the resources to deal with VCF file in genomic data analysis: GWAS with Bioconductor

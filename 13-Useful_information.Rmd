@@ -1,4 +1,4 @@
-# Useful information
+# Tips and tricks
 
 ## How to install R packages into OPAL server from R
 

@@ -2,7 +2,7 @@
 
 # Setup
 
-As describe in [a previous Chapter](#resourcer) the `resourcer` R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.rdata` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
+As describe in [a previous Chapter](#resourcer) the `r BiocStyle::CRANpkg("resourcer")` R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.rdata` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
 
 In order to achive this `resourcer` extension, two `R6` classes have been implemented:
 
@@ -11,7 +11,7 @@ In order to achive this `resourcer` extension, two `R6` classes have been implem
 
 
 
-## Required DataSHIELD packages in the opal server
+## Providing DataSHIELD packages in the opal server
 
 Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both `dsBase` and `dsOmics` and `resourcer` packages must be installed as is illustrated in the figure. 
 
@@ -27,15 +27,27 @@ The tab **+Add package** can be used to install a new package. The figure depict
 knitr::include_graphics("fig/add_packages_opal_2.png")
 ```
 
+For reproducing this book the following packages must be installed in the opal server 
+
+```
+From CRAN: 
+   - resourcer
+From Github: 
+   - datashield/dsBase
+   - datashiled/dsGeo
+   - isglobal-brge/dsOmics
+```
+
 ## Required R Packages in the client site (e.g. local machine)
 
-In order to reproduce the results obtained in this part, the following R packages must be installed (in their development version):
+Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):
 
 ```{r install_all, eval=FALSE}
-devtools::install_github("datashield/DSI", dependencies = TRUE)
 devtools::install_github("obiba/opalr", dependencies = TRUE)
+devtools::install_github("datashield/DSI", dependencies = TRUE)
 devtools::install_github("datashield/DSOpal", dependencies = TRUE)
 devtools::install_github("datashield/dsBaseClient", ref = "v6.0-dev", dependencies = TRUE)
+devtools::install_github("datashield/dsGeoClient", dependencies = TRUE)
 devtools::install_github("isglobal-brge/dsOmicsClient", dependencies = TRUE)
 ```
 
@@ -46,17 +58,6 @@ library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 library(dsOmicsClient)
-```
-
-**Notes**:
-
-For advanced users willing to use `DSLite`, the server side packages needs to be installed as well:
-
-```{r install_resourcer, eval=FALSE}
-install.packages("resourcer", dependencies = TRUE)
-devtools::install_github("datashield/DSLite", dependencies = TRUE)
-devtools::install_github("isglobal-brge/dsOmics", dependencies = TRUE)
-devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = TRUE)
 ```
 
 

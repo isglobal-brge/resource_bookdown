@@ -1,6 +1,9 @@
 # The resourcer package {#resourcer}
 
-The `resourcer` package is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
+
+The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
+
+It is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
 
 The main concepts are:
 
@@ -14,7 +17,7 @@ The main concepts are:
 
 These are resources describing a file. If the file is in a remote location, it must be downloaded before being read. The data format specification of the resource helps to find the appropriate file reader.
 
-### File Getter
+## File Getter
 
 The file locations supported by default are: 
 
@@ -30,7 +33,7 @@ This can be easily applied to other file locations by extending the _FileResourc
 resourcer::registerFileResourceGetter(MyFileLocationResourceGetter()$new())
 ```
 
-### File Data Format
+## File Data Format
 
 The data format specified within the _Resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
 

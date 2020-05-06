@@ -1,4 +1,0 @@
-# Extending the resources to Geographical Information System (GIS) analyses {#GIS}
-
-
-

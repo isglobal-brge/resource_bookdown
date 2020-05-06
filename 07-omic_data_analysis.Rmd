@@ -1,6 +1,0 @@
-# Using the resources for transcriptomic and epigenomic data analysis with Bioconductor {#Omic}
-
-
-
-
-

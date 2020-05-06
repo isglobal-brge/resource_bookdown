@@ -1,0 +1,1 @@
+# Secure shell programs: GWAS with PLINK {#omic_extension}

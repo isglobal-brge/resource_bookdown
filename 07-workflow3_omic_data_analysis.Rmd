@@ -1,0 +1,15 @@
+# Omic data analysis {#Omic}
+
+
+## Transcriptomic and epigenomic data analysis with Bioconductor 
+
+
+## GWAS with Bioconductor
+
+
+## GWAS with PLINK
+
+
+
+
+

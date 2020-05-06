@@ -1,4 +1,4 @@
-# Statistical analyses from different resources
+# Basic statistical analyses
 
 Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file. This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
 

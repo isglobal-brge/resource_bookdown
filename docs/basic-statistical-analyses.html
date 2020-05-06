@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 DataSHIELD | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>12 Basic statistical analyses | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="12 Basic statistical analyses | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="12 Basic statistical analyses | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="12 Basic statistical analyses | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="opal.html"/>
-<link rel="next" href="dsi-datashield-interface-implementation-for-opal-data-repository.html"/>
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="Omic.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -233,16 +233,139 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="datashield" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> DataSHIELD</h1>
-<p>DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses <a href="http://opaldoc.obiba.org/en/latest/">Opal servers</a> to properly perform such analyses.</p>
-<p>At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure <a href="datashield.html#fig:dsArchitec">5.1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:dsArchitec"></span>
-<img src="fig/singleSiteDSInfrastructure.jpg" alt="Single Server DataSHIELD Architecture (Wilson et al 2017)" width="90%" />
-<p class="caption">
-Figure 5.1: Single Server DataSHIELD Architecture (Wilson et al 2017)
-</p>
-</div>
+<div id="basic-statistical-analyses" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> Basic statistical analyses</h1>
+<p>Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file. This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. The analyses that are described here, can also be found in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS">DataSHIELD Tutorial</a> where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.</p>
+<p>Let us start by illustrating how to analyze one data set.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-statistical-analyses.html#cb17-1"></a><span class="kw">library</span>(DSI)</span>
+<span id="cb17-2"><a href="basic-statistical-analyses.html#cb17-2"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb17-3"><a href="basic-statistical-analyses.html#cb17-3"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb17-4"><a href="basic-statistical-analyses.html#cb17-4"></a></span>
+<span id="cb17-5"><a href="basic-statistical-analyses.html#cb17-5"></a><span class="co"># prepare login data and resource to assign</span></span>
+<span id="cb17-6"><a href="basic-statistical-analyses.html#cb17-6"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb17-7"><a href="basic-statistical-analyses.html#cb17-7"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
+<span id="cb17-8"><a href="basic-statistical-analyses.html#cb17-8"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb17-9"><a href="basic-statistical-analyses.html#cb17-9"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb17-10"><a href="basic-statistical-analyses.html#cb17-10"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb17-11"><a href="basic-statistical-analyses.html#cb17-11"></a></span>
+<span id="cb17-12"><a href="basic-statistical-analyses.html#cb17-12"></a><span class="co"># login and assign resource</span></span>
+<span id="cb17-13"><a href="basic-statistical-analyses.html#cb17-13"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb17-14"><a href="basic-statistical-analyses.html#cb17-14"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb17-15"><a href="basic-statistical-analyses.html#cb17-15"></a></span>
+<span id="cb17-16"><a href="basic-statistical-analyses.html#cb17-16"></a></span>
+<span id="cb17-17"><a href="basic-statistical-analyses.html#cb17-17"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;D&#39;</span></span>
+<span id="cb17-18"><a href="basic-statistical-analyses.html#cb17-18"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;D&quot;</span>, </span>
+<span id="cb17-19"><a href="basic-statistical-analyses.html#cb17-19"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span></code></pre></div>
+<p>Then we can inspect the type of data we have</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basic-statistical-analyses.html#cb18-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-statistical-analyses.html#cb20-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+ [1] &quot;entity_id&quot;          &quot;DIS_AMI&quot;            &quot;DIS_CVA&quot;            &quot;DIS_DIAB&quot;          
+ [5] &quot;GENDER&quot;             &quot;LAB_GLUC_ADJUSTED&quot;  &quot;LAB_HDL&quot;            &quot;LAB_TRIG&quot;          
+ [9] &quot;LAB_TSC&quot;            &quot;MEDI_LPD&quot;           &quot;PM_BMI_CATEGORICAL&quot; &quot;PM_BMI_CONTINUOUS&quot; </code></pre>
+<p>Perform some data descriptive analyses</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basic-statistical-analyses.html#cb22-1"></a><span class="kw">ds.table1D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>)</span></code></pre></div>
+<pre><code>$counts
+      D$DIS_DIAB
+0           3041
+1             47
+Total       3088
+
+$percentages
+      D$DIS_DIAB
+0          98.48
+1           1.52
+Total     100.00
+
+$validity
+[1] &quot;All tables are valid!&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="basic-statistical-analyses.html#cb24-1"></a><span class="kw">ds.table2D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>, <span class="st">&quot;D$GENDER&quot;</span>)</span></code></pre></div>
+<pre><code>$colPercent
+$colPercent$`study1-D$DIS_DIAB(row)|D$GENDER(col)`
+           0      1  Total
+0      98.04  98.94  98.48
+1       1.96   1.06   1.52
+Total 100.00 100.00 100.00
+
+
+$colPercent.all.studies
+$colPercent.all.studies$`pooled-D$DIS_DIAB(row)|D$GENDER(col)`
+           0      1  Total
+0      98.04  98.94  98.48
+1       1.96   1.06   1.52
+Total 100.00 100.00 100.00
+
+
+$rowPercent
+$rowPercent$`study1-D$DIS_DIAB(row)|D$GENDER(col)`
+          0     1 Total
+0     51.10 48.90   100
+1     65.96 34.04   100
+Total 51.33 48.67   100
+
+
+$rowPercent.all.studies
+$rowPercent.all.studies$`pooled-D$DIS_DIAB(row)|D$GENDER(col)`
+          0     1 Total
+0     51.10 48.90   100
+1     65.96 34.04   100
+Total 51.33 48.67   100
+
+
+$chi2Test
+$chi2Test$`study1-D$DIS_DIAB(row)|D$GENDER(col)`
+
+    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  contingencyTable
+X-squared = 3.5158, df = 1, p-value = 0.06079
+
+
+
+$chi2Test.all.studies
+$chi2Test.all.studies$`pooled-D$DIS_DIAB(row)|D$GENDER(col)`
+
+    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  pooledContingencyTable
+X-squared = 3.5158, df = 1, p-value = 0.06079
+
+
+
+$counts
+$counts$`study1-D$DIS_DIAB(row)|D$GENDER(col)`
+         0    1 Total
+0     1554 1487  3041
+1       31   16    47
+Total 1585 1503  3088
+
+
+$counts.all.studies
+$counts.all.studies$`pooled-D$DIS_DIAB(row)|D$GENDER(col)`
+         0    1 Total
+0     1554 1487  3041
+1       31   16    47
+Total 1585 1503  3088
+
+
+$validity
+[1] &quot;All tables are valid!&quot;</code></pre>
+<p>Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basic-statistical-analyses.html#cb26-1"></a>mod &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(DIS_DIAB <span class="op">~</span><span class="st"> </span>LAB_TRIG <span class="op">+</span><span class="st"> </span>GENDER, </span>
+<span id="cb26-2"><a href="basic-statistical-analyses.html#cb26-2"></a>       <span class="dt">data =</span> <span class="st">&quot;D&quot;</span> , <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb26-3"><a href="basic-statistical-analyses.html#cb26-3"></a>mod<span class="op">$</span>coeff</span></code></pre></div>
+<pre><code>              Estimate Std. Error    z-value      p-value low0.95CI.LP high0.95CI.LP        P_OR
+(Intercept) -5.0254035 0.39487495 -12.726570 4.209299e-37   -5.7993442    -4.2514628 0.006526066
+LAB_TRIG     0.3462886 0.09880155   3.504891 4.567950e-04    0.1526411     0.5399361 1.413810621
+GENDER      -0.4550068 0.39497696  -1.151983 2.493280e-01   -1.2291474     0.3191338 0.634443636
+            low0.95CI.P_OR high0.95CI.P_OR
+(Intercept)     0.00302039      0.01404336
+LAB_TRIG        1.16490687      1.71589723
+GENDER          0.29254188      1.37593539</code></pre>
+<p>As usual the connection must be closed</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basic-statistical-analyses.html#cb28-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 
 </div>
             </section>
@@ -250,8 +373,8 @@ Figure 5.1: Single Server DataSHIELD Architecture (Wilson et al 2017)
           </div>
         </div>
       </div>
-<a href="opal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dsi-datashield-interface-implementation-for-opal-data-repository.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Omic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

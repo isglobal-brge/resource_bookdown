@@ -1,0 +1,3 @@
+# (PART) Resources Extensions {-}
+
+# VCF files in genomic data analysis: GWAS with Bioconductor

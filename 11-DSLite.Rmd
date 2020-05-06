@@ -2,8 +2,6 @@
 
 # DSLite: DataSHIELD Implementation on Local Datasets
 
-## Introduction
-
 DSLite is a serverless [DataSHIELD Interface (DSI)](https://github.com/datashield/DSI/) implementation which purpose is to mimic
 the behavior of a distant (virtualized or barebone) data repository server (see [DSOpal](https://github.com/datashield/DSOpal) for instance). The
 datasets that are being analyzed must be fully accessible in the local environment and then the non-disclosive constraint of the analysis is not relevant for DSLite: some DSLite functionalities allows to inspect what is under the hood of the DataSHIELD computation nodes, making it a perfect tool for DataSHIELD analysis package developers.
@@ -13,7 +11,15 @@ datasets that are being analyzed must be fully accessible in the local environme
 
 ### DataSHIELD Packages
 
-Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration.
+Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration. The minimum required packages should be:
+
+```{r install_resourcer, eval=FALSE}
+install.packages("resourcer", dependencies = TRUE)
+devtools::install_github("datashield/DSLite", dependencies = TRUE)
+devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = TRUE)
+```
+
+
 
 ### Test Datasets
 
@@ -101,7 +107,7 @@ As an example:
 dslite.server$config()
 ```
 
-### DataSHIELD Sessions
+## DataSHIELD Sessions
 
 The following figure illustrates a setup where a single DSLiteServer holds several data frames and is used by two different DataSHIELD Connection ([DSConnection](https://github.com/datashield/DSI)) objects. All these objects live in the same R environment (usually the Global Environment). The "server" is responsible for managing DataSHIELD sessions that are implemented as distinct R environments inside of which R symbols are assigned and R functions are evaluated. Using the [R environment](https://adv-r.hadley.nz/environments.html) paradigm ensures that the different DataSHIELD execution context (client and servers) are contained and exclusive from each other.
 
@@ -118,7 +124,7 @@ conns$sim1@sid
 dslite.server$hasSession(conns$sim1@sid)
 ```
 
-### Debugging
+## Debugging
 
 Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developping.
 
@@ -140,9 +146,9 @@ data <- getDSLiteData(conns, "D")
 data1 <- getDSLiteData(conns$sim1, "D")
 ```
 
-### Limitations
+## Limitations
 
-#### Function Parameters Parser
+### Function Parameters Parser
 
 The main difference with a regular DSI implementation (such as the one of DSOpal) is that the arguments of the DataSHIELD functional calls are not parsed in DSLite. The only R language element that is inspected and handled is the name of the functions, that are replaced by the ones defined in the DataSHIELD configuration.
 
@@ -154,7 +160,7 @@ someregression(D$height ~ D$diameter + poly(D$length,3,raw=TRUE))
 
 As a consequence, DataSHIELD R package development can take advantage of DSLite flexibility for speeding development but will never replace testing on a regular DataSHIELD infrastructure using DSOpal.
 
-#### Server Side Environments
+### Server Side Environments
 
 For each of the DataSHIELD node, the server side code is evaluated within an environment that has no parent, i.e. detached from the global environment where the client code is executed. Some R functions have a parameter that allows to specify to which environment they apply, for instance `assign()`, `get()`, `eval()`, `as.formula()`, etc. Their `env` (or `envir`) parameter default value is `parent.frame()` which is the global environment when executed in Opal's R server, because it is the parent frame of the package's namespace where the function is defined. In DSLiteServer, the parent frame must be the environment where the server code is evaluated. In order to be consistent between these two execution contexts (Opal R server and DSLiteServer), you must specify the `env` (or `envir`) value explicitly to be `parent.frame()`, which is the parent frame of the block being executed (either the global environment in Opal context, or the environment defined in DSLiteServer).
 
