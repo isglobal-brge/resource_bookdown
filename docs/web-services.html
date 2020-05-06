@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Web Services | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="7 Web Services | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Web Services | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Web Services | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  
+  
+  
+
+
+
+<meta name="date" content="2020-05-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="datashield-module.html"/>
+<link rel="next" href="r-server-component.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Wellcome</a></li>
+<li class="part"><span><b>I Preamble</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a></li>
+<li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> OPAL</a></li>
+<li class="chapter" data-level="5" data-path="DataSHIELD.html"><a href="DataSHIELD.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="DataSHIELD.html"><a href="DataSHIELD.html#r-and-datashield-implementation-in-opal"><i class="fa fa-check"></i><b>5.1</b> R and DataSHIELD implementation in Opal</a></li>
+<li class="chapter" data-level="5.2" data-path="DataSHIELD.html"><a href="DataSHIELD.html#r-module"><i class="fa fa-check"></i><b>5.2</b> R module</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="datashield-module.html"><a href="datashield-module.html"><i class="fa fa-check"></i><b>6</b> DataSHIELD module</a></li>
+<li class="chapter" data-level="7" data-path="web-services.html"><a href="web-services.html"><i class="fa fa-check"></i><b>7</b> Web Services</a></li>
+<li class="chapter" data-level="8" data-path="r-server-component.html"><a href="r-server-component.html"><i class="fa fa-check"></i><b>8</b> R Server Component</a></li>
+<li class="chapter" data-level="9" data-path="r-clients-analysis-computers.html"><a href="r-clients-analysis-computers.html"><i class="fa fa-check"></i><b>9</b> R Clients (Analysis Computers)</a></li>
+<li class="chapter" data-level="10" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html"><i class="fa fa-check"></i><b>10</b> DSI: DataSHIELD Interface implementation for Opal data repository</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#class-structure"><i class="fa fa-check"></i><b>10.1</b> Class Structure</a></li>
+<li class="chapter" data-level="10.2" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#higher-level-functions"><i class="fa fa-check"></i><b>10.2</b> Higher Level Functions</a></li>
+<li class="chapter" data-level="10.3" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#options"><i class="fa fa-check"></i><b>10.3</b> Options</a></li>
+</ul></li>
+<li class="part"><span><b>II Focus Topics</b></span></li>
+<li class="chapter" data-level="11" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>11</b> The resources</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="resources.html"><a href="resources.html#concept"><i class="fa fa-check"></i><b>11.1</b> Concept</a></li>
+<li class="chapter" data-level="11.2" data-path="resources.html"><a href="resources.html#types-of-resources"><i class="fa fa-check"></i><b>11.2</b> Types of resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>12</b> The resourcer package</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>12.1</b> File Resources</a></li>
+<li class="chapter" data-level="12.2" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>12.2</b> File Getter</a></li>
+<li class="chapter" data-level="12.3" data-path="resourcer.html"><a href="resourcer.html#file-data-format"><i class="fa fa-check"></i><b>12.3</b> File Data Format</a></li>
+<li class="chapter" data-level="12.4" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>12.4</b> Database Resources</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="resourcer.html"><a href="resourcer.html#dbi-connectors"><i class="fa fa-check"></i><b>12.4.1</b> DBI Connectors</a></li>
+<li class="chapter" data-level="12.4.2" data-path="resourcer.html"><a href="resourcer.html#use-dplyr"><i class="fa fa-check"></i><b>12.4.2</b> Use dplyr</a></li>
+<li class="chapter" data-level="12.4.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>12.4.3</b> Document Databases</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>12.5</b> Computation Resources</a></li>
+<li class="chapter" data-level="12.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>12.6</b> Extending Resources</a></li>
+<li class="chapter" data-level="12.7" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>12.7</b> API declaration of a new resource</a></li>
+<li class="chapter" data-level="12.8" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>12.8</b> Examples with different resources</a>
+<ul>
+<li class="chapter" data-level="12.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>12.8.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="12.8.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>12.8.2</b> .Rdata file into a specific R object</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Resources Extensions</b></span></li>
+<li class="chapter" data-level="13" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>13</b> VCF files to GDS to peform GWAS with Bioconductor</a></li>
+<li class="chapter" data-level="14" data-path="shell-extension.html"><a href="shell-extension.html"><i class="fa fa-check"></i><b>14</b> Secure shell programs: GWAS with PLINK</a></li>
+<li class="part"><span><b>IV Workflows</b></span></li>
+<li class="chapter" data-level="15" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>15</b> Setup</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="setup.html"><a href="setup.html#providing-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>15.1</b> Providing DataSHIELD packages in the opal server</a></li>
+<li class="chapter" data-level="15.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>15.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>16</b> Basic statistical analyses</a></li>
+<li class="chapter" data-level="17" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>17</b> Omic data analysis</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="Omic.html"><a href="Omic.html#types-of-analyses-implemented"><i class="fa fa-check"></i><b>17.1</b> Types of analyses implemented</a></li>
+<li class="chapter" data-level="17.2" data-path="Omic.html"><a href="Omic.html#differential-gene-expression-dge-analysis"><i class="fa fa-check"></i><b>17.2</b> Differential gene expression (DGE) analysis</a></li>
+<li class="chapter" data-level="17.3" data-path="Omic.html"><a href="Omic.html#epigenome-wide-association-analysis-ewas"><i class="fa fa-check"></i><b>17.3</b> Epigenome-wide association analysis (EWAS)</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="Omic.html"><a href="Omic.html#single-cpg-analysis"><i class="fa fa-check"></i><b>17.3.1</b> Single CpG analysis</a></li>
+<li class="chapter" data-level="17.3.2" data-path="Omic.html"><a href="Omic.html#multiple-cpg-analysis"><i class="fa fa-check"></i><b>17.3.2</b> Multiple CpG analysis</a></li>
+<li class="chapter" data-level="17.3.3" data-path="Omic.html"><a href="Omic.html#adjusting-for-surrogate-variables"><i class="fa fa-check"></i><b>17.3.3</b> Adjusting for Surrogate Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>17.4</b> GWAS with Bioconductor</a></li>
+<li class="chapter" data-level="17.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>17.5</b> GWAS with PLINK</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>18</b> Geographical data analysis</a></li>
+<li class="part"><span><b>V Developers</b></span></li>
+<li class="chapter" data-level="19" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>19</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>19.1</b> Development Environment Setup</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-packages"><i class="fa fa-check"></i><b>19.1.1</b> DataSHIELD Packages</a></li>
+<li class="chapter" data-level="19.1.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#test-datasets"><i class="fa fa-check"></i><b>19.1.2</b> Test Datasets</a></li>
+<li class="chapter" data-level="19.1.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#r-package-development-tools"><i class="fa fa-check"></i><b>19.1.3</b> R Package Development Tools</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>19.2</b> DataSHIELD Development Flow</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#dsliteserver"><i class="fa fa-check"></i><b>19.2.1</b> DSLiteServer</a></li>
+<li class="chapter" data-level="19.2.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-configuration"><i class="fa fa-check"></i><b>19.2.2</b> DataSHIELD Configuration</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-sessions"><i class="fa fa-check"></i><b>19.3</b> DataSHIELD Sessions</a></li>
+<li class="chapter" data-level="19.4" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#debugging"><i class="fa fa-check"></i><b>19.4</b> Debugging</a></li>
+<li class="chapter" data-level="19.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>19.5</b> Limitations</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#function-parameters-parser"><i class="fa fa-check"></i><b>19.5.1</b> Function Parameters Parser</a></li>
+<li class="chapter" data-level="19.5.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#server-side-environments"><i class="fa fa-check"></i><b>19.5.2</b> Server Side Environments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a></li>
+<li class="chapter" data-level="21" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>21</b> Tips and tricks</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>21.1</b> How to install R packages into OPAL server from R</a></li>
+<li class="chapter" data-level="21.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>21.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
+<li class="chapter" data-level="21.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>21.3</b> How</a></li>
+</ul></li>
+<li class="part"><span><b>VI Appendix</b></span></li>
+<li class="chapter" data-level="22" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>22</b> Session Info</a></li>
+<li class="chapter" data-level="23" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>23</b> Bibliography</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="web-services" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Web Services</h1>
+<p>Allows the interaction between these modules and their clients is done through Web Services.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datashield-module.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-server-component.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

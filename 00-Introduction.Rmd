@@ -4,6 +4,6 @@
 
 # R
 
-# Bioconductor data infrastructure {#BioC}
+# Bioconductor data infrastructures {#BioC}
 
 

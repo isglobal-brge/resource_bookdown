@@ -21,7 +21,7 @@ Detailed concepts and tutorials for tables can be found here:
    - [Data Harmonization](http://opaldoc.obiba.org/en/latest/data-harmonization.html)
 
 
-To have a closer look at Opal with table you can try our demo site:
+To have a closer look at Opal with table you can try [our demo site](http://opal-demo.obiba.org/):
 
 - username: administrator
 - password: password
