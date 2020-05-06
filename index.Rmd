@@ -44,6 +44,7 @@ If you would like to cite this work, please use the reference “Orchestrating n
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
+library(BiocStyle)
 ```
 
 

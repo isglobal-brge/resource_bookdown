@@ -8,7 +8,7 @@ In this part we will provide some real data anlyses of omic data including trans
 The Figure \@ref(fig:opalOmic) describes the different types of omic association analyses that can be performed using DataSHIELD client functions implemented in the `r BiocStyle::Githubpkg("isglobal-brge/dsOmicsClient")` package. Basically, data (omic and phenotypes/covariates) can be stored in different sites (http, ssh, AWS S3, local, ...) and are managed with Opal through the `r BiocStyle::Githubpkg("obiba/resourcer")` package and their extensions implemented in `r BiocStyle::Githubpkg("isglobal-brge/dsOmics")`.  
 
 
-```{r opalOmic, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how the `resourcer` package is used to get access to omic data through the Opal servers. Then DataSHIELD is used in the client side to perform non-disclosive data analyses.", out.width = '100%', fig.align='center'}
+```{r opalOmic, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how the `resourcer` package is used to get access to omic data through the Opal servers. Then DataSHIELD is used in the client side to perform non-disclosive data analyses.", fig.align='center'}
 knitr::include_graphics("fig/dsOmics_A.jpg")
 ```
 
@@ -24,7 +24,7 @@ Next, we describe how both approaches are implemented:
 - **Pooled approach:** Figure \@ref(fig:omicAnal1) illustrate how this analysis is performed. This corresponds to generalized linear models (glm) on data from single or multiple sources. It makes use of `ds.glm()` function which is a DataSHIELD function that uses an approach that is mathematically equivalent to placing all individual-level data froma all sources in one central warehouse and analysing those data using the conventional `glm()` function in R. The user can select one (or multiple) features (i.e., genes, transcripts, CpGs, SNPs, ...) 
 
 
-```{r omicAnal1, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform single pooled omic data analysis. The analyses are performed by using a generalized linear model (glm) on data from one or multiple sources. It makes use of `ds.glm()`, a DataSHIELD function, that uses an approach that is mathematically equivalent to placing all individual-level data from all sources in one central warehouse and analysing those data using the conventional `glm()` function in R.", out.width = '100%', fig.align='center'}
+```{r omicAnal1, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform single pooled omic data analysis. The analyses are performed by using a generalized linear model (glm) on data from one or multiple sources. It makes use of `ds.glm()`, a DataSHIELD function, that uses an approach that is mathematically equivalent to placing all individual-level data from all sources in one central warehouse and analysing those data using the conventional `glm()` function in R.", fig.align='center'}
 knitr::include_graphics("fig/dsOmics_B.jpg")
 ```
 
@@ -32,7 +32,7 @@ knitr::include_graphics("fig/dsOmics_B.jpg")
 - **Meta-analysis:** Figure \@ref(fig:omicAnal2) illustrate how this analysis is performed. This corresponds to perform a genome-wide analysis at each server using functions that are specifically design to that purpose and that are scalable. Then the results of each server can be meta-analyzed using method that meta-analyze either effects or p-values.
 
 
-```{r omicAnal2, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform anlyses at genome-wide level from one or multiple sources. It runs standard Bioconductor functions at each server independently to speed up the analyses and in the case of having multiple sources, results can be meta-analyzed uning standar R functions.", out.width = '1000%', fig.align='center'}
+```{r omicAnal2, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform anlyses at genome-wide level from one or multiple sources. It runs standard Bioconductor functions at each server independently to speed up the analyses and in the case of having multiple sources, results can be meta-analyzed uning standar R functions.", fig.align='center'}
 knitr::include_graphics("fig/dsOmics_C.jpg")
 ```
 
@@ -311,11 +311,179 @@ datashield.logout(conns)
 
 ## GWAS with Bioconductor
 
+We have a GWAS example available at [BRGE data repository](https://github.com/isglobal-brge/brgedata) that aims to find SNPs associated with asthma. We have genomic data in a VCF file (brge.vcf) along with several covariates and phenotypes in the file brge.txt (gender, age, obesity, smoking, country and asthma status). The same data is also available in PLINK format (brge.bed, brge.bim, brge.fam) with covariates in the file brge.phe.
+
+
+We have created a resource having the [VCF]((https://www.internationalgenome.org/wiki/Analysis/vcf4.0/)) file of our study on asthma as previously described. The name of the resource is `brge_vcf` the phenotypes are available in another resource called `brge` that is a .txt file (see \@ref(fig:testResources)).
+
+The GWAS analysis is then perform as follows. We first start by preparing login data 
+
+```{r add_resources_vcf}
+builder <- newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org",
+               user = "dsuser", password = "password",
+               resource = "test.brge_vcf", driver = "OpalDriver")
+logindata <- builder$build()
+
+conns <- datashield.login(logins = logindata, assign = TRUE,
+                          symbol = "res")
+```
+
+In this case we have to assign to different resources. One for the VCF (obesity_vcf) and another one for the phenotypic data (obesity). To this end, the `datashield.assign.resource` function is required before assigning any object to the specific resource. Notice that the VCF resource can be load into R as a GDS thanks to [our extension](#ext_VCF) of existing resources in the `r BiocStyle::CRANpkg("reourcer")` 
+
+
+```{r assign_vcf}
+datashield.assign.resource(conns, symbol = "vcf.res", 
+                           resource = list(study1 = "test.brge_vcf"))
+datashield.assign.expr(conns, symbol = "gds", 
+                       expr = quote(as.resource.object(vcf.res)))
+
+
+datashield.assign.resource(conns, symbol = "covars.res", 
+                           resource = list(study1 = "test.brge"))
+datashield.assign.expr(conns, symbol = "covars", 
+                       expr = quote(as.resource.data.frame(covars.res)))
+```
+
+These are the objects available in the Opal server
+
+```{r ls_vcf}
+ds.ls()
+```
+
+We can use `r Githubpkg("datashield/dsBaseClient")` functions to inspect the variables that are in the `covars` data.frame. The variables are
+
+
+```{r show_covars}
+ds.colnames("covars")
+```
+
+The `asthma` variable has this number of individuals at each level (1: controls, 2: cases)
+
+```{r show_group}
+ds.table1D("covars$asthma")
+```
+
+Then, an object of class `GenotypeData` must be created at the server side to perform genetic data analyses. This is a container defined in the `r Biocpkg("GWASTools")` package for storing genotype and phenotypic data from genetic association studies. By doing that we will also verify whether individuals in the GDS (e.g VCF) and covariates files have the same individuals and are in the same order. This can be performed by
+
+```{r createGenoData}
+ds.GenotypeData(x='gds', covars = 'covars', columnId = 1, newobj.name = 'gds.Data')
+``` 
+
+The association analysis for a given SNP is performed by simply
+
+```{r snp_analysis}
+ds.glmSNP(snps.fit = "rs11247693", model = asthma ~ gender + age, genoData='gds.Data')
+```
+
+
+The analysis of all available SNPs is performed when the argument `snps.fit` is missing. The function performs the analysis of the selected SNPs in a single repository or in multiple repositories as performing pooled analyses (it uses `ds.glm` DataSHIELD function). As in the case of transcriptomic data, analyzing all the SNPs in the genome (e.g GWAS) will be high time-consuming. We can adopt a similar approach as the one adopted using the `r Biocpkg("limma")` at each server. That is, we run GWAS at each repository using specific and scalable packages available in R/Bioc. In that case we use the `r Biocpkg("GWASTools")` and `r Biocpkg("GENESIS")` packages. The complete pipeline is implemented in this function 
+
+```{r GWAS}
+ans.bioC <- ds.GWAS('gds.Data', model=asthma~age+country)
+```
+
+
+This close the DataSHIELD session 
+
+```{r close_conns3}
+datashield.logout(conns)
+```
 
 
 
 ## GWAS with PLINK
 
+Here we illustrate how to perform the same GWAS analyses on the asthma using PLINK secure shell commands. This can be performed thanks to the posibility of having ssh resources as described [here](#shell_extension).
+
+It is worth to notice that this workflow and the new R functions implemented in `r Githubpkg("isglobal-brge/dsOmicsClient")` could be used as a guideline to carry out similar analyses using existing analysis tools in genomics such as IMPUTE, SAMtools or BEDtools among many others. 
+
+We start by assigning login resources 
+
+```{r GWAS_shell_1}
+library(DSOpal)
+library(dsBaseClient)
+library(dsOmicsClient)
+builder <- newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org",
+               user = "dsuser", password = "password",
+               resource = "test.brge_plink", driver = "OpalDriver")
+logindata <- builder$build()
+```
+
+Then we assign the resource to a symbol (i.e. R object) called `client` which is a ssh resource
+
+```{r GWAS_shell_3}
+conns <- datashield.login(logins = logindata, assign = TRUE,
+                          symbol = "client")
+ds.class("client")
+```
+
+Now, we are ready to run any PLINK command from the client site. Notice that in this case we want to assess association between the genotype data in bed format and use as phenotype the variable 'obese' that is in the file 'obesity.phe'. The sentence in a PLINK command would be (NOTE: we avoid --out to indicate the output file since the file will be available in R as a tibble).
+
+```
+plink --bfile obesity --assoc --pheno obesity.phe --pheno-name obese 
+```
+
+The arguments musth be encapsulated in a single character without the command 'plink'
+
+```{r GWAS_shell_4}
+plink.arguments <- "--bfile brge --logistic --covar brge.phe --covar-name gender,age"
+```
+
+the analyses are then performed by
+
+```{r GWAS_shell_gwas}
+ans.plink <- ds.PLINK("client", plink.arguments)
+```
+
+The object `ans` contains the PLINK results at each server as well as the outuput provided by PLINK
+
+```{r GWAS_shell_result1}
+lapply(ans.plink, names)
+
+head(ans.plink$study1$results)
+
+ans.plink$study$plink.out
+```
+
+We can compare the p-values obtained using PLINK with Bioconductor-based packages for the top-10 SNPs as follows:
+
+
+```{r comparison}
+library(tidyverse)
+# get SNP p.values (additive model - ADD)
+res.plink <- ans.plink$study1$results %>% filter(TEST=="ADD") %>%
+  arrange(P)
+# compare top-10 with Biocoductor's results
+snps <- res.plink$SNP[1:10]
+plink <- res.plink %>% filter(SNP%in%snps) %>% select(SNP, P)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, Score.pval)
+left_join(plink, bioC, by=c("SNP" = "rs"))
+```
+
+
+As expected, the p-values are in the same order of magnitud having little variations due to the implemented methods of each software. 
+
+We can do the same comparions of minor allele frequency (MAF) estimation performed with Bioconductor and PLINK. To this end, we need first to estimate MAF using PLINK
+
+```{r maf_plink}
+plink.arguments <- "--bfile brge --freq"
+ans.plink2 <- ds.PLINK("client", plink.arguments)
+maf.plink <- ans.plink2$study1$results
+
+plink <- maf.plink %>% filter(SNP%in%snps) %>% select(SNP, MAF)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, freq)
+left_join(plink, bioC, by=c("SNP" = "rs"))
+```
+
+
+
+This close the DataSHIELD session 
+
+```{r close_conns4}
+datashield.logout(conns)
+```
 
 
 

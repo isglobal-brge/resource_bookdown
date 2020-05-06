@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Secure shell programs: GWAS with PLINK | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="10 Secure shell programs: GWAS with PLINK | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>9 VCF files to GDS to peform GWAS with Bioconductor | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="9 VCF files to GDS to peform GWAS with Bioconductor | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Secure shell programs: GWAS with PLINK | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="9 VCF files to GDS to peform GWAS with Bioconductor | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Secure shell programs: GWAS with PLINK | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="9 VCF files to GDS to peform GWAS with Bioconductor | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="vcf-files-in-genomic-data-analysis-gwas-with-bioconductor.html"/>
-<link rel="next" href="setup.html"/>
+<link rel="prev" href="resourcer.html"/>
+<link rel="next" href="shell-extension.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
-<li class="chapter" data-level="3" data-path="bioconductor-data-infrastructure.html"><a href="bioconductor-data-infrastructure.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructure</a></li>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructure</a></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> OPAL</a></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a></li>
 <li class="chapter" data-level="6" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html"><i class="fa fa-check"></i><b>6</b> DSI: DataSHIELD Interface implementation for Opal data repository</a>
@@ -168,8 +168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
-<li class="chapter" data-level="9" data-path="vcf-files-in-genomic-data-analysis-gwas-with-bioconductor.html"><a href="vcf-files-in-genomic-data-analysis-gwas-with-bioconductor.html"><i class="fa fa-check"></i><b>9</b> VCF files in genomic data analysis: GWAS with Bioconductor</a></li>
-<li class="chapter" data-level="10" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>10</b> Secure shell programs: GWAS with PLINK</a></li>
+<li class="chapter" data-level="9" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>9</b> VCF files to GDS to peform GWAS with Bioconductor</a></li>
+<li class="chapter" data-level="10" data-path="shell-extension.html"><a href="shell-extension.html"><i class="fa fa-check"></i><b>10</b> Secure shell programs: GWAS with PLINK</a></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
 <li class="chapter" data-level="11" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>11</b> Setup</a>
 <ul>
@@ -240,20 +240,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="omic_extension" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Secure shell programs: GWAS with PLINK</h1>
+<div id="omic_extension" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> VCF files to GDS to peform GWAS with Bioconductor</h1>
+<p>Genomic data can be stored in different formats. <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a> and <a href="https://www.internationalgenome.org/wiki/Analysis/vcf4.0/">VCF</a> files are commonly used in genetic epidemiology studies. In order to deal with this type of data, we have extended the resources available at the <em><a href="https://github.com/obiba/resourcer">resourcer</a></em> package to VCF files. <strong>NOTE</strong>: PLINK files can be translated into VCF files using different pipelines. In R you can use <em><a href="https://bioconductor.org/packages/3.10/SeqArray">SeqArray</a></em> to get VCF files.</p>
+<p>We use the <a href="https://bioconductor.org/packages/release/bioc/vignettes/gdsfmt/inst/doc/gdsfmt.html#introduction">Genomic Data Storage</a> (GDS) format which efficiently manage VCF files into the R environment. This extension requires to create a <a href="resourcer.html#extending_resources">Client and a Resolver</a> function for the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> that are located into the <em><a href="https://bioconductor.org/packages/3.10/dsOmics">dsOmics</a></em> package. The client function uses <code>snpgdsVCF2GDS</code> function implemented in <em><a href="https://bioconductor.org/packages/3.10/SNPrelate">SNPrelate</a></em> to coerce the VCF file to a GDS object. Then the GDS object is loaded into R as an object of class <code>GdsGenotypeReader</code> from <em><a href="https://bioconductor.org/packages/3.10/GWASTools">GWASTools</a></em> package that facilitates downstream analyses.</p>
+<p>The opal API server allows to incorporate this new type of resource as illustrated in Figure <a href="omic-extension.html#fig:resourceVCF">9.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:resourceVCF"></span>
+<img src="fig/opal_resource_VCF.png" alt="Description of how a VCF file can be added to the opal resources" width="280" height="5%" />
+<p class="caption">
+Figure 9.1: Description of how a VCF file can be added to the opal resources
+</p>
+</div>
+<p>It is important to notice that the URL should contain the tag <code>method=biallelic.only&amp;snpfirstdim=TRUE</code> since these are required parameters of <code>snpgdsVCF2GDS</code> function. This is an example:</p>
+<pre><code>https://raw.githubusercontent.com/isglobal-brge/scoreInvHap/master/inst/extdata/example.vcf?method=biallelic.only&amp;snpfirstdim=TRUE</code></pre>
+<p>In that case we indicate that only biallelic SNPs are considered (‘method=biallelic.only’) and that genotypes are stored in the individual-major mode, (i.e., list all SNPs for the first individual, and then list all SNPs for the second individual, etc) (‘snpfirstdim=TRUE’).</p>
 
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="vcf-files-in-genomic-data-analysis-gwas-with-bioconductor.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resourcer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shell-extension.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,1 +1,76 @@
-# Secure shell programs: GWAS with PLINK {#omic_extension}
+# Secure shell programs: GWAS with PLINK {#shell_extension}
+
+GWAS can also be performed using program that are executed using shell commands. This is the case of [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that requires efficient and scalable pipelines. 
+
+The resources also allow the use of secure SSH service to run programs on a remote server accessible through ssh containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allow us to create functions to analyze data using specific shell programs.
+
+Here we describe how [PLINK](http://zzz.bwh.harvard.edu/plink/) program can be use to perform GWAS  [**Yannick** some overview about how this is created should be described]
+
+We use this following code to illustrate how analyses should be performed using the `r CRANpkg("resourcer")` package. This code could be considered as the base code for creating a DataSHIELD package for the OPAL server as performed in `plinkDS()` function implemented in the `r Githubpkg("isglobal-brge", "dsOmics")` package
+
+
+We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources)) using the `r CRANpkg("resourcer")` package as follows:
+
+
+```{r plink_resource}
+library(resourcer)
+brge_plink <- resourcer::newResource(url="ssh://plink-test.obiba.org:2222/home/master/brge?exec=ls,plink,plink1", 
+                                     identity = "master", secret = "master")
+client <- resourcer::newResourceClient(brge_plink)
+```
+
+This creates an object of this class:
+
+```{r plink_resource_class}
+class(client)
+```
+
+These are the actions we can do with an `SshResourceClient` object
+
+```{r plink_resource_actions}
+names(client)
+```
+
+For this specific resource (e.g. PLINK) we can execute these shell commands
+
+```{r plink_resource_allowed}
+client$getAllowedCommands()
+```
+
+For instance
+
+```{r plink_resource_ls}
+client$exec("ls", "-la")
+```
+
+Then, to avoid multiple accesses to the resource, it is recommended to create a temporal directory to save our results
+
+```{r plink_resource_temp}
+tempDir <- client$tempDir()
+tempDir
+client$exec("ls", tempDir)
+```
+
+Then, we can use R to launch the shell commands
+
+```{r plink_resource_plink}
+client$exec('plink1', c('--bfile', 'brge', '--freq', '--out', paste0(tempDir, '/out'), '--noweb'))
+```
+
+The results can be retrieve as an R object
+
+```{r plink_resource_retrieve}
+outs <- client$exec('ls', tempDir)$output
+outs
+client$downloadFile(paste0(tempDir, '/out.*'))  
+ans <- readr::read_table("out.frq")
+ans
+```
+
+Finally temporal directories are removed and session closed
+
+```{r plink_resource_close}
+client$removeTempDir()
+client$close()
+```
+
