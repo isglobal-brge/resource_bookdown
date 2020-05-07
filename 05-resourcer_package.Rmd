@@ -126,6 +126,97 @@ It is possible to declare a resource that is to be resolved by an R package that
 knitr::include_graphics("fig/opal_resources_API.png")
 ```
 
+## Resource Forms
+
+As it can be error prone to define a new resource, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in javascript, as this is a very commonly used language for building graphical user interfaces.
+
+These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the `inst/resources` folder), so that an external application can lookup statically the packages having declared some resources.
+
+The configuration file `inst/resources/resource.js` is a javascript file which contains an object with the properties:
+
+* `settings`, a JSON object that contains the description and the documentation of the web forms (based on the [json-schema](http://json-schema.org) specification).
+* `asResource`, a javascript function that will convert the data captured from one of the declared web forms into a data structure representing the `resource` object.
+
+As an example (see also [resourcer's resource.js](https://github.com/obiba/resourcer/blob/master/inst/resources/resource.js)):
+
+```javascript
+var myPackage = {
+  settings: {
+    "title": "MyPackage resources",
+    "description": "MyPackage resources are for etc.",
+    "web": "https://github.com/org/myPackage",
+    "categories": [
+      {
+        "name": "my-format",
+        "title": "My data format",
+        "description": "Data are files in my format, that will be read by myPackage etc."
+      }
+    ],
+    "types": [
+      {
+        "name": "my-format-http",
+        "title": "My data format - HTTP",
+        "description": "Data are files in my format, that will be downloaded from a HTTP server etc.",
+        "tags": ["my-format", "http"],
+        "parameters": {},
+        "credentials": {}
+      }
+    ]
+  },
+  asResource: function(type, name, params, credentials) {
+    // make a resource object from arguments, using type to drive 
+    // what params/credentials properties are to be used
+    // a basic example of resource object:
+    return {
+      "name": name,
+      "url": params.url,
+      "format": params.format,
+      "identity": credentials.username,
+      "secret": credentials.password
+    };
+  }
+}
+```
+
+The specifications for the `resource.js` file are the following:
+
+* `settings` object:
+
+Property | Type | Description
+--- | --- | ---
+**title** | `string` | The title of the set of resources.
+**description** | `string` | The description of the set of resources.
+**web** | `string` | A web link that describes the resources.
+**categories** | `array` of `object` | A list of `category` objects which are used to categorize the declared resources in terms of resource location, format, usage etc.
+**types** | `array` of `object` | A list of `type` objects which contains a description of the parameters and credentials forms for each type of resource.
+
+* `category` object:
+
+Property | Type | Description
+--- | --- | ---
+**name** | `string` | The name of the category that will be applied to each resource `type`, must be unique.
+**title** | `string` | The title of the category.
+**description** | `string` | The description of the category.
+
+* `type` object:
+
+Property | Type | Description
+--- | --- | ---
+**name** | `string` | The identifying name of the resource, must be unique.
+**title** | `string` | The title of the resource.
+**description** | `string` | The description of the resource form.
+**tags** | `array` of `string` | The `tag` names that are applied to the resource form.
+**parameters** | `object` | The form that will be used to capture the parameters to build the *url* and the *format* properties of the resource (based on the [json-schema](http://json-schema.org) specification). Some specific fields can be used: `_package` to capture the R package name or `_packages` to capture an array of R package names to be loaded prior to the resource assignment. 
+**credentials** | `object` | The form that will be used to capture the access credentials to build the *identity* and the *secret* properties of the resource (based on the [json-schema](http://json-schema.org) specification).
+
+* `asResource` function: a javascript function which signature is `function(type, name, params, credentials)` where:
+  * `type`, the form name used to capture the resource parameters and credentials,
+  * `name`, the name to apply to the resource,
+  * `params`, the captured parameters,
+  * `credentials`, the captured credentials.
+  
+The name of the root object must follow the pattern: `<R package>` (note that any dots (`.`) in the R package name are to be replaced by underscores (`_`)).
+
 
 ## Examples with different resources
 
