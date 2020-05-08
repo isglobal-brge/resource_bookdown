@@ -259,10 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We use the <a href="https://bioconductor.org/packages/release/bioc/vignettes/gdsfmt/inst/doc/gdsfmt.html#introduction">Genomic Data Storage</a> (GDS) format which efficiently manage VCF files into the R environment. This extension requires to create a <a href="resourcer.html#extending_resources">Client and a Resolver</a> function for the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> that are located into the <em><a href="https://bioconductor.org/packages/3.10/dsOmics">dsOmics</a></em> package. The client function uses <code>snpgdsVCF2GDS</code> function implemented in <em><a href="https://bioconductor.org/packages/3.10/SNPrelate">SNPrelate</a></em> to coerce the VCF file to a GDS object. Then the GDS object is loaded into R as an object of class <code>GdsGenotypeReader</code> from <em><a href="https://bioconductor.org/packages/3.10/GWASTools">GWASTools</a></em> package that facilitates downstream analyses.</p>
 <p>The opal API server allows to incorporate this new type of resource as illustrated in Figure <a href="omic-extension.html#fig:resourceVCF">9.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:resourceVCF"></span>
-<img src="fig/opal_resource_VCF.png" alt="Description of how a VCF file can be added to the opal resources" width="280" height="5%" />
 <p class="caption">
 Figure 9.1: Description of how a VCF file can be added to the opal resources
 </p>
+<img src="fig/opal_resource_VCF.png" alt="Description of how a VCF file can be added to the opal resources" width="280" height="5%" />
 </div>
 <p>It is important to notice that the URL should contain the tag <code>method=biallelic.only&amp;snpfirstdim=TRUE</code> since these are required parameters of <code>snpgdsVCF2GDS</code> function. This is an example:</p>
 <pre><code>https://raw.githubusercontent.com/isglobal-brge/scoreInvHap/master/inst/extdata/example.vcf?method=biallelic.only&amp;snpfirstdim=TRUE</code></pre>

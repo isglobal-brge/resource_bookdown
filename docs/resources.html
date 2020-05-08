@@ -261,10 +261,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Resources are datasets or computation units which location is described by a URL and access is protected by credentials. When assigned to a R/DataSHIELD server session, remote big/complex datasets or high performance computers are made accessible to data analysts.</p>
 <p>Instead of storing the data in Opal’s database, only the way to access them is to be defined: the datasets are kept in their original format and location (a SQL database, a SPSS file, R object, etc.) and are read directly from the R/DataSHIELD server-side session. Then as soon as there is a R reader for the dataset or a connector for the analysis services, a resource can be defined. Opal takes care of the DataSHIELD permissions (a DS user cannot see the resource’s credentials) and of the resources assignment to a R/DataSHIELD session (see Figure <a href="resources.html#fig:resources">7.1</a>)</p>
 <div class="figure" style="text-align: center"><span id="fig:resources"></span>
-<img src="fig/resourcer_fig.jpg" alt="Resources: a new DataSHIELD infrastructure" width="40%" />
 <p class="caption">
 Figure 7.1: Resources: a new DataSHIELD infrastructure
 </p>
+<img src="fig/resourcer_fig.jpg" alt="Resources: a new DataSHIELD infrastructure" width="40%" />
 </div>
 </div>
 <div id="types-of-resources" class="section level2" number="7.2">
@@ -273,10 +273,10 @@ Figure 7.1: Resources: a new DataSHIELD infrastructure
 <p>When the data model is getting complex (data types and objects relationships), a domain-specific data format is sometimes designed to handle this complexity so that statistical analysis and data retrieval can be executed as efficiently as possible. Examples of domain-specific data formats are encountered in the omic or geospatial fields of research that are described in the Workflows part: <a href="Omic.html#Omic">Omic</a> and <a href="GIS.html#GIS">Geospatial</a>. A data format can also include some additional features such as data compression, encoding or encryption. Each data format requires an appropriate reader software library or application to extract the information or perform data aggregation or filtering operations.</p>
 <p>We have prepared a test environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: <a href="https://opal-test.obiba.org">opal-test.obiba.org</a>. This figure illustrate the resources which are available for the <code>test</code> project and can serve as a starting example of the different types of resources that can be dealt with</p>
 <div class="figure" style="text-align: center"><span id="fig:testResources"></span>
-<img src="fig/opal_resources.png" alt="Resources from a test enviroment available at https://opal-test.obiba.org"  />
 <p class="caption">
 Figure 7.2: Resources from a test enviroment available at <a href="https://opal-test.obiba.org" class="uri">https://opal-test.obiba.org</a>
 </p>
+<img src="fig/opal_resources.png" alt="Resources from a test enviroment available at https://opal-test.obiba.org"  />
 </div>
 <p>As it can be seen, the data storage can simply be a file to be accessed directly from the host’s file system or to be downloaded from a remote location. More advanced data storage systems are software applications that expose an interface to query, extract or analyse the data. These applications can make use of a standard programming interface (e.g. SQL) or expose specific web services (e.g. based on the HTTP communication protocol) or provide a software library (in different programming languages) to access the data. These different ways of accessing the data are not exclusive from each other. In some cases the micro-data cannot be extracted, only computation services that return aggregated data are provided. The data storage system can also apply security rules, requiring authentication and proper authorisations to access or analyse the data.</p>
 <p>We call resource this data or computation access description. A resource will have the following properties: (1) the location of the data or of the computation services, (2) the data format (if this information cannot be inferred from the location property), (3) the access credentials (if some apply).</p>

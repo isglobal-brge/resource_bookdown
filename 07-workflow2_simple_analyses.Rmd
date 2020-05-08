@@ -33,7 +33,7 @@ conns <- DSI::datashield.login(logins = logindata, assign = TRUE,
 
 # coerce ResourceClient objects to a data.frame called 'D'
 datashield.assign.expr(conns, symbol = "D", 
-                       expr = quote(as.resource.data.frame(res)))
+                       expr = quote(as.resource.data.frame(res, strict=TRUE)))
 ```
 
 Then we can inspect the type of data we have
@@ -65,6 +65,8 @@ datashield.logout(conns)
 
 
 ## Analysis from a multiple studies
+
+Now, let us illustrate ....
 
 ```{r cnsim_multiple}
 library(DSOpal)

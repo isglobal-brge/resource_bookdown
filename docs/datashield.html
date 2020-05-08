@@ -258,10 +258,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses <a href="http://opaldoc.obiba.org/en/latest/">Opal servers</a> to properly perform such analyses.</p>
 <p>At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure <a href="DataSHIELD.html#fig:dsArchitec">5.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:dsArchitec"></span>
-<img src="fig/singleSiteDSInfrastructure.jpg" alt="Single Server DataSHIELD Architecture (Wilson et al 2017)" width="60%" />
 <p class="caption">
 Figure 5.1: Single Server DataSHIELD Architecture (Wilson et al 2017)
 </p>
+<img src="fig/singleSiteDSInfrastructure.jpg" alt="Single Server DataSHIELD Architecture (Wilson et al 2017)" width="60%" />
 </div>
 <div id="r-and-datashield-implementation-in-opal" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> R and DataSHIELD implementation in Opal</h2>
@@ -272,10 +272,10 @@ Figure 5.1: Single Server DataSHIELD Architecture (Wilson et al 2017)
 <li>an R package for Opal (installed on the Analysis Computer)</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:opalDS"></span>
-<img src="fig/opal-datashield.png" alt="R and DataSHIELD implementation in Opal" width="60%" />
 <p class="caption">
 Figure 5.2: R and DataSHIELD implementation in Opal
 </p>
+<img src="fig/opal-datashield.png" alt="R and DataSHIELD implementation in Opal" width="60%" />
 </div>
 </div>
 <div id="r-module" class="section level2" number="5.2">
@@ -305,10 +305,10 @@ Figure 5.2: R and DataSHIELD implementation in Opal
 <p>Readers can read <a href="http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html">this link</a> to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, lineal and generalized lineal models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD Wiki</a>.</p>
 <p>Just for a simple illustration, here we illustrate how to analyze some data available in <a href="http://opal-demo.obiba.org/">our demo site</a>. The tab <a href="https://opal-demo.obiba.org/ui/index.html#!projects">Explore Data</a> made access to the different projects that are avaialble in our Opal server. If we select “SURVIVAL” prject we see that there are three tables:</p>
 <div class="figure" style="text-align: center"><span id="fig:survivalTables"></span>
-<img src="fig/survival_tables.png" alt="Tables available in the SURVIVAL project from our Opal example" width="940" />
 <p class="caption">
 Figure 5.3: Tables available in the SURVIVAL project from our Opal example
 </p>
+<img src="fig/survival_tables.png" alt="Tables available in the SURVIVAL project from our Opal example" width="940" />
 </div>
 <p>R code to be provided ….</p>
 
