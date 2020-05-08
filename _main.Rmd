@@ -1,0 +1,1569 @@
+--- 
+title: "Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+output_dir: "docs"
+bibliography: [resource.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE,
+                      fig.topcaption=TRUE)
+```
+
+
+# Wellcome {-}
+
+
+<img src="fig/datashield.jpg" width="200" align="right" style="margin: 0 1em 0 1em" /></a> 
+
+This is the website for a book that provides users with some common workflows for the non-disclosive analysis of biomedical data with [R](https://cran.r-project.org/) and [DataSHIELD](http://www.datashield.ac.uk/) from different resources. This book will teach you how to use the `r BiocStyle::CRANpkg("resourcer")` R package to perform any statistcal analysis from different studies having data in different formats (e.g., CSV, SPSS, R class, ...). In particular, we focus on illustrating how to deal with Big Data by providing several examples from omic and geographical settings. To this end, we use cutting-edge Bioconductor tools to perform transcriptomic, epigenomic and genomic data analyses. Serveral R packages are used to perform analysis of geospatial data. We also provide examples of how performing non-disclosive analyses using secure SHELL commands by allowing the use of specific software that properly deals with Big Data outside R. This material serves as an online companion for the manuscript “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+
+
+While we focus here in genomic and geoespatial data, dozens of data analysis aplications interested in performing non-disclosive analysis having data in any specific format could be carried out. By learning the grammar of DataSHILED workflows, we hope to provide you a starting point for the exploration of your own data, whether it be omic, geospatial or otherwise.
+
+This book is organized into five parts. In the Preamble, we introduce the book, provides a tutorial for key data infrastructure useful for omic and geospatial data and a general overview for learning how Opal and DataSHILED allows performing non-disclosive data analyses from multiple studies simultaneously. So far, DataSHIELD uses tables from repository data in Opal which have some limitations to perfom Big Data analyses. 
+
+The second part, Focus Topic, dive into information for for non-disclosive analyses using any type of resource which is one of the key advances provided in this work. It allow, among others, perform big data analyses using genomic or geospatial information where thousand of sensitive data have to be managed.  
+
+The third part, Resources Extensions, provides examples illustrating how to extend existing resources. We describe how to create functions to deal with omic data in [Variant Calling Format](https://en.wikipedia.org/wiki/Variant_Call_Format) (VCF files) which specifies the format of a text file used in bioinformatics for storing [gene sequence](https://en.wikipedia.org/wiki/Gene) variations. It also shows how to perform genomic data analysis using secure shell commands. This can be consider as an illustrative example for using shell programs to perform Big Data analyses that could be extend to other frameworks of Big Data such as “Apache Spark”. 
+
+The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidenciallity is an important issue. 
+
+
+The fifth part, Developers, provides information about how to develop DataSHIELD packages using specific R packages devoted to Big Data analyses as well as using shell programs. It also provides some useful trips and trick that developers or end users may face when using our proposed infrastructure.
+
+Finally, the Appendix highlights our contributors.
+
+If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+
+```{r include=FALSE}
+## automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+library(BiocStyle)
+library(kableExtra)
+```
+
+
+
+<!--chapter:end:index.Rmd-->
+
+# (PART) Preamble {-}
+
+# Introduction
+
+# R
+
+# Bioconductor data infrastructures {#BioC}
+
+
+
+<!--chapter:end:00-Introduction.Rmd-->
+
+# OPAL
+
+Opal is [OBiBa](https://www.obiba.org/)’s core database application for biobanks. Participant data, once collected either from OBiBa’s Onyx application, must be integrated and stored in a central data repository under a uniform model. Opal is such a central repository. Current Opal version can import, process, and copy data. Opal is typically used in a research center to analyze the data acquired at assessment centres. Its ultimate purpose is to achieve seamless data-sharing among biobanks. More information on Opal future can be seen in [Opal description on OBiBa](https://www.obiba.org/pages/products/opal/).
+
+Initial implementation of Opal was based on managing databases as tables by supporting several data warehouse technologies such as:
+
+  - MongoDB , Mysql , MariaDB  and PostgreSQL  as database software backend,
+  - Import data from CSV, SPSS, SAS, Stata files and from SQL databases,
+  - Export data to CSV, SPSS, SAS, Stata files and to SQL databases,
+  - Connect directly to multiple data source software such as SQL databases and LimeSurvey ,
+  - Store data about any type of "entity", such as subject, sample, geographic area, etc.,
+  - Store data of any type (e.g., texts, numbers, geo-localisation, images, videos, etc.),
+  - Import and store genotype data as VCF files (Variant Call format ),
+  - ...
+
+
+Detailed concepts and tutorials for tables can be found here:
+
+   - [Variables and Data](http://opaldoc.obiba.org/en/latest/variables-data.html)
+   - [Identifiers Mappings](http://opaldoc.obiba.org/en/latest/ids.html)
+   - [Data Harmonization](http://opaldoc.obiba.org/en/latest/data-harmonization.html)
+
+
+To have a closer look at Opal with table you can try [our demo site](http://opal-demo.obiba.org/):
+
+- username: administrator
+- password: password
+
+In this work, we will present a more flexible data infrastructure called [resources](#resources) that will be able to manage Big Data sets which can be a limitation when using tables. 
+
+Before introducing this new feature and in order to make the reader familiar with Opal we recommend to visit [this webpage](https://www.obiba.org/pages/products/opal/) where a global overview along with some examples are described 
+
+
+
+
+
+<!--chapter:end:01-OPAL.Rmd-->
+
+# DataSHIELD {#DataSHIELD}
+
+DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses [Opal servers](http://opaldoc.obiba.org/en/latest/) to properly perform such analyses. 
+
+At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure \@ref(fig:dsArchitec). 
+
+```{r dsArchitec, echo=FALSE, fig.cap="Single Server DataSHIELD Architecture (Wilson et al 2017)", out.width = '60%', fig.align='center'}
+knitr::include_graphics("fig/singleSiteDSInfrastructure.jpg")
+```
+
+## R and DataSHIELD implementation in Opal
+
+Opal uses the [R](https://cran.r-project.org/) statistical environment to implement DataSHIELD. The implementation is made of 3 components:
+
+- an Opal server
+- an R server (using Rserve)
+- an R package for Opal (installed on the Analysis Computer)
+
+```{r opalDS, echo=FALSE, fig.cap="R and DataSHIELD implementation in Opal", out.width = '60%', fig.align='center'}
+knitr::include_graphics("fig/opal-datashield.png")
+```
+
+## R module
+Used for the interaction between an R statistical environment and Opal. Specifically, this module allows pushing data from Opal into an R environment and back. It can also execute arbitrary R code within these environments.
+
+Opal interacts with an R server through Rserve’s protocol. This allows the R Server to be on a different machine than the Opal server. It also allows maintaining R separately from Opal.
+
+## DataSHIELD module
+Built “on top” of the R module, this provides a constrained and customisable access to the R environment. Specifically, this module allows pushing data from Opal into R, but does not allow reading this data unless it has first been *aggregated* which is a non-disclosive way of obtained data from repositories.
+
+The term “aggregated” here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)
+
+It is these methods that are customisable. That is, administrators of the Opal server can add, remove, modify and create completely custom aggregating methods that are provided to DataSHIELD clients.
+
+## Web Services
+Allows the interaction between these modules and their clients is done through Web Services.
+
+## R Server Component
+R is made accessible to Opal through the Rserve library. This allows running R commands from several remote clients. Doing so allows running R and Opal on different machines if necessary.
+
+Note that this R Server will eventually contain individual-level data (it will be pushed there by the Opal server). This R server should be secured just like other machines involved in handling individual-level data. This data is not made directly available to Opal clients.
+
+## R Clients (Analysis Computers)
+The interaction between the analysis computer and Opal is done through another R environment running on the analysis computer. To support these interactions, Opal provides an R package that can be installed using normal R functionalities (CRAN).
+
+Clients can then use this package to authenticate to Opal instances and interact with the DataSHIELD methods offered by these servers.
+
+
+Readers can read [this link](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html) to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, lineal and generalized lineal models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
+
+
+Just for a simple illustration, here we illustrate how to analyze some data available in [our demo site](http://opal-demo.obiba.org/). The tab [Explore Data](https://opal-demo.obiba.org/ui/index.html#!projects) made access to the different projects that are avaialble in our Opal server. If we select "SURVIVAL" prject we see that there are three tables:
+
+
+
+```{r survivalTables, echo=FALSE, fig.cap="Tables available in the SURVIVAL project from our Opal example", fig.align='center'}
+knitr::include_graphics("fig/survival_tables.png")
+```
+
+
+
+R code to be provided ....
+
+<!--chapter:end:02-DataSHIELD.Rmd-->
+
+# DSI: DataSHIELD Interface implementation for Opal data repository
+
+The DataSHIELD Interface (DSI) defines a set of [S4 classes and generic methods](http://adv-r.had.co.nz/S4.html) that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled R commands to be executed on the server side are garanteeing that non disclosive information is returned to client side.
+
+## Class Structure
+
+The DSI classes are:
+
+* `DSObject` a common base class for all DSI,
+* `DSDriver` drives the creation of a connection object,
+* `DSConnection` allows the interaction with the remote server; DataSHIELD operations such as 
+aggregation and assignment return a result object; DataSHIELD setup status check can be performed (dataset access, 
+configuration comparision),
+* `DSResult` wraps access to the result, which can be fetched either synchronously or asynchronously 
+depending on the capabilities of the data repository server.
+
+All classes are *virtual*: they cannot be instantiated directly and instead must be subclassed. See [DSOpal](https://github.com/datashield/DSOpal) for a reference implementation of DSI based on the [Opal](https://www.obiba.org/pages/products/opal/) data repository.
+
+These S4 classes and generic methods are meant **to be used for implementing connection to a DataSHIELD-aware data repository.**
+
+## Higher Level Functions
+
+In addition to these S4 classes, DSI provides functions to handle a list of remote data repository servers:
+
+* `datashield.login` and `datashield.logout` will make use of the `DSDriver` paradigm to create `DSConnection`s
+to the data repositories,
+* `datashield.aggregate` and `datashield.assign` will perform typical DataSHIELD operations on `DSConnection`s, 
+which result will be fetched through `DSResult` objects,
+* `datashield.connections`, `datashield.connections_default` and `datashield.connections_find` are functions
+for managing the list of `DSConnection` objects that will be discovered and used by the client-side analytic functions.
+* Other data management functions are provided by the `DSConnection` objects:
+  * `datashield.workspaces`, `datashield.workspace_save` and `datashield.workspace_rm` allow to manage R images 
+  of the remote DataSHIELD sessions (to speed up data analysis sessions),
+  * `datashield.symbols` and `datashield.symbol_rm` offer a minimalistic management of the R symbols living in 
+  the remote DataSHIELD sessions,
+  * `datashield.table_status`, `datashield.pkg_status`, `datashield.method_status` and `datashield.methods` are 
+  utility functions to explore the DataSHIELD setup across a set of data repositories,
+
+These `datashield.*` functions are meant **to be used by DataSHIELD packages developers and users.**
+  
+## Options
+
+Some options can be set to modify the behavior of the DSI:
+
+* `datashield.env` is the R environment in which the `DSConnection` object list is to be looking for. Default value is the Global Environment: `globalenv()`.
+* `datashield.progress` is a logical to enable the visibility of the progress bars. Default value is `TRUE`.
+* `datashield.progress.clear` is a logical to make the progress bar disappear after it has been completed. Default value is `FALSE`. 
+
+<!--chapter:end:03-DSI.Rmd-->
+
+# (PART) Focus Topics {-}
+
+# The resources {#resources}
+
+Developing and implementing new algorithms to perform advanced data analyses under DataSHIELD framework is a current active line of research. However, the analysis of big data within DataSHIELD has some limitations. Some of them are related to how data is managed in Opal and others are related to how to perform statistical analyses of big data within the R environment. Opal databases do not properly manage large amounts of information and, second, it requires moving data from original repositories that is inefficient. We have overcome the problem related to DataSHIELD big data management by developing  a new data infrastructure within Opal: __the resources__.
+
+## Concept
+
+Resources are datasets or computation units which location is described by a URL and access is protected by credentials. When assigned to a R/DataSHIELD server session, remote big/complex datasets or high performance computers are made accessible to data analysts.
+
+Instead of storing the data in Opal’s database, only the way to access them is to be defined: the datasets are kept in their original format and location (a SQL database, a SPSS file, R object, etc.) and are read directly from the R/DataSHIELD server-side session. Then as soon as there is a R reader for the dataset or a connector for the analysis services, a resource can be defined. Opal takes care of the DataSHIELD permissions (a DS user cannot see the resource’s credentials) and of the resources assignment to a R/DataSHIELD session (see Figure \@ref(fig:resources))
+
+```{r resources, echo=FALSE, fig.cap="Resources: a new DataSHIELD infrastructure", out.width = '40%', fig.align='center'}
+knitr::include_graphics("fig/resourcer_fig.jpg")
+```
+
+## Types of resources
+
+The data format refers to the intrinsic structure of the data. A very common family of data formats is the [tabular format](https://en.wikipedia.org/wiki/Table_(information)) which is made of rows (entities, records, observations etc.) and columns (variables, fields, vectors etc.). Examples of tabular formats are the [delimiter-separated values formats](https://en.wikipedia.org/wiki/Delimiter-separated_values) (CSV, TSV etc.), the [spreadsheet](https://en.wikipedia.org/wiki/Spreadsheet) data formats (Microsoft Excel, LibreOffice Calc, Google Sheets etc.), some proprietary statistical software data formats (SPSS, SAS, Stata etc.), the [database tables](https://en.wikipedia.org/wiki/Table_(database)) that can be stored in structured database management systems that are row-oriented (MySQL, MariaDB, PostgreSQL, Oracle, SQLite etc.) or column-oriented (Apache Cassandra, Apache Parquet, MariaDB ColumnStore, BigTable etc.), or in semi-structured database management systems such as the documented-oriented databases (MongoDB, Redis, CouchDB, Elasticsearch etc.). 
+
+When the data model is getting complex (data types and objects relationships), a domain-specific data format is sometimes designed to handle this complexity so that statistical analysis and data retrieval can be executed as efficiently as possible. Examples of domain-specific data formats are encountered in the omic or geospatial fields of research that are described in the Workflows part: [Omic](#Omic) and [Geospatial](#GIS). A data format can also include some additional features such as data compression, encoding or encryption. Each data format requires an appropriate reader software library or application to extract the information or perform data aggregation or filtering operations. 
+
+We have prepared a test environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: [opal-test.obiba.org](https://opal-test.obiba.org). This figure illustrate the resources which are available for the `test` project and can serve as a starting example of the different types of resources that can be dealt with
+
+```{r testResources, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-test.obiba.org", fig.align='center'}
+knitr::include_graphics("fig/opal_resources.png", dpi=NA)
+```
+ 
+ 
+As it can be seen, the data storage can simply be a file to be accessed directly from the host’s file system or to be downloaded from a remote location. More advanced data storage systems are software applications that expose an interface to query, extract or analyse the data. These applications can make use of a standard programming interface (e.g. SQL) or expose specific web services (e.g. based on the HTTP communication protocol) or provide a software library (in different programming languages) to access the data. These different ways of accessing the data are not exclusive from each other. In some cases the micro-data cannot be extracted, only computation services that return aggregated data are provided. The data storage system can also apply security rules, requiring authentication and proper authorisations to access or analyse the data.
+ 
+We call resource this data or computation access description. A resource will have the following properties: (1) the location of the data or of the computation services, (2) the data format (if this information cannot be inferred from the location property), (3) the access credentials (if some apply).
+ 
+The resource location description will make use of the web standard described in the [RFC 3986](https://tools.ietf.org/html/rfc3986) “Uniform Resource Identifier (URI): Generic Syntax”. More specifically, the Uniform Resource Locator (URL) specification is what we need for defining the location of the data or computation resource: the term Uniform allows to describe the resource the same way, independently of its type, location and usage context; the term Resource does not limit the scope of what might be a resource, e.g. a document, a service, a collection of resources, or even abstract concepts (operations, relationships, etc.); the term Locator both identifies the resource and provides a means of locating it by describing its access mechanism (e.g. the network location). The URL syntax is composed of several parts: (1) a scheme, that describes how to access the resource, e.g. the communication protocols “https” (secured HTTP communication), “ssh” (secured shell, for issuing commands on a remote server), or “s3” (for accessing Amazon Web Service S3 file store services), (2) an authority (optional), e.g. a server name address, (3) a path that identifies/locates the resource in a hierarchical way and that can be altered by query parameters. 
+ 
+The resource’s data format might be inferred from the path part of the URL, by using the file name suffix for instance. Nevertheless, sometimes it is not possible to identify the data format because the path could make sense only for the data storage system, for example when a file store designates a document using an obfuscated string identifier or when a text-based data format is compressed as a zip archive. The format property can provide this information.
+ 
+Despite the authority part of the URL can contain some user information (such as the username and password), it is discouraged to use this capability for security considerations. The resource’s credentials property will be used instead, and will be composed of an identifier sub-property and a secret sub-property, which can be used for authenticating with a username/password, or an access token, or any other credentials encoded string. The advantage of separating the credentials property from the resource location property is that a user with limited permissions could have access to the resource’s location information while the credentials are kept secret.
+ 
+Once a resource has been formally defined, it should be possible to build programmatically a connection object that will make use of the described data or computation services. This resource description is not bound to a specific programmatic language (the URL property is a web standard, other properties are simple strings) and does not enforce the use of a specific software application for building, storing and interpreting a resource object.
+
+[Next Section](#resourcer) describes the `r BiocStyle::CRANpkg("resourcer")` package which is an R implementation of the data and computation resources description and connection. There the reader can see some examples of how dealing with different resources in DataSHIELD.
+
+
+<!--chapter:end:04-resources.Rmd-->
+
+# The resourcer package {#resourcer}
+
+
+The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
+
+It is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
+
+The main concepts are:
+
+* _Resource_, access to a resource (dataset or computation unit) is described by an object with URL, optional credentials and optional data format properties,
+* _ResourceResolver_, a _ResourceClient_ factory based on the URL scheme and available in a resolvers registry,
+* _ResourceClient_, realizes the connection with the dataset or the computation unit described by a _Resource_,
+* _FileResourceGetter_, connect to a file described by a resource,
+* _DBIResourceConnector_, establish a [DBI](https://www.r-dbi.org/) connection.
+
+## File Resources
+
+These are resources describing a file. If the file is in a remote location, it must be downloaded before being read. The data format specification of the resource helps to find the appropriate file reader.
+
+## File Getter
+
+The file locations supported by default are: 
+
+* `file`, local file system, 
+* `http`(s), web address, basic authentication, 
+* `gridfs`, MongoDB file store,
+* `scp`, file copy through SSH,
+* `opal`, [Opal](https://www.obiba.org/pages/products/opal/) file store. 
+
+This can be easily applied to other file locations by extending the _FileResourceGetter_ class. An instance of the new file resource getter is to be registered so that the _FileResourceResolver_ can operate as expected.
+
+```{r eval=FALSE}
+resourcer::registerFileResourceGetter(MyFileLocationResourceGetter()$new())
+```
+
+## File Data Format
+
+The data format specified within the _Resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
+
+* the data formats that have a reader in [tidyverse](https://www.tidyverse.org/): [readr](https://readr.tidyverse.org/) (`csv`, `csv2`, `tsv`, `ssv`, `delim`), [haven](https://haven.tidyverse.org/) (`spss`, `sav`, `por`, `dta`, `stata`, `sas`, `xpt`), [readxl](https://readxl.tidyverse.org/) (`excel`, `xls`, `xlsx`). This can be easily applied to other data file formats by extending the _FileResourceClient_ class.
+* the R data format that can be loaded in a child R environment from which object of interest will be retrieved.
+
+Usage example that reads a local SPSS file:
+
+```{r eval=FALSE}
+# make a SPSS file resource
+res <- resourcer::newResource(
+  name = "CNSIM1",
+  url = "file:///data/CNSIM1.sav",
+  format = "spss"
+)
+# coerce the csv file in the opal server to a data.frame
+df <- as.data.frame(res)
+```
+
+To support other file data format, extend the _FileResourceClient_ class with the new data format reader implementation. Associate factory class, an extension of the _ResourceResolver_ class is also to be implemented and registered.
+
+```{r eval=FALSE}
+resourcer::registerResourceResolver(MyFileFormatResourceResolver$new())
+```
+
+## Database Resources
+
+### DBI Connectors
+
+[DBI](https://www.r-dbi.org/) is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Then any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource's URL. For instance a resource URL starting with `postgres://` will require the [RPostgres](https://rpostgres.r-dbi.org/) driver. To separate the DBI connector instanciation from the DBI interface interactions in the _SQLResourceClient_, a _DBIResourceConnector_ registry is to be populated. The currently supported SQL database connectors are:
+
+* `mariadb` MariaDB connector,
+* `mysql` MySQL connector,
+* `postgres` or `postgresql` Postgres connector,
+* `presto`, `presto+http` or `presto+https` [Presto](https://prestodb.io/) connector,
+* `spark`, `spark+http` or `spark+https` [Spark](https://spark.apache.org/) connector.
+
+To support another SQL database having a DBI driver, extend the _DBIResourceConnector_ class and register it:
+
+```{r eval=FALSE}
+resourcer::registerDBIResourceConnector(MyDBResourceConnector$new())
+```
+
+### Use dplyr
+
+Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using [dplyr](https://dplyr.tidyverse.org/) which will delegate as much as possible operations to the database.
+
+### Document Databases
+
+NoSQL databases can be described by a resource. The [nodbi](https://docs.ropensci.org/nodbi/) can be used here. Currently only connection to MongoDB database is supported using URL scheme `mongodb` or `mongodb+srv`.
+
+## Computation Resources
+
+Computation resources are resources on which tasks/commands can be triggerred and from which resulting data can be retrieved.
+
+Example of computation resource that connects to a server through SSH:
+
+```{r eval=FALSE}
+# make an application resource on a ssh server
+res <- resourcer::newResource(
+  name = "supercomp1",
+  url = "ssh://server1.example.org/work/dir?exec=plink,ls",
+  identity = "sshaccountid",
+  secret = "sshaccountpwd"
+)
+# get ssh client from resource object
+client <- resourcer::newResourceClient(res) # does a ssh::ssh_connect()
+# execute commands
+files <- client$exec("ls") # exec 'cd /work/dir && ls'
+# release connection
+client$close() # does ssh::ssh_disconnect(session)
+```
+
+## Extending Resources {#extending_resources}
+
+There are several ways to extend the Resources handling. These are based on different R6 classes having a `isFor(resource)` function:
+
+* If the resource is a file located at a place not already handled, write a new _FileResourceGetter_ subclass and register an instance of it with the function `registerFileResourceGetter()`.
+* If the resource is a SQL engine having a DBI connector defined, write a new _DBIResourceConnector_ subclass and register an instance of it with the function `registerDBIResourceConnector()`.
+* If the resource is in a domain specific web application or database, write a new _ResourceResolver_ subclass and register an instance of it with the function `registerResourceResolver()`. This _ResourceResolver_ object will create the appropriate _ResourceClient_ object that matches your needs.
+
+The design of the URL that will describe your new resource should not overlap an existing one, otherwise the different registries will return the first instance for which the `isFor(resource)` is `TRUE`. In order to distinguish resource locations, the URL's scheme can be extended, for instance the scheme for accessing a file in a Opal server is `opal+https` so that the credentials be applied as needed by Opal.
+
+
+## API declaration of a new resource
+
+It is possible to declare a resource that is to be resolved by an R package that uses the `resourcer` API. This figure illustrate how to declare a new reource called VCF2GDS that load Variant Calling Format files into Genomic Data Storage objects that can be managed whiting R. This will be further illustrated when analyzing omic data analysis in this [Section](#omic_extension).
+
+```{r testDeclaration, echo=FALSE, fig.cap="Declaration of a resource corresponding to a VCF2GDS format", fig.align='center'}
+knitr::include_graphics("fig/opal_resources_API.png")
+```
+
+## Resource Forms
+
+As it can be error prone to define a new resource, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in javascript, as this is a very commonly used language for building graphical user interfaces.
+
+These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the `inst/resources` folder), so that an external application can lookup statically the packages having declared some resources.
+
+The configuration file `inst/resources/resource.js` is a javascript file which contains an object with the properties:
+
+* `settings`, a JSON object that contains the description and the documentation of the web forms (based on the [json-schema](http://json-schema.org) specification).
+* `asResource`, a javascript function that will convert the data captured from one of the declared web forms into a data structure representing the `resource` object.
+
+As an example (see also [resourcer's resource.js](https://github.com/obiba/resourcer/blob/master/inst/resources/resource.js)):
+
+```javascript
+var myPackage = {
+  settings: {
+    "title": "MyPackage resources",
+    "description": "MyPackage resources are for etc.",
+    "web": "https://github.com/org/myPackage",
+    "categories": [
+      {
+        "name": "my-format",
+        "title": "My data format",
+        "description": "Data are files in my format, that will be read by myPackage etc."
+      }
+    ],
+    "types": [
+      {
+        "name": "my-format-http",
+        "title": "My data format - HTTP",
+        "description": "Data are files in my format, that will be downloaded from a HTTP server etc.",
+        "tags": ["my-format", "http"],
+        "parameters": {},
+        "credentials": {}
+      }
+    ]
+  },
+  asResource: function(type, name, params, credentials) {
+    // make a resource object from arguments, using type to drive 
+    // what params/credentials properties are to be used
+    // a basic example of resource object:
+    return {
+      "name": name,
+      "url": params.url,
+      "format": params.format,
+      "identity": credentials.username,
+      "secret": credentials.password
+    };
+  }
+}
+```
+
+The specifications for the `resource.js` file are the following:
+
+* `settings` object:
+
+Property | Type | Description
+--- | --- | ---
+**title** | `string` | The title of the set of resources.
+**description** | `string` | The description of the set of resources.
+**web** | `string` | A web link that describes the resources.
+**categories** | `array` of `object` | A list of `category` objects which are used to categorize the declared resources in terms of resource location, format, usage etc.
+**types** | `array` of `object` | A list of `type` objects which contains a description of the parameters and credentials forms for each type of resource.
+
+* `category` object:
+
+Property | Type | Description
+--- | --- | ---
+**name** | `string` | The name of the category that will be applied to each resource `type`, must be unique.
+**title** | `string` | The title of the category.
+**description** | `string` | The description of the category.
+
+* `type` object:
+
+Property | Type | Description
+--- | --- | ---
+**name** | `string` | The identifying name of the resource, must be unique.
+**title** | `string` | The title of the resource.
+**description** | `string` | The description of the resource form.
+**tags** | `array` of `string` | The `tag` names that are applied to the resource form.
+**parameters** | `object` | The form that will be used to capture the parameters to build the *url* and the *format* properties of the resource (based on the [json-schema](http://json-schema.org) specification). Some specific fields can be used: `_package` to capture the R package name or `_packages` to capture an array of R package names to be loaded prior to the resource assignment. 
+**credentials** | `object` | The form that will be used to capture the access credentials to build the *identity* and the *secret* properties of the resource (based on the [json-schema](http://json-schema.org) specification).
+
+* `asResource` function: a javascript function which signature is `function(type, name, params, credentials)` where:
+  * `type`, the form name used to capture the resource parameters and credentials,
+  * `name`, the name to apply to the resource,
+  * `params`, the captured parameters,
+  * `credentials`, the captured credentials.
+  
+The name of the root object must follow the pattern: `<R package>` (note that any dots (`.`) in the R package name are to be replaced by underscores (`_`)).
+
+
+A real example of how to create shi file for the `{r Githubpkg("isglobal-brge", "dsOmics")} package (described in [this Section](#omic_extension)) can be found [here](https://github.com/isglobal-brge/dsOmics/blob/master/inst/resources/resource.js)
+
+
+## Examples with different resources
+
+Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-test.obiba.org which has the following reources 
+
+```{r testResources2, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-test.obiba.org", fig.align='center'}
+knitr::include_graphics("fig/opal_resources.png", dpi=NA)
+```
+
+Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.
+
+### TSV file into a tibble or data.frame
+
+This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided
+
+```{r load_tsv}
+library(DSI)
+library(DSOpal)
+library(dsBaseClient)
+
+# access to the 'brge' resource (NOTE: test.brge is need since the project
+# is called test)
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.brge", driver = "OpalDriver")
+logindata <- builder$build()
+
+# the resource is loaded into R as the object 'res' 
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+# the resource is assigned to a data.frame
+# Assign to the original R class (e.g ExpressionSet)
+datashield.assign.expr(conns, symbol = "dat", 
+                       expr = quote(as.resource.data.frame(res)))
+
+ds.class("dat")
+
+# logout the connection
+datashield.logout(conns)
+```
+
+
+### .Rdata file into a specific R object
+
+Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
+
+```{r load_eSet}
+# prepare login data and resource to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE80970", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resource (to 'res' symbol)
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+# coerce ResourceClient objects to a data.frame called 'DF' 
+# NOTE: as.data.frame exists for `ExpressionSet` objects
+datashield.assign.expr(conns, symbol = "DF",  
+                       expr = quote(as.resource.data.frame(res)))
+
+ds.class("DF")
+
+# we can also coerce ResourceClient objects to their original format.
+# This will allow the analyses with specific R/Bioconductor packages
+datashield.assign.expr(conns, symbol = "ES", 
+                       expr = quote(as.resource.object(res)))
+
+ds.class("ES")
+
+# logout the connection
+datashield.logout(conns)
+```
+
+
+<!--chapter:end:05-resourcer_package.Rmd-->
+
+# (PART) Resources Extensions {-}
+
+# VCF files to GDS to peform GWAS with Bioconductor {#omic_extension}
+
+Genomic data can be stored in different formats. [PLINK](http://zzz.bwh.harvard.edu/plink/) and [VCF](https://www.internationalgenome.org/wiki/Analysis/vcf4.0/) files are commonly used in genetic epidemiology studies. In order to deal with this type of data, we have extended the resources available at the `r Githubpkg("obiba/resourcer")` package to VCF files. **NOTE**: PLINK files can be translated into VCF files using different pipelines. In R you can use `r Biocpkg("SeqArray")` to get VCF files. 
+
+We use the [Genomic Data Storage](https://bioconductor.org/packages/release/bioc/vignettes/gdsfmt/inst/doc/gdsfmt.html#introduction) (GDS) format which efficiently manage VCF files into the R environment. This extension requires to create a [Client and a Resolver](#extending_resources) function for the `r BiocStyle::CRANpkg("resourcer")` that are located into the `r Biocpkg("dsOmics")` package. The client function uses `snpgdsVCF2GDS` function implemented in `r Biocpkg("SNPrelate")` to coerce the VCF file to a GDS object. Then the GDS object is loaded into R as an object of class `GdsGenotypeReader` from `r Biocpkg("GWASTools")` package that facilitates downstream analyses.
+
+The opal API server allows to incorporate this new type of resource as illustrated in Figure \@ref(fig:resourceVCF).
+
+
+```{r resourceVCF, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_VCF.png")
+```
+
+
+It is important to notice that the URL should contain the tag `method=biallelic.only&snpfirstdim=TRUE` since these are required parameters of `snpgdsVCF2GDS` function. This is an example:
+
+```
+https://raw.githubusercontent.com/isglobal-brge/scoreInvHap/master/inst/extdata/example.vcf?method=biallelic.only&snpfirstdim=TRUE
+```
+
+In that case we indicate that only biallelic SNPs are considered ('method=biallelic.only') and that genotypes are stored in the individual-major mode, (i.e., list all SNPs for the first individual, and then list all SNPs for the second individual, etc) ('snpfirstdim=TRUE').
+
+ 
+
+<!--chapter:end:06-extension_resources1_genomic.Rmd-->
+
+# Secure shell programs: GWAS with PLINK {#shell_extension}
+
+GWAS can also be performed using program that are executed using shell commands. This is the case of [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that requires efficient and scalable pipelines. 
+
+The resources also allow the use of secure SSH service to run programs on a remote server accessible through ssh containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allow us to create functions to analyze data using specific shell programs.
+
+Here we describe how [PLINK](http://zzz.bwh.harvard.edu/plink/) program can be use to perform GWAS  [**Yannick** some overview about how this is created should be described]
+
+We use this following code to illustrate how analyses should be performed using the `r CRANpkg("resourcer")` package. This code could be considered as the base code for creating a DataSHIELD package for the OPAL server as performed in `plinkDS()` function implemented in the `r Githubpkg("isglobal-brge", "dsOmics")` package
+
+
+We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources)) using the `r CRANpkg("resourcer")` package as follows:
+
+
+```{r plink_resource}
+library(resourcer)
+brge_plink <- resourcer::newResource(url="ssh://plink-test.obiba.org:2222/home/master/brge?exec=ls,plink,plink1", 
+                                     identity = "master", secret = "master")
+client <- resourcer::newResourceClient(brge_plink)
+```
+
+This creates an object of this class:
+
+```{r plink_resource_class}
+class(client)
+```
+
+These are the actions we can do with an `SshResourceClient` object
+
+```{r plink_resource_actions}
+names(client)
+```
+
+For this specific resource (e.g. PLINK) we can execute these shell commands
+
+```{r plink_resource_allowed}
+client$getAllowedCommands()
+```
+
+For instance
+
+```{r plink_resource_ls}
+client$exec("ls", "-la")
+```
+
+Then, to avoid multiple accesses to the resource, it is recommended to create a temporal directory to save our results
+
+```{r plink_resource_temp}
+tempDir <- client$tempDir()
+tempDir
+client$exec("ls", tempDir)
+```
+
+Then, we can use R to launch the shell commands
+
+```{r plink_resource_plink}
+client$exec('plink1', c('--bfile', 'brge', '--freq', '--out', paste0(tempDir, '/out'), '--noweb'))
+```
+
+The results can be retrieve as an R object
+
+```{r plink_resource_retrieve}
+outs <- client$exec('ls', tempDir)$output
+outs
+client$downloadFile(paste0(tempDir, '/out.*'))  
+ans <- readr::read_table("out.frq")
+ans
+```
+
+Finally temporal directories are removed and session closed
+
+```{r plink_resource_close}
+client$removeTempDir()
+client$close()
+```
+
+
+<!--chapter:end:06-extension_resources2-shell_command.Rmd-->
+
+# (PART) Workflows {-}
+
+# Setup
+
+As describe in [a previous Chapter](#resourcer) the `r BiocStyle::CRANpkg("resourcer")` R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.rdata` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
+
+In order to achive this `resourcer` extension, two `R6` classes have been implemented:
+
+* `GDSFileResourceResolver` class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a `GDSFileResourceClient` object instance from an assigned resource.
+* `GDSFileResourceClient` class which is responsible for getting the referenced file and making a connection (created by `GWASTools`) to the GDS file (will also convert the VCF file to a GDS file on the fly, using `SNPRelate`). For the subsequent analysis, it's this connection handle to the GDS file that will be used.
+
+
+
+## Providing DataSHIELD packages in the opal server
+
+Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both `dsBase` and `dsOmics` and `resourcer` packages must be installed as is illustrated in the figure. 
+
+```{r installPackagesOpal, echo=FALSE, fig.cap="Installed packages in the test opal server", fig.align='center'}
+knitr::include_graphics("fig/add_packages_opal.png")
+```
+
+
+The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was intalled into the opal server
+
+
+```{r installPackagesOpal2, echo=FALSE, fig.cap="Description how `dsOmics` package was intalled into the test opal server", fig.align='center'}
+knitr::include_graphics("fig/add_packages_opal_2.png")
+```
+
+For reproducing this book the following packages must be installed in the opal server 
+
+```
+From CRAN: 
+   - resourcer
+From Github: 
+   - datashield/dsBase
+   - datashiled/dsGeo
+   - isglobal-brge/dsOmics
+   - tombiso/dsGeo
+```
+
+## Required R Packages in the client site (e.g. local machine)
+
+Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):
+
+```{r install_all, eval=FALSE}
+devtools::install_github("obiba/opalr", dependencies = TRUE)
+devtools::install_github("datashield/DSI", dependencies = TRUE)
+devtools::install_github("datashield/DSOpal", dependencies = TRUE)
+devtools::install_github("datashield/dsBaseClient", ref = "v6.0-dev", dependencies = TRUE)
+devtools::install_github("datashield/dsGeoClient", dependencies = TRUE)
+devtools::install_github("isglobal-brge/dsOmicsClient", dependencies = TRUE)
+devtools::install_github("tombisho/dsGeoClient", dependencies = TRUE)
+```
+
+The package dependencies are then loaded as follows:
+
+```{r requiredRPackages}
+library(DSI)
+library(DSOpal)
+library(dsBaseClient)
+library(dsOmicsClient)
+```
+
+
+
+
+<!--chapter:end:07-workflow1-setup.Rmd-->
+
+# Basic statistical analyses
+
+Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file (see Figure \@ref(fig:testResources)). This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different number of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of the obesity methodological development project. This dataset does contain some NA values. The available variables are:
+
+```{r insert_table_variables, echo=FALSE}
+vars <- read_delim("fig/table_variables_cnsim.txt", delim=",")
+kable(vars)
+```
+
+
+The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
+
+## Analysis from a single study
+
+Let us start by illustrating how to analyze one data set (CNSIM1). 
+
+
+```{r cnsim1}
+library(DSI)
+library(DSOpal)
+library(dsBaseClient)
+
+# prepare login data and resource to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM1", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resource
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+
+# coerce ResourceClient objects to a data.frame called 'D'
+datashield.assign.expr(conns, symbol = "D", 
+                       expr = quote(as.resource.data.frame(res)))
+```
+
+Then we can inspect the type of data we have
+
+```{r view_D}
+ds.class("D")
+ds.colnames("D")
+```
+
+Perform some data descriptive analyses
+
+```{r descr_D}
+ds.table1D("D$DIS_DIAB")
+ds.table2D("D$DIS_DIAB", "D$GENDER")
+```
+
+Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)
+
+```{r glm_D}
+mod <- ds.glm(DIS_DIAB ~ LAB_TRIG + GENDER, 
+       data = "D" , family="binomial")
+mod$coeff
+```
+
+As usual the connection must be closed
+
+```{r close_conn_D}
+datashield.logout(conns)
+```
+
+
+## Analysis from a multiple studies
+
+```{r cnsim_multiple}
+
+library(DSOpal)
+library(dsBaseClient)
+
+# prepare login data and resources to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", user = "dsuser", password = "password", resource = "test.CNSIM1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-test.obiba.org", user = "dsuser", password = "password", resource = "test.CNSIM2", driver = "OpalDriver")
+builder$append(server = "study3", url = "https://opal-test.obiba.org", user = "dsuser", password = "password", resource = "test.CNSIM3", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resources
+conns <- datashield.login(logins = logindata, assign = TRUE, symbol = "res")
+
+# assigned objects are of class ResourceClient (and others)
+ds.class("res")
+
+# coerce ResourceClient objects to data.frames
+# (DataSHIELD config allows as.resource.data.frame() assignment function for the purpose of the demo)
+datashield.assign.expr(conns, symbol = "D", expr = quote(as.resource.data.frame(res)))
+ds.class("D")
+
+# note that some dsBase functions do not like that the data.frame has multiple and different classes
+# (despite all are data.frames). Then query colnames one by one:
+lapply(conns, function(conn) {ds.colnames("D", datasources = conn)})
+
+# do usual dsBase analysis
+ds.summary('D$LAB_HDL')
+
+# vector types are not necessarily the same depending on the data reader that was used
+ds.class('D$GENDER')
+ds.asFactor('D$GENDER', 'GENDER')
+ds.summary('GENDER')
+
+# or coerce to a dplyr's tbl, which is more suitable for large/big datasets analysis
+# (DataSHIELD config allows as.resource.tbl() assignment function for the purpose of the demo)
+datashield.assign.expr(conns, symbol = "T", expr = quote(as.resource.tbl(res)))
+ds.class("T")
+
+# DataSHIELD analysis using dplyr objects and functions is to be invented...
+
+datashield.logout(conns)
+```
+
+<!--chapter:end:07-workflow2_simple_analyses.Rmd-->
+
+# Omic data analysis {#Omic}
+
+In this part we will provide some real data anlyses of omic data including transcriptomic, epigenomic and genomic data that covers how to perform three of the widely used data analyses: [differential gene expression](https://htmlpreview.github.io/?https://github.com/isglobal-brge/post_omic/blob/master/Session_1b_limma.html) (DGE), [epigenome-wide association](https://en.wikipedia.org/wiki/Epigenome-wide_association_study) (EWAS) and [genome-wide association](https://en.wikipedia.org/wiki/Genome-wide_association_study) (GWAS) analyses. We provide examples of how to perform data analyses using [Bioconductor](https://bioconductor.org/) packages. For genomic data we also illustrate how to carry out analyses using [PLINK](http://zzz.bwh.harvard.edu/plink/).
+
+
+## Types of analyses implemented
+
+The Figure \@ref(fig:opalOmic) describes the different types of omic association analyses that can be performed using DataSHIELD client functions implemented in the `r BiocStyle::Githubpkg("isglobal-brge/dsOmicsClient")` package. Basically, data (omic and phenotypes/covariates) can be stored in different sites (http, ssh, AWS S3, local, ...) and are managed with Opal through the `r BiocStyle::Githubpkg("obiba/resourcer")` package and their extensions implemented in `r BiocStyle::Githubpkg("isglobal-brge/dsOmics")`.  
+
+
+```{r opalOmic, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how the `resourcer` package is used to get access to omic data through the Opal servers. Then DataSHIELD is used in the client side to perform non-disclosive data analyses.", fig.align='center'}
+knitr::include_graphics("fig/dsOmics_A.jpg")
+```
+
+Then, `dsOmicsClient` package allows different types of analyses: pooled and meta-analysis. Both methods are based on fitting different generalized linear models (GLMs) for each feature when assesing association between omic data and the phenotype/trait/condition of interest. Of course non-disclosive omic data analysis from a single study can also be performed.
+
+The **pooled approach** (Figure \@ref(fig:omicAnal1)) is recommended when the user wants to analyze omic data from different sources and obtain results as if the data were located in a single computer. It should be noticed that this can be very time consuming when analyzing multiple features since it calls repeatedly to a base function in DataSHIELD (`ds.glm`) and that it cannot be recommended when data are not properly harmonized (e.g. gene expression normalized using different methods, GWAS data having different platforms, ...). Also when it is necesary to remove unwanted variability (for transcriptomic and epigenomica analysis) or control for population stratification (for GWAS analysis), this approach cannot be used since we need to develop methods to compute surrogate variables (to remove unwanted variability) or PCAs (to to address population stratification) in a non-disclosive way. 
+
+The **meta-analysis approach** Figure \@ref(fig:omicAnal2) overcomes the limitations raised when performing pooled analyses. First, the computation issue is addressed by using scalable and fast methods to perform data analysis at whole-genome level at each server. The transcriptomic and epigenomic data analyses make use of the widely used `r BiocStyle::Biocpkg("limma")` package that uses `ExpressionSet` or `RangedSummarizedExperiment` Bioc infrastructures to deal with omic and phenotypic (e.g covariates). The genomic data are analyzed using `r BiocStyle::Biocpkg("GWASTools")` and `r BiocStyle::Biocpkg("GENESIS")` that are designed to perform quality control (QC) and GWAS using GDS infrastructure.
+
+
+Next, we describe how both approaches are implemented: 
+
+- **Pooled approach:** Figure \@ref(fig:omicAnal1) illustrate how this analysis is performed. This corresponds to generalized linear models (glm) on data from single or multiple sources. It makes use of `ds.glm()` function which is a DataSHIELD function that uses an approach that is mathematically equivalent to placing all individual-level data froma all sources in one central warehouse and analysing those data using the conventional `glm()` function in R. The user can select one (or multiple) features (i.e., genes, transcripts, CpGs, SNPs, ...) 
+
+
+```{r omicAnal1, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform single pooled omic data analysis. The analyses are performed by using a generalized linear model (glm) on data from one or multiple sources. It makes use of `ds.glm()`, a DataSHIELD function, that uses an approach that is mathematically equivalent to placing all individual-level data from all sources in one central warehouse and analysing those data using the conventional `glm()` function in R.", fig.align='center'}
+knitr::include_graphics("fig/dsOmics_B.jpg")
+```
+
+
+- **Meta-analysis:** Figure \@ref(fig:omicAnal2) illustrate how this analysis is performed. This corresponds to perform a genome-wide analysis at each server using functions that are specifically design to that purpose and that are scalable. Then the results of each server can be meta-analyzed using method that meta-analyze either effects or p-values.
+
+
+```{r omicAnal2, echo=FALSE, fig.cap="Non-disclosive omic data analysis with DataSHIELD and Bioconductor. The figure illustrates how to perform anlyses at genome-wide level from one or multiple sources. It runs standard Bioconductor functions at each server independently to speed up the analyses and in the case of having multiple sources, results can be meta-analyzed uning standar R functions.", fig.align='center'}
+knitr::include_graphics("fig/dsOmics_C.jpg")
+```
+
+
+## Differential gene expression (DGE) analysis
+
+Let us start by illustrating a simple example where a researcher may be interested in perfoming differential gene expression anaylis (DGE) having data in a single repository (e.g. one study). To this end, we will use bulk transcriptomic data from [TCGA project](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga). We have uploaded to the opal server a resource called `tcga_liver` whose URL is http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata which is available through the [recount project](https://jhubiostatistics.shinyapps.io/recount/). This resource contains the `RangeSummarizedExperiment` with the RNAseq profiling of liver cancer data from TCGA. Next, we illustrate how a differential expression analysis to compare RNAseq profiling of women vs men (variable `gdc_cases.demographic.gender`). The DGE analysis is normally performed using `r BiocStyle::Biocpkg("limma")` package. In that case, as we are analyzing RNA-seq data, `limma + voom` method will be required. 
+
+Let us start by creating the connection to the opal server:
+
+```{r pipeline_gene_expr}
+builder <- newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.tcga_liver", driver = "OpalDriver")
+
+logindata <- builder$build()
+
+conns <- datashield.login(logins = logindata, assign = TRUE, 
+                          symbol = "res")
+```
+
+Then, let us coerce the resource to a `RangedSummarizedExperiment` which is the type of object that is available in the [recount project](https://jhubiostatistics.shinyapps.io/recount/).
+
+```{r get_rse}
+datashield.assign.expr(conns, symbol = "rse", 
+                       expr = quote(as.resource.object(res)))
+ds.class("rse")
+```
+
+The number of features and samples can be inspected by
+
+```{r dim_rse}
+ds.dim("rse")
+```
+
+And the names of the features using the same function used in the case of analyzing an `ExpressionSet`
+
+```{r name_feature_rse}
+name.features <- ds.featureNames("rse")
+lapply(name.features, head)
+```
+
+Also the covariate names can be inspected by
+
+```{r name_covar_rse}
+name.vars <- ds.featureData("rse")
+lapply(name.vars, head, n=15)
+```
+
+We can visualize the levels of the variable having gender information
+
+```{r table_gender}
+ds.table1D("rse$gdc_cases.demographic.gender")
+```
+
+
+The differential expression analysis is then performed by:
+  
+  
+```{r voom_gender}
+ans.gender <- ds.limma(model =  ~ gdc_cases.demographic.gender, 
+                   Set = "rse", type.data = "RNAseq", 
+                   sva = FALSE)
+```
+
+Notice that we have set `type.data='RNAseq'` to consider that our data are counts obtained from a RNA-seq experiment. By indicating so, the differential analysis is performed by using  `voom` + `limma` as previously mention.
+
+As usual, we close the DataSHIELD session by:
+  
+```{r close_ds2}
+datashield.logout(conns)
+```
+
+
+## Epigenome-wide association analysis (EWAS) 
+
+EWAS requires basically the same statistical methods as those used in DGE. It should be notice that the **pooled analysis** we are going to illustrate here can also be performed with transcriptomic data since each study must have different range values. If so, gene expression harmonization should be performed, for instance, by standardizing the data at each study. For EWAS where methylation is measured using beta values (e.g CpG data are in the range 0-1) this is not a problem. In any case, adopting the **meta-analysis** approach could be a safe option.
+
+We have downloaded data from [GEO](https://www.ncbi.nlm.nih.gov/geo/) corresponding to the accesion number GSE66351 which includes DNA methylation profiling (Illumina 450K array) of 190 individuals. Data corresponds to CpGs beta values measured in the superior temporal gyrus and prefrontal cortex brain regions of patients with Alzheimer’s. Data have been downloaded using `r BiocStyle::Biocpkg("GEOquery")` package that gets GEO data as `ExpressionSet` objects. Researchers who are not familiar with `ExpressionSet`s can read [this Section](#BioC). Notice that data are encoded as beta-values that ensure data harmonization across studies. 
+
+
+In order to illustrate how to perform data analyses using federated data, we have split the data into two `ExpressionSet`s having 100 and 90 samples as if they were two different studies. Figure \@ref(fig:testResources) shows the two resources defined for both studies (GSE66351_1 and GSE66351_2)
+
+In order to perform omic data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the `as.resource.object()` function
+
+```{r login_assign_eSet}
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE66351_1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE66351_2", driver = "OpalDriver")
+
+logindata <- builder$build()
+
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+
+# Assign to the original R class (e.g ExpressionSet)
+datashield.assign.expr(conns, symbol = "methy", 
+                       expr = quote(as.resource.object(res)))
+
+```
+
+
+Now, we can see that the resources are actually loaded into the R servers as their original class
+
+```{r assign_es}
+ds.class("methy")
+```
+
+Then, some Bioconductor-type functions can be use to return non-disclosive information of `ExpressionSet`s from each server to the client, using similar functions as those defined in the `dsBaseClient` package. For example, feature names can be returned by 
+
+```{r show_featureNames}
+fn <- ds.featureNames("methy")
+lapply(fn, head)
+```
+
+Experimental phenotypes variables can be obtained by
+
+
+```{r show_phenoNames}
+ds.varLabels("methy")
+```
+
+### Single CpG analysis
+
+Once the methylation data have been loaded into the opal server, we can perform different type of analyses using functions from the `dsOmicsClient` package. Let us start by illustrating how to analyze a single CpG from two studies by using an approach that is mathematically equivalent to placing all individual-level.
+
+```{r one_cpg}
+ans <- ds.lmFeature(feature = "cg07363416", 
+                    model = ~ diagnosis + Sex, 
+                    Set = "methy",
+                    datasources = conns)
+ans
+```
+
+### Multiple CpG analysis
+
+The same analysis can be performed for all features (e.g. CpGs) just avoiding the `feature` argument. This process can be parallelized using `mclapply` function from the `multicore` package.
+
+
+```{r multiple_cpg, eval=FALSE}
+ans <- ds.lmFeature(model = ~ diagnosis + Sex, 
+                    Set = "methy",
+                    datasources = conns,
+                    mc.cores = 20)
+```
+
+
+This method corresponds to the **pooled analysis** approach and can be very time consiming since the function repeatedly calls the DataSHIELD function `ds.glm()`. We can adopt another strategy that is to run a glm of each feature independently at each study using `limma` package (which is really fast) and then combine the results (i.e. **meta-analysis** approach). 
+
+
+```{r limma_methy}
+ans.limma <- ds.limma(model = ~ diagnosis + Sex,
+                      Set = "methy", 
+                      datasources = conns)
+```
+
+Then, we can visualize the top genes at each study (i.e server) by 
+
+```{r show_limma_methy}
+lapply(ans.limma, head)
+```
+
+The annotation can be added by using the argument `annotCols`. It should be a vector with the columns of the annotation available in the `ExpressionSet` or `RangedSummarizedExperiment` that want to be showed. The columns of the annotation can be obtained by
+
+```{r show_annot_cols}
+ds.fvarLabels("methy")
+```
+
+Then we can run the analysis and obtain the output with the chromosome and gene symbol by:
+
+
+```{r remove_ans_limma, eval=FALSE, echo=FALSE}
+ds.rm("ans.limma")
+```
+
+
+
+```{r limma_methy_annot}
+ans.limma.annot <- ds.limma(model = ~ diagnosis + Sex,
+                            Set = "methy", 
+                            annotCols = c("CHR", "UCSC_RefGene_Name"),
+                            datasources = conns)
+```
+
+```{r show_limma_methy_annot}
+lapply(ans.limma.annot, head)
+```
+
+
+Then, the last step is to meta-analyze the results. Different methods can be used to this end. We have implemented a method that meta-analyze the p-pvalues of each study as follows:
+
+```{r meta_p}
+ans.meta <- metaPvalues(ans.limma)
+ans.meta
+``` 
+
+This is a genreal method that can be used ... We can verify that the results are pretty similar to those obtained using pooled analyses. Here we compute the association for two of the top-CpGs:
+
+```{r one_cpg_val}
+res1 <- ds.lmFeature(feature = "cg13138089", 
+                    model = ~ diagnosis + Sex, 
+                    Set = "methy",
+                    datasources = conns)
+res1
+
+res2 <- ds.lmFeature(feature = "cg13772815", 
+                    model = ~ diagnosis + Sex, 
+                    Set = "methy",
+                    datasources = conns)
+res2
+```
+
+
+We can create a QQ-plot by using the generic function `plot` (here not showed). In some cases inflation can be observed, so that, correction for cell-type or surrogate variables must be performed. We describe how we can do that in the next two sections.
+
+
+
+### Adjusting for Surrogate Variables
+The vast majority of omic studies require to control for unwanted variability. The surrogate variable analysis (SVA) can address this issue by estimating some hidden covariates that capture differences across individuals due to some artifacts such as batch effects or sample quality sam among others. The method is implemented in `r BiocStyle::Biocpkg("SVA")` package.
+
+
+Performing this type of analysis using the `ds.lmFeature` function is not allowed since estimating SVA would require to implement a non-disclosive method that computes SVA from the different servers. This will be a future topic of the `dsOmicsClient`. NOTE that, estimating SVA separately at each server would not be a good idea since the aim of SVA is to capture differences mainly due to experimental issues among ALL individuals. What we can do instead is to use the `ds.limma` function to perform the analyses adjusted for SVA at each study. 
+
+
+
+```{r login_assign_eSet_new, echo=FALSE}
+datashield.logout(conns)
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE66351_1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.GSE66351_2", driver = "OpalDriver")
+
+logindata <- builder$build()
+
+conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+                               symbol = "res")
+
+
+# Assign to the original R class (e.g ExpressionSet)
+datashield.assign.expr(conns, symbol = "methy", 
+                       expr = quote(as.resource.object(res)))
+
+```
+
+
+
+```{r all_cpg_sva}
+ans.sva <- ds.limma(model = ~ diagnosis + Sex, 
+                    Set = "methy",
+                    sva = TRUE, annotCols = c("CHR", "UCSC_RefGene_Name"))
+ans.sva
+```
+
+Then, data can be combined meta-anlyzed as follows: 
+
+```{r meta_sva}
+ans.meta.sv <- metaPvalues(ans.sva)
+ans.meta.sv
+``` 
+
+The DataSHIELD session must by closed by:
+
+```{r close_ds}
+datashield.logout(conns)
+```
+
+
+## GWAS with Bioconductor
+
+We have a GWAS example available at [BRGE data repository](https://github.com/isglobal-brge/brgedata) that aims to find SNPs associated with asthma. We have genomic data in a VCF file (brge.vcf) along with several covariates and phenotypes in the file brge.txt (gender, age, obesity, smoking, country and asthma status). The same data is also available in PLINK format (brge.bed, brge.bim, brge.fam) with covariates in the file brge.phe.
+
+
+We have created a resource having the [VCF]((https://www.internationalgenome.org/wiki/Analysis/vcf4.0/)) file of our study on asthma as previously described. The name of the resource is `brge_vcf` the phenotypes are available in another resource called `brge` that is a .txt file (see \@ref(fig:testResources)).
+
+The GWAS analysis is then perform as follows. We first start by preparing login data 
+
+```{r add_resources_vcf}
+builder <- newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org",
+               user = "dsuser", password = "password",
+               resource = "test.brge_vcf", driver = "OpalDriver")
+logindata <- builder$build()
+
+conns <- datashield.login(logins = logindata, assign = TRUE,
+                          symbol = "res")
+```
+
+In this case we have to assign to different resources. One for the VCF (obesity_vcf) and another one for the phenotypic data (obesity). To this end, the `datashield.assign.resource` function is required before assigning any object to the specific resource. Notice that the VCF resource can be load into R as a GDS thanks to [our extension](#ext_VCF) of existing resources in the `r BiocStyle::CRANpkg("reourcer")` 
+
+
+```{r assign_vcf}
+datashield.assign.resource(conns, symbol = "vcf.res", 
+                           resource = list(study1 = "test.brge_vcf"))
+datashield.assign.expr(conns, symbol = "gds", 
+                       expr = quote(as.resource.object(vcf.res)))
+
+
+datashield.assign.resource(conns, symbol = "covars.res", 
+                           resource = list(study1 = "test.brge"))
+datashield.assign.expr(conns, symbol = "covars", 
+                       expr = quote(as.resource.data.frame(covars.res)))
+```
+
+These are the objects available in the Opal server
+
+```{r ls_vcf}
+ds.ls()
+```
+
+We can use `r Githubpkg("datashield/dsBaseClient")` functions to inspect the variables that are in the `covars` data.frame. The variables are
+
+
+```{r show_covars}
+ds.colnames("covars")
+```
+
+The `asthma` variable has this number of individuals at each level (1: controls, 2: cases)
+
+```{r show_group}
+ds.table1D("covars$asthma")
+```
+
+Then, an object of class `GenotypeData` must be created at the server side to perform genetic data analyses. This is a container defined in the `r Biocpkg("GWASTools")` package for storing genotype and phenotypic data from genetic association studies. By doing that we will also verify whether individuals in the GDS (e.g VCF) and covariates files have the same individuals and are in the same order. This can be performed by
+
+```{r createGenoData}
+ds.GenotypeData(x='gds', covars = 'covars', columnId = 1, newobj.name = 'gds.Data')
+``` 
+
+The association analysis for a given SNP is performed by simply
+
+```{r snp_analysis}
+ds.glmSNP(snps.fit = "rs11247693", model = asthma ~ gender + age, genoData='gds.Data')
+```
+
+
+The analysis of all available SNPs is performed when the argument `snps.fit` is missing. The function performs the analysis of the selected SNPs in a single repository or in multiple repositories as performing pooled analyses (it uses `ds.glm` DataSHIELD function). As in the case of transcriptomic data, analyzing all the SNPs in the genome (e.g GWAS) will be high time-consuming. We can adopt a similar approach as the one adopted using the `r Biocpkg("limma")` at each server. That is, we run GWAS at each repository using specific and scalable packages available in R/Bioc. In that case we use the `r Biocpkg("GWASTools")` and `r Biocpkg("GENESIS")` packages. The complete pipeline is implemented in this function 
+
+```{r GWAS}
+ans.bioC <- ds.GWAS('gds.Data', model=asthma~age+country)
+```
+
+
+This close the DataSHIELD session 
+
+```{r close_conns3}
+datashield.logout(conns)
+```
+
+
+
+## GWAS with PLINK
+
+Here we illustrate how to perform the same GWAS analyses on the asthma using PLINK secure shell commands. This can be performed thanks to the posibility of having ssh resources as described [here](#shell_extension).
+
+It is worth to notice that this workflow and the new R functions implemented in `r Githubpkg("isglobal-brge/dsOmicsClient")` could be used as a guideline to carry out similar analyses using existing analysis tools in genomics such as IMPUTE, SAMtools or BEDtools among many others. 
+
+We start by assigning login resources 
+
+```{r GWAS_shell_1}
+library(DSOpal)
+library(dsBaseClient)
+library(dsOmicsClient)
+builder <- newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org",
+               user = "dsuser", password = "password",
+               resource = "test.brge_plink", driver = "OpalDriver")
+logindata <- builder$build()
+```
+
+Then we assign the resource to a symbol (i.e. R object) called `client` which is a ssh resource
+
+```{r GWAS_shell_3}
+conns <- datashield.login(logins = logindata, assign = TRUE,
+                          symbol = "client")
+ds.class("client")
+```
+
+Now, we are ready to run any PLINK command from the client site. Notice that in this case we want to assess association between the genotype data in bed format and use as phenotype the variable 'obese' that is in the file 'obesity.phe'. The sentence in a PLINK command would be (NOTE: we avoid --out to indicate the output file since the file will be available in R as a tibble).
+
+```
+plink --bfile obesity --assoc --pheno obesity.phe --pheno-name obese 
+```
+
+The arguments musth be encapsulated in a single character without the command 'plink'
+
+```{r GWAS_shell_4}
+plink.arguments <- "--bfile brge --logistic --covar brge.phe --covar-name gender,age"
+```
+
+the analyses are then performed by
+
+```{r GWAS_shell_gwas}
+ans.plink <- ds.PLINK("client", plink.arguments)
+```
+
+The object `ans` contains the PLINK results at each server as well as the outuput provided by PLINK
+
+```{r GWAS_shell_result1}
+lapply(ans.plink, names)
+
+head(ans.plink$study1$results)
+
+ans.plink$study$plink.out
+```
+
+We can compare the p-values obtained using PLINK with Bioconductor-based packages for the top-10 SNPs as follows:
+
+
+```{r comparison}
+library(tidyverse)
+# get SNP p.values (additive model - ADD)
+res.plink <- ans.plink$study1$results %>% filter(TEST=="ADD") %>%
+  arrange(P)
+# compare top-10 with Biocoductor's results
+snps <- res.plink$SNP[1:10]
+plink <- res.plink %>% filter(SNP%in%snps) %>% select(SNP, P)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, Score.pval)
+left_join(plink, bioC, by=c("SNP" = "rs"))
+```
+
+
+As expected, the p-values are in the same order of magnitud having little variations due to the implemented methods of each software. 
+
+We can do the same comparions of minor allele frequency (MAF) estimation performed with Bioconductor and PLINK. To this end, we need first to estimate MAF using PLINK
+
+```{r maf_plink}
+plink.arguments <- "--bfile brge --freq"
+ans.plink2 <- ds.PLINK("client", plink.arguments)
+maf.plink <- ans.plink2$study1$results
+
+plink <- maf.plink %>% filter(SNP%in%snps) %>% select(SNP, MAF)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, freq)
+left_join(plink, bioC, by=c("SNP" = "rs"))
+```
+
+
+
+This close the DataSHIELD session 
+
+```{r close_conns4}
+datashield.logout(conns)
+```
+
+
+
+
+
+<!--chapter:end:07-workflow3_omic_data_analysis.Rmd-->
+
+# Geographical data analysis {#GIS}
+
+
+
+
+<!--chapter:end:07-workflow4_GIS.Rmd-->
+
+# (PART) Developers {-}
+
+# DSLite: DataSHIELD Implementation on Local Datasets
+
+DSLite is a serverless [DataSHIELD Interface (DSI)](https://github.com/datashield/DSI/) implementation which purpose is to mimic
+the behavior of a distant (virtualized or barebone) data repository server (see [DSOpal](https://github.com/datashield/DSOpal) for instance). The
+datasets that are being analyzed must be fully accessible in the local environment and then the non-disclosive constraint of the analysis is not relevant for DSLite: some DSLite functionalities allows to inspect what is under the hood of the DataSHIELD computation nodes, making it a perfect tool for DataSHIELD analysis package developers.
+
+
+## Development Environment Setup
+
+### DataSHIELD Packages
+
+Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration. The minimum required packages should be:
+
+```{r install_resourcer, eval=FALSE}
+install.packages("resourcer", dependencies = TRUE)
+devtools::install_github("datashield/DSLite", dependencies = TRUE)
+devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = TRUE)
+```
+
+
+
+### Test Datasets
+
+DSLite comes with a set of datasets that can be easily loaded. You can also provide your own to illustrate a specific data analysis function.
+
+### R Package Development Tools
+
+We recommend using the following tools to facilitate R package development:
+
+* [devtools](https://www.rdocumentation.org/packages/devtools), the collection of package development tools,
+* [usethis](https://www.rdocumentation.org/packages/usethis), automate package and project setup tasks that are otherwise performed manually,
+* [testthat](https://www.rdocumentation.org/packages/testthat), for unit testing,
+* [roxygen2](https://www.rdocumentation.org/packages/roxygen2), for writing documentation in-line with code,
+* [Rstudio](https://rstudio.com/), the R editor that integrates the tools mentioned above and more.
+
+## DataSHIELD Development Flow
+
+The typical development flow, using DSLite, is:
+
+1. Build and install your client and/or server side DataSHIELD packages.
+2. Create a new DSLiteServer object instance, refering test datasets. Use or alter the default DataSHIELD configuration.
+3. Test your DataSHIELD client/server functions.
+4. Debug DataSHIELD server nodes using DSLiteServer methods.
+
+### DSLiteServer
+
+After your client and/or server side DataSHIELD packages have been built and installed, a new DSLiteServer object instance must be created. 
+
+Some DSLiteServer methods can be used to verify or modify the DSLiteServer behaviour:
+
+* `DSLiteServer$strict()`
+* `DSLiteServer$home()`
+
+See the R documentation of the DSLiteServer class for details.
+
+As an example:
+
+```{r eval=FALSE}
+library(DSLite)
+# prepare test data in a light DS server
+data("CNSIM1")
+data("CNSIM2")
+data("CNSIM3")
+dslite.server <- newDSLiteServer(tables=list(CNSIM1=CNSIM1, CNSIM2=CNSIM2, CNSIM3=CNSIM3))
+# load corresponding DataSHIELD login data
+data("logindata.dslite.cnsim")
+```
+
+The previous example can be simplified using the set-up functions based on the provided test datasets:
+
+```{r eval=FALSE}
+library(DSLite)
+# load CNSIM test data
+logindata.dslite.cnsim <- setupCNSIMTest()
+```
+
+### DataSHIELD Configuration
+
+The DataSHIELD configuration (aggregate and assign functions, R options) is automatically discovered by inspecting the R packages installed and having some DataSHIELD settings defined, either in their `DESCRIPTION` file or in a `DATASHIELD` file. 
+
+This default configuration extracting function is:
+
+```{r eval=FALSE}
+DSLite::defaultDSConfiguration()
+```
+
+The list of the DataSHIELD R packages to be inspected (or excluded) when building the default configuration can be specified as parameters of `defaultDSConfiguration()`.
+
+The DataSHIELD configuration can be specified at DSLiteServer creation time or afterwards with some DSLiteServer methods that can be used to verify or modify the DSLiteServer configuration:
+
+* `DSLiteServer$config()`
+* `DSLiteServer$aggregateMethods()`
+* `DSLiteServer$aggregateMethod()`
+* `DSLiteServer$assignMethods()`
+* `DSLiteServer$assignMethod()`
+* `DSLiteServer$options()`
+* `DSLiteServer$option()`
+
+See the R documentation of the DSLiteServer class for details.
+
+As an example:
+
+```{r eval=FALSE}
+# verify configuration
+dslite.server$config()
+```
+
+## DataSHIELD Sessions
+
+The following figure illustrates a setup where a single DSLiteServer holds several data frames and is used by two different DataSHIELD Connection ([DSConnection](https://github.com/datashield/DSI)) objects. All these objects live in the same R environment (usually the Global Environment). The "server" is responsible for managing DataSHIELD sessions that are implemented as distinct R environments inside of which R symbols are assigned and R functions are evaluated. Using the [R environment](https://adv-r.hadley.nz/environments.html) paradigm ensures that the different DataSHIELD execution context (client and servers) are contained and exclusive from each other.
+
+![DSLite architecture](https://raw.githubusercontent.com/datashield/DSLite/master/inst/images/dslite.png)
+
+After performing the login DataSHIELD phase, the DSLiteServer holds the different DataSHIELD server side sessions, i.e. R environments identified by an ID. These IDs are also stored within the DataSHIELD connection objects that are the result of the `datashield.login()` call. The folllowing example shows how to access these session IDs:
+
+```{r eval=FALSE}
+# datashield logins and assignments
+conns <- datashield.login(logindata.dslite.cnsim, assign=TRUE)
+# get the session ID of "sim1" node connection object
+conns$sim1@sid
+# the same ID is in the DSLiteServer
+dslite.server$hasSession(conns$sim1@sid)
+```
+
+## Debugging
+
+Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developping.
+
+For instance, this code adds an aggregate function `print()`: 
+
+```{r eval=FALSE}
+# add a print method to configuration
+dslite.server$aggregateMethod("print", function(x){ print(x) })
+# and use it to print the D symbol
+datashield.aggregate(conns, quote(print(D)))
+```
+
+Another option is to get a symbol value from the server into the client environment. This can be very helpful for complex data structures. The following example illustrates usage of a shortcut function that iterates over all the connection objects and get the corresponding symbol value:
+
+```{r eval=FALSE}
+# get data represented by symbol D for each DataSHIELD connection
+data <- getDSLiteData(conns, "D")
+# get data represented by symbol D from a specific DataSHIELD connection
+data1 <- getDSLiteData(conns$sim1, "D")
+```
+
+## Limitations
+
+### Function Parameters Parser
+
+The main difference with a regular DSI implementation (such as the one of DSOpal) is that the arguments of the DataSHIELD functional calls are not parsed in DSLite. The only R language element that is inspected and handled is the name of the functions, that are replaced by the ones defined in the DataSHIELD configuration.
+
+For instance the following expression, which includes a function call in the formula, is valid for the DSLiteServer but not for Opal:
+
+```{r eval=FALSE}
+someregression(D$height ~ D$diameter + poly(D$length,3,raw=TRUE))
+```
+
+As a consequence, DataSHIELD R package development can take advantage of DSLite flexibility for speeding development but will never replace testing on a regular DataSHIELD infrastructure using DSOpal.
+
+### Server Side Environments
+
+For each of the DataSHIELD node, the server side code is evaluated within an environment that has no parent, i.e. detached from the global environment where the client code is executed. Some R functions have a parameter that allows to specify to which environment they apply, for instance `assign()`, `get()`, `eval()`, `as.formula()`, etc. Their `env` (or `envir`) parameter default value is `parent.frame()` which is the global environment when executed in Opal's R server, because it is the parent frame of the package's namespace where the function is defined. In DSLiteServer, the parent frame must be the environment where the server code is evaluated. In order to be consistent between these two execution contexts (Opal R server and DSLiteServer), you must specify the `env` (or `envir`) value explicitly to be `parent.frame()`, which is the parent frame of the block being executed (either the global environment in Opal context, or the environment defined in DSLiteServer).
+
+Example of a valid server side piece of code that assigns a value to a symbol in the DataSHIELD server's environment (being the Opal R server's global environment or a DSLiteServer's environment):
+
+```{r eval=FALSE}
+base::assign(x = "D", value = someValue, envir = parent.frame())
+```
+
+See also the [Advanced R - Environments](http://adv-r.had.co.nz/Environments.html) documentation to learn more about environments.
+
+
+<!--chapter:end:11-DSLite.Rmd-->
+
+# Creating DataSHIELD packages
+
+<!--chapter:end:12-Creating_DS_packages.Rmd-->
+
+# Tips and tricks
+
+## How to install R packages into OPAL server from R
+
+## How to check whether there are open R sesions in the OPAL server
+
+## How 
+
+<!--chapter:end:13-Useful_information.Rmd-->
+
+# (PART) Appendix {-}
+
+<!--chapter:end:14-Appendix.Rmd-->
+
+# Session Info
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+<!--chapter:end:15-SessionInfo.Rmd-->
+
+# Bibliography
+
+<!--chapter:end:16-References.Rmd-->
+

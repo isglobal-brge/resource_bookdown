@@ -218,6 +218,9 @@ Property | Type | Description
 The name of the root object must follow the pattern: `<R package>` (note that any dots (`.`) in the R package name are to be replaced by underscores (`_`)).
 
 
+A real example of how to create shi file for the `{r Githubpkg("isglobal-brge", "dsOmics")} package (described in [this Section](#omic_extension)) can be found [here](https://github.com/isglobal-brge/dsOmics/blob/master/inst/resources/resource.js)
+
+
 ## Examples with different resources
 
 Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-test.obiba.org which has the following reources 

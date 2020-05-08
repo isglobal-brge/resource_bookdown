@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-06" />
+<meta name="date" content="2020-05-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,10 +169,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>8.5</b> Computation Resources</a></li>
 <li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.7</b> API declaration of a new resource</a></li>
-<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.8</b> Examples with different resources</a>
+<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.8</b> Resource Forms</a></li>
+<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.9</b> Examples with different resources</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.8.1</b> TSV file into a tibble or data.frame</a></li>
-<li class="chapter" data-level="8.8.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.8.2</b> .Rdata file into a specific R object</a></li>
+<li class="chapter" data-level="8.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.9.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="8.9.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.9.2</b> .Rdata file into a specific R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -184,7 +185,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="setup.html"><a href="setup.html#providing-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>11.1</b> Providing DataSHIELD packages in the opal server</a></li>
 <li class="chapter" data-level="11.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>11.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>12</b> Basic statistical analyses</a></li>
+<li class="chapter" data-level="12" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>12</b> Basic statistical analyses</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-single-study"><i class="fa fa-check"></i><b>12.1</b> Analysis from a single study</a></li>
+<li class="chapter" data-level="12.2" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-multiple-studies"><i class="fa fa-check"></i><b>12.2</b> Analysis from a multiple studies</a></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>13</b> Omic data analysis</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="Omic.html"><a href="Omic.html#types-of-analyses-implemented"><i class="fa fa-check"></i><b>13.1</b> Types of analyses implemented</a></li>
@@ -250,38 +255,215 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="basic-statistical-analyses" class="section level1" number="12">
 <h1><span class="header-section-number">12</span> Basic statistical analyses</h1>
-<p>Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file. This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. The analyses that are described here, can also be found in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS">DataSHIELD Tutorial</a> where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.</p>
-<p>Let us start by illustrating how to analyze one data set.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basic-statistical-analyses.html#cb40-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb40-2"><a href="basic-statistical-analyses.html#cb40-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb40-3"><a href="basic-statistical-analyses.html#cb40-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb40-4"><a href="basic-statistical-analyses.html#cb40-4"></a></span>
-<span id="cb40-5"><a href="basic-statistical-analyses.html#cb40-5"></a><span class="co"># prepare login data and resource to assign</span></span>
-<span id="cb40-6"><a href="basic-statistical-analyses.html#cb40-6"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb40-7"><a href="basic-statistical-analyses.html#cb40-7"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
-<span id="cb40-8"><a href="basic-statistical-analyses.html#cb40-8"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb40-9"><a href="basic-statistical-analyses.html#cb40-9"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb40-10"><a href="basic-statistical-analyses.html#cb40-10"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb40-11"><a href="basic-statistical-analyses.html#cb40-11"></a></span>
-<span id="cb40-12"><a href="basic-statistical-analyses.html#cb40-12"></a><span class="co"># login and assign resource</span></span>
-<span id="cb40-13"><a href="basic-statistical-analyses.html#cb40-13"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb40-14"><a href="basic-statistical-analyses.html#cb40-14"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
-<span id="cb40-15"><a href="basic-statistical-analyses.html#cb40-15"></a></span>
-<span id="cb40-16"><a href="basic-statistical-analyses.html#cb40-16"></a></span>
-<span id="cb40-17"><a href="basic-statistical-analyses.html#cb40-17"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;D&#39;</span></span>
-<span id="cb40-18"><a href="basic-statistical-analyses.html#cb40-18"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;D&quot;</span>, </span>
-<span id="cb40-19"><a href="basic-statistical-analyses.html#cb40-19"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span></code></pre></div>
+<p>Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file (see Figure <a href="resources.html#fig:testResources">7.2</a>). This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different number of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of the obesity methodological development project. This dataset does contain some NA values. The available variables are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Description
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Note
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+LAB_TSC
+</td>
+<td style="text-align:left;">
+Total Serum Cholesterol
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+mmol/L
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAB_TRIG
+</td>
+<td style="text-align:left;">
+Triglycerides
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+mmol/L
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAB_HDL
+</td>
+<td style="text-align:left;">
+HDL Cholesterol
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+mmol/L
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAB_GLUC_ADJUSTED
+</td>
+<td style="text-align:left;">
+Non-Fasting Glucose
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+mmol/L
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PM_BMI_CONTINUOUS
+</td>
+<td style="text-align:left;">
+Body Mass Index (continuous)
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+kg/m2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIS_CVA
+</td>
+<td style="text-align:left;">
+History of Stroke
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+0 = Never had stroke; 1 = Has had stroke
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MEDI_LPD
+</td>
+<td style="text-align:left;">
+Current Use of Lipid Lowering Medication (from categorical assessment item)
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+0 = Not currently using lipid lowering medication; 1 = Currently using lipid lowering medication
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIS_DIAB
+</td>
+<td style="text-align:left;">
+History of Diabetes
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+0 = Never had diabetes; 1 = Has had diabetes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIS_AMI
+</td>
+<td style="text-align:left;">
+History of Myocardial Infarction
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+0 = Never had myocardial infarction; 1 = Has had myocardial infarction
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GENDER
+</td>
+<td style="text-align:left;">
+Gender
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+0 = Female
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PM_BMI_CATEGORICAL
+</td>
+<td style="text-align:left;">
+Body Mass Index (categorical)
+</td>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+1 = Less than 25 kg/m2; 2 = 25 to 30 kg/m2; 3 = Over 30 kg/m2
+</td>
+</tr>
+</tbody>
+</table>
+<p>The analyses that are described here, can also be found in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS">DataSHIELD Tutorial</a> where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.</p>
+<div id="analysis-from-a-single-study" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Analysis from a single study</h2>
+<p>Let us start by illustrating how to analyze one data set (CNSIM1).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basic-statistical-analyses.html#cb41-1"></a><span class="kw">library</span>(DSI)</span>
+<span id="cb41-2"><a href="basic-statistical-analyses.html#cb41-2"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb41-3"><a href="basic-statistical-analyses.html#cb41-3"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb41-4"><a href="basic-statistical-analyses.html#cb41-4"></a></span>
+<span id="cb41-5"><a href="basic-statistical-analyses.html#cb41-5"></a><span class="co"># prepare login data and resource to assign</span></span>
+<span id="cb41-6"><a href="basic-statistical-analyses.html#cb41-6"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb41-7"><a href="basic-statistical-analyses.html#cb41-7"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
+<span id="cb41-8"><a href="basic-statistical-analyses.html#cb41-8"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb41-9"><a href="basic-statistical-analyses.html#cb41-9"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb41-10"><a href="basic-statistical-analyses.html#cb41-10"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb41-11"><a href="basic-statistical-analyses.html#cb41-11"></a></span>
+<span id="cb41-12"><a href="basic-statistical-analyses.html#cb41-12"></a><span class="co"># login and assign resource</span></span>
+<span id="cb41-13"><a href="basic-statistical-analyses.html#cb41-13"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb41-14"><a href="basic-statistical-analyses.html#cb41-14"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb41-15"><a href="basic-statistical-analyses.html#cb41-15"></a></span>
+<span id="cb41-16"><a href="basic-statistical-analyses.html#cb41-16"></a></span>
+<span id="cb41-17"><a href="basic-statistical-analyses.html#cb41-17"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;D&#39;</span></span>
+<span id="cb41-18"><a href="basic-statistical-analyses.html#cb41-18"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;D&quot;</span>, </span>
+<span id="cb41-19"><a href="basic-statistical-analyses.html#cb41-19"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span></code></pre></div>
 <p>Then we can inspect the type of data we have</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basic-statistical-analyses.html#cb41-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basic-statistical-analyses.html#cb42-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-statistical-analyses.html#cb43-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basic-statistical-analyses.html#cb44-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
  [1] &quot;entity_id&quot;          &quot;DIS_AMI&quot;            &quot;DIS_CVA&quot;            &quot;DIS_DIAB&quot;          
  [5] &quot;GENDER&quot;             &quot;LAB_GLUC_ADJUSTED&quot;  &quot;LAB_HDL&quot;            &quot;LAB_TRIG&quot;          
  [9] &quot;LAB_TSC&quot;            &quot;MEDI_LPD&quot;           &quot;PM_BMI_CATEGORICAL&quot; &quot;PM_BMI_CONTINUOUS&quot; </code></pre>
 <p>Perform some data descriptive analyses</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basic-statistical-analyses.html#cb45-1"></a><span class="kw">ds.table1D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basic-statistical-analyses.html#cb46-1"></a><span class="kw">ds.table1D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>)</span></code></pre></div>
 <pre><code>$counts
       D$DIS_DIAB
 0           3041
@@ -296,7 +478,7 @@ Total     100.00
 
 $validity
 [1] &quot;All tables are valid!&quot;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basic-statistical-analyses.html#cb47-1"></a><span class="kw">ds.table2D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>, <span class="st">&quot;D$GENDER&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-statistical-analyses.html#cb48-1"></a><span class="kw">ds.table2D</span>(<span class="st">&quot;D$DIS_DIAB&quot;</span>, <span class="st">&quot;D$GENDER&quot;</span>)</span></code></pre></div>
 <pre><code>$colPercent
 $colPercent$`study1-D$DIS_DIAB(row)|D$GENDER(col)`
            0      1  Total
@@ -368,9 +550,9 @@ Total 1585 1503  3088
 $validity
 [1] &quot;All tables are valid!&quot;</code></pre>
 <p>Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basic-statistical-analyses.html#cb49-1"></a>mod &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(DIS_DIAB <span class="op">~</span><span class="st"> </span>LAB_TRIG <span class="op">+</span><span class="st"> </span>GENDER, </span>
-<span id="cb49-2"><a href="basic-statistical-analyses.html#cb49-2"></a>       <span class="dt">data =</span> <span class="st">&quot;D&quot;</span> , <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb49-3"><a href="basic-statistical-analyses.html#cb49-3"></a>mod<span class="op">$</span>coeff</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-statistical-analyses.html#cb50-1"></a>mod &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(DIS_DIAB <span class="op">~</span><span class="st"> </span>LAB_TRIG <span class="op">+</span><span class="st"> </span>GENDER, </span>
+<span id="cb50-2"><a href="basic-statistical-analyses.html#cb50-2"></a>       <span class="dt">data =</span> <span class="st">&quot;D&quot;</span> , <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb50-3"><a href="basic-statistical-analyses.html#cb50-3"></a>mod<span class="op">$</span>coeff</span></code></pre></div>
 <pre><code>              Estimate Std. Error    z-value      p-value low0.95CI.LP high0.95CI.LP        P_OR
 (Intercept) -5.0254035 0.39487495 -12.726570 4.209299e-37   -5.7993442    -4.2514628 0.006526066
 LAB_TRIG     0.3462886 0.09880155   3.504891 4.567950e-04    0.1526411     0.5399361 1.413810621
@@ -380,8 +562,184 @@ GENDER      -0.4550068 0.39497696  -1.151983 2.493280e-01   -1.2291474     0.319
 LAB_TRIG        1.16490687      1.71589723
 GENDER          0.29254188      1.37593539</code></pre>
 <p>As usual the connection must be closed</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-statistical-analyses.html#cb51-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basic-statistical-analyses.html#cb52-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+</div>
+<div id="analysis-from-a-multiple-studies" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Analysis from a multiple studies</h2>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basic-statistical-analyses.html#cb53-1"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb53-2"><a href="basic-statistical-analyses.html#cb53-2"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb53-3"><a href="basic-statistical-analyses.html#cb53-3"></a></span>
+<span id="cb53-4"><a href="basic-statistical-analyses.html#cb53-4"></a><span class="co"># prepare login data and resources to assign</span></span>
+<span id="cb53-5"><a href="basic-statistical-analyses.html#cb53-5"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb53-6"><a href="basic-statistical-analyses.html#cb53-6"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb53-7"><a href="basic-statistical-analyses.html#cb53-7"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb53-8"><a href="basic-statistical-analyses.html#cb53-8"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study3&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, <span class="dt">resource =</span> <span class="st">&quot;test.CNSIM3&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb53-9"><a href="basic-statistical-analyses.html#cb53-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb53-10"><a href="basic-statistical-analyses.html#cb53-10"></a></span>
+<span id="cb53-11"><a href="basic-statistical-analyses.html#cb53-11"></a><span class="co"># login and assign resources</span></span>
+<span id="cb53-12"><a href="basic-statistical-analyses.html#cb53-12"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb53-13"><a href="basic-statistical-analyses.html#cb53-13"></a></span>
+<span id="cb53-14"><a href="basic-statistical-analyses.html#cb53-14"></a><span class="co"># assigned objects are of class ResourceClient (and others)</span></span>
+<span id="cb53-15"><a href="basic-statistical-analyses.html#cb53-15"></a><span class="kw">ds.class</span>(<span class="st">&quot;res&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;SQLResourceClient&quot; &quot;ResourceClient&quot;    &quot;R6&quot;               
 
+$study2
+[1] &quot;TidyFileResourceClient&quot; &quot;FileResourceClient&quot;     &quot;ResourceClient&quot;        
+[4] &quot;R6&quot;                    
+
+$study3
+[1] &quot;TidyFileResourceClient&quot; &quot;FileResourceClient&quot;     &quot;ResourceClient&quot;        
+[4] &quot;R6&quot;                    </code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-statistical-analyses.html#cb55-1"></a><span class="co"># coerce ResourceClient objects to data.frames</span></span>
+<span id="cb55-2"><a href="basic-statistical-analyses.html#cb55-2"></a><span class="co"># (DataSHIELD config allows as.resource.data.frame() assignment function for the purpose of the demo)</span></span>
+<span id="cb55-3"><a href="basic-statistical-analyses.html#cb55-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
+<span id="cb55-4"><a href="basic-statistical-analyses.html#cb55-4"></a><span class="kw">ds.class</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+
+$study2
+[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+
+$study3
+[1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot; </code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-statistical-analyses.html#cb57-1"></a><span class="co"># note that some dsBase functions do not like that the data.frame has multiple and different classes</span></span>
+<span id="cb57-2"><a href="basic-statistical-analyses.html#cb57-2"></a><span class="co"># (despite all are data.frames). Then query colnames one by one:</span></span>
+<span id="cb57-3"><a href="basic-statistical-analyses.html#cb57-3"></a><span class="kw">lapply</span>(conns, <span class="cf">function</span>(conn) {<span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>, <span class="dt">datasources =</span> conn)})</span></code></pre></div>
+<pre><code>$study1
+ [1] &quot;id&quot;                 &quot;LAB_TSC&quot;            &quot;LAB_TRIG&quot;           &quot;LAB_HDL&quot;           
+ [5] &quot;LAB_GLUC_ADJUSTED&quot;  &quot;PM_BMI_CONTINUOUS&quot;  &quot;DIS_CVA&quot;            &quot;MEDI_LPD&quot;          
+ [9] &quot;DIS_DIAB&quot;           &quot;DIS_AMI&quot;            &quot;GENDER&quot;             &quot;PM_BMI_CATEGORICAL&quot;
+
+$study2
+ [1] &quot;entity_id&quot;          &quot;DIS_AMI&quot;            &quot;DIS_CVA&quot;            &quot;DIS_DIAB&quot;          
+ [5] &quot;GENDER&quot;             &quot;LAB_GLUC_ADJUSTED&quot;  &quot;LAB_HDL&quot;            &quot;LAB_TRIG&quot;          
+ [9] &quot;LAB_TSC&quot;            &quot;MEDI_LPD&quot;           &quot;PM_BMI_CATEGORICAL&quot; &quot;PM_BMI_CONTINUOUS&quot; 
+
+$study3
+ [1] &quot;entity_id&quot;          &quot;DIS_AMI&quot;            &quot;DIS_CVA&quot;            &quot;DIS_DIAB&quot;          
+ [5] &quot;GENDER&quot;             &quot;LAB_GLUC_ADJUSTED&quot;  &quot;LAB_HDL&quot;            &quot;LAB_TRIG&quot;          
+ [9] &quot;LAB_TSC&quot;            &quot;MEDI_LPD&quot;           &quot;PM_BMI_CATEGORICAL&quot; &quot;PM_BMI_CONTINUOUS&quot; </code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-statistical-analyses.html#cb59-1"></a><span class="co"># do usual dsBase analysis</span></span>
+<span id="cb59-2"><a href="basic-statistical-analyses.html#cb59-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;D$LAB_HDL&#39;</span>)</span></code></pre></div>
+<pre><code>$study1
+$study1$class
+[1] &quot;numeric&quot;
+
+$study1$length
+[1] 2163
+
+$study1$`quantiles &amp; mean`
+      5%      10%      25%      50%      75%      90%      95%     Mean 
+0.875240 1.047400 1.300000 1.581000 1.844500 2.090000 2.210900 1.569416 
+
+
+$study2
+$study2$class
+[1] &quot;numeric&quot;
+
+$study2$length
+[1] 3088
+
+$study2$`quantiles &amp; mean`
+      5%      10%      25%      50%      75%      90%      95%     Mean 
+0.850280 1.032200 1.294000 1.563000 1.840000 2.077000 2.225000 1.556648 
+
+
+$study3
+$study3$class
+[1] &quot;numeric&quot;
+
+$study3$length
+[1] 4128
+
+$study3$`quantiles &amp; mean`
+      5%      10%      25%      50%      75%      90%      95%     Mean 
+0.876760 1.039200 1.304000 1.589000 1.856000 2.098800 2.244200 1.574687 </code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basic-statistical-analyses.html#cb61-1"></a><span class="co"># vector types are not necessarily the same depending on the data reader that was used</span></span>
+<span id="cb61-2"><a href="basic-statistical-analyses.html#cb61-2"></a><span class="kw">ds.class</span>(<span class="st">&#39;D$GENDER&#39;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;integer64&quot;
+
+$study2
+[1] &quot;haven_labelled&quot;
+
+$study3
+[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-statistical-analyses.html#cb63-1"></a><span class="kw">ds.asFactor</span>(<span class="st">&#39;D$GENDER&#39;</span>, <span class="st">&#39;GENDER&#39;</span>)</span></code></pre></div>
+<pre><code>$all.unique.levels
+[1] &quot;0&quot; &quot;1&quot;
+
+$return.message
+[1] &quot;Data object &lt;GENDER&gt; correctly created in all specified data sources&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-statistical-analyses.html#cb65-1"></a><span class="kw">ds.summary</span>(<span class="st">&#39;GENDER&#39;</span>)</span></code></pre></div>
+<pre><code>$study1
+$study1$class
+[1] &quot;factor&quot;
+
+$study1$length
+[1] 2163
+
+$study1$categories
+[1] &quot;0&quot; &quot;1&quot;
+
+$study1$`count of &#39;0&#39;`
+[1] 1092
+
+$study1$`count of &#39;1&#39;`
+[1] 1071
+
+
+$study2
+$study2$class
+[1] &quot;factor&quot;
+
+$study2$length
+[1] 3088
+
+$study2$categories
+[1] &quot;0&quot; &quot;1&quot;
+
+$study2$`count of &#39;0&#39;`
+[1] 1585
+
+$study2$`count of &#39;1&#39;`
+[1] 1503
+
+
+$study3
+$study3$class
+[1] &quot;factor&quot;
+
+$study3$length
+[1] 4128
+
+$study3$categories
+[1] &quot;0&quot; &quot;1&quot;
+
+$study3$`count of &#39;0&#39;`
+[1] 2091
+
+$study3$`count of &#39;1&#39;`
+[1] 2037</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-statistical-analyses.html#cb67-1"></a><span class="co"># or coerce to a dplyr&#39;s tbl, which is more suitable for large/big datasets analysis</span></span>
+<span id="cb67-2"><a href="basic-statistical-analyses.html#cb67-2"></a><span class="co"># (DataSHIELD config allows as.resource.tbl() assignment function for the purpose of the demo)</span></span>
+<span id="cb67-3"><a href="basic-statistical-analyses.html#cb67-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;T&quot;</span>, <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.tbl</span>(res)))</span>
+<span id="cb67-4"><a href="basic-statistical-analyses.html#cb67-4"></a><span class="kw">ds.class</span>(<span class="st">&quot;T&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;tbl_MariaDBConnection&quot; &quot;tbl_dbi&quot;               &quot;tbl_sql&quot;               &quot;tbl_lazy&quot;             
+[5] &quot;tbl&quot;                  
+
+$study2
+[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+
+$study3
+[1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot; </code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-statistical-analyses.html#cb69-1"></a><span class="co"># DataSHIELD analysis using dplyr objects and functions is to be invented...</span></span>
+<span id="cb69-2"><a href="basic-statistical-analyses.html#cb69-2"></a></span>
+<span id="cb69-3"><a href="basic-statistical-analyses.html#cb69-3"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+
+</div>
 </div>
             </section>
 

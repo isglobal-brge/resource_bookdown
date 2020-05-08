@@ -1,12 +1,21 @@
 # Basic statistical analyses
 
-Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file. This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
+Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL test repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file (see Figure \@ref(fig:testResources)). This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different number of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of the obesity methodological development project. This dataset does contain some NA values. The available variables are:
 
-Let us start by illustrating how to analyze one data set. 
+```{r insert_table_variables, echo=FALSE}
+vars <- read_delim("fig/table_variables_cnsim.txt", delim=",")
+kable(vars)
+```
+
+
+The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
+
+## Analysis from a single study
+
+Let us start by illustrating how to analyze one data set (CNSIM2). 
 
 
 ```{r cnsim1}
-library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 
@@ -14,7 +23,7 @@ library(dsBaseClient)
 builder <- DSI::newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-test.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.CNSIM2", driver = "OpalDriver")
+               resource = "test.CNSIM1", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resource
@@ -44,8 +53,7 @@ ds.table2D("D$DIS_DIAB", "D$GENDER")
 Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)
 
 ```{r glm_D}
-mod <- ds.glm(DIS_DIAB ~ LAB_TRIG + GENDER, 
-       data = "D" , family="binomial")
+mod <- ds.glm("DIS_DIAB ~ LAB_TRIG + GENDER", data = "D" , family="binomial")
 mod$coeff
 ```
 
@@ -56,3 +64,48 @@ datashield.logout(conns)
 ```
 
 
+## Analysis from a multiple studies
+
+```{r cnsim_multiple}
+library(DSOpal)
+library(dsBaseClient)
+
+# prepare login data and resources to assign
+builder <- DSI::newDSLoginBuilder()
+builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM2", driver = "OpalDriver")
+builder$append(server = "study3", url = "https://opal-test.obiba.org", 
+               user = "dsuser", password = "password", 
+               resource = "test.CNSIM3", driver = "OpalDriver")
+logindata <- builder$build()
+
+# login and assign resources
+conns <- datashield.login(logins = logindata, assign = TRUE, symbol = "res")
+
+# assigned objects are of class ResourceClient (and others)
+ds.class("res")
+
+# coerce ResourceClient objects to data.frames
+# (DataSHIELD config allows as.resource.data.frame() assignment function for the purpose of the demo)
+datashield.assign.expr(conns, symbol = "D", 
+                       expr = quote(as.resource.data.frame(res, strict = TRUE)))
+ds.class("D")
+
+# do usual dsBase analysis
+ds.summary('D$LAB_HDL')
+
+# vector types are not necessarily the same depending on the data reader that was used
+ds.class('D$GENDER')
+ds.asFactor('D$GENDER', 'GENDER')
+ds.summary('GENDER')
+
+mod <- ds.glm("DIS_DIAB ~ LAB_TRIG + GENDER", data = "D" , family="binomial")
+mod$coeff
+
+
+datashield.logout(conns)
+```

@@ -10,7 +10,8 @@ link-citations: yes
 ---
 
 ```{r, setup, include=FALSE}
-knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
+knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE,
+                      fig.topcaption=TRUE)
 ```
 
 
@@ -45,6 +46,7 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 library(BiocStyle)
+library(kableExtra)
 ```
 
 
