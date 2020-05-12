@@ -14,7 +14,7 @@ knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
 
-# Wellcome {-}
+# Welcome {-}
 
 
 <img src="fig/datashield.jpg" width="200" align="right" style="margin: 0 1em 0 1em" /></a> 
