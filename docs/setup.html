@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-12" />
+<meta name="date" content="2020-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
-<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a></li>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html#snp-array-data"><i class="fa fa-check"></i><b>3.1</b> SNP array data</a></li>
+<li class="chapter" data-level="3.2" data-path="BioC.html"><a href="BioC.html#expressionset"><i class="fa fa-check"></i><b>3.2</b> ExpressionSet</a></li>
+<li class="chapter" data-level="3.3" data-path="BioC.html"><a href="BioC.html#genomic-ranges"><i class="fa fa-check"></i><b>3.3</b> Genomic ranges</a></li>
+<li class="chapter" data-level="3.4" data-path="BioC.html"><a href="BioC.html#summarized-experiments"><i class="fa fa-check"></i><b>3.4</b> Summarized experiments</a></li>
+<li class="chapter" data-level="3.5" data-path="BioC.html"><a href="BioC.html#rangedsummarizedexperiments"><i class="fa fa-check"></i><b>3.5</b> RangedSummarizedExperiments</a></li>
+<li class="chapter" data-level="3.6" data-path="BioC.html"><a href="BioC.html#multidataset"><i class="fa fa-check"></i><b>3.6</b> MultiDataSet</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> OPAL</a></li>
 <li class="chapter" data-level="5" data-path="DataSHIELD.html"><a href="DataSHIELD.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -289,18 +297,18 @@ From Github:
 <div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Required R Packages in the client site (e.g. local machine)</h2>
 <p>Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="setup.html#cb39-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-2"><a href="setup.html#cb39-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-3"><a href="setup.html#cb39-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-4"><a href="setup.html#cb39-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-5"><a href="setup.html#cb39-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-6"><a href="setup.html#cb39-6"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb39-7"><a href="setup.html#cb39-7"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="setup.html#cb95-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-2"><a href="setup.html#cb95-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-3"><a href="setup.html#cb95-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-4"><a href="setup.html#cb95-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-5"><a href="setup.html#cb95-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-6"><a href="setup.html#cb95-6"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb95-7"><a href="setup.html#cb95-7"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="setup.html#cb40-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb40-2"><a href="setup.html#cb40-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb40-3"><a href="setup.html#cb40-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb40-4"><a href="setup.html#cb40-4"></a><span class="kw">library</span>(dsOmicsClient)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="setup.html#cb96-1"></a><span class="kw">library</span>(DSI)</span>
+<span id="cb96-2"><a href="setup.html#cb96-2"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb96-3"><a href="setup.html#cb96-3"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb96-4"><a href="setup.html#cb96-4"></a><span class="kw">library</span>(dsOmicsClient)</span></code></pre></div>
 
 </div>
 </div>
