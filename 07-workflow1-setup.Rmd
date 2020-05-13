@@ -34,9 +34,8 @@ From CRAN:
    - resourcer
 From Github: 
    - datashield/dsBase
-   - datashiled/dsGeo
+   - datashiled/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics
-   - tombiso/dsGeo
 ```
 
 ## Required R Packages in the client site (e.g. local machine)
@@ -60,6 +59,7 @@ library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 library(dsOmicsClient)
+library(dsGeoClient)
 ```
 
 

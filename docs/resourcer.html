@@ -128,13 +128,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Wellcome</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Preamble</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
-<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html#snp-array-data"><i class="fa fa-check"></i><b>3.1</b> SNP array data</a></li>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-you-will-learn"><i class="fa fa-check"></i><b>1.1</b> What you will learn</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.2</b> Preliminaries</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>2</b> Learning R</a></li>
+<li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html#BioC"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3.1</b> SNP array data</a></li>
 <li class="chapter" data-level="3.2" data-path="BioC.html"><a href="BioC.html#expressionset"><i class="fa fa-check"></i><b>3.2</b> ExpressionSet</a></li>
 <li class="chapter" data-level="3.3" data-path="BioC.html"><a href="BioC.html#genomic-ranges"><i class="fa fa-check"></i><b>3.3</b> Genomic ranges</a></li>
 <li class="chapter" data-level="3.4" data-path="BioC.html"><a href="BioC.html#summarized-experiments"><i class="fa fa-check"></i><b>3.4</b> Summarized experiments</a></li>
@@ -211,7 +216,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>13.4</b> GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="13.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>13.5</b> GWAS with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geographical data analysis</a></li>
+<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geographical data analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="GIS.html"><a href="GIS.html#introducing-the-analysis"><i class="fa fa-check"></i><b>14.1</b> Introducing the analysis</a></li>
+</ul></li>
 <li class="part"><span><b>V Developers</b></span></li>
 <li class="chapter" data-level="15" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>15</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
 <ul>
@@ -243,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="18" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>18</b> Session Info</a></li>
-<li class="chapter" data-level="19" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>19</b> Bibliography</a></li>
+<li class="chapter" data-level="19" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>19</b> Contributors</a></li>
 </ul>
 
       </nav>
@@ -288,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>opal</code>, <a href="https://www.obiba.org/pages/products/opal/">Opal</a> file store.</li>
 </ul>
 <p>This can be easily applied to other file locations by extending the <em>FileResourceGetter</em> class. An instance of the new file resource getter is to be registered so that the <em>FileResourceResolver</em> can operate as expected.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="resourcer.html#cb57-1"></a>resourcer<span class="op">::</span><span class="kw">registerFileResourceGetter</span>(<span class="kw">MyFileLocationResourceGetter</span>()<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="resourcer.html#cb55-1"></a>resourcer<span class="op">::</span><span class="kw">registerFileResourceGetter</span>(<span class="kw">MyFileLocationResourceGetter</span>()<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
 </div>
 <div id="file-data-format" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> File Data Format</h2>
@@ -298,16 +306,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the R data format that can be loaded in a child R environment from which object of interest will be retrieved.</li>
 </ul>
 <p>Usage example that reads a local SPSS file:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="resourcer.html#cb58-1"></a><span class="co"># make a SPSS file resource</span></span>
-<span id="cb58-2"><a href="resourcer.html#cb58-2"></a>res &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResource</span>(</span>
-<span id="cb58-3"><a href="resourcer.html#cb58-3"></a>  <span class="dt">name =</span> <span class="st">&quot;CNSIM1&quot;</span>,</span>
-<span id="cb58-4"><a href="resourcer.html#cb58-4"></a>  <span class="dt">url =</span> <span class="st">&quot;file:///data/CNSIM1.sav&quot;</span>,</span>
-<span id="cb58-5"><a href="resourcer.html#cb58-5"></a>  <span class="dt">format =</span> <span class="st">&quot;spss&quot;</span></span>
-<span id="cb58-6"><a href="resourcer.html#cb58-6"></a>)</span>
-<span id="cb58-7"><a href="resourcer.html#cb58-7"></a><span class="co"># coerce the csv file in the opal server to a data.frame</span></span>
-<span id="cb58-8"><a href="resourcer.html#cb58-8"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="resourcer.html#cb56-1"></a><span class="co"># make a SPSS file resource</span></span>
+<span id="cb56-2"><a href="resourcer.html#cb56-2"></a>res &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResource</span>(</span>
+<span id="cb56-3"><a href="resourcer.html#cb56-3"></a>  <span class="dt">name =</span> <span class="st">&quot;CNSIM1&quot;</span>,</span>
+<span id="cb56-4"><a href="resourcer.html#cb56-4"></a>  <span class="dt">url =</span> <span class="st">&quot;file:///data/CNSIM1.sav&quot;</span>,</span>
+<span id="cb56-5"><a href="resourcer.html#cb56-5"></a>  <span class="dt">format =</span> <span class="st">&quot;spss&quot;</span></span>
+<span id="cb56-6"><a href="resourcer.html#cb56-6"></a>)</span>
+<span id="cb56-7"><a href="resourcer.html#cb56-7"></a><span class="co"># coerce the csv file in the opal server to a data.frame</span></span>
+<span id="cb56-8"><a href="resourcer.html#cb56-8"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(res)</span></code></pre></div>
 <p>To support other file data format, extend the <em>FileResourceClient</em> class with the new data format reader implementation. Associate factory class, an extension of the <em>ResourceResolver</em> class is also to be implemented and registered.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="resourcer.html#cb59-1"></a>resourcer<span class="op">::</span><span class="kw">registerResourceResolver</span>(MyFileFormatResourceResolver<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="resourcer.html#cb57-1"></a>resourcer<span class="op">::</span><span class="kw">registerResourceResolver</span>(MyFileFormatResourceResolver<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
 </div>
 <div id="database-resources" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Database Resources</h2>
@@ -322,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>spark</code>, <code>spark+http</code> or <code>spark+https</code> <a href="https://spark.apache.org/">Spark</a> connector.</li>
 </ul>
 <p>To support another SQL database having a DBI driver, extend the <em>DBIResourceConnector</em> class and register it:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="resourcer.html#cb60-1"></a>resourcer<span class="op">::</span><span class="kw">registerDBIResourceConnector</span>(MyDBResourceConnector<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="resourcer.html#cb58-1"></a>resourcer<span class="op">::</span><span class="kw">registerDBIResourceConnector</span>(MyDBResourceConnector<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
 </div>
 <div id="use-dplyr" class="section level3" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> Use dplyr</h3>
@@ -337,19 +345,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.5</span> Computation Resources</h2>
 <p>Computation resources are resources on which tasks/commands can be triggerred and from which resulting data can be retrieved.</p>
 <p>Example of computation resource that connects to a server through SSH:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="resourcer.html#cb61-1"></a><span class="co"># make an application resource on a ssh server</span></span>
-<span id="cb61-2"><a href="resourcer.html#cb61-2"></a>res &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResource</span>(</span>
-<span id="cb61-3"><a href="resourcer.html#cb61-3"></a>  <span class="dt">name =</span> <span class="st">&quot;supercomp1&quot;</span>,</span>
-<span id="cb61-4"><a href="resourcer.html#cb61-4"></a>  <span class="dt">url =</span> <span class="st">&quot;ssh://server1.example.org/work/dir?exec=plink,ls&quot;</span>,</span>
-<span id="cb61-5"><a href="resourcer.html#cb61-5"></a>  <span class="dt">identity =</span> <span class="st">&quot;sshaccountid&quot;</span>,</span>
-<span id="cb61-6"><a href="resourcer.html#cb61-6"></a>  <span class="dt">secret =</span> <span class="st">&quot;sshaccountpwd&quot;</span></span>
-<span id="cb61-7"><a href="resourcer.html#cb61-7"></a>)</span>
-<span id="cb61-8"><a href="resourcer.html#cb61-8"></a><span class="co"># get ssh client from resource object</span></span>
-<span id="cb61-9"><a href="resourcer.html#cb61-9"></a>client &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResourceClient</span>(res) <span class="co"># does a ssh::ssh_connect()</span></span>
-<span id="cb61-10"><a href="resourcer.html#cb61-10"></a><span class="co"># execute commands</span></span>
-<span id="cb61-11"><a href="resourcer.html#cb61-11"></a>files &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&quot;ls&quot;</span>) <span class="co"># exec &#39;cd /work/dir &amp;&amp; ls&#39;</span></span>
-<span id="cb61-12"><a href="resourcer.html#cb61-12"></a><span class="co"># release connection</span></span>
-<span id="cb61-13"><a href="resourcer.html#cb61-13"></a>client<span class="op">$</span><span class="kw">close</span>() <span class="co"># does ssh::ssh_disconnect(session)</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="resourcer.html#cb59-1"></a><span class="co"># make an application resource on a ssh server</span></span>
+<span id="cb59-2"><a href="resourcer.html#cb59-2"></a>res &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResource</span>(</span>
+<span id="cb59-3"><a href="resourcer.html#cb59-3"></a>  <span class="dt">name =</span> <span class="st">&quot;supercomp1&quot;</span>,</span>
+<span id="cb59-4"><a href="resourcer.html#cb59-4"></a>  <span class="dt">url =</span> <span class="st">&quot;ssh://server1.example.org/work/dir?exec=plink,ls&quot;</span>,</span>
+<span id="cb59-5"><a href="resourcer.html#cb59-5"></a>  <span class="dt">identity =</span> <span class="st">&quot;sshaccountid&quot;</span>,</span>
+<span id="cb59-6"><a href="resourcer.html#cb59-6"></a>  <span class="dt">secret =</span> <span class="st">&quot;sshaccountpwd&quot;</span></span>
+<span id="cb59-7"><a href="resourcer.html#cb59-7"></a>)</span>
+<span id="cb59-8"><a href="resourcer.html#cb59-8"></a><span class="co"># get ssh client from resource object</span></span>
+<span id="cb59-9"><a href="resourcer.html#cb59-9"></a>client &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResourceClient</span>(res) <span class="co"># does a ssh::ssh_connect()</span></span>
+<span id="cb59-10"><a href="resourcer.html#cb59-10"></a><span class="co"># execute commands</span></span>
+<span id="cb59-11"><a href="resourcer.html#cb59-11"></a>files &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&quot;ls&quot;</span>) <span class="co"># exec &#39;cd /work/dir &amp;&amp; ls&#39;</span></span>
+<span id="cb59-12"><a href="resourcer.html#cb59-12"></a><span class="co"># release connection</span></span>
+<span id="cb59-13"><a href="resourcer.html#cb59-13"></a>client<span class="op">$</span><span class="kw">close</span>() <span class="co"># does ssh::ssh_disconnect(session)</span></span></code></pre></div>
 </div>
 <div id="extending_resources" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Extending Resources</h2>
@@ -381,42 +389,42 @@ Figure 8.1: Declaration of a resource corresponding to a VCF2GDS format
 <li><code>asResource</code>, a javascript function that will convert the data captured from one of the declared web forms into a data structure representing the <code>resource</code> object.</li>
 </ul>
 <p>As an example (see also <a href="https://github.com/obiba/resourcer/blob/master/inst/resources/resource.js">resourcer’s resource.js</a>):</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb62-1"><a href="resourcer.html#cb62-1"></a><span class="kw">var</span> myPackage <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb62-2"><a href="resourcer.html#cb62-2"></a>  <span class="dt">settings</span><span class="op">:</span> <span class="op">{</span></span>
-<span id="cb62-3"><a href="resourcer.html#cb62-3"></a>    <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;MyPackage resources&quot;</span><span class="op">,</span></span>
-<span id="cb62-4"><a href="resourcer.html#cb62-4"></a>    <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;MyPackage resources are for etc.&quot;</span><span class="op">,</span></span>
-<span id="cb62-5"><a href="resourcer.html#cb62-5"></a>    <span class="st">&quot;web&quot;</span><span class="op">:</span> <span class="st">&quot;https://github.com/org/myPackage&quot;</span><span class="op">,</span></span>
-<span id="cb62-6"><a href="resourcer.html#cb62-6"></a>    <span class="st">&quot;categories&quot;</span><span class="op">:</span> [</span>
-<span id="cb62-7"><a href="resourcer.html#cb62-7"></a>      <span class="op">{</span></span>
-<span id="cb62-8"><a href="resourcer.html#cb62-8"></a>        <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;my-format&quot;</span><span class="op">,</span></span>
-<span id="cb62-9"><a href="resourcer.html#cb62-9"></a>        <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;My data format&quot;</span><span class="op">,</span></span>
-<span id="cb62-10"><a href="resourcer.html#cb62-10"></a>        <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;Data are files in my format, that will be read by myPackage etc.&quot;</span></span>
-<span id="cb62-11"><a href="resourcer.html#cb62-11"></a>      <span class="op">}</span></span>
-<span id="cb62-12"><a href="resourcer.html#cb62-12"></a>    ]<span class="op">,</span></span>
-<span id="cb62-13"><a href="resourcer.html#cb62-13"></a>    <span class="st">&quot;types&quot;</span><span class="op">:</span> [</span>
-<span id="cb62-14"><a href="resourcer.html#cb62-14"></a>      <span class="op">{</span></span>
-<span id="cb62-15"><a href="resourcer.html#cb62-15"></a>        <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;my-format-http&quot;</span><span class="op">,</span></span>
-<span id="cb62-16"><a href="resourcer.html#cb62-16"></a>        <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;My data format - HTTP&quot;</span><span class="op">,</span></span>
-<span id="cb62-17"><a href="resourcer.html#cb62-17"></a>        <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;Data are files in my format, that will be downloaded from a HTTP server etc.&quot;</span><span class="op">,</span></span>
-<span id="cb62-18"><a href="resourcer.html#cb62-18"></a>        <span class="st">&quot;tags&quot;</span><span class="op">:</span> [<span class="st">&quot;my-format&quot;</span><span class="op">,</span> <span class="st">&quot;http&quot;</span>]<span class="op">,</span></span>
-<span id="cb62-19"><a href="resourcer.html#cb62-19"></a>        <span class="st">&quot;parameters&quot;</span><span class="op">:</span> <span class="op">{},</span></span>
-<span id="cb62-20"><a href="resourcer.html#cb62-20"></a>        <span class="st">&quot;credentials&quot;</span><span class="op">:</span> <span class="op">{}</span></span>
-<span id="cb62-21"><a href="resourcer.html#cb62-21"></a>      <span class="op">}</span></span>
-<span id="cb62-22"><a href="resourcer.html#cb62-22"></a>    ]</span>
-<span id="cb62-23"><a href="resourcer.html#cb62-23"></a>  <span class="op">},</span></span>
-<span id="cb62-24"><a href="resourcer.html#cb62-24"></a>  <span class="dt">asResource</span><span class="op">:</span> <span class="kw">function</span>(type<span class="op">,</span> name<span class="op">,</span> params<span class="op">,</span> credentials) <span class="op">{</span></span>
-<span id="cb62-25"><a href="resourcer.html#cb62-25"></a>    <span class="co">// make a resource object from arguments, using type to drive </span></span>
-<span id="cb62-26"><a href="resourcer.html#cb62-26"></a>    <span class="co">// what params/credentials properties are to be used</span></span>
-<span id="cb62-27"><a href="resourcer.html#cb62-27"></a>    <span class="co">// a basic example of resource object:</span></span>
-<span id="cb62-28"><a href="resourcer.html#cb62-28"></a>    <span class="cf">return</span> <span class="op">{</span></span>
-<span id="cb62-29"><a href="resourcer.html#cb62-29"></a>      <span class="st">&quot;name&quot;</span><span class="op">:</span> name<span class="op">,</span></span>
-<span id="cb62-30"><a href="resourcer.html#cb62-30"></a>      <span class="st">&quot;url&quot;</span><span class="op">:</span> <span class="va">params</span>.<span class="at">url</span><span class="op">,</span></span>
-<span id="cb62-31"><a href="resourcer.html#cb62-31"></a>      <span class="st">&quot;format&quot;</span><span class="op">:</span> <span class="va">params</span>.<span class="at">format</span><span class="op">,</span></span>
-<span id="cb62-32"><a href="resourcer.html#cb62-32"></a>      <span class="st">&quot;identity&quot;</span><span class="op">:</span> <span class="va">credentials</span>.<span class="at">username</span><span class="op">,</span></span>
-<span id="cb62-33"><a href="resourcer.html#cb62-33"></a>      <span class="st">&quot;secret&quot;</span><span class="op">:</span> <span class="va">credentials</span>.<span class="at">password</span></span>
-<span id="cb62-34"><a href="resourcer.html#cb62-34"></a>    <span class="op">};</span></span>
-<span id="cb62-35"><a href="resourcer.html#cb62-35"></a>  <span class="op">}</span></span>
-<span id="cb62-36"><a href="resourcer.html#cb62-36"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb60-1"><a href="resourcer.html#cb60-1"></a><span class="kw">var</span> myPackage <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb60-2"><a href="resourcer.html#cb60-2"></a>  <span class="dt">settings</span><span class="op">:</span> <span class="op">{</span></span>
+<span id="cb60-3"><a href="resourcer.html#cb60-3"></a>    <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;MyPackage resources&quot;</span><span class="op">,</span></span>
+<span id="cb60-4"><a href="resourcer.html#cb60-4"></a>    <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;MyPackage resources are for etc.&quot;</span><span class="op">,</span></span>
+<span id="cb60-5"><a href="resourcer.html#cb60-5"></a>    <span class="st">&quot;web&quot;</span><span class="op">:</span> <span class="st">&quot;https://github.com/org/myPackage&quot;</span><span class="op">,</span></span>
+<span id="cb60-6"><a href="resourcer.html#cb60-6"></a>    <span class="st">&quot;categories&quot;</span><span class="op">:</span> [</span>
+<span id="cb60-7"><a href="resourcer.html#cb60-7"></a>      <span class="op">{</span></span>
+<span id="cb60-8"><a href="resourcer.html#cb60-8"></a>        <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;my-format&quot;</span><span class="op">,</span></span>
+<span id="cb60-9"><a href="resourcer.html#cb60-9"></a>        <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;My data format&quot;</span><span class="op">,</span></span>
+<span id="cb60-10"><a href="resourcer.html#cb60-10"></a>        <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;Data are files in my format, that will be read by myPackage etc.&quot;</span></span>
+<span id="cb60-11"><a href="resourcer.html#cb60-11"></a>      <span class="op">}</span></span>
+<span id="cb60-12"><a href="resourcer.html#cb60-12"></a>    ]<span class="op">,</span></span>
+<span id="cb60-13"><a href="resourcer.html#cb60-13"></a>    <span class="st">&quot;types&quot;</span><span class="op">:</span> [</span>
+<span id="cb60-14"><a href="resourcer.html#cb60-14"></a>      <span class="op">{</span></span>
+<span id="cb60-15"><a href="resourcer.html#cb60-15"></a>        <span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;my-format-http&quot;</span><span class="op">,</span></span>
+<span id="cb60-16"><a href="resourcer.html#cb60-16"></a>        <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;My data format - HTTP&quot;</span><span class="op">,</span></span>
+<span id="cb60-17"><a href="resourcer.html#cb60-17"></a>        <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;Data are files in my format, that will be downloaded from a HTTP server etc.&quot;</span><span class="op">,</span></span>
+<span id="cb60-18"><a href="resourcer.html#cb60-18"></a>        <span class="st">&quot;tags&quot;</span><span class="op">:</span> [<span class="st">&quot;my-format&quot;</span><span class="op">,</span> <span class="st">&quot;http&quot;</span>]<span class="op">,</span></span>
+<span id="cb60-19"><a href="resourcer.html#cb60-19"></a>        <span class="st">&quot;parameters&quot;</span><span class="op">:</span> <span class="op">{},</span></span>
+<span id="cb60-20"><a href="resourcer.html#cb60-20"></a>        <span class="st">&quot;credentials&quot;</span><span class="op">:</span> <span class="op">{}</span></span>
+<span id="cb60-21"><a href="resourcer.html#cb60-21"></a>      <span class="op">}</span></span>
+<span id="cb60-22"><a href="resourcer.html#cb60-22"></a>    ]</span>
+<span id="cb60-23"><a href="resourcer.html#cb60-23"></a>  <span class="op">},</span></span>
+<span id="cb60-24"><a href="resourcer.html#cb60-24"></a>  <span class="dt">asResource</span><span class="op">:</span> <span class="kw">function</span>(type<span class="op">,</span> name<span class="op">,</span> params<span class="op">,</span> credentials) <span class="op">{</span></span>
+<span id="cb60-25"><a href="resourcer.html#cb60-25"></a>    <span class="co">// make a resource object from arguments, using type to drive </span></span>
+<span id="cb60-26"><a href="resourcer.html#cb60-26"></a>    <span class="co">// what params/credentials properties are to be used</span></span>
+<span id="cb60-27"><a href="resourcer.html#cb60-27"></a>    <span class="co">// a basic example of resource object:</span></span>
+<span id="cb60-28"><a href="resourcer.html#cb60-28"></a>    <span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb60-29"><a href="resourcer.html#cb60-29"></a>      <span class="st">&quot;name&quot;</span><span class="op">:</span> name<span class="op">,</span></span>
+<span id="cb60-30"><a href="resourcer.html#cb60-30"></a>      <span class="st">&quot;url&quot;</span><span class="op">:</span> <span class="va">params</span>.<span class="at">url</span><span class="op">,</span></span>
+<span id="cb60-31"><a href="resourcer.html#cb60-31"></a>      <span class="st">&quot;format&quot;</span><span class="op">:</span> <span class="va">params</span>.<span class="at">format</span><span class="op">,</span></span>
+<span id="cb60-32"><a href="resourcer.html#cb60-32"></a>      <span class="st">&quot;identity&quot;</span><span class="op">:</span> <span class="va">credentials</span>.<span class="at">username</span><span class="op">,</span></span>
+<span id="cb60-33"><a href="resourcer.html#cb60-33"></a>      <span class="st">&quot;secret&quot;</span><span class="op">:</span> <span class="va">credentials</span>.<span class="at">password</span></span>
+<span id="cb60-34"><a href="resourcer.html#cb60-34"></a>    <span class="op">};</span></span>
+<span id="cb60-35"><a href="resourcer.html#cb60-35"></a>  <span class="op">}</span></span>
+<span id="cb60-36"><a href="resourcer.html#cb60-36"></a><span class="op">}</span></span></code></pre></div>
 <p>The specifications for the <code>resource.js</code> file are the following:</p>
 <ul>
 <li><code>settings</code> object:</li>
@@ -570,67 +578,67 @@ Figure 8.2: Resources from a test enviroment available at <a href="https://opal-
 <div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="8.9.1">
 <h3><span class="header-section-number">8.9.1</span> TSV file into a tibble or data.frame</h3>
 <p>This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="resourcer.html#cb63-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb63-2"><a href="resourcer.html#cb63-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb63-3"><a href="resourcer.html#cb63-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb63-4"><a href="resourcer.html#cb63-4"></a></span>
-<span id="cb63-5"><a href="resourcer.html#cb63-5"></a><span class="co"># access to the &#39;brge&#39; resource (</span><span class="al">NOTE</span><span class="co">: test.brge is need since the project</span></span>
-<span id="cb63-6"><a href="resourcer.html#cb63-6"></a><span class="co"># is called test)</span></span>
-<span id="cb63-7"><a href="resourcer.html#cb63-7"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb63-8"><a href="resourcer.html#cb63-8"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
-<span id="cb63-9"><a href="resourcer.html#cb63-9"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb63-10"><a href="resourcer.html#cb63-10"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.brge&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb63-11"><a href="resourcer.html#cb63-11"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb63-12"><a href="resourcer.html#cb63-12"></a></span>
-<span id="cb63-13"><a href="resourcer.html#cb63-13"></a><span class="co"># the resource is loaded into R as the object &#39;res&#39; </span></span>
-<span id="cb63-14"><a href="resourcer.html#cb63-14"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb63-15"><a href="resourcer.html#cb63-15"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
-<span id="cb63-16"><a href="resourcer.html#cb63-16"></a></span>
-<span id="cb63-17"><a href="resourcer.html#cb63-17"></a><span class="co"># the resource is assigned to a data.frame</span></span>
-<span id="cb63-18"><a href="resourcer.html#cb63-18"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
-<span id="cb63-19"><a href="resourcer.html#cb63-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;dat&quot;</span>, </span>
-<span id="cb63-20"><a href="resourcer.html#cb63-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
-<span id="cb63-21"><a href="resourcer.html#cb63-21"></a></span>
-<span id="cb63-22"><a href="resourcer.html#cb63-22"></a><span class="kw">ds.class</span>(<span class="st">&quot;dat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="resourcer.html#cb61-1"></a><span class="kw">library</span>(DSI)</span>
+<span id="cb61-2"><a href="resourcer.html#cb61-2"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb61-3"><a href="resourcer.html#cb61-3"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb61-4"><a href="resourcer.html#cb61-4"></a></span>
+<span id="cb61-5"><a href="resourcer.html#cb61-5"></a><span class="co"># access to the &#39;brge&#39; resource (</span><span class="al">NOTE</span><span class="co">: test.brge is need since the project</span></span>
+<span id="cb61-6"><a href="resourcer.html#cb61-6"></a><span class="co"># is called test)</span></span>
+<span id="cb61-7"><a href="resourcer.html#cb61-7"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb61-8"><a href="resourcer.html#cb61-8"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
+<span id="cb61-9"><a href="resourcer.html#cb61-9"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb61-10"><a href="resourcer.html#cb61-10"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.brge&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb61-11"><a href="resourcer.html#cb61-11"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb61-12"><a href="resourcer.html#cb61-12"></a></span>
+<span id="cb61-13"><a href="resourcer.html#cb61-13"></a><span class="co"># the resource is loaded into R as the object &#39;res&#39; </span></span>
+<span id="cb61-14"><a href="resourcer.html#cb61-14"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb61-15"><a href="resourcer.html#cb61-15"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb61-16"><a href="resourcer.html#cb61-16"></a></span>
+<span id="cb61-17"><a href="resourcer.html#cb61-17"></a><span class="co"># the resource is assigned to a data.frame</span></span>
+<span id="cb61-18"><a href="resourcer.html#cb61-18"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
+<span id="cb61-19"><a href="resourcer.html#cb61-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;dat&quot;</span>, </span>
+<span id="cb61-20"><a href="resourcer.html#cb61-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
+<span id="cb61-21"><a href="resourcer.html#cb61-21"></a></span>
+<span id="cb61-22"><a href="resourcer.html#cb61-22"></a><span class="kw">ds.class</span>(<span class="st">&quot;dat&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot; </code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="resourcer.html#cb65-1"></a><span class="co"># logout the connection</span></span>
-<span id="cb65-2"><a href="resourcer.html#cb65-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="resourcer.html#cb63-1"></a><span class="co"># logout the connection</span></span>
+<span id="cb63-2"><a href="resourcer.html#cb63-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
 <div id="rdata-file-into-a-specific-r-object" class="section level3" number="8.9.2">
 <h3><span class="header-section-number">8.9.2</span> .Rdata file into a specific R object</h3>
 <p>Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="resourcer.html#cb66-1"></a><span class="co"># prepare login data and resource to assign</span></span>
-<span id="cb66-2"><a href="resourcer.html#cb66-2"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb66-3"><a href="resourcer.html#cb66-3"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
-<span id="cb66-4"><a href="resourcer.html#cb66-4"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb66-5"><a href="resourcer.html#cb66-5"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.GSE80970&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb66-6"><a href="resourcer.html#cb66-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb66-7"><a href="resourcer.html#cb66-7"></a></span>
-<span id="cb66-8"><a href="resourcer.html#cb66-8"></a><span class="co"># login and assign resource (to &#39;res&#39; symbol)</span></span>
-<span id="cb66-9"><a href="resourcer.html#cb66-9"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb66-10"><a href="resourcer.html#cb66-10"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
-<span id="cb66-11"><a href="resourcer.html#cb66-11"></a></span>
-<span id="cb66-12"><a href="resourcer.html#cb66-12"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;DF&#39; </span></span>
-<span id="cb66-13"><a href="resourcer.html#cb66-13"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: as.data.frame exists for `ExpressionSet` objects</span></span>
-<span id="cb66-14"><a href="resourcer.html#cb66-14"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;DF&quot;</span>,  </span>
-<span id="cb66-15"><a href="resourcer.html#cb66-15"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
-<span id="cb66-16"><a href="resourcer.html#cb66-16"></a></span>
-<span id="cb66-17"><a href="resourcer.html#cb66-17"></a><span class="kw">ds.class</span>(<span class="st">&quot;DF&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="resourcer.html#cb64-1"></a><span class="co"># prepare login data and resource to assign</span></span>
+<span id="cb64-2"><a href="resourcer.html#cb64-2"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb64-3"><a href="resourcer.html#cb64-3"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
+<span id="cb64-4"><a href="resourcer.html#cb64-4"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb64-5"><a href="resourcer.html#cb64-5"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.GSE80970&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb64-6"><a href="resourcer.html#cb64-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb64-7"><a href="resourcer.html#cb64-7"></a></span>
+<span id="cb64-8"><a href="resourcer.html#cb64-8"></a><span class="co"># login and assign resource (to &#39;res&#39; symbol)</span></span>
+<span id="cb64-9"><a href="resourcer.html#cb64-9"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb64-10"><a href="resourcer.html#cb64-10"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb64-11"><a href="resourcer.html#cb64-11"></a></span>
+<span id="cb64-12"><a href="resourcer.html#cb64-12"></a><span class="co"># coerce ResourceClient objects to a data.frame called &#39;DF&#39; </span></span>
+<span id="cb64-13"><a href="resourcer.html#cb64-13"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: as.data.frame exists for `ExpressionSet` objects</span></span>
+<span id="cb64-14"><a href="resourcer.html#cb64-14"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;DF&quot;</span>,  </span>
+<span id="cb64-15"><a href="resourcer.html#cb64-15"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(res)))</span>
+<span id="cb64-16"><a href="resourcer.html#cb64-16"></a></span>
+<span id="cb64-17"><a href="resourcer.html#cb64-17"></a><span class="kw">ds.class</span>(<span class="st">&quot;DF&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="resourcer.html#cb68-1"></a><span class="co"># we can also coerce ResourceClient objects to their original format.</span></span>
-<span id="cb68-2"><a href="resourcer.html#cb68-2"></a><span class="co"># This will allow the analyses with specific R/Bioconductor packages</span></span>
-<span id="cb68-3"><a href="resourcer.html#cb68-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;ES&quot;</span>, </span>
-<span id="cb68-4"><a href="resourcer.html#cb68-4"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
-<span id="cb68-5"><a href="resourcer.html#cb68-5"></a></span>
-<span id="cb68-6"><a href="resourcer.html#cb68-6"></a><span class="kw">ds.class</span>(<span class="st">&quot;ES&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="resourcer.html#cb66-1"></a><span class="co"># we can also coerce ResourceClient objects to their original format.</span></span>
+<span id="cb66-2"><a href="resourcer.html#cb66-2"></a><span class="co"># This will allow the analyses with specific R/Bioconductor packages</span></span>
+<span id="cb66-3"><a href="resourcer.html#cb66-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;ES&quot;</span>, </span>
+<span id="cb66-4"><a href="resourcer.html#cb66-4"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
+<span id="cb66-5"><a href="resourcer.html#cb66-5"></a></span>
+<span id="cb66-6"><a href="resourcer.html#cb66-6"></a><span class="kw">ds.class</span>(<span class="st">&quot;ES&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;ExpressionSet&quot;
 attr(,&quot;package&quot;)
 [1] &quot;Biobase&quot;</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="resourcer.html#cb70-1"></a><span class="co"># logout the connection</span></span>
-<span id="cb70-2"><a href="resourcer.html#cb70-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="resourcer.html#cb68-1"></a><span class="co"># logout the connection</span></span>
+<span id="cb68-2"><a href="resourcer.html#cb68-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 
 </div>
 </div>

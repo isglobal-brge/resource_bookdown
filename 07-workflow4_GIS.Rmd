@@ -10,7 +10,7 @@ In this example we consider GPS traces captured by individuals in some eastern d
 knitr::include_graphics("fig/commutes.png")
 ```
 ```{r takeaways, echo=FALSE, fig.cap="Location of food outlets in eastern London", fig.align='center'}
-knitr::include_graphics("fig/takeaways")
+knitr::include_graphics("fig/takeaways.png")
 ```
  
  THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK
@@ -87,7 +87,8 @@ Now, we take the intersection of each individual's commute with each food outlet
 
 ```{r over}
 # Do the intersection of journeys with buffered takeaways
-ds.over(input_x = 'journeys', input_y = 'take.buffer.strip',newobj.name = 'my.over', retList = TRUE)
+ds.over(input_x = 'journeys', input_y = 'take.buffer.strip',
+        newobj.name = 'my.over', retList = TRUE)
 ds.lapply(input = 'my.over',newobj.name = 'count.list', fun = 'length')
 ```
 
@@ -102,6 +103,7 @@ Finally we complete the association analysis and see that BMI is positively asso
 
 ```{r analysis}
 ds.dataFrame(x = c('participant', 'counts'), newobj = 'geo.df')
-result = ds.glm(formula = 'BMI ~ age + sex + inc + fsmoke + fedu + counts', data = 'geo.df', family = 'gaussian')
+result <- ds.glm(formula = 'BMI ~ age + sex + inc + fsmoke + fedu + counts', 
+                data = 'geo.df', family = 'gaussian')
 result$coefficients
 ```

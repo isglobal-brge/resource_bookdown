@@ -457,8 +457,8 @@ res.plink <- ans.plink$study1$results %>% filter(TEST=="ADD") %>%
   arrange(P)
 # compare top-10 with Biocoductor's results
 snps <- res.plink$SNP[1:10]
-plink <- res.plink %>% filter(SNP%in%snps) %>% select(SNP, P)
-bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, Score.pval)
+plink <- res.plink %>% filter(SNP%in%snps) %>% dplyr::select(SNP, P)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% dplyr::select(rs, Score.pval)
 left_join(plink, bioC, by=c("SNP" = "rs"))
 ```
 
@@ -472,8 +472,8 @@ plink.arguments <- "--bfile brge --freq"
 ans.plink2 <- ds.PLINK("client", plink.arguments)
 maf.plink <- ans.plink2$study1$results
 
-plink <- maf.plink %>% filter(SNP%in%snps) %>% select(SNP, MAF)
-bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% select(rs, freq)
+plink <- maf.plink %>% filter(SNP%in%snps) %>% dplyr::select(SNP, MAF)
+bioC <- ans.bioC$study1 %>% filter(rs%in%snps) %>% dplyr::select(rs, freq)
 left_join(plink, bioC, by=c("SNP" = "rs"))
 ```
 
