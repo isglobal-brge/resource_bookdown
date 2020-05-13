@@ -1,8 +1,8 @@
 # DataSHIELD {#DataSHIELD}
 
-DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data, share data or disclose any sensitive information. DataSHIELD uses [Opal servers](http://opaldoc.obiba.org/en/latest/) to properly perform such analyses. 
+DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses [Opal servers](http://opaldoc.obiba.org/en/latest/) to properly perform such analyses. 
 
-At a high level, DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure \@ref(fig:dsArchitec). 
+At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure \@ref(fig:dsArchitec). 
 
 ```{r dsArchitec, echo=FALSE, fig.cap="Single Server DataSHIELD Architecture. Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers). ", out.width = '80%', fig.align='center'}
 knitr::include_graphics("fig/singleSiteDSInfrastructure.jpg")
@@ -28,7 +28,7 @@ Opal interacts with an R server through Rserve’s protocol. This allows the R S
 ## DataSHIELD module
 Built “on top” of the R module, this provides a constrained and customisable access to the R environment. Specifically, this module allows pushing data from Opal into R, but does not allow reading this data unless it has first been *aggregated* which is a non-disclosive way of obtained data from repositories.
 
-The term “aggregated” here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (mean, variance, etc.)
+The term “aggregated” here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)
 
 It is these methods that are customisable. That is, administrators of the Opal server can add, remove, modify and create completely custom aggregating methods that are provided to DataSHIELD clients.
 
@@ -46,7 +46,7 @@ The interaction between the analysis computer and Opal is done through another R
 Clients can then use this package to authenticate to Opal instances and interact with the DataSHIELD methods offered by these servers.
 
 
-Readers can get an overview of DataSHIELD from [this link](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html). A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be found in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
+Readers can read [this link](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html) to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, lineal and generalized lineal models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
 
 
 Just for a simple illustration, here we illustrate how to analyze some data available in [our demo site](http://opal-demo.obiba.org/). The tab [Explore Data](https://opal-demo.obiba.org/ui/index.html#!projects) made access to the different projects that are avaialble in our Opal server. If we select "SURVIVAL" prject we see that there are three tables:
