@@ -4,13 +4,13 @@ In this section we will provide some realistic data anlyses of geographic data i
 
 ## Introducing the analysis
 
-In this example we consider GPS traces captured by individuals in some eastern districts of London, publically available from [OpenStreetMap](https://www.openstreetmap.org/).  For this example analysis, we will imagine these GPS traces as commutes between individuals' home and work. If these data were actual commutes, they would be highly sensitive as they identify an individual’s home and work location. Therefore it is less likely that commuting data would be readily accessible for traditional pooled analysis and a federated approach with DataSHIELD could be more practical. We also have real data on the location of fast food or takeaway outlets in this same area, sourced from the [Food Standards Agency](https://api.ratings.food.gov.uk/). This is shown in the figure below. We manufactured a corresponding data set on individuals’ BMI, age, sex, total household income, highest educational qualification (as proxies for individual level socioeconomic status) and smoking status. The purpose of the analysis is to test the association between exposure to takeaway food on a commute with BMI, using the other variables to adjust for confounding factors. We illustrate how the tools available in the dsGeo package allow this question to be addressed.
+In this example we consider GPS traces captured by individuals in some eastern districts of London, publically available from [OpenStreetMap](https://www.openstreetmap.org/).  For this example analysis, we will imagine these 819 GPS traces as commutes between individuals' home and work. If these data were actual commutes, they would be highly sensitive as they identify an individual’s home and work location. Therefore it is less likely that commuting data would be readily accessible for traditional pooled analysis and a federated approach with DataSHIELD could be more practical. We also have real data on the location of 6100 fast food or takeaway outlets in this same area, sourced from the [Food Standards Agency](https://api.ratings.food.gov.uk/). This is shown in the figure below. We manufactured a corresponding data set on individuals’ BMI, age, sex, total household income, highest educational qualification (as proxies for individual level socioeconomic status) and smoking status. The purpose of the analysis is to test the association between exposure to takeaway food on a commute with BMI, using the other variables to adjust for confounding factors. Given that reducing obesity is a public health priority, this type of research could help inform local authority policies towards food outlet location, type and density. We illustrate how the tools available in the dsGeo package allow this question to be addressed.
 
 ```{r commutes, echo=FALSE, fig.cap="GPS traces in eastern London which could be imagined to be commutes between homes and workplaces", fig.align='center'}
 knitr::include_graphics("fig/commutes.png")
 ```
 ```{r takeaways, echo=FALSE, fig.cap="Location of food outlets in eastern London", fig.align='center'}
-knitr::include_graphics("fig/takeaways")
+knitr::include_graphics("fig/takeaways.png")
 ```
  
  THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK
@@ -54,7 +54,7 @@ ds.class("journeys")
 ds.class("participant")
 ```
 
-In the same way that BioConductor provides convenient data structures for 'omics data, the sp package allows each row of data to have a corresponding set of geometries.
+In the same way that BioConductor provides convenient data structures for 'omics data, the sp package allows each row of data to have a corresponding set of geometries. So if a row of data has information about an individual (age, BMI, etc.) it can also have a set of many points defining geometries such as points, lines and polygons.
 
 ```{r show_data}
 # Standard ds.summary can be used on the 'data' part of the spatial dataframe
@@ -67,7 +67,7 @@ We have provided an additional function to allow a summary of the geometries to 
 ds.geoSummary('journeys')
 ```
 
-In our analysis we need to define how we determine whether an individual has been 'exposed' to a food outlet. First we will define a 10m buffer around the location of the food outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.
+In our analysis we need to define how we determine whether an individual has been 'exposed' to a food outlet. First we will define a 10m buffer around the location of the food outlet. If an indivudal's GPS trace falls within that buffered region, we will say that they are 'exposed' to that outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.
 
 ```{r add_buffer}
 # Add a buffer to each takeaway - now they are polygons
@@ -83,7 +83,13 @@ ds.geometry(input_x = 'take.buffer', newobj.name = 'take.buffer.strip')
 ds.geoSummary('take.buffer.strip')
 ```
 
-Now, we take the intersection of each individual's commute with each food outlet. This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was 'exposed' to. We then convert the numeric vectors to counts by applying the `length` function to the list.
+Now, we take the intersection of each individual's commute with each food outlet as shown in the figure below.
+
+```{r intersection, echo=FALSE, fig.cap="Food outlets with a buffer are shown by a cross surrounded by a circle. The line segments represent the GPS trace. In this case there is an intersection with 2 of the 3 food outlets.", fig.align='center'}
+knitr::include_graphics("fig/trace_intercept.png")
+```
+
+This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was 'exposed' to. We then convert the numeric vectors to counts by applying the `length` function to the list.
 
 ```{r over}
 # Do the intersection of journeys with buffered takeaways
@@ -98,7 +104,7 @@ ds.unList(x.name = 'count.list', newobj='counts')
 ds.summary('counts')
 ```
 
-Finally we complete the association analysis and see that BMI is positively associated with the number of food outlets encountered on commutes.
+Finally we complete the association analysis and see that BMI is positively associated with the number of food outlets encountered on commutes. This could 
 
 ```{r analysis}
 ds.dataFrame(x = c('participant', 'counts'), newobj = 'geo.df')
