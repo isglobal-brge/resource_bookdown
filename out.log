@@ -9,13 +9,13 @@
 @----------------------------------------------------------@
 
 Skipping web check... [ --noweb ] 
-Writing this text to log file [ /tmp/ssh-3050/out.log ]
-Analysis started: Wed May  6 14:26:41 2020
+Writing this text to log file [ /tmp/ssh-9180/out.log ]
+Analysis started: Fri May  8 14:19:36 2020
 
 Options in effect:
 	--bfile brge
 	--freq
-	--out /tmp/ssh-3050/out
+	--out /tmp/ssh-9180/out
 	--noweb
 
 Reading map (extended format) from [ brge.bim ] 
@@ -32,11 +32,11 @@ Detected that binary PED file is v1.00 SNP-major mode
 Before frequency and genotyping pruning, there are 100000 SNPs
 2312 founders and 0 non-founders found
 6009 heterozygous haploid genotypes; set to missing
-Writing list of heterozygous haploid genotypes to [ /tmp/ssh-3050/out.hh ]
+Writing list of heterozygous haploid genotypes to [ /tmp/ssh-9180/out.hh ]
 7 SNPs with no founder genotypes observed
 Warning, MAF set to 0 for these SNPs (see --nonfounders)
-Writing list of these SNPs to [ /tmp/ssh-3050/out.nof ]
-Writing allele frequencies (founders-only) to [ /tmp/ssh-3050/out.frq ] 
+Writing list of these SNPs to [ /tmp/ssh-9180/out.nof ]
+Writing allele frequencies (founders-only) to [ /tmp/ssh-9180/out.frq ] 
 
-Analysis finished: Wed May  6 14:26:45 2020
+Analysis finished: Fri May  8 14:19:40 2020
 

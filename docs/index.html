@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-06" />
+<meta name="date" content="2020-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Preamble</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
-<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a></li>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html#snp-array-data"><i class="fa fa-check"></i><b>3.1</b> SNP array data</a></li>
+<li class="chapter" data-level="3.2" data-path="BioC.html"><a href="BioC.html#expressionset"><i class="fa fa-check"></i><b>3.2</b> ExpressionSet</a></li>
+<li class="chapter" data-level="3.3" data-path="BioC.html"><a href="BioC.html#genomic-ranges"><i class="fa fa-check"></i><b>3.3</b> Genomic ranges</a></li>
+<li class="chapter" data-level="3.4" data-path="BioC.html"><a href="BioC.html#summarized-experiments"><i class="fa fa-check"></i><b>3.4</b> Summarized experiments</a></li>
+<li class="chapter" data-level="3.5" data-path="BioC.html"><a href="BioC.html#rangedsummarizedexperiments"><i class="fa fa-check"></i><b>3.5</b> RangedSummarizedExperiments</a></li>
+<li class="chapter" data-level="3.6" data-path="BioC.html"><a href="BioC.html#multidataset"><i class="fa fa-check"></i><b>3.6</b> MultiDataSet</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> OPAL</a></li>
 <li class="chapter" data-level="5" data-path="DataSHIELD.html"><a href="DataSHIELD.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,10 +177,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>8.5</b> Computation Resources</a></li>
 <li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.7</b> API declaration of a new resource</a></li>
-<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.8</b> Examples with different resources</a>
+<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.8</b> Resource Forms</a></li>
+<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.9</b> Examples with different resources</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.8.1</b> TSV file into a tibble or data.frame</a></li>
-<li class="chapter" data-level="8.8.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.8.2</b> .Rdata file into a specific R object</a></li>
+<li class="chapter" data-level="8.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.9.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="8.9.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.9.2</b> .Rdata file into a specific R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -184,7 +193,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="setup.html"><a href="setup.html#providing-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>11.1</b> Providing DataSHIELD packages in the opal server</a></li>
 <li class="chapter" data-level="11.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>11.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>12</b> Basic statistical analyses</a></li>
+<li class="chapter" data-level="12" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>12</b> Basic statistical analyses</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-single-study"><i class="fa fa-check"></i><b>12.1</b> Analysis from a single study</a></li>
+<li class="chapter" data-level="12.2" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-multiple-studies"><i class="fa fa-check"></i><b>12.2</b> Analysis from a multiple studies</a></li>
+</ul></li>
 <li class="chapter" data-level="13" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>13</b> Omic data analysis</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="Omic.html"><a href="Omic.html#types-of-analyses-implemented"><i class="fa fa-check"></i><b>13.1</b> Types of analyses implemented</a></li>
@@ -250,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</h1>
-<p class="date"><em>2020-05-06</em></p>
+<p class="date"><em>2020-05-13</em></p>
 </div>
 <div id="wellcome" class="section level1 unnumbered" number="">
 <h1>Wellcome</h1>
