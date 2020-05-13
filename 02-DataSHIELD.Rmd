@@ -4,7 +4,7 @@ DataSHIELD infrastructure is a software solution that allows simultaneous co-ana
 
 At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure \@ref(fig:dsArchitec). 
 
-```{r dsArchitec, echo=FALSE, fig.cap="Single Server DataSHIELD Architecture (Wilson et al 2017)", out.width = '60%', fig.align='center'}
+```{r dsArchitec, echo=FALSE, fig.cap="Single Server DataSHIELD Architecture. Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers). ", out.width = '80%', fig.align='center'}
 knitr::include_graphics("fig/singleSiteDSInfrastructure.jpg")
 ```
 
