@@ -1,4 +1,4 @@
-# Geographical data analysis {#GIS}
+# Geospatial data analysis {#GIS}
 
 In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data.  The objectives of the analyses are intended to mimic the real-life usage of data covered in REF BURGOINE ET AL.
 
@@ -12,8 +12,9 @@ knitr::include_graphics("fig/commutes.png")
 ```{r takeaways, echo=FALSE, fig.cap="Location of food outlets in eastern London", fig.align='center'}
 knitr::include_graphics("fig/takeaways.png")
 ```
- 
- THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK
+
+## Setting up the analysis
+THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK
  
 In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the `as.resource.object()` function. The data have been uploaded to the server and configured as resources.
 
@@ -67,6 +68,8 @@ We have provided an additional function to allow a summary of the geometries to 
 ds.geoSummary('journeys')
 ```
 
+## Data manipulation
+
 In our analysis we need to define how we determine whether an individual has been 'exposed' to a food outlet. First we will define a 10m buffer around the location of the food outlet. If an indivudal's GPS trace falls within that buffered region, we will say that they are 'exposed' to that outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.
 
 ```{r add_buffer}
@@ -104,7 +107,9 @@ ds.unList(x.name = 'count.list', newobj='counts')
 ds.summary('counts')
 ```
 
-Finally we complete the association analysis and see that BMI is positively associated with the number of food outlets encountered on commutes. This could 
+## Generating the final result
+
+Finally we complete the association analysis and see that BMI is positively associated with the count of food outlets that an individual is exposed to on commutes (see the 'counts' coefficient). This type of analysis could be used to convey a public health message about density and location of takeaway food outlets. 
 
 ```{r analysis}
 ds.dataFrame(x = c('participant', 'counts'), newobj = 'geo.df')
