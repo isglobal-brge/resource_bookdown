@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="16 Creating DataSHIELD packages | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
 
 
 
-<meta name="date" content="2020-05-13" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</a>
           </h1>
         </div>
 
@@ -271,6 +271,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="creating-datashield-packages" class="section level1" number="16">
 <h1><span class="header-section-number">16</span> Creating DataSHIELD packages</h1>
+<p>The procedure for the development of a client-side or a server-side package in DataSHIELD is similar as the procedure of creating packages in native R and RStudio. For the devevelopment of a package, the developer will need the R packages <a href="https://cran.r-project.org/web/packages/devtools/readme/README.html">devtools</a> and <a href="https://cran.r-project.org/web/packages/roxygen2/index.html">roxygen2</a>. Having those packages installed and loaded in the R session, the developer should follow five basic steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.2.2/topics/create">Create</a> the package directory: this will create the R and the man folders and the DESCRIPTION file in a specified directory. (see the function create() in devtools)</p></li>
+<li><p>Add functions: copy the R scripts of the developed functions in the R folder created at step (1).</p></li>
+<li><p>Add documentation: add comments at the beginning of each function to give information to the user on what the function does and how the arguments of the function are used. Those comments are compiled into the correct format for the package documentation. More details can be found in the roxygen2 <a href="https://roxygen2.r-lib.org">documentation</a>.</p></li>
+<li><p>Create the documentation: this automatically adds in the .Rd files to the man directory and a NAMESPACE file to the main package directory. (see the function <a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/document">document</a> in devtools)</p></li>
+<li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/install">Install</a> the development package.</p></li>
+</ol>
+<p>In addition to those steps, the developer can make the package a GitHub repo and allows other developers to commit any further developments and improvements. For more details the reader can have a look on a Git/GitHub <a href="https://kbroman.org/github_tutorial/">guide</a>.</p>
+<p>After the development of a client-server pair of DataSHIELD packages the DataSHIELD Development Team can provide a testing framework where the developed functions and packages are tested including tests related to disclosure protection and if all tests are passed, then the package can be become publicly available for use by the DataSHIELD users. Details for the DataSHIELD testing framework can be found in the DataSHIELD <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/658505761/Testing">Wiki</a>.</p>
 
 </div>
             </section>

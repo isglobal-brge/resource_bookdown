@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14 Geographical data analysis | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <title>14 Geographical data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="14 Geographical data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
 
 
 
-<meta name="date" content="2020-05-13" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</a>
           </h1>
         </div>
 
@@ -274,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data. The objectives of the analyses are intended to mimic the real-life usage of data covered in REF BURGOINE ET AL.</p>
 <div id="introducing-the-analysis" class="section level2" number="14.1">
 <h2><span class="header-section-number">14.1</span> Introducing the analysis</h2>
-<p>In this example we consider GPS traces captured by individuals in some eastern districts of London, publically available from <a href="https://www.openstreetmap.org/">OpenStreetMap</a>. For this example analysis, we will imagine these GPS traces as commutes between individuals’ home and work. If these data were actual commutes, they would be highly sensitive as they identify an individual’s home and work location. Therefore it is less likely that commuting data would be readily accessible for traditional pooled analysis and a federated approach with DataSHIELD could be more practical. We also have real data on the location of fast food or takeaway outlets in this same area, sourced from the <a href="https://api.ratings.food.gov.uk/">Food Standards Agency</a>. This is shown in the figure below. We manufactured a corresponding data set on individuals’ BMI, age, sex, total household income, highest educational qualification (as proxies for individual level socioeconomic status) and smoking status. The purpose of the analysis is to test the association between exposure to takeaway food on a commute with BMI, using the other variables to adjust for confounding factors. We illustrate how the tools available in the dsGeo package allow this question to be addressed.</p>
+<p>In this example we consider GPS traces captured by individuals in some eastern districts of London, publically available from <a href="https://www.openstreetmap.org/">OpenStreetMap</a>. For this example analysis, we will imagine these 819 GPS traces as commutes between individuals’ home and work. If these data were actual commutes, they would be highly sensitive as they identify an individual’s home and work location. Therefore it is less likely that commuting data would be readily accessible for traditional pooled analysis and a federated approach with DataSHIELD could be more practical. We also have real data on the location of 6100 fast food or takeaway outlets in this same area, sourced from the <a href="https://api.ratings.food.gov.uk/">Food Standards Agency</a>. This is shown in the figure below. We manufactured a corresponding data set on individuals’ BMI, age, sex, total household income, highest educational qualification (as proxies for individual level socioeconomic status) and smoking status. The purpose of the analysis is to test the association between exposure to takeaway food on a commute with BMI, using the other variables to adjust for confounding factors. Given that reducing obesity is a public health priority, this type of research could help inform local authority policies towards food outlet location, type and density. We illustrate how the tools available in the dsGeo package allow this question to be addressed.</p>
 <div class="figure" style="text-align: center"><span id="fig:commutes"></span>
 <p class="caption">
 Figure 14.1: GPS traces in eastern London which could be imagined to be commutes between homes and workplaces
@@ -329,7 +329,7 @@ attr(,&quot;package&quot;)
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="GIS.html#cb199-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;participant&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;data.frame&quot;</code></pre>
-<p>In the same way that BioConductor provides convenient data structures for ’omics data, the sp package allows each row of data to have a corresponding set of geometries.</p>
+<p>In the same way that BioConductor provides convenient data structures for ’omics data, the sp package allows each row of data to have a corresponding set of geometries. So if a row of data has information about an individual (age, BMI, etc.) it can also have a set of many points defining geometries such as points, lines and polygons.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="GIS.html#cb201-1"></a><span class="co"># Standard ds.summary can be used on the &#39;data&#39; part of the spatial dataframe</span></span>
 <span id="cb201-2"><a href="GIS.html#cb201-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;journeys$age&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
@@ -379,7 +379,7 @@ $data
 
 attr(,&quot;class&quot;)
 [1] &quot;summary.Spatial&quot;</code></pre>
-<p>In our analysis we need to define how we determine whether an individual has been ‘exposed’ to a food outlet. First we will define a 10m buffer around the location of the food outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.</p>
+<p>In our analysis we need to define how we determine whether an individual has been ‘exposed’ to a food outlet. First we will define a 10m buffer around the location of the food outlet. If an indivudal’s GPS trace falls within that buffered region, we will say that they are ‘exposed’ to that outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="GIS.html#cb205-1"></a><span class="co"># Add a buffer to each takeaway - now they are polygons</span></span>
 <span id="cb205-2"><a href="GIS.html#cb205-2"></a><span class="kw">ds.gBuffer</span>(<span class="dt">input =</span> <span class="st">&#39;takeaway&#39;</span>, <span class="dt">ip_width=</span><span class="dv">10</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">by_id=</span><span class="ot">TRUE</span>)</span>
 <span id="cb205-3"><a href="GIS.html#cb205-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer&#39;</span>)</span></code></pre></div>
@@ -435,7 +435,14 @@ $proj4string
 
 attr(,&quot;class&quot;)
 [1] &quot;summary.Spatial&quot;</code></pre>
-<p>Now, we take the intersection of each individual’s commute with each food outlet. This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was ‘exposed’ to. We then convert the numeric vectors to counts by applying the <code>length</code> function to the list.</p>
+<p>Now, we take the intersection of each individual’s commute with each food outlet as shown in the figure below.</p>
+<div class="figure" style="text-align: center"><span id="fig:intersection"></span>
+<p class="caption">
+Figure 14.3: Food outlets with a buffer are shown by a cross surrounded by a circle. The line segments represent the GPS trace. In this case there is an intersection with 2 of the 3 food outlets.
+</p>
+<img src="fig/trace_intercept.png" alt="Food outlets with a buffer are shown by a cross surrounded by a circle. The line segments represent the GPS trace. In this case there is an intersection with 2 of the 3 food outlets." width="368" />
+</div>
+<p>This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was ‘exposed’ to. We then convert the numeric vectors to counts by applying the <code>length</code> function to the list.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="GIS.html#cb209-1"></a><span class="co"># Do the intersection of journeys with buffered takeaways</span></span>
 <span id="cb209-2"><a href="GIS.html#cb209-2"></a><span class="kw">ds.over</span>(<span class="dt">input_x =</span> <span class="st">&#39;journeys&#39;</span>, <span class="dt">input_y =</span> <span class="st">&#39;take.buffer.strip&#39;</span>,</span>
 <span id="cb209-3"><a href="GIS.html#cb209-3"></a>        <span class="dt">newobj.name =</span> <span class="st">&#39;my.over&#39;</span>, <span class="dt">retList =</span> <span class="ot">TRUE</span>)</span>
@@ -458,7 +465,7 @@ $study1$length
 $study1$`quantiles &amp; mean`
       5%      10%      25%      50%      75%      90%      95%     Mean 
 0.000000 0.000000 0.000000 0.000000 1.000000 5.000000 9.000000 1.882784 </code></pre>
-<p>Finally we complete the association analysis and see that BMI is positively associated with the number of food outlets encountered on commutes.</p>
+<p>Finally we complete the association analysis and see that BMI is positively associated with the number of food outlets encountered on commutes. This could</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="GIS.html#cb214-1"></a><span class="kw">ds.dataFrame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;participant&#39;</span>, <span class="st">&#39;counts&#39;</span>), <span class="dt">newobj =</span> <span class="st">&#39;geo.df&#39;</span>)</span></code></pre></div>
 <pre><code>$is.object.created
 [1] &quot;A data object &lt;geo.df&gt; has been created in all specified data sources&quot;
