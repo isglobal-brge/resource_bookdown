@@ -1,5 +1,5 @@
 --- 
-title: "Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD"
+title: "Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -41,7 +41,7 @@ The fifth part, Developers, provides information about how to develop DataSHIELD
 
 Finally, the Appendix highlights our contributors.
 
-If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”.
+If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD”.
 
 ```{r include=FALSE}
 ## automatically create a bib database for R packages
