@@ -40,3 +40,5 @@ vignettes/*.pdf
 
 # Mac
 .DS_store
+
+*.log
