@@ -41,4 +41,6 @@ vignettes/*.pdf
 # Mac
 .DS_store
 
+# PLINK
 *.log
+*.nof
