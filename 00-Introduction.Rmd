@@ -3,7 +3,7 @@
 # Introduction
 
 ## What you will learn
-The goal of this book is to provide a solid foundation to non-disclosive data analysis using [R] [] and [DataSHIELD] [] through the [resourcer] [] R package. Our main goal is to provide examples (omics and geospatial) where the use of the resources allows to handle Big Data problems. Nontheless, we also present workflows of how to perform statistical analyses using data in different formats than Opal tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.
+The goal of this book is to provide a solid foundation to non-disclosive data analysis using [R]() and [DataSHIELD]() through the [resourcer]() R package. We illustrate how to preform such data analyses in two setting (omics and geospatial) where the use of the resources allows to handle Big Data problems. Nontheless, we also present workflows of how to perform statistical analyses using data in different formats than Opal tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.
 
 ## Preliminaries
 
