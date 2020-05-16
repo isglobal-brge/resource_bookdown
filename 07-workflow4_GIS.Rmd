@@ -96,7 +96,8 @@ This results in a list of individuals, with each list element being a numeric ve
 
 ```{r over}
 # Do the intersection of journeys with buffered takeaways
-ds.over(input_x = 'journeys', input_y = 'take.buffer.strip',newobj.name = 'my.over', retList = TRUE)
+ds.over(input_x = 'journeys', input_y = 'take.buffer.strip',
+        newobj.name = 'my.over', retList = TRUE)
 ds.lapply(input = 'my.over',newobj.name = 'count.list', fun = 'length')
 ```
 
@@ -113,6 +114,7 @@ Finally we complete the association analysis and see that BMI is positively asso
 
 ```{r analysis}
 ds.dataFrame(x = c('participant', 'counts'), newobj = 'geo.df')
-result = ds.glm(formula = 'BMI ~ age + sex + inc + fsmoke + fedu + counts', data = 'geo.df', family = 'gaussian')
+result <- ds.glm(formula = 'BMI ~ age + sex + inc + fsmoke + fedu + counts', 
+                data = 'geo.df', family = 'gaussian')
 result$coefficients
 ```

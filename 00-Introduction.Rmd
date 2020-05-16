@@ -3,17 +3,25 @@
 # Introduction
 
 ## What you will learn
-The goal of this book is to provide a solid foundation to non-disclosive data analysis using [R] [] and [DataSHIELD] [] through the [resourcer] [] R package. Our main goal is to provide examples (omics and geospatial) where the use of the resources allows to handle Big Data problems. Nontheless, we also present workflows of how to perform statistical analyses using data in different formats than Opal tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.
+The goal of this book is to provide a solid foundation to non-disclosive data analysis using [R]() and [DataSHIELD]() through the [resourcer]() R package. We illustrate how to preform such data analyses in two setting (omics and geospatial) where the use of the resources allows to handle Big Data problems. Nontheless, we also present workflows of how to perform statistical analyses using data in different formats than Opal tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.
 
 ## Preliminaries
 
-For those unfamiliar with R (and those looking to learn more), in the [R section](#R) we provide a some links to R books. Also there are several R on-line courses such as this one at [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) or this at [CodeAcademy](https://www.codecademy.com/learn/learn-r) that can help to introduce the main R concepts. Nonetheless, we assume that the readers of this book are already familiar with R.
+For those unfamiliar with R (and those looking to learn more), in the [R section](#R) we provide some links to R books. Also there are several R on-line courses such as this one at [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) or this at [CodeAcademy](https://www.codecademy.com/learn/learn-r) that can help to introduce the main R concepts. Nonetheless, we assume that the readers of this book are already familiar with R.
 
-For those interested in omic data analyses we recommend the book [Omic association analysis with R and Bioconductor](https://www.routledge.com/Omic-Association-Studies-with-R-and-Bioconductor/Gonzalez-Caceres/p/book/9781138340565?utm_source=crcpress.com&utm_medium=referral) which provides a global overview of how to perform genomic, transcriptomic, epigenomic and multi-omic data analyses using R and Bioconductor packages. [Omic data infrastructure]{#BioC} deserves a section here since knowing common data containers are an essential part of Bioconductor workflows that used in our DataSHIELD packages designed for omic data analyses. This enable interoperability across packages, allowing for “plug and play” usage of cutting-edge methods. Geospatial data also requires specific data managment that is describe the [Geospatial Workflow] {#GIS}
+For those interested in omic data analyses we recommend the book [Omic association analysis with R and Bioconductor](https://www.routledge.com/Omic-Association-Studies-with-R-and-Bioconductor/Gonzalez-Caceres/p/book/9781138340565?utm_source=crcpress.com&utm_medium=referral) which provides a global overview of how to perform genomic, transcriptomic, epigenomic and multi-omic data analyses using R and Bioconductor packages. [Bioconductor support](https://bioconductor.org/help/support/) provides the primary way to contact with both Bioconductor developers and users and it is a great way to search for answers to your questions. [Bioconductor courses](https://bioconductor.org/help/course-materials/) provides excellent material to learn most of the Bioconductor basics as well as other advanced methods and R related topics. 
+
+[Omic data infrastructure]{#BioC} deserves a section here since knowing common data containers are an essential part of Bioconductor workflows that used in our DataSHIELD packages designed for omic data analyses. This enable interoperability across packages, allowing for “plug and play” usage of cutting-edge methods. Geospatial data also requires specific data managment that is describe the [Geospatial Workflow] {#GIS}
 
 
+## Acknowledgments
 
-# R {#R}
+First, we would like to thank Opal and DataSHIELD developers for providing such as impresive framework for non-disclosive data analysis. We would also like to thank all Bioconductor contributors who made available their packages for dealing with different omic and performing state-of-the-arge data analyses. This has allow us to easily create DataSHIELD packages without the need of re-programming most of the omic association analyses. We also thank R package developers since their work will permit to implement other DataSHIELD packages specifically designed to address other biomedical, epidemiological or social science problems as we did with geospatial data. 
+
+Finally, we would like to thank the Bioconductor core team for inspiring us to write this book. We follow the two succesful works describing how to Orchestrate [High-Throughput Genomic](https://pubmed.ncbi.nlm.nih.gov/25633503/) and [Single Cell](https://pubmed.ncbi.nlm.nih.gov/31792435/) Analysis with Bioconductor. 
+
+
+# Learning R {#R}
 
 R is a free, open-source software and programming language developed in 1995 at the University of Auckland as an environment for statistical computing and graphics [(Ikaha and Gentleman, 1996)](https://www.stat.auckland.ac.nz/~ihaka/downloads/R-paper.pdf). Since then R has become one of the dominant software environments for data analysis and is used by a variety of scientific disiplines, including biomedicine, environmental epidemioloy, social sciences, ecology, genetics and geoinformatics among others. CRAN Tasks provides an excellent overview of existing R packages for a given discipline (see for instance [Genetics Task View](https://cran.r-project.org/web/views/Genetics.html) ; [Envirometrics Task View](https://cran.r-project.org/web/views/Environmetrics.html); [Spatial Task View](https://cran.r-project.org/web/views/Spatial.html)). 
 
@@ -40,7 +48,6 @@ R offers numerous advantages, such as:
     
 
 While some people find the use of a commandline environment daunting, it is becoming a necessary skill for scientists as the volume and variety of data has grown. Additionaly GUI interfaces can easily be implemented in R (see [this review](http://r4stats.com/articles/software-reviews/r-gui-comparison/)) being [Shiny](https://shiny.rstudio.com/) a widely used  R package that makes it easy to build interactive web apps straight from R.  
-
 
 
 
@@ -174,7 +181,6 @@ Operations
       - e.g., `findOverlaps()`, `nearest()`
 
 ```{r ranges, message=FALSE}
-require(GenomicRanges)
 gr <- GRanges("chr1", IRanges(c(10, 20, 22), width=5), "+")
 gr
 
@@ -183,9 +189,6 @@ shift(gr, 3)
 
 # inter-range
 range(gr)    
-
-# creates the smallest range set of unique, non-overlapping intervals
-reduce(gr)                      
 
 # two Granges: knowing the intervals that overlap with a targeted region
 snps <- GRanges("chr1", IRanges(c(11, 17), width=1))

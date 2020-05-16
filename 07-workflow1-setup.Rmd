@@ -34,8 +34,8 @@ From CRAN:
    - resourcer
 From Github: 
    - datashield/dsBase
+   - datashiled/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics
-   - tombiso/dsGeo
 ```
 Note that the `dsGeo` package imports the `sp`, `rgeos` and `rgdal` R packages. `rgeos` and `rgdal` in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of `rgeos` and `rgdal` for other operating systems):
 
@@ -64,6 +64,7 @@ library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 library(dsOmicsClient)
+library(dsGeoClient)
 ```
 
 
