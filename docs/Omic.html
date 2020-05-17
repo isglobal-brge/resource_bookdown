@@ -580,8 +580,8 @@ $study2
 <p>Then, the last step is to meta-analyze the results. Different methods can be used to this end. We have implemented a method that meta-analyze the p-pvalues of each study as follows:</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="Omic.html#cb154-1"></a>ans.meta &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.limma)</span>
 <span id="cb154-2"><a href="Omic.html#cb154-2"></a>ans.meta</span></code></pre></div>
-<pre><code># A tibble: 481,868 x 2
-   pvals$id         $study1     $study2   p.meta
+<pre><code># A tibble: 481,868 x 4
+   id                study1      study2   p.meta
    &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
  1 cg13138089 0.00000000190 0.00000763  4.78e-13
  2 cg25317941 0.0000000179  0.00000196  1.12e-12
@@ -660,8 +660,8 @@ attr(,&quot;class&quot;)
 <p>Then, data can be combined meta-anlyzed as follows:</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="Omic.html#cb162-1"></a>ans.meta.sv &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.sva)</span>
 <span id="cb162-2"><a href="Omic.html#cb162-2"></a>ans.meta.sv</span></code></pre></div>
-<pre><code># A tibble: 481,868 x 2
-   pvals$id        $study1     $study2   p.meta
+<pre><code># A tibble: 481,868 x 4
+   id               study1      study2   p.meta
    &lt;chr&gt;             &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
  1 cg00228891 0.00000397   0.000000318 3.58e-11
  2 cg01301319 0.00000609   0.00000123  2.00e-10
@@ -798,8 +798,8 @@ $output
  [9] &quot;@----------------------------------------------------------@&quot;                       
 [10] &quot;&quot;                                                                                   
 [11] &quot;Skipping web check... [ --noweb ] &quot;                                                 
-[12] &quot;Writing this text to log file [ /tmp/ssh-8843/out.log ]&quot;                            
-[13] &quot;Analysis started: Fri May 15 13:55:01 2020&quot;                                         
+[12] &quot;Writing this text to log file [ /tmp/ssh-1461/out.log ]&quot;                            
+[13] &quot;Analysis started: Sun May 17 11:54:25 2020&quot;                                         
 [14] &quot;&quot;                                                                                   
 [15] &quot;Options in effect:&quot;                                                                 
 [16] &quot;\t--bfile brge&quot;                                                                      
@@ -807,7 +807,7 @@ $output
 [18] &quot;\t--covar brge.phe&quot;                                                                  
 [19] &quot;\t--covar-name gender,age&quot;                                                           
 [20] &quot;\t--noweb&quot;                                                                           
-[21] &quot;\t--out /tmp/ssh-8843/out&quot;                                                           
+[21] &quot;\t--out /tmp/ssh-1461/out&quot;                                                           
 [22] &quot;&quot;                                                                                   
 [23] &quot;Reading map (extended format) from [ brge.bim ] &quot;                                   
 [24] &quot;100000 markers to be included from [ brge.bim ]&quot;                                    
@@ -826,10 +826,10 @@ $output
 [37] &quot;Before frequency and genotyping pruning, there are 100000 SNPs&quot;                     
 [38] &quot;2312 founders and 0 non-founders found&quot;                                             
 [39] &quot;6009 heterozygous haploid genotypes; set to missing&quot;                                
-[40] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-8843/out.hh ]&quot;         
+[40] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-1461/out.hh ]&quot;         
 [41] &quot;7 SNPs with no founder genotypes observed&quot;                                          
 [42] &quot;Warning, MAF set to 0 for these SNPs (see --nonfounders)&quot;                           
-[43] &quot;Writing list of these SNPs to [ /tmp/ssh-8843/out.nof ]&quot;                            
+[43] &quot;Writing list of these SNPs to [ /tmp/ssh-1461/out.nof ]&quot;                            
 [44] &quot;Total genotyping rate in remaining individuals is 0.994408&quot;                         
 [45] &quot;0 SNPs failed missingness test ( GENO &gt; 1 )&quot;                                        
 [46] &quot;0 SNPs failed frequency test ( MAF &lt; 0 )&quot;                                           
@@ -837,16 +837,16 @@ $output
 [48] &quot;After filtering, 725 cases, 1587 controls and 0 missing&quot;                            
 [49] &quot;After filtering, 1097 males, 1215 females, and 0 of unspecified sex&quot;                
 [50] &quot;Converting data to Individual-major format&quot;                                         
-[51] &quot;Writing logistic model association results to [ /tmp/ssh-8843/out.assoc.logistic ] &quot;
+[51] &quot;Writing logistic model association results to [ /tmp/ssh-1461/out.assoc.logistic ] &quot;
 [52] &quot;&quot;                                                                                   
-[53] &quot;Analysis finished: Fri May 15 13:56:58 2020&quot;                                        
+[53] &quot;Analysis finished: Sun May 17 11:56:22 2020&quot;                                        
 [54] &quot;&quot;                                                                                   
 
 $error
 character(0)
 
 $command
-[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --logistic --covar brge.phe --covar-name gender,age --noweb --out /tmp/ssh-8843/out&quot;
+[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --logistic --covar brge.phe --covar-name gender,age --noweb --out /tmp/ssh-1461/out&quot;
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
