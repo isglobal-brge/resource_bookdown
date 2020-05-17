@@ -1,4 +1,4 @@
-# Bioconductor data infrastructures {#BioC}
+# Bioconductor data infrastructures 
 
 [Bioconductor](https://www.bioconductor.org/) promotes the statistical analysis and comprehension of current and emerging high-throughput biological assays. Bioconductor is based on packages written primarily in the R programming language. Bioconductor is committed to open source, collaborative, distributed software development and literate, reproducible research. Most Bioconductor components are distributed as [R](https://cran.r-project.org/) packages. The functional scope of [Bioconductor packages](http://bioconductor.org/packages/release/BiocViews.html#___Software) includes the analysis of DNA microarray, sequence, flow, SNP, and other data.
 
