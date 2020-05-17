@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="shell-extension.html"/>
-<link rel="next" href="basic-statistical-analyses.html"/>
+<link rel="prev" href="opal.html"/>
+<link rel="next" href="dsi-datashield-interface-implementation-for-opal-data-repository.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -273,56 +273,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Setup</h1>
-<p>As describe in <a href="resourcer.html#resourcer">a previous Chapter</a> the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.rdata</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
-<p>In order to achive this <code>resourcer</code> extension, two <code>R6</code> classes have been implemented:</p>
+<div id="datashiled" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> DataSHIELD</h1>
+<p>DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses <a href="http://opaldoc.obiba.org/en/latest/">Opal servers</a> to properly perform such analyses.</p>
+<p>At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure <a href="datashiled.html#fig:dsArchitec">5.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:dsArchitec"></span>
+<p class="caption">
+Figure 5.1: Single Server DataSHIELD Architecture. Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers).
+</p>
+<img src="fig/singleSiteDSInfrastructure.jpg" alt="Single Server DataSHIELD Architecture. Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers). " width="80%" />
+</div>
+<div id="r-and-datashield-implementation-in-opal" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> R and DataSHIELD implementation in Opal</h2>
+<p>Opal uses the <a href="https://cran.r-project.org/">R</a> statistical environment to implement DataSHIELD. The implementation is made of 3 components:</p>
 <ul>
-<li><code>GDSFileResourceResolver</code> class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a <code>GDSFileResourceClient</code> object instance from an assigned resource.</li>
-<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it’s this connection handle to the GDS file that will be used.</li>
+<li>an Opal server</li>
+<li>an R server (using Rserve)</li>
+<li>an R package for Opal (installed on the Analysis Computer)</li>
 </ul>
-<div id="providing-datashield-packages-in-the-opal-server" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Providing DataSHIELD packages in the opal server</h2>
-<p>Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal"></span>
+<div class="figure" style="text-align: center"><span id="fig:opalDS"></span>
 <p class="caption">
-Figure 11.1: Installed packages in the test opal server
+Figure 5.2: R and DataSHIELD implementation in Opal
 </p>
-<img src="fig/add_packages_opal.png" alt="Installed packages in the test opal server" width="682" />
+<img src="fig/opal-datashield.png" alt="R and DataSHIELD implementation in Opal" width="60%" />
 </div>
-<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled into the opal server</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal2"></span>
+</div>
+<div id="r-module" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> R module</h2>
+<p>Used for the interaction between an R statistical environment and Opal. Specifically, this module allows pushing data from Opal into an R environment and back. It can also execute arbitrary R code within these environments.</p>
+<p>Opal interacts with an R server through Rserve’s protocol. This allows the R Server to be on a different machine than the Opal server. It also allows maintaining R separately from Opal.</p>
+</div>
+<div id="datashield-module" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> DataSHIELD module</h2>
+<p>Built “on top” of the R module, this provides a constrained and customisable access to the R environment. Specifically, this module allows pushing data from Opal into R, but does not allow reading this data unless it has first been <em>aggregated</em> which is a non-disclosive way of obtained data from repositories.</p>
+<p>The term ‘aggregated’ here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)</p>
+<p>It is these methods that are customisable. That is, administrators of the Opal server can add, remove, modify and create completely custom aggregating methods that are provided to DataSHIELD clients.</p>
+</div>
+<div id="web-services" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Web Services</h2>
+<p>Allows the interaction between these modules and their clients is done through Web Services.</p>
+</div>
+<div id="r-server-component" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> R Server Component</h2>
+<p>R is made accessible to Opal through the Rserve library. This allows running R commands from several remote clients. Doing so allows running R and Opal on different machines if necessary.</p>
+<p>Note that this R Server will eventually contain individual-level data (it will be pushed there by the Opal server). This R server should be secured just like other machines involved in handling individual-level data. This data is not made directly available to Opal clients.</p>
+</div>
+<div id="r-clients-analysis-computers" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> R Clients (Analysis Computers)</h2>
+<p>The interaction between the analysis computer and Opal is done through another R environment running on the analysis computer. To support these interactions, Opal provides an R package that can be installed using normal R functionalities (CRAN).</p>
+<p>Clients can then use this package to authenticate to Opal instances and interact with the DataSHIELD methods offered by these servers.</p>
+<p>Readers can read <a href="http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html">this link</a> to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, lineal and generalized lineal models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD Wiki</a>.</p>
+<p>Just for a simple illustration, here we illustrate how to analyze some data available in <a href="http://opal-demo.obiba.org/">our demo site</a>. The tab <a href="https://opal-demo.obiba.org/ui/index.html#!projects">Explore Data</a> made access to the different projects that are avaialble in our Opal server. If we select “SURVIVAL” prject we see that there are three tables:</p>
+<div class="figure" style="text-align: center"><span id="fig:survivalTables"></span>
 <p class="caption">
-Figure 11.2: Description how <code>dsOmics</code> package was intalled into the test opal server
+Figure 5.3: Tables available in the SURVIVAL project from our Opal example
 </p>
-<img src="fig/add_packages_opal_2.png" alt="Description how `dsOmics` package was intalled into the test opal server" width="415" />
+<img src="fig/survival_tables.png" alt="Tables available in the SURVIVAL project from our Opal example" width="940" />
 </div>
-<p>For reproducing this book the following packages must be installed in the opal server</p>
-<pre><code>From CRAN: 
-   - resourcer
-From Github: 
-   - datashield/dsBase
-   - datashiled/dsGeo (tombisho/dsGeo)
-   - isglobal-brge/dsOmics</code></pre>
-<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
-<pre><code>sudo apt-get update
-sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
-</div>
-<div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Required R Packages in the client site (e.g. local machine)</h2>
-<p>Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="setup.html#cb94-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb94-2"><a href="setup.html#cb94-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb94-3"><a href="setup.html#cb94-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb94-4"><a href="setup.html#cb94-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb94-5"><a href="setup.html#cb94-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb94-6"><a href="setup.html#cb94-6"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="setup.html#cb95-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb95-2"><a href="setup.html#cb95-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb95-3"><a href="setup.html#cb95-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb95-4"><a href="setup.html#cb95-4"></a><span class="kw">library</span>(dsOmicsClient)</span>
-<span id="cb95-5"><a href="setup.html#cb95-5"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
+<p>R code to be provided ….</p>
 
 </div>
 </div>
@@ -331,8 +339,8 @@ sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
           </div>
         </div>
       </div>
-<a href="shell-extension.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basic-statistical-analyses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="opal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dsi-datashield-interface-implementation-for-opal-data-repository.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
