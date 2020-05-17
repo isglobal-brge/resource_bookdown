@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,13 +180,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>8.4.3</b> Document Databases</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>8.5</b> Computation Resources</a></li>
-<li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.6</b> Extending Resources</a></li>
-<li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.7</b> API declaration of a new resource</a></li>
-<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.8</b> Resource Forms</a></li>
-<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.9</b> Examples with different resources</a>
+<li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>8.6</b> Interacting with R Resources</a></li>
+<li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.7</b> Extending Resources</a></li>
+<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.8</b> API declaration of a new resource</a></li>
+<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.9</b> Resource Forms</a></li>
+<li class="chapter" data-level="8.10" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.10</b> Examples with different resources</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.9.1</b> TSV file into a tibble or data.frame</a></li>
-<li class="chapter" data-level="8.9.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.9.2</b> .Rdata file into a specific R object</a></li>
+<li class="chapter" data-level="8.10.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.10.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="8.10.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.10.2</b> .Rdata file into a specific R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -216,9 +217,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>13.4</b> GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="13.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>13.5</b> GWAS with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geographical data analysis</a>
+<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geospatial data analysis</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="GIS.html"><a href="GIS.html#introducing-the-analysis"><i class="fa fa-check"></i><b>14.1</b> Introducing the analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="GIS.html"><a href="GIS.html#setting-up-the-analysis"><i class="fa fa-check"></i><b>14.2</b> Setting up the analysis</a></li>
+<li class="chapter" data-level="14.3" data-path="GIS.html"><a href="GIS.html#data-manipulation"><i class="fa fa-check"></i><b>14.3</b> Data manipulation</a></li>
+<li class="chapter" data-level="14.4" data-path="GIS.html"><a href="GIS.html#generating-the-final-result"><i class="fa fa-check"></i><b>14.4</b> Generating the final result</a></li>
 </ul></li>
 <li class="part"><span><b>V Developers</b></span></li>
 <li class="chapter" data-level="15" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>15</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
@@ -359,8 +363,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb59-12"><a href="resourcer.html#cb59-12"></a><span class="co"># release connection</span></span>
 <span id="cb59-13"><a href="resourcer.html#cb59-13"></a>client<span class="op">$</span><span class="kw">close</span>() <span class="co"># does ssh::ssh_disconnect(session)</span></span></code></pre></div>
 </div>
-<div id="extending_resources" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> Extending Resources</h2>
+<div id="interacting-with-r-resources" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Interacting with R Resources</h2>
+<p>As the ResourceClient is just a connector to a resource, to make this useful some data conversion functions are defined by default:</p>
+<ul>
+<li>R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets.</li>
+<li><a href="https://dplyr.tidyverse.org/">dplyr</a> tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.</li>
+</ul>
+<p>In the case when the resource is a R object, the <em>RDataFileResourceClient</em> offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain can be accessed with the most appropriate tools.</p>
+<p>When the resource is a computation service provider, the interaction with the resource client will consist of issuing commands/requests with parameters and getting the result from it either as a response object or as a file to be downloaded.</p>
+<p>Another way of interacting with a resource is to get the internal connection object (a database connector, a SSH connector etc.) from the <em>ResourceClient</em> and then apply any kind of operations that are defined for it. The general purpose of a resource is not to substitute itself to the underlying library, it is to facilitate the access to the related data and services.</p>
+</div>
+<div id="extending_resources" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> Extending Resources</h2>
 <p>There are several ways to extend the Resources handling. These are based on different R6 classes having a <code>isFor(resource)</code> function:</p>
 <ul>
 <li>If the resource is a file located at a place not already handled, write a new <em>FileResourceGetter</em> subclass and register an instance of it with the function <code>registerFileResourceGetter()</code>.</li>
@@ -368,9 +383,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If the resource is in a domain specific web application or database, write a new <em>ResourceResolver</em> subclass and register an instance of it with the function <code>registerResourceResolver()</code>. This <em>ResourceResolver</em> object will create the appropriate <em>ResourceClient</em> object that matches your needs.</li>
 </ul>
 <p>The design of the URL that will describe your new resource should not overlap an existing one, otherwise the different registries will return the first instance for which the <code>isFor(resource)</code> is <code>TRUE</code>. In order to distinguish resource locations, the URL’s scheme can be extended, for instance the scheme for accessing a file in a Opal server is <code>opal+https</code> so that the credentials be applied as needed by Opal.</p>
+<p>In order to simplify the usage of these resource client classes, the resourcer package combines several software design patterns:</p>
+<ul>
+<li>The factory pattern, a classic creational design pattern. It is realized by the ResourceResolver R6 class which is responsible for making a ResourceClient object matching a provided resource object.</li>
+<li>The registry pattern, “a well-known object that other objects can use to find common objects and services” as described by M. Fowler. It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of ResourceResolver objects (the ResourceClient factories), (2) the registry of FileResourceGetter objects and (3) the registry of DBIResourceConnector objects.</li>
+<li>The self-registration pattern, which consists of delegating the registration of new services to their provider. The package event mechanism of R is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.</li>
+</ul>
+<p>For implementing ResourceClient factories the resourcer package provides different ResourceResolver classes (see Figure 1B):</p>
+<ul>
+<li>for file resources, which will discriminate the resources based on the URL property (checking if any FileResourceGetter exists for that resource) and the data format property (for getting additional information about how to read the data). The FileResourceGetter can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.</li>
+<li>for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any DBIResourceConnector can be found or whether a nodbi connector can be created). The DBIResourceConnector can be extended to new DBI implementations. For instance, using bigrquery R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
+● for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).</li>
+</ul>
+<p>Figure 1B ResourceResolver class diagram</p>
+<p>Additional ResourceResolver and ResourceClient extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.</p>
+<p>The process of creating a new ResourceClient instance from a resource object consists of iterating over a registry of ResourceResolver instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the FileResourceGetter registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the DBIResourceConnector registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.</p>
 </div>
-<div id="api-declaration-of-a-new-resource" class="section level2" number="8.7">
-<h2><span class="header-section-number">8.7</span> API declaration of a new resource</h2>
+<div id="api-declaration-of-a-new-resource" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> API declaration of a new resource</h2>
 <p>It is possible to declare a resource that is to be resolved by an R package that uses the <code>resourcer</code> API. This figure illustrate how to declare a new reource called VCF2GDS that load Variant Calling Format files into Genomic Data Storage objects that can be managed whiting R. This will be further illustrated when analyzing omic data analysis in this <a href="omic-extension.html#omic_extension">Section</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:testDeclaration"></span>
 <p class="caption">
@@ -379,8 +409,8 @@ Figure 8.1: Declaration of a resource corresponding to a VCF2GDS format
 <img src="fig/opal_resources_API.png" alt="Declaration of a resource corresponding to a VCF2GDS format" width="680" />
 </div>
 </div>
-<div id="resource-forms" class="section level2" number="8.8">
-<h2><span class="header-section-number">8.8</span> Resource Forms</h2>
+<div id="resource-forms" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> Resource Forms</h2>
 <p>As it can be error prone to define a new resource, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in javascript, as this is a very commonly used language for building graphical user interfaces.</p>
 <p>These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the <code>inst/resources</code> folder), so that an external application can lookup statically the packages having declared some resources.</p>
 <p>The configuration file <code>inst/resources/resource.js</code> is a javascript file which contains an object with the properties:</p>
@@ -565,8 +595,8 @@ Figure 8.1: Declaration of a resource corresponding to a VCF2GDS format
 <p>The name of the root object must follow the pattern: <code>&lt;R package&gt;</code> (note that any dots (<code>.</code>) in the R package name are to be replaced by underscores (<code>_</code>)).</p>
 <p>A real example of how to create shi file for the `{r Githubpkg(“isglobal-brge”, “dsOmics”)} package (described in <a href="omic-extension.html#omic_extension">this Section</a>) can be found <a href="https://github.com/isglobal-brge/dsOmics/blob/master/inst/resources/resource.js">here</a></p>
 </div>
-<div id="examples-with-different-resources" class="section level2" number="8.9">
-<h2><span class="header-section-number">8.9</span> Examples with different resources</h2>
+<div id="examples-with-different-resources" class="section level2" number="8.10">
+<h2><span class="header-section-number">8.10</span> Examples with different resources</h2>
 <p>Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at <a href="https://opal-test.obiba.org" class="uri">https://opal-test.obiba.org</a> which has the following reources</p>
 <div class="figure" style="text-align: center"><span id="fig:testResources2"></span>
 <p class="caption">
@@ -575,8 +605,8 @@ Figure 8.2: Resources from a test enviroment available at <a href="https://opal-
 <img src="fig/opal_resources.png" alt="Resources from a test enviroment available at https://opal-test.obiba.org"  />
 </div>
 <p>Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: <a href="https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt" class="uri">https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt</a> and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.</p>
-<div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="8.9.1">
-<h3><span class="header-section-number">8.9.1</span> TSV file into a tibble or data.frame</h3>
+<div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="8.10.1">
+<h3><span class="header-section-number">8.10.1</span> TSV file into a tibble or data.frame</h3>
 <p>This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="resourcer.html#cb61-1"></a><span class="kw">library</span>(DSI)</span>
 <span id="cb61-2"><a href="resourcer.html#cb61-2"></a><span class="kw">library</span>(DSOpal)</span>
@@ -605,8 +635,8 @@ Figure 8.2: Resources from a test enviroment available at <a href="https://opal-
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="resourcer.html#cb63-1"></a><span class="co"># logout the connection</span></span>
 <span id="cb63-2"><a href="resourcer.html#cb63-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
-<div id="rdata-file-into-a-specific-r-object" class="section level3" number="8.9.2">
-<h3><span class="header-section-number">8.9.2</span> .Rdata file into a specific R object</h3>
+<div id="rdata-file-into-a-specific-r-object" class="section level3" number="8.10.2">
+<h3><span class="header-section-number">8.10.2</span> .Rdata file into a specific R object</h3>
 <p>Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="resourcer.html#cb64-1"></a><span class="co"># prepare login data and resource to assign</span></span>
 <span id="cb64-2"><a href="resourcer.html#cb64-2"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>

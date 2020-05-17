@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,13 +180,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>8.4.3</b> Document Databases</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="resourcer.html"><a href="resourcer.html#computation-resources"><i class="fa fa-check"></i><b>8.5</b> Computation Resources</a></li>
-<li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.6</b> Extending Resources</a></li>
-<li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.7</b> API declaration of a new resource</a></li>
-<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.8</b> Resource Forms</a></li>
-<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.9</b> Examples with different resources</a>
+<li class="chapter" data-level="8.6" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>8.6</b> Interacting with R Resources</a></li>
+<li class="chapter" data-level="8.7" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>8.7</b> Extending Resources</a></li>
+<li class="chapter" data-level="8.8" data-path="resourcer.html"><a href="resourcer.html#api-declaration-of-a-new-resource"><i class="fa fa-check"></i><b>8.8</b> API declaration of a new resource</a></li>
+<li class="chapter" data-level="8.9" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>8.9</b> Resource Forms</a></li>
+<li class="chapter" data-level="8.10" data-path="resourcer.html"><a href="resourcer.html#examples-with-different-resources"><i class="fa fa-check"></i><b>8.10</b> Examples with different resources</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.9.1</b> TSV file into a tibble or data.frame</a></li>
-<li class="chapter" data-level="8.9.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.9.2</b> .Rdata file into a specific R object</a></li>
+<li class="chapter" data-level="8.10.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>8.10.1</b> TSV file into a tibble or data.frame</a></li>
+<li class="chapter" data-level="8.10.2" data-path="resourcer.html"><a href="resourcer.html#rdata-file-into-a-specific-r-object"><i class="fa fa-check"></i><b>8.10.2</b> .Rdata file into a specific R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -216,9 +217,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>13.4</b> GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="13.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>13.5</b> GWAS with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geographical data analysis</a>
+<li class="chapter" data-level="14" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>14</b> Geospatial data analysis</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="GIS.html"><a href="GIS.html#introducing-the-analysis"><i class="fa fa-check"></i><b>14.1</b> Introducing the analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="GIS.html"><a href="GIS.html#setting-up-the-analysis"><i class="fa fa-check"></i><b>14.2</b> Setting up the analysis</a></li>
+<li class="chapter" data-level="14.3" data-path="GIS.html"><a href="GIS.html#data-manipulation"><i class="fa fa-check"></i><b>14.3</b> Data manipulation</a></li>
+<li class="chapter" data-level="14.4" data-path="GIS.html"><a href="GIS.html#generating-the-final-result"><i class="fa fa-check"></i><b>14.4</b> Generating the final result</a></li>
 </ul></li>
 <li class="part"><span><b>V Developers</b></span></li>
 <li class="chapter" data-level="15" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>15</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
@@ -300,23 +304,25 @@ From Github:
    - datashield/dsBase
    - datashiled/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics</code></pre>
+<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
+<pre><code>sudo apt-get update
+sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
 </div>
 <div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Required R Packages in the client site (e.g. local machine)</h2>
 <p>Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="setup.html#cb93-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-2"><a href="setup.html#cb93-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-3"><a href="setup.html#cb93-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-4"><a href="setup.html#cb93-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-5"><a href="setup.html#cb93-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-6"><a href="setup.html#cb93-6"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb93-7"><a href="setup.html#cb93-7"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="setup.html#cb94-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;obiba/opalr&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb94-2"><a href="setup.html#cb94-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSI&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb94-3"><a href="setup.html#cb94-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb94-4"><a href="setup.html#cb94-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;datashield/dsBaseClient&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v6.0-dev&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb94-5"><a href="setup.html#cb94-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb94-6"><a href="setup.html#cb94-6"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="setup.html#cb94-1"></a><span class="kw">library</span>(DSI)</span>
-<span id="cb94-2"><a href="setup.html#cb94-2"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb94-3"><a href="setup.html#cb94-3"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb94-4"><a href="setup.html#cb94-4"></a><span class="kw">library</span>(dsOmicsClient)</span>
-<span id="cb94-5"><a href="setup.html#cb94-5"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="setup.html#cb95-1"></a><span class="kw">library</span>(DSI)</span>
+<span id="cb95-2"><a href="setup.html#cb95-2"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb95-3"><a href="setup.html#cb95-3"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb95-4"><a href="setup.html#cb95-4"></a><span class="kw">library</span>(dsOmicsClient)</span>
+<span id="cb95-5"><a href="setup.html#cb95-5"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
 
 </div>
 </div>
