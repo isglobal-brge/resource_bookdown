@@ -1,4 +1,4 @@
-# Learning R {#R}
+# Learning R {#learnR}
 
 R is a free, open-source software and programming language developed in 1995 at the University of Auckland as an environment for statistical computing and graphics [(Ikaha and Gentleman, 1996)](https://www.stat.auckland.ac.nz/~ihaka/downloads/R-paper.pdf). Since then R has become one of the dominant software environments for data analysis and is used by a variety of scientific disiplines, including biomedicine, environmental epidemioloy, social sciences, ecology, genetics and geoinformatics among others. CRAN Tasks provides an excellent overview of existing R packages for a given discipline (see for instance [Genetics Task View](https://cran.r-project.org/web/views/Genetics.html) ; [Envirometrics Task View](https://cran.r-project.org/web/views/Environmetrics.html); [Spatial Task View](https://cran.r-project.org/web/views/Spatial.html)). 
 
