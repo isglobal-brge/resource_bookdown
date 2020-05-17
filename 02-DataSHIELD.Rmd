@@ -28,7 +28,7 @@ Opal interacts with an R server through Rserve’s protocol. This allows the R S
 ## DataSHIELD module
 Built “on top” of the R module, this provides a constrained and customisable access to the R environment. Specifically, this module allows pushing data from Opal into R, but does not allow reading this data unless it has first been *aggregated* which is a non-disclosive way of obtained data from repositories.
 
-The term “aggregated” here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)
+The term 'aggregated' here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)
 
 It is these methods that are customisable. That is, administrators of the Opal server can add, remove, modify and create completely custom aggregating methods that are provided to DataSHIELD clients.
 
