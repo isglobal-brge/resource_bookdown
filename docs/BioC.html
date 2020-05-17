@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="learning-r.html"/>
+<link rel="prev" href="R.html"/>
 <link rel="next" href="opal.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.2</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="learning-r.html"><a href="learning-r.html"><i class="fa fa-check"></i><b>2</b> Learning R</a></li>
+<li class="chapter" data-level="2" data-path="R.html"><a href="R.html"><i class="fa fa-check"></i><b>2</b> Learning R</a></li>
 <li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html#BioC"><i class="fa fa-check"></i><b>3</b> Bioconductor data infrastructures</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3.1</b> SNP array data</a></li>
@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bioconductor provides several data infrastructures for efficiently managing omic data. See <a href="https://www.nature.com/articles/nmeth.3252">this paper</a> for a global overview. Here we provide a quick introduction for the most commonly used ones. We also recommend to learn how to deal with <a href="https://blog.dominodatalab.com/genomic-ranges-an-introduction-to-working-with-genomic-data/">GenomicRanges</a> which helps to efficiently manage genomic data information.</p>
 <div id="snp-array-data" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> SNP array data</h2>
-<p>SNP array data are normally stored in <a href="http://pngu.mgh.harvard.edu/~purcell/plink/">PLINK</a> [] format (or [VCF] [] for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00).</p>
+<p>SNP array data are normally stored in <a href="">PLINK</a> format (or <a href="">VCF</a> for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00).</p>
 <ul>
 <li>FAM file: one row per individual - identification information: Family ID, Individual ID
 Paternal ID, Maternal ID, Sex (1=male; 2=female; other=unknown), Phenotype.</li>
@@ -310,7 +310,7 @@ MitoT9699C         NA MitoT9699C NA     9699        C        T</code></pre>
 </div>
 <div id="expressionset" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> ExpressionSet</h2>
-<p><a href="BioC.html#expressionset">ExpressionSet</a></p>
+<p><a href="">ExpressionSet</a></p>
 <div class="figure">
 <img src="figures/eSet_vs_dataframe.png" alt="" />
 <p class="caption">Alt ExpressionSet</p>
@@ -428,7 +428,7 @@ Annotation: Homo.sapiens </code></pre>
 </div>
 <div id="genomic-ranges" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Genomic ranges</h2>
-<p><a href="https://bioconductor.org/packages/GenomicRanges">GenomicRanges</a></p>
+<p><a href="">GenomicRanges</a></p>
 <ul>
 <li><p><code>GRanges()</code>: genomic coordinates to represent annotations (exons,
 genes, regulatory marks, …) and data (called peaks, variants,
@@ -517,7 +517,7 @@ integer-Rle of length 26 with 6 runs
 </div>
 <div id="summarized-experiments" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Summarized experiments</h2>
-<p><a href="https://bioconductor.org/packages/SummarizedExperiment">SummarizedExperiment</a>:</p>
+<p><a href="">SummarizedExperiment</a>:</p>
 <div class="figure">
 <img src="figures/SummarizedExperiment.png" alt="" />
 <p class="caption">Alt SummarizedExperiment</p>
@@ -528,7 +528,7 @@ integer-Rle of length 26 with 6 runs
 <li><p>As in an <code>ExpressionSet</code> a <code>SummarizedExperiment</code>, the rows of <em>omic</em> data are features and columns are subjects.</p></li>
 <li><p>Coordinate feature x sample ‘assays’ with row (feature) and column
 (sample) descriptions.</p></li>
-<li><p>‘assays’ (similar to ‘exprs’ in <code>ExpressionSet</code>objects) can be any matrix-like object, including very large on-disk representations such as <a href="https://bioconductor.org/packages/HDF5Array">HDF5Array</a></p></li>
+<li><p>‘assays’ (similar to ‘exprs’ in <code>ExpressionSet</code>objects) can be any matrix-like object, including very large on-disk representations such as <a href="">HDF5Array</a></p></li>
 <li><p>‘assays’ are annotated using <code>GenomicRanges</code></p></li>
 <li><p>It is being deprecated</p></li>
 </ul>
@@ -642,7 +642,7 @@ colData names(9): SampleName cell ... Sample BioSample</code></pre>
 </div>
 <div id="multidataset" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> MultiDataSet</h2>
-<p><a href="https://bioconductor.org/packages/MultiDataSet">MultiDataSet</a></p>
+<p><a href="">MultiDataSet</a></p>
 <div class="figure">
 <img src="figures/mds.png" alt="" />
 <p class="caption">Alt MultiDataSet</p>
@@ -655,7 +655,7 @@ colData names(9): SampleName cell ... Sample BioSample</code></pre>
 – perform integration analysis with third party packages;
 – create new methods and functions for omic data integration;
 – encapsule new unimplemented data from any biological experiment</p></li>
-<li><p><a href="https://bioconductor.org/packages/MultiAssayExperiment">MultiAssayExperiment</a> is another infrastructure (created by BioC developers) that can be used to manage multi-omic data</p></li>
+<li><p><a href="">MultiAssayExperiment</a> is another infrastructure (created by BioC developers) that can be used to manage multi-omic data</p></li>
 </ul>
 
 </div>
@@ -665,7 +665,7 @@ colData names(9): SampleName cell ... Sample BioSample</code></pre>
           </div>
         </div>
       </div>
-<a href="learning-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="R.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="opal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

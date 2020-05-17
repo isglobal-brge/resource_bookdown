@@ -21,7 +21,7 @@ First, we would like to thank Opal and DataSHIELD developers for providing such 
 Finally, we would like to thank the Bioconductor core team for inspiring us to write this book. We follow the two succesful works describing how to Orchestrate [High-Throughput Genomic](https://pubmed.ncbi.nlm.nih.gov/25633503/) and [Single Cell](https://pubmed.ncbi.nlm.nih.gov/31792435/) Analysis with Bioconductor. 
 
 
-# Learning R
+# Learning R {#R}
 
 R is a free, open-source software and programming language developed in 1995 at the University of Auckland as an environment for statistical computing and graphics [(Ikaha and Gentleman, 1996)](https://www.stat.auckland.ac.nz/~ihaka/downloads/R-paper.pdf). Since then R has become one of the dominant software environments for data analysis and is used by a variety of scientific disiplines, including biomedicine, environmental epidemioloy, social sciences, ecology, genetics and geoinformatics among others. CRAN Tasks provides an excellent overview of existing R packages for a given discipline (see for instance [Genetics Task View](https://cran.r-project.org/web/views/Genetics.html) ; [Envirometrics Task View](https://cran.r-project.org/web/views/Environmetrics.html); [Spatial Task View](https://cran.r-project.org/web/views/Spatial.html)). 
 
@@ -59,7 +59,7 @@ Bioconductor provides several data infrastructures for efficiently managing omic
 
 ## SNP array data
 
-SNP array data are normally stored in [PLINK] [] format (or [VCF] [] for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00). 
+SNP array data are normally stored in [PLINK]()  format (or [VCF]() for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00). 
 
 - FAM  file:  one row per individual - identification information: Family ID, Individual ID
 Paternal ID, Maternal ID, Sex (1=male; 2=female; other=unknown), Phenotype.
@@ -90,7 +90,7 @@ head(annotation)
 
 ## ExpressionSet
 
-[ExpressionSet][]
+[ExpressionSet]()
 
 ![Alt ExpressionSet](figures/eSet_vs_dataframe.png)
 
@@ -159,7 +159,7 @@ head(probes)
 
 ## Genomic ranges
 
-[GenomicRanges][]
+[GenomicRanges]()
 
 - `GRanges()`: genomic coordinates to represent annotations (exons,
   genes, regulatory marks, ...) and data (called peaks, variants,
@@ -283,7 +283,7 @@ This table shows the common operations of `GenomicRanges`
 
 ## Summarized experiments
 
-[SummarizedExperiment][]: 
+[SummarizedExperiment](): 
 
  ![Alt SummarizedExperiment](figures/SummarizedExperiment.png)
 
@@ -296,7 +296,7 @@ This table shows the common operations of `GenomicRanges`
 - Coordinate feature x sample 'assays' with row (feature) and column
   (sample) descriptions.
 
-- 'assays' (similar to 'exprs' in `ExpressionSet`objects) can be any matrix-like object, including very large on-disk representations such as [HDF5Array][]
+- 'assays' (similar to 'exprs' in `ExpressionSet`objects) can be any matrix-like object, including very large on-disk representations such as [HDF5Array]()
 
 - 'assays' are annotated using `GenomicRanges`
 
@@ -352,7 +352,7 @@ subsetByOverlaps(airway, roi)
 
 ## MultiDataSet
 
-[MultiDataSet][]
+[MultiDataSet]()
 
    ![Alt MultiDataSet](figures/mds.png)
 
@@ -364,7 +364,7 @@ subsetByOverlaps(airway, roi)
 -- create new methods and functions for omic data integration; 
 -- encapsule new unimplemented data from any biological experiment
 
-- [MultiAssayExperiment][] is another infrastructure (created by BioC developers) that can be used to manage multi-omic data
+- [MultiAssayExperiment]() is another infrastructure (created by BioC developers) that can be used to manage multi-omic data
 
 
 [Bioconductor]: https://bioconductor.org
