@@ -8,9 +8,7 @@ The DSI classes are:
 
 * `DSObject` a common base class for all DSI,
 * `DSDriver` drives the creation of a connection object,
-* `DSConnection` allows the interaction with the remote server; DataSHIELD operations such as 
-aggregation and assignment return a result object; DataSHIELD setup status check can be performed (dataset access, 
-configuration comparision),
+* `DSConnection` allows the interaction with the remote server; DataSHIELD operations such as aggregation and assignment return a result object; DataSHIELD setup status check can be performed (dataset access, configuration comparision),
 * `DSResult` wraps access to the result, which can be fetched either synchronously or asynchronously 
 depending on the capabilities of the data repository server.
 
@@ -33,7 +31,9 @@ for managing the list of `DSConnection` objects that will be discovered and used
   of the remote DataSHIELD sessions (to speed up data analysis sessions),
   * `datashield.symbols` and `datashield.symbol_rm` offer a minimalistic management of the R symbols living in 
   the remote DataSHIELD sessions,
-  * `datashield.table_status`, `datashield.pkg_status`, `datashield.method_status` and `datashield.methods` are 
+  * `datashield.tables`, `datashield.table_status` list the tables and their accessibility across a set of data repositories,
+  * `datashield.resources`, `datashield.resource_status` list the resources and their accessibility across a set of data repositories, 
+  * `datashield.pkg_status`, `datashield.method_status` and `datashield.methods` are 
   utility functions to explore the DataSHIELD setup across a set of data repositories,
 
 These `datashield.*` functions are meant **to be used by DataSHIELD packages developers and users.**
@@ -45,3 +45,4 @@ Some options can be set to modify the behavior of the DSI:
 * `datashield.env` is the R environment in which the `DSConnection` object list is to be looking for. Default value is the Global Environment: `globalenv()`.
 * `datashield.progress` is a logical to enable the visibility of the progress bars. Default value is `TRUE`.
 * `datashield.progress.clear` is a logical to make the progress bar disappear after it has been completed. Default value is `FALSE`. 
+* `datashiel.error.stop` is a logical to alter error handling behavior: if `TRUE` an error is raised when at least one server has failed, otherwise a warning message is issued. Default value is `TRUE`.

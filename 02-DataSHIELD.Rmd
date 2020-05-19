@@ -1,6 +1,6 @@
 # DataSHIELD {#datashiled}
 
-DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses [Opal servers](http://opaldoc.obiba.org/en/latest/) to properly perform such analyses. 
+DataSHIELD infrastructure is a software solution that allows simultaneous co-analysis of data from multiple studies stored on different servers without the need to physically pool data or disclose sensitive information. DataSHIELD uses [Opal servers](http://opaldoc.obiba.org/en/latest/) to properly perform such analyses.
 
 At a high level DataSHIELD is set up as a client-server model which houses the data for a particular study. A request is made from the client to run specific functions on the remote servers where the analysis is performed. Non-sensitive and pre-approved summary statistics are returned from each study to the client where they can be combined for an overall analysis. An overview of what a single-site DataSHIELD architecture would look like is illustrated in Figure \@ref(fig:dsArchitec). 
 
@@ -13,7 +13,7 @@ knitr::include_graphics("fig/singleSiteDSInfrastructure.jpg")
 Opal uses the [R](https://cran.r-project.org/) statistical environment to implement DataSHIELD. The implementation is made of 3 components:
 
 - an Opal server
-- an R server (using Rserve)
+- an R server (using [Rserve](https://www.rforge.net/Rserve/))
 - an R package for Opal (installed on the Analysis Computer)
 
 ```{r opalDS, echo=FALSE, fig.cap="R and DataSHIELD implementation in Opal", out.width = '60%', fig.align='center'}
@@ -21,11 +21,13 @@ knitr::include_graphics("fig/opal-datashield.png")
 ```
 
 ## R module
+
 Used for the interaction between an R statistical environment and Opal. Specifically, this module allows pushing data from Opal into an R environment and back. It can also execute arbitrary R code within these environments.
 
 Opal interacts with an R server through Rserve’s protocol. This allows the R Server to be on a different machine than the Opal server. It also allows maintaining R separately from Opal.
 
 ## DataSHIELD module
+
 Built “on top” of the R module, this provides a constrained and customisable access to the R environment. Specifically, this module allows pushing data from Opal into R, but does not allow reading this data unless it has first been *aggregated* which is a non-disclosive way of obtained data from repositories.
 
 The term 'aggregated' here means that the data in R must go through a method that will summarize individual-level data into another form that removes the original individual-level data. For example, obtaining the length of a vector, obtaining the summary statistics of a vector (min, max, mean, etc.)
@@ -33,30 +35,27 @@ The term 'aggregated' here means that the data in R must go through a method tha
 It is these methods that are customisable. That is, administrators of the Opal server can add, remove, modify and create completely custom aggregating methods that are provided to DataSHIELD clients.
 
 ## Web Services
+
 Allows the interaction between these modules and their clients is done through Web Services.
 
 ## R Server Component
+
 R is made accessible to Opal through the Rserve library. This allows running R commands from several remote clients. Doing so allows running R and Opal on different machines if necessary.
 
 Note that this R Server will eventually contain individual-level data (it will be pushed there by the Opal server). This R server should be secured just like other machines involved in handling individual-level data. This data is not made directly available to Opal clients.
 
 ## R Clients (Analysis Computers)
+
 The interaction between the analysis computer and Opal is done through another R environment running on the analysis computer. To support these interactions, Opal provides an R package that can be installed using normal R functionalities (CRAN).
 
 Clients can then use this package to authenticate to Opal instances and interact with the DataSHIELD methods offered by these servers.
 
+Readers can read [this link](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html) to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, linear and generalized linear models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
 
-Readers can read [this link](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html) to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, lineal and generalized lineal models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtaine in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
-
-
-Just for a simple illustration, here we illustrate how to analyze some data available in [our demo site](http://opal-demo.obiba.org/). The tab [Explore Data](https://opal-demo.obiba.org/ui/index.html#!projects) made access to the different projects that are avaialble in our Opal server. If we select "SURVIVAL" prject we see that there are three tables:
-
-
+Just for a simple illustration, here we illustrate how to analyze some data available in [our demo site](http://opal-demo.obiba.org/). The tab [Explore Data](https://opal-demo.obiba.org/ui/index.html#!projects) made access to the different projects that are avaialble in our Opal server. If we select "SURVIVAL" project we see that there are three tables:
 
 ```{r survivalTables, echo=FALSE, fig.cap="Tables available in the SURVIVAL project from our Opal example", fig.align='center'}
 knitr::include_graphics("fig/survival_tables.png")
 ```
-
-
 
 R code to be provided ....

@@ -6,7 +6,7 @@ Bioconductor provides several data infrastructures for efficiently managing omic
 
 ## SNP array data
 
-SNP array data are normally stored in [PLINK]()  format (or [VCF]() for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00). 
+SNP array data are normally stored in [PLINK](http://zzz.bwh.harvard.edu/plink/) format (or [VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00). 
 
 - FAM  file:  one row per individual - identification information: Family ID, Individual ID
 Paternal ID, Maternal ID, Sex (1=male; 2=female; other=unknown), Phenotype.

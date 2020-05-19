@@ -1,6 +1,5 @@
 # The resourcer package {#resourcer}
 
-
 The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
 
 It is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
@@ -108,21 +107,18 @@ client$close() # does ssh::ssh_disconnect(session)
 ```
 
 
-
 ## Interacting with R Resources
+
 As the ResourceClient is just a connector to a resource, to make this useful some data conversion functions are defined by default:
 
-   - R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets. 
-   - [dplyr](https://dplyr.tidyverse.org/) tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.
+* R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets. 
+* [dplyr](https://dplyr.tidyverse.org/) tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.
 
 In the case when the resource is a R object, the _RDataFileResourceClient_ offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain can be accessed with the most appropriate tools.
 
 When the resource is a computation service provider, the interaction with the resource client will consist of issuing commands/requests with parameters and getting the result from it either as a response object or as a file to be downloaded.
 
 Another way of interacting with a resource is to get the internal connection object (a database connector, a SSH connector etc.) from the _ResourceClient_ and then apply any kind of operations that are defined for it. The general purpose of a resource is not to substitute itself to the underlying library, it is to facilitate the access to the related data and services.
-
-
-
 
 ## Extending Resources {#extending_resources}
 
@@ -134,27 +130,25 @@ There are several ways to extend the Resources handling. These are based on diff
 
 The design of the URL that will describe your new resource should not overlap an existing one, otherwise the different registries will return the first instance for which the `isFor(resource)` is `TRUE`. In order to distinguish resource locations, the URL's scheme can be extended, for instance the scheme for accessing a file in a Opal server is `opal+https` so that the credentials be applied as needed by Opal.
 
-
 In order to simplify the usage of these resource client classes, the resourcer package combines several software design patterns:
 
-   - The factory pattern, a classic creational design pattern. It is realized by the ResourceResolver R6 class which is responsible for making a ResourceClient object matching a provided resource object.
-   - The registry pattern, “a well-known object that other objects can use to find common objects and services” as described by M. Fowler. It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of ResourceResolver objects (the ResourceClient factories), (2) the registry of FileResourceGetter objects and (3) the registry of DBIResourceConnector objects.
-   - The self-registration pattern, which consists of delegating the registration of new services to their provider. The package event mechanism of R is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.
+* The factory pattern, a classic [creational design pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). It is realized by the ResourceResolver R6 class which is responsible for making a ResourceClient object matching a provided resource object.
+* The registry pattern, “a well-known object that other objects can use to find common objects and services” as [described by M. Fowler](https://martinfowler.com/eaaCatalog/registry.html). It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of ResourceResolver objects (the ResourceClient factories), (2) the registry of FileResourceGetter objects and (3) the registry of DBIResourceConnector objects.
+* The self-registration pattern, which consists of delegating the registration of new services to their provider. The [package event mechanism of R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html) is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.
 
 For implementing ResourceClient factories the resourcer package provides different ResourceResolver classes (see Figure 1B):
 
-- 	for file resources, which will discriminate the resources based on the URL property (checking if any FileResourceGetter exists for that resource) and the data format property (for getting additional information about how to read the data). The FileResourceGetter can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.
- - for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any DBIResourceConnector can be found or whether a nodbi connector can be created). The DBIResourceConnector can be extended to new DBI implementations. For instance, using bigrquery R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
-●	for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).
+* for file resources, which will discriminate the resources based on the URL property (checking if any FileResourceGetter exists for that resource) and the data format property (for getting additional information about how to read the data). The FileResourceGetter can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.
+* for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any DBIResourceConnector can be found or whether a nodbi connector can be created). The DBIResourceConnector can be extended to new DBI implementations. For instance, using bigrquery R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
+* for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).
 
- 
-Figure 1B ResourceResolver class diagram
+```{r resourceResolver, echo=FALSE, fig.cap="ResourceResolver class diagram", fig.align='center'}
+knitr::include_graphics("fig/ResourceResolver.png")
+```
 
 Additional ResourceResolver and ResourceClient extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.
 
 The process of creating a new ResourceClient instance from a resource object consists of iterating over a registry of ResourceResolver instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the FileResourceGetter registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the DBIResourceConnector registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.
-
-
 
 ## API declaration of a new resource
 
