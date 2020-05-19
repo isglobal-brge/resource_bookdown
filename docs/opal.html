@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="BioC.html"/>
-<link rel="next" href="datashiled.html"/>
+<link rel="next" href="datashield.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -118,13 +118,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6" data-path="BioC.html"><a href="BioC.html#multidataset"><i class="fa fa-check"></i><b>3.6</b> MultiDataSet</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> OPAL</a></li>
-<li class="chapter" data-level="5" data-path="datashiled.html"><a href="datashiled.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a><ul>
-<li class="chapter" data-level="5.1" data-path="datashiled.html"><a href="datashiled.html#r-and-datashield-implementation-in-opal"><i class="fa fa-check"></i><b>5.1</b> R and DataSHIELD implementation in Opal</a></li>
-<li class="chapter" data-level="5.2" data-path="datashiled.html"><a href="datashiled.html#r-module"><i class="fa fa-check"></i><b>5.2</b> R module</a></li>
-<li class="chapter" data-level="5.3" data-path="datashiled.html"><a href="datashiled.html#datashield-module"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD module</a></li>
-<li class="chapter" data-level="5.4" data-path="datashiled.html"><a href="datashiled.html#web-services"><i class="fa fa-check"></i><b>5.4</b> Web Services</a></li>
-<li class="chapter" data-level="5.5" data-path="datashiled.html"><a href="datashiled.html#r-server-component"><i class="fa fa-check"></i><b>5.5</b> R Server Component</a></li>
-<li class="chapter" data-level="5.6" data-path="datashiled.html"><a href="datashiled.html#r-clients-analysis-computers"><i class="fa fa-check"></i><b>5.6</b> R Clients (Analysis Computers)</a></li>
+<li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a><ul>
+<li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#r-and-datashield-implementation-in-opal"><i class="fa fa-check"></i><b>5.1</b> R and DataSHIELD implementation in Opal</a></li>
+<li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#r-module"><i class="fa fa-check"></i><b>5.2</b> R module</a></li>
+<li class="chapter" data-level="5.3" data-path="datashield.html"><a href="datashield.html#datashield-module"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD module</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#web-services"><i class="fa fa-check"></i><b>5.4</b> Web Services</a></li>
+<li class="chapter" data-level="5.5" data-path="datashield.html"><a href="datashield.html#r-server-component"><i class="fa fa-check"></i><b>5.5</b> R Server Component</a></li>
+<li class="chapter" data-level="5.6" data-path="datashield.html"><a href="datashield.html#r-clients-analysis-computers"><i class="fa fa-check"></i><b>5.6</b> R Clients (Analysis Computers)</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html"><i class="fa fa-check"></i><b>6</b> DSI: DataSHIELD Interface implementation for Opal data repository</a><ul>
 <li class="chapter" data-level="6.1" data-path="dsi-datashield-interface-implementation-for-opal-data-repository.html"><a href="dsi-datashield-interface-implementation-for-opal-data-repository.html#class-structure"><i class="fa fa-check"></i><b>6.1</b> Class Structure</a></li>
@@ -239,9 +239,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Plugin architecture to extend import/export capabilities for instance by connecting to data source software such as REDCap, LimeSurvey etc.,</li>
 <li>Store data about any type of “entity”, such as subject, sample, geographic area, etc.,</li>
 <li>Store data of any type (e.g., texts, numbers, geo-localisation, images, videos, etc.),</li>
-<li>Import and store genotype data as VCF files (Variant Call format ),</li>
+<li>Advanced authentication and authorization features,</li>
 <li>Reporting using R markdown,</li>
 <li>Data analysis plugins using R,</li>
+<li>Web services can be accessed using R, Python, Java, Javascript,</li>
+<li>DataSHIELD middleware reference implementation (configuration, access controls, R session management),</li>
 <li>…</li>
 </ul>
 <p>Detailed concepts and tutorials for tables can be found here:</p>
@@ -250,12 +252,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="http://opaldoc.obiba.org/en/latest/ids.html">Identifiers Mappings</a></li>
 <li><a href="http://opaldoc.obiba.org/en/latest/data-harmonization.html">Data Harmonization</a></li>
 </ul>
-<p>To have a closer look at Opal with table you can try <a href="http://opal-demo.obiba.org/">the demo site</a> with the credentials:</p>
+<p>To have a closer look at Opal you can try <a href="http://opal-demo.obiba.org/">the demo site</a> with the credentials:</p>
 <ul>
-<li>username: administrator</li>
-<li>password: password</li>
+<li>username: <code>administrator</code></li>
+<li>password: <code>password</code></li>
 </ul>
-<p>In this work, we will present the integration of a more flexible data description paradigm called <a href="resources.html#resources">resources</a> that will enable Opal to manage access to Big Data sets and computation units for analysis purpose.</p>
+<p>Opal database management works well for small to mid-size datasets (usually less than 10M data points). In this work, we will present the integration of a more flexible data description paradigm called <a href="resources.html#resources">resources</a> that will enable Opal to manage access to Big Data sets, complex data structures and computation units for analysis purpose.</p>
 <p>Before introducing this new feature and in order to make the reader familiar with Opal we recommend to visit <a href="http://opaldoc.obiba.org/">the Opal online documentation</a>.</p>
 
 </div>
@@ -265,7 +267,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="BioC.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="datashiled.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="datashield.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

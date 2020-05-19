@@ -10,9 +10,11 @@ Opal provides the following main features:
 - Plugin architecture to extend import/export capabilities for instance by connecting to data source software such as REDCap, LimeSurvey etc.,
 - Store data about any type of "entity", such as subject, sample, geographic area, etc.,
 - Store data of any type (e.g., texts, numbers, geo-localisation, images, videos, etc.),
-- Import and store genotype data as VCF files (Variant Call format ),
+- Advanced authentication and authorization features,
 - Reporting using R markdown,
 - Data analysis plugins using R,
+- Web services can be accessed using R, Python, Java, Javascript,
+- DataSHIELD middleware reference implementation (configuration, access controls, R session management),
 - ...
 
 Detailed concepts and tutorials for tables can be found here:
@@ -21,11 +23,11 @@ Detailed concepts and tutorials for tables can be found here:
 - [Identifiers Mappings](http://opaldoc.obiba.org/en/latest/ids.html)
 - [Data Harmonization](http://opaldoc.obiba.org/en/latest/data-harmonization.html)
 
-To have a closer look at Opal with table you can try [the demo site](http://opal-demo.obiba.org/) with the credentials:
+To have a closer look at Opal you can try [the demo site](http://opal-demo.obiba.org/) with the credentials:
 
-- username: administrator
-- password: password
+- username: `administrator`
+- password: `password`
 
-In this work, we will present the integration of a more flexible data description paradigm called [resources](#resources) that will enable Opal to manage access to Big Data sets and computation units for analysis purpose.
+Opal database management works well for small to mid-size datasets (usually less than 10M data points). In this work, we will present the integration of a more flexible data description paradigm called [resources](#resources) that will enable Opal to manage access to Big Data sets, complex data structures and computation units for analysis purpose.
 
 Before introducing this new feature and in order to make the reader familiar with Opal we recommend to visit [the Opal online documentation](http://opaldoc.obiba.org/).
