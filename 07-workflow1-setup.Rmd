@@ -34,7 +34,7 @@ From CRAN:
    - resourcer
 From Github: 
    - datashield/dsBase
-   - datashiled/dsGeo (tombisho/dsGeo)
+   - datashield/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics
 ```
 Note that the `dsGeo` package imports the `sp`, `rgeos` and `rgdal` R packages. `rgeos` and `rgdal` in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of `rgeos` and `rgdal` for other operating systems):
@@ -49,9 +49,7 @@ sudo apt-get install libgdal-dev libproj-dev libgeos++dev
 Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):
 
 ```{r install_all, eval=FALSE}
-devtools::install_github("obiba/opalr", dependencies = TRUE)
-devtools::install_github("datashield/DSI", dependencies = TRUE)
-devtools::install_github("datashield/DSOpal", dependencies = TRUE)
+install.packages("DSOpal", dependencies = TRUE)
 devtools::install_github("datashield/dsBaseClient", ref = "v6.0-dev", dependencies = TRUE)
 devtools::install_github("isglobal-brge/dsOmicsClient", dependencies = TRUE)
 devtools::install_github("tombisho/dsGeoClient", dependencies = TRUE)
@@ -60,7 +58,6 @@ devtools::install_github("tombisho/dsGeoClient", dependencies = TRUE)
 The package dependencies are then loaded as follows:
 
 ```{r requiredRPackages}
-library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 library(dsOmicsClient)

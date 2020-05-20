@@ -62,7 +62,7 @@ The results can be retrieve as an R object
 ```{r plink_resource_retrieve}
 outs <- client$exec('ls', tempDir)$output
 outs
-client$downloadFile(paste0(tempDir, '/out.*'))  
+client$downloadFile(paste0(tempDir, '/out.frq'))  
 ans <- readr::read_table("out.frq")
 ans
 ```
