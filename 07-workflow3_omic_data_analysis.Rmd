@@ -86,7 +86,7 @@ lapply(name.vars, head, n=15)
 We can visualize the levels of the variable having gender information
 
 ```{r table_gender}
-ds.table1D("rse$gdc_cases.demographic.gender")
+ds.table("rse$gdc_cases.demographic.gender")
 ```
 
 
@@ -361,7 +361,7 @@ ds.colnames("covars")
 The `asthma` variable has this number of individuals at each level (1: controls, 2: cases)
 
 ```{r show_group}
-ds.table1D("covars$asthma")
+ds.table("covars$asthma")
 ```
 
 Then, an object of class `GenotypeData` must be created at the server side to perform genetic data analyses. This is a container defined in the `r Biocpkg("GWASTools")` package for storing genotype and phenotypic data from genetic association studies. By doing that we will also verify whether individuals in the GDS (e.g VCF) and covariates files have the same individuals and are in the same order. This can be performed by

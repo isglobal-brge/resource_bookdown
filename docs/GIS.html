@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,49 +296,49 @@ Figure 14.2: Location of food outlets in eastern London
 <h2><span class="header-section-number">14.2</span> Setting up the analysis</h2>
 <p>THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK</p>
 <p>In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the <code>as.resource.object()</code> function. The data have been uploaded to the server and configured as resources.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="GIS.html#cb195-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb195-2"><a href="GIS.html#cb195-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
-<span id="cb195-3"><a href="GIS.html#cb195-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb195-4"><a href="GIS.html#cb195-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.gps_data&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb195-5"><a href="GIS.html#cb195-5"></a></span>
-<span id="cb195-6"><a href="GIS.html#cb195-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb195-7"><a href="GIS.html#cb195-7"></a></span>
-<span id="cb195-8"><a href="GIS.html#cb195-8"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb195-9"><a href="GIS.html#cb195-9"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;gps.res&quot;</span>)</span>
-<span id="cb195-10"><a href="GIS.html#cb195-10"></a></span>
-<span id="cb195-11"><a href="GIS.html#cb195-11"></a><span class="co"># Assign additional datasets as resources for the location of the food outlets / takeaways and</span></span>
-<span id="cb195-12"><a href="GIS.html#cb195-12"></a><span class="co"># the participant phenotype data</span></span>
-<span id="cb195-13"><a href="GIS.html#cb195-13"></a></span>
-<span id="cb195-14"><a href="GIS.html#cb195-14"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;takeaway.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;test.takeaway_gps&quot;</span>)</span>
-<span id="cb195-15"><a href="GIS.html#cb195-15"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;participant.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;test.gps_participant&quot;</span>)</span>
-<span id="cb195-16"><a href="GIS.html#cb195-16"></a></span>
-<span id="cb195-17"><a href="GIS.html#cb195-17"></a><span class="co"># Assign to the original R classes (e.g Spatial)</span></span>
-<span id="cb195-18"><a href="GIS.html#cb195-18"></a></span>
-<span id="cb195-19"><a href="GIS.html#cb195-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;takeaway&quot;</span>,</span>
-<span id="cb195-20"><a href="GIS.html#cb195-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(takeaway.res)))</span>
-<span id="cb195-21"><a href="GIS.html#cb195-21"></a></span>
-<span id="cb195-22"><a href="GIS.html#cb195-22"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;journeys&quot;</span>,</span>
-<span id="cb195-23"><a href="GIS.html#cb195-23"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(gps.res)))</span>
-<span id="cb195-24"><a href="GIS.html#cb195-24"></a></span>
-<span id="cb195-25"><a href="GIS.html#cb195-25"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;participant&quot;</span>,</span>
-<span id="cb195-26"><a href="GIS.html#cb195-26"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(participant.res)))</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="GIS.html#cb199-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb199-2"><a href="GIS.html#cb199-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-test.obiba.org&quot;</span>, </span>
+<span id="cb199-3"><a href="GIS.html#cb199-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb199-4"><a href="GIS.html#cb199-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;test.gps_data&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb199-5"><a href="GIS.html#cb199-5"></a></span>
+<span id="cb199-6"><a href="GIS.html#cb199-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb199-7"><a href="GIS.html#cb199-7"></a></span>
+<span id="cb199-8"><a href="GIS.html#cb199-8"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb199-9"><a href="GIS.html#cb199-9"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;gps.res&quot;</span>)</span>
+<span id="cb199-10"><a href="GIS.html#cb199-10"></a></span>
+<span id="cb199-11"><a href="GIS.html#cb199-11"></a><span class="co"># Assign additional datasets as resources for the location of the food outlets / takeaways and</span></span>
+<span id="cb199-12"><a href="GIS.html#cb199-12"></a><span class="co"># the participant phenotype data</span></span>
+<span id="cb199-13"><a href="GIS.html#cb199-13"></a></span>
+<span id="cb199-14"><a href="GIS.html#cb199-14"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;takeaway.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;test.takeaway_gps&quot;</span>)</span>
+<span id="cb199-15"><a href="GIS.html#cb199-15"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;participant.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;test.gps_participant&quot;</span>)</span>
+<span id="cb199-16"><a href="GIS.html#cb199-16"></a></span>
+<span id="cb199-17"><a href="GIS.html#cb199-17"></a><span class="co"># Assign to the original R classes (e.g Spatial)</span></span>
+<span id="cb199-18"><a href="GIS.html#cb199-18"></a></span>
+<span id="cb199-19"><a href="GIS.html#cb199-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;takeaway&quot;</span>,</span>
+<span id="cb199-20"><a href="GIS.html#cb199-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(takeaway.res)))</span>
+<span id="cb199-21"><a href="GIS.html#cb199-21"></a></span>
+<span id="cb199-22"><a href="GIS.html#cb199-22"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;journeys&quot;</span>,</span>
+<span id="cb199-23"><a href="GIS.html#cb199-23"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(gps.res)))</span>
+<span id="cb199-24"><a href="GIS.html#cb199-24"></a></span>
+<span id="cb199-25"><a href="GIS.html#cb199-25"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;participant&quot;</span>,</span>
+<span id="cb199-26"><a href="GIS.html#cb199-26"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(participant.res)))</span></code></pre></div>
 <p>Now, we can see that the resources are loaded into the R servers as their original class</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="GIS.html#cb196-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;takeaway&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="GIS.html#cb200-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;takeaway&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;SpatialPointsDataFrame&quot;
 attr(,&quot;package&quot;)
 [1] &quot;sp&quot;</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="GIS.html#cb198-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;journeys&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="GIS.html#cb202-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;journeys&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;SpatialLinesDataFrame&quot;
 attr(,&quot;package&quot;)
 [1] &quot;sp&quot;</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="GIS.html#cb200-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;participant&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="GIS.html#cb204-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;participant&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;data.frame&quot;</code></pre>
 <p>In the same way that BioConductor provides convenient data structures for ’omics data, the sp package allows each row of data to have a corresponding set of geometries. So if a row of data has information about an individual (age, BMI, etc.) it can also have a set of many points defining geometries such as points, lines and polygons.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="GIS.html#cb202-1"></a><span class="co"># Standard ds.summary can be used on the &#39;data&#39; part of the spatial dataframe</span></span>
-<span id="cb202-2"><a href="GIS.html#cb202-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;journeys$age&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="GIS.html#cb206-1"></a><span class="co"># Standard ds.summary can be used on the &#39;data&#39; part of the spatial dataframe</span></span>
+<span id="cb206-2"><a href="GIS.html#cb206-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;journeys$age&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $study1$class
 [1] &quot;numeric&quot;
@@ -350,7 +350,7 @@ $study1$`quantiles &amp; mean`
       5%      10%      25%      50%      75%      90%      95%     Mean 
 41.23623 42.76502 46.61040 52.53669 58.73395 62.25656 63.72577 52.58792 </code></pre>
 <p>We have provided an additional function to allow a summary of the geometries to be provided.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="GIS.html#cb204-1"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;journeys&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="GIS.html#cb208-1"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;journeys&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialLinesDataFrame&quot;
@@ -390,9 +390,9 @@ attr(,&quot;class&quot;)
 <div id="data-manipulation" class="section level2" number="14.3">
 <h2><span class="header-section-number">14.3</span> Data manipulation</h2>
 <p>In our analysis we need to define how we determine whether an individual has been ‘exposed’ to a food outlet. First we will define a 10m buffer around the location of the food outlet. If an indivudal’s GPS trace falls within that buffered region, we will say that they are ‘exposed’ to that outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="GIS.html#cb206-1"></a><span class="co"># Add a buffer to each takeaway - now they are polygons</span></span>
-<span id="cb206-2"><a href="GIS.html#cb206-2"></a><span class="kw">ds.gBuffer</span>(<span class="dt">input =</span> <span class="st">&#39;takeaway&#39;</span>, <span class="dt">ip_width=</span><span class="dv">10</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">by_id=</span><span class="ot">TRUE</span>)</span>
-<span id="cb206-3"><a href="GIS.html#cb206-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="GIS.html#cb210-1"></a><span class="co"># Add a buffer to each takeaway - now they are polygons</span></span>
+<span id="cb210-2"><a href="GIS.html#cb210-2"></a><span class="kw">ds.gBuffer</span>(<span class="dt">input =</span> <span class="st">&#39;takeaway&#39;</span>, <span class="dt">ip_width=</span><span class="dv">10</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">by_id=</span><span class="ot">TRUE</span>)</span>
+<span id="cb210-3"><a href="GIS.html#cb210-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialPolygonsDataFrame&quot;
@@ -423,9 +423,9 @@ $data
 attr(,&quot;class&quot;)
 [1] &quot;summary.Spatial&quot;</code></pre>
 <p>To simplify the next step, we remove the data part of the <code>SpatialPolygonsDataFrame</code> to leave the polygons</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="GIS.html#cb208-1"></a><span class="co">#extract the polygons</span></span>
-<span id="cb208-2"><a href="GIS.html#cb208-2"></a><span class="kw">ds.geometry</span>(<span class="dt">input_x =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer.strip&#39;</span>)</span>
-<span id="cb208-3"><a href="GIS.html#cb208-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer.strip&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="GIS.html#cb212-1"></a><span class="co">#extract the polygons</span></span>
+<span id="cb212-2"><a href="GIS.html#cb212-2"></a><span class="kw">ds.geometry</span>(<span class="dt">input_x =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer.strip&#39;</span>)</span>
+<span id="cb212-3"><a href="GIS.html#cb212-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer.strip&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialPolygons&quot;
@@ -453,18 +453,18 @@ Figure 14.3: Food outlets with a buffer are shown by a cross surrounded by a cir
 <img src="fig/trace_intercept.png" alt="Food outlets with a buffer are shown by a cross surrounded by a circle. The line segments represent the GPS trace. In this case there is an intersection with 2 of the 3 food outlets." width="368" />
 </div>
 <p>This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was ‘exposed’ to. We then convert the numeric vectors to counts by applying the <code>length</code> function to the list.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="GIS.html#cb210-1"></a><span class="co"># Do the intersection of journeys with buffered takeaways</span></span>
-<span id="cb210-2"><a href="GIS.html#cb210-2"></a><span class="kw">ds.over</span>(<span class="dt">input_x =</span> <span class="st">&#39;journeys&#39;</span>, <span class="dt">input_y =</span> <span class="st">&#39;take.buffer.strip&#39;</span>,</span>
-<span id="cb210-3"><a href="GIS.html#cb210-3"></a>        <span class="dt">newobj.name =</span> <span class="st">&#39;my.over&#39;</span>, <span class="dt">retList =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb210-4"><a href="GIS.html#cb210-4"></a><span class="kw">ds.lapply</span>(<span class="dt">input =</span> <span class="st">&#39;my.over&#39;</span>,<span class="dt">newobj.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">fun =</span> <span class="st">&#39;length&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="GIS.html#cb214-1"></a><span class="co"># Do the intersection of journeys with buffered takeaways</span></span>
+<span id="cb214-2"><a href="GIS.html#cb214-2"></a><span class="kw">ds.over</span>(<span class="dt">input_x =</span> <span class="st">&#39;journeys&#39;</span>, <span class="dt">input_y =</span> <span class="st">&#39;take.buffer.strip&#39;</span>,</span>
+<span id="cb214-3"><a href="GIS.html#cb214-3"></a>        <span class="dt">newobj.name =</span> <span class="st">&#39;my.over&#39;</span>, <span class="dt">retList =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb214-4"><a href="GIS.html#cb214-4"></a><span class="kw">ds.lapply</span>(<span class="dt">input =</span> <span class="st">&#39;my.over&#39;</span>,<span class="dt">newobj.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">fun =</span> <span class="st">&#39;length&#39;</span>)</span></code></pre></div>
 <p>The result of the lapply needs to be unlisted, and we check the result looks reasonable</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="GIS.html#cb211-1"></a><span class="kw">ds.unList</span>(<span class="dt">x.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">newobj=</span><span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="GIS.html#cb215-1"></a><span class="kw">ds.unList</span>(<span class="dt">x.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">newobj=</span><span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
 <pre><code>$is.object.created
 [1] &quot;A data object &lt;counts&gt; has been created in all specified data sources&quot;
 
 $validity.check
 [1] &quot;&lt;counts&gt; appears valid in all sources&quot;</code></pre>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="GIS.html#cb213-1"></a><span class="kw">ds.summary</span>(<span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="GIS.html#cb217-1"></a><span class="kw">ds.summary</span>(<span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $study1$class
 [1] &quot;integer&quot;
@@ -479,15 +479,15 @@ $study1$`quantiles &amp; mean`
 <div id="generating-the-final-result" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Generating the final result</h2>
 <p>Finally we complete the association analysis and see that BMI is positively associated with the count of food outlets that an individual is exposed to on commutes (see the ‘counts’ coefficient). This type of analysis could be used to convey a public health message about density and location of takeaway food outlets.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="GIS.html#cb215-1"></a><span class="kw">ds.dataFrame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;participant&#39;</span>, <span class="st">&#39;counts&#39;</span>), <span class="dt">newobj =</span> <span class="st">&#39;geo.df&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="GIS.html#cb219-1"></a><span class="kw">ds.dataFrame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;participant&#39;</span>, <span class="st">&#39;counts&#39;</span>), <span class="dt">newobj =</span> <span class="st">&#39;geo.df&#39;</span>)</span></code></pre></div>
 <pre><code>$is.object.created
 [1] &quot;A data object &lt;geo.df&gt; has been created in all specified data sources&quot;
 
 $validity.check
 [1] &quot;&lt;geo.df&gt; appears valid in all sources&quot;</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="GIS.html#cb217-1"></a>result &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(<span class="dt">formula =</span> <span class="st">&#39;BMI ~ age + sex + inc + fsmoke + fedu + counts&#39;</span>, </span>
-<span id="cb217-2"><a href="GIS.html#cb217-2"></a>                <span class="dt">data =</span> <span class="st">&#39;geo.df&#39;</span>, <span class="dt">family =</span> <span class="st">&#39;gaussian&#39;</span>)</span>
-<span id="cb217-3"><a href="GIS.html#cb217-3"></a>result<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="GIS.html#cb221-1"></a>result &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(<span class="dt">formula =</span> <span class="st">&#39;BMI ~ age + sex + inc + fsmoke + fedu + counts&#39;</span>, </span>
+<span id="cb221-2"><a href="GIS.html#cb221-2"></a>                <span class="dt">data =</span> <span class="st">&#39;geo.df&#39;</span>, <span class="dt">family =</span> <span class="st">&#39;gaussian&#39;</span>)</span>
+<span id="cb221-3"><a href="GIS.html#cb221-3"></a>result<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>                  Estimate   Std. Error     z-value      p-value     low0.95CI    high0.95CI
 (Intercept)   2.379500e+01 6.334955e-01  37.5614341 0.000000e+00  2.255337e+01  2.503663e+01
 age           2.698037e-02 1.023046e-02   2.6372581 8.357921e-03  6.929033e-03  4.703171e-02

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -275,7 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="session-info" class="section level1" number="18">
 <h1><span class="header-section-number">18</span> Session Info</h1>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="session-info.html#cb229-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="session-info.html#cb233-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
 <pre><code>R version 3.6.3 (2020-02-29)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows 10 x64 (build 18362)
@@ -293,7 +293,7 @@ other attached packages:
  [1] dsGeoClient_0.1.0                       dsOmicsClient_0.3.0                    
  [3] ssh_0.6                                 resourcer_1.1.0                        
  [5] dsBaseClient_6.0.0-04                   DSOpal_1.1.0                           
- [7] opalr_1.3.0                             httr_1.4.1                             
+ [7] opalr_1.4.0                             httr_1.4.1                             
  [9] DSI_1.1.0                               R6_2.4.1                               
 [11] progress_1.2.2                          airway_1.6.0                           
 [13] SummarizedExperiment_1.16.1             DelayedArray_0.12.2                    
@@ -316,38 +316,44 @@ other attached packages:
 loaded via a namespace (and not attached):
   [1] readxl_1.3.1             backports_1.1.5          BiocFileCache_1.10.2    
   [4] sn_1.6-1                 splines_3.6.3            TH.data_1.0-10          
-  [7] digest_0.6.25            htmltools_0.4.0          fansi_0.4.1             
- [10] magrittr_1.5             memoise_1.1.0            credentials_1.1         
- [13] Biostrings_2.54.0        modelr_0.1.6             sandwich_2.5-1          
- [16] askpass_1.1              prettyunits_1.1.1        jpeg_0.1-8.1            
- [19] colorspace_1.4-1         blob_1.2.1               rvest_0.3.5             
- [22] rappdirs_0.3.1           haven_2.2.0              xfun_0.13               
- [25] crayon_1.3.4             RCurl_1.95-4.12          jsonlite_1.6.1          
- [28] graph_1.64.0             zoo_1.8-7                glue_1.3.1              
- [31] gtable_0.3.0             zlibbioc_1.30.0          XVector_0.24.0          
- [34] webshot_0.5.2            scales_1.0.0             mvtnorm_1.1-0           
- [37] DBI_1.1.0                bibtex_0.4.2.2           Rcpp_1.0.4.6            
- [40] plotrix_3.7-8            metap_1.3                viridisLite_0.3.0       
- [43] bit_1.1-15.2             TFisher_0.2.0            pkgconfig_2.0.3         
- [46] XML_3.99-0.3             dbplyr_1.4.2             utf8_1.1.4              
- [49] tidyselect_0.2.5         rlang_0.4.5              munsell_0.5.0           
- [52] cellranger_1.1.0         tools_3.6.3              cli_2.0.2               
- [55] generics_0.0.2           RSQLite_2.2.0            broom_0.5.5             
- [58] evaluate_0.14            yaml_2.2.1               knitr_1.28              
- [61] bit64_0.9-7              fs_1.4.1                 RBGL_1.62.1             
- [64] nlme_3.1-145             mime_0.9                 xml2_1.3.1              
- [67] biomaRt_2.42.1           compiler_3.6.3           rstudioapi_0.11         
- [70] curl_4.3                 png_0.1-7                reprex_0.3.0            
- [73] stringi_1.4.6            highr_0.8                lattice_0.20-38         
- [76] multtest_2.42.0          vctrs_0.2.4              mutoss_0.1-12           
- [79] pillar_1.4.3             lifecycle_0.2.0          BiocManager_1.30.10     
- [82] Rdpack_0.11-1            bitops_1.0-6             gbRd_0.4-11             
- [85] rtracklayer_1.46.0       bookdown_0.18            codetools_0.2-16        
- [88] MASS_7.3-51.5            assertthat_0.2.1         openssl_1.4.1           
- [91] withr_2.1.2              GenomicAlignments_1.22.1 Rsamtools_2.2.3         
- [94] mnormt_1.5-6             multcomp_1.4-13          GenomeInfoDbData_1.2.2  
- [97] hms_0.5.3                grid_3.6.3               rmarkdown_2.1           
-[100] numDeriv_2016.8-1.1      lubridate_1.7.8         </code></pre>
+  [7] usethis_1.6.0            inline_0.3.15            digest_0.6.25           
+ [10] htmltools_0.4.0          fansi_0.4.1              magrittr_1.5            
+ [13] memoise_1.1.0            remotes_2.1.1            credentials_1.1         
+ [16] Biostrings_2.54.0        modelr_0.1.6             sandwich_2.5-1          
+ [19] askpass_1.1              prettyunits_1.1.1        jpeg_0.1-8.1            
+ [22] colorspace_1.4-1         blob_1.2.1               rvest_0.3.5             
+ [25] rappdirs_0.3.1           haven_2.2.0              xfun_0.13               
+ [28] callr_3.4.3              crayon_1.3.4             RCurl_1.95-4.12         
+ [31] jsonlite_1.6.1           graph_1.64.0             zoo_1.8-7               
+ [34] glue_1.3.1               gtable_0.3.0             zlibbioc_1.30.0         
+ [37] XVector_0.24.0           webshot_0.5.2            pkgbuild_1.0.6          
+ [40] rstan_2.19.3             scales_1.0.0             mvtnorm_1.1-0           
+ [43] DBI_1.1.0                bibtex_0.4.2.2           Rcpp_1.0.4.6            
+ [46] plotrix_3.7-8            metap_1.3                viridisLite_0.3.0       
+ [49] bit_1.1-15.2             StanHeaders_2.21.0-1     TFisher_0.2.0           
+ [52] ellipsis_0.3.0           pkgconfig_2.0.3          loo_2.2.0               
+ [55] XML_3.99-0.3             dbplyr_1.4.2             utf8_1.1.4              
+ [58] tidyselect_0.2.5         rlang_0.4.5              munsell_0.5.0           
+ [61] cellranger_1.1.0         tools_3.6.3              cli_2.0.2               
+ [64] generics_0.0.2           RSQLite_2.2.0            devtools_2.3.0          
+ [67] broom_0.5.5              evaluate_0.14            yaml_2.2.1              
+ [70] processx_3.4.2           knitr_1.28               bit64_0.9-7             
+ [73] fs_1.4.1                 RBGL_1.62.1              nlme_3.1-145            
+ [76] mime_0.9                 xml2_1.3.1               biomaRt_2.42.1          
+ [79] compiler_3.6.3           rstudioapi_0.11          curl_4.3                
+ [82] png_0.1-7                testthat_2.3.2           reprex_0.3.0            
+ [85] stringi_1.4.6            highr_0.8                ps_1.3.2                
+ [88] desc_1.2.0               lattice_0.20-38          multtest_2.42.0         
+ [91] vctrs_0.2.4              mutoss_0.1-12            pillar_1.4.3            
+ [94] lifecycle_0.2.0          BiocManager_1.30.10      Rdpack_0.11-1           
+ [97] bitops_1.0-6             gbRd_0.4-11              rtracklayer_1.46.0      
+[100] bookdown_0.18            gridExtra_2.3            sessioninfo_1.1.1       
+[103] codetools_0.2-16         MASS_7.3-51.5            assertthat_0.2.1        
+[106] pkgload_1.0.2            openssl_1.4.1            rprojroot_1.3-2         
+[109] withr_2.1.2              mnormt_1.5-6             GenomicAlignments_1.22.1
+[112] Rsamtools_2.2.3          multcomp_1.4-13          GenomeInfoDbData_1.2.2  
+[115] hms_0.5.3                grid_3.6.3               rmarkdown_2.1           
+[118] numDeriv_2016.8-1.1      lubridate_1.7.8         </code></pre>
 
 </div>
             </section>

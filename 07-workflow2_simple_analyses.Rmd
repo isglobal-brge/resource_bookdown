@@ -46,8 +46,8 @@ ds.colnames("D")
 Perform some data descriptive analyses
 
 ```{r descr_D}
-ds.table1D("D$DIS_DIAB")
-ds.table2D("D$DIS_DIAB", "D$GENDER")
+ds.table("D$DIS_DIAB")
+ds.table("D$DIS_DIAB", "D$GENDER")
 ```
 
 Or even some statistical modelling. In this case we want to assess whether sex (GENDER) or trigrycerids (LAB_TRIG) are risk factors for diabetes (DIS_DIAB)
