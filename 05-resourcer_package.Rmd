@@ -1,4 +1,6 @@
-# The resourcer package {#resourcer}
+# The resourcer Package {#resourcer}
+
+## Introduction
 
 The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
 
@@ -6,17 +8,19 @@ It is meant to access resources identified by a URL in a uniform way whether it 
 
 The main concepts are:
 
-* _Resource_, access to a resource (dataset or computation unit) is described by an object with URL, optional credentials and optional data format properties,
-* _ResourceResolver_, a _ResourceClient_ factory based on the URL scheme and available in a resolvers registry,
-* _ResourceClient_, realizes the connection with the dataset or the computation unit described by a _Resource_,
-* _FileResourceGetter_, connect to a file described by a resource,
-* _DBIResourceConnector_, establish a [DBI](https://www.r-dbi.org/) connection.
+Class                     Description
+------------------------- --------------------------------
+_resource_                Access to a resource (dataset or computation unit) is described by an object with URL, optional credentials and optional data format properties.
+_ResourceResolver_        A _ResourceClient_ factory based on the URL scheme and available in a resolvers registry.
+_ResourceClient_          Realizes the connection with the dataset or the computation unit described by a _resource_.
+_FileResourceGetter_      Connect to a file described by a _resource_.
+_DBIResourceConnector_    Establish a [DBI](https://www.r-dbi.org/) connection.
 
 ## File Resources
 
 These are resources describing a file. If the file is in a remote location, it must be downloaded before being read. The data format specification of the resource helps to find the appropriate file reader.
 
-## File Getter
+### File Getter
 
 The file locations supported by default are: 
 
@@ -24,17 +28,17 @@ The file locations supported by default are:
 * `http`(s), web address, basic authentication, 
 * `gridfs`, MongoDB file store,
 * `scp`, file copy through SSH,
-* `opal`, [Opal](https://www.obiba.org/pages/products/opal/) file store. 
+* `opal`, [Opal](#opal) file store. 
 
 This can be easily applied to other file locations by extending the _FileResourceGetter_ class. An instance of the new file resource getter is to be registered so that the _FileResourceResolver_ can operate as expected.
 
 ```{r eval=FALSE}
-resourcer::registerFileResourceGetter(MyFileLocationResourceGetter()$new())
+resourcer::registerFileResourceGetter(MyFileLocationResourceGetter$new())
 ```
 
-## File Data Format
+### File Data Format
 
-The data format specified within the _Resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
+The data format specified within the _resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
 
 * the data formats that have a reader in [tidyverse](https://www.tidyverse.org/): [readr](https://readr.tidyverse.org/) (`csv`, `csv2`, `tsv`, `ssv`, `delim`), [haven](https://haven.tidyverse.org/) (`spss`, `sav`, `por`, `dta`, `stata`, `sas`, `xpt`), [readxl](https://readxl.tidyverse.org/) (`excel`, `xls`, `xlsx`). This can be easily applied to other data file formats by extending the _FileResourceClient_ class.
 * the R data format that can be loaded in a child R environment from which object of interest will be retrieved.
@@ -109,7 +113,7 @@ client$close() # does ssh::ssh_disconnect(session)
 
 ## Interacting with R Resources
 
-As the ResourceClient is just a connector to a resource, to make this useful some data conversion functions are defined by default:
+As the _ResourceClient_ is just a connector to a resource, to make this useful some data conversion functions are defined by default:
 
 * R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets. 
 * [dplyr](https://dplyr.tidyverse.org/) tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.
@@ -132,31 +136,23 @@ The design of the URL that will describe your new resource should not overlap an
 
 In order to simplify the usage of these resource client classes, the resourcer package combines several software design patterns:
 
-* The factory pattern, a classic [creational design pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). It is realized by the ResourceResolver R6 class which is responsible for making a ResourceClient object matching a provided resource object.
-* The registry pattern, “a well-known object that other objects can use to find common objects and services” as [described by M. Fowler](https://martinfowler.com/eaaCatalog/registry.html). It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of ResourceResolver objects (the ResourceClient factories), (2) the registry of FileResourceGetter objects and (3) the registry of DBIResourceConnector objects.
+* The factory pattern, a classic [creational design pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). It is realized by the _ResourceResolver_ R6 class which is responsible for making a _ResourceClient_ object matching a provided resource object.
+* The registry pattern, “a well-known object that other objects can use to find common objects and services” as [described by M. Fowler](https://martinfowler.com/eaaCatalog/registry.html). It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of _ResourceResolver_ objects (the ResourceClient factories), (2) the registry of _FileResourceGetter_ objects and (3) the registry of _DBIResourceConnector_ objects.
 * The self-registration pattern, which consists of delegating the registration of new services to their provider. The [package event mechanism of R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html) is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.
 
-For implementing ResourceClient factories the resourcer package provides different ResourceResolver classes (see Figure 1B):
+For implementing _ResourceClient_ factories the resourcer package provides different _ResourceResolver_ classes (see Figure \@ref(fig:resourceResolver)):
 
-* for file resources, which will discriminate the resources based on the URL property (checking if any FileResourceGetter exists for that resource) and the data format property (for getting additional information about how to read the data). The FileResourceGetter can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.
-* for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any DBIResourceConnector can be found or whether a nodbi connector can be created). The DBIResourceConnector can be extended to new DBI implementations. For instance, using bigrquery R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
+* for file resources, which will discriminate the resources based on the URL property (checking if any _FileResourceGetter_ exists for that resource) and the data format property (for getting additional information about how to read the data). The _FileResourceGetter_ can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.
+* for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any _DBIResourceConnector_ can be found or whether a nodbi connector can be created). The _DBIResourceConnector_ can be extended to new DBI implementations. For instance, using [bigrquery](https://cran.r-project.org/package=bigrquery) R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
 * for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).
 
 ```{r resourceResolver, echo=FALSE, fig.cap="ResourceResolver class diagram", fig.align='center'}
 knitr::include_graphics("fig/ResourceResolver.png")
 ```
 
-Additional ResourceResolver and ResourceClient extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.
+Additional _ResourceResolver_ and _ResourceClient_ extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.
 
-The process of creating a new ResourceClient instance from a resource object consists of iterating over a registry of ResourceResolver instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the FileResourceGetter registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the DBIResourceConnector registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.
-
-## API declaration of a new resource
-
-It is possible to declare a resource that is to be resolved by an R package that uses the `resourcer` API. This figure illustrate how to declare a new reource called VCF2GDS that load Variant Calling Format files into Genomic Data Storage objects that can be managed whiting R. This will be further illustrated when analyzing omic data analysis in this [Section](#omic_extension).
-
-```{r testDeclaration, echo=FALSE, fig.cap="Declaration of a resource corresponding to a VCF2GDS format", fig.align='center'}
-knitr::include_graphics("fig/opal_resources_API.png")
-```
+The process of creating a new _ResourceClient_ instance from a resource object consists of iterating over a registry of _ResourceResolver_ instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the _FileResourceGetter_ registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the _DBIResourceConnector_ registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.
 
 ## Resource Forms
 
@@ -210,50 +206,48 @@ var myPackage = {
 }
 ```
 
-The specifications for the `resource.js` file are the following:
+The specifications for the `settings` object is the following:
 
-* `settings` object:
+Property         Type                Description
+---------------- ------------------- ------------------
+**title**        `string`            The title of the set of resources.
+**description**  `string`            The description of the set of resources.
+**web**          `string`            A web link that describes the resources.
+**categories**   `array` of `object` A list of `category` objects which are used to categorize the declared resources in terms of resource location, format, usage etc.
+**types**        `array` of `object` A list of `type` objects which contains a description of the parameters and credentials forms for each type of resource.
 
-Property | Type | Description
---- | --- | ---
-**title** | `string` | The title of the set of resources.
-**description** | `string` | The description of the set of resources.
-**web** | `string` | A web link that describes the resources.
-**categories** | `array` of `object` | A list of `category` objects which are used to categorize the declared resources in terms of resource location, format, usage etc.
-**types** | `array` of `object` | A list of `type` objects which contains a description of the parameters and credentials forms for each type of resource.
+Where the `category` object is:
 
-* `category` object:
+Property        Type     Description
+--------------- -------- --------------------------
+**name**        `string` The name of the category that will be applied to each resource `type`, must be unique.
+**title**       `string` The title of the category.
+**description** `string` The description of the category.
 
-Property | Type | Description
---- | --- | ---
-**name** | `string` | The name of the category that will be applied to each resource `type`, must be unique.
-**title** | `string` | The title of the category.
-**description** | `string` | The description of the category.
+And the `type` object is:
 
-* `type` object:
+Property        Type                Description
+--------------- ------------------- ---------------------
+**name**        `string`            The identifying name of the resource, must be unique.
+**title**       `string`            The title of the resource.
+**description** `string`            The description of the resource form.
+**tags**        `array` of `string` The `tag` names that are applied to the resource form.
+**parameters**  `object`            The form that will be used to capture the parameters to build the *url* and the *format* properties of the resource (based on the [json-schema](http://json-schema.org) specification). Some specific fields can be used: `_package` to capture the R package name or `_packages` to capture an array of R package names to be loaded prior to the resource assignment. 
+**credentials** `object`            The form that will be used to capture the access credentials to build the *identity* and the *secret* properties of the resource (based on the [json-schema](http://json-schema.org) specification).
 
-Property | Type | Description
---- | --- | ---
-**name** | `string` | The identifying name of the resource, must be unique.
-**title** | `string` | The title of the resource.
-**description** | `string` | The description of the resource form.
-**tags** | `array` of `string` | The `tag` names that are applied to the resource form.
-**parameters** | `object` | The form that will be used to capture the parameters to build the *url* and the *format* properties of the resource (based on the [json-schema](http://json-schema.org) specification). Some specific fields can be used: `_package` to capture the R package name or `_packages` to capture an array of R package names to be loaded prior to the resource assignment. 
-**credentials** | `object` | The form that will be used to capture the access credentials to build the *identity* and the *secret* properties of the resource (based on the [json-schema](http://json-schema.org) specification).
 
-* `asResource` function: a javascript function which signature is `function(type, name, params, credentials)` where:
-  * `type`, the form name used to capture the resource parameters and credentials,
-  * `name`, the name to apply to the resource,
-  * `params`, the captured parameters,
-  * `credentials`, the captured credentials.
+The `asResource` function is a javascript function which signature is `function(type, name, params, credentials)` where:
+
+* `type`, the form name used to capture the resource parameters and credentials,
+* `name`, the name to apply to the resource,
+* `params`, the captured parameters,
+* `credentials`, the captured credentials.
   
 The name of the root object must follow the pattern: `<R package>` (note that any dots (`.`) in the R package name are to be replaced by underscores (`_`)).
 
+A real example of how to create this file for the `{r Githubpkg("isglobal-brge", "dsOmics")} package (described in [this Section](#omic_extension)) can be found [here](https://github.com/isglobal-brge/dsOmics/blob/master/inst/resources/resource.js).
 
-A real example of how to create shi file for the `{r Githubpkg("isglobal-brge", "dsOmics")} package (described in [this Section](#omic_extension)) can be found [here](https://github.com/isglobal-brge/dsOmics/blob/master/inst/resources/resource.js)
-
-
-## Examples with different resources
+## Examples of Resources
 
 Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-test.obiba.org which has the following reources 
 
@@ -263,25 +257,24 @@ knitr::include_graphics("fig/opal_resources.png", dpi=NA)
 
 Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.
 
-### TSV file into a tibble or data.frame
+### TSV File into a tibble or data.frame
 
 This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided
 
 ```{r load_tsv}
-library(DSI)
 library(DSOpal)
 library(dsBaseClient)
 
 # access to the 'brge' resource (NOTE: test.brge is need since the project
 # is called test)
-builder <- DSI::newDSLoginBuilder()
+builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-test.obiba.org", 
                user = "dsuser", password = "password", 
                resource = "test.brge", driver = "OpalDriver")
 logindata <- builder$build()
 
 # the resource is loaded into R as the object 'res' 
-conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+conns <- datashield.login(logins = logindata, assign = TRUE, 
                                symbol = "res")
 
 # the resource is assigned to a data.frame
@@ -296,20 +289,20 @@ datashield.logout(conns)
 ```
 
 
-### .Rdata file into a specific R object
+### R Data File into a R object
 
 Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
 
 ```{r load_eSet}
 # prepare login data and resource to assign
-builder <- DSI::newDSLoginBuilder()
+builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-test.obiba.org", 
                user = "dsuser", password = "password", 
                resource = "test.GSE80970", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resource (to 'res' symbol)
-conns <- DSI::datashield.login(logins = logindata, assign = TRUE, 
+conns <- datashield.login(logins = logindata, assign = TRUE, 
                                symbol = "res")
 
 # coerce ResourceClient objects to a data.frame called 'DF' 
