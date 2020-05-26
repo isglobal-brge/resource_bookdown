@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-25" />
+<meta name="date" content="2020-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="learnR.html"/>
 <link rel="next" href="opal.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,41 +53,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -103,13 +130,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Preamble</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-you-will-learn"><i class="fa fa-check"></i><b>1.1</b> What you will learn</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.2</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="learnR.html"><a href="learnR.html"><i class="fa fa-check"></i><b>2</b> Learning R</a></li>
-<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor Data Structures</a><ul>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor Data Structures</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html#snp-array-data"><i class="fa fa-check"></i><b>3.1</b> SNP Array Data</a></li>
 <li class="chapter" data-level="3.2" data-path="BioC.html"><a href="BioC.html#expression-sets"><i class="fa fa-check"></i><b>3.2</b> Expression Sets</a></li>
 <li class="chapter" data-level="3.3" data-path="BioC.html"><a href="BioC.html#genomic-ranges"><i class="fa fa-check"></i><b>3.3</b> Genomic Ranges</a></li>
@@ -117,39 +146,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="BioC.html"><a href="BioC.html#ranged-summarized-experiments"><i class="fa fa-check"></i><b>3.5</b> Ranged Summarized Experiments</a></li>
 <li class="chapter" data-level="3.6" data-path="BioC.html"><a href="BioC.html#multi-data-set"><i class="fa fa-check"></i><b>3.6</b> Multi Data Set</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a><ul>
+<li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
 <li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a><ul>
+<li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a><ul>
+<li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="datashield.html"><a href="datashield.html#datashieldopal-implementation"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD/Opal Implementation</a><ul>
+<li class="chapter" data-level="5.3" data-path="datashield.html"><a href="datashield.html#datashieldopal-implementation"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD/Opal Implementation</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 <li class="chapter" data-level="5.3.3" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.3.3</b> Demo</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
-<li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a><ul>
+<li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="resources.html"><a href="resources.html#concept"><i class="fa fa-check"></i><b>6.1</b> Concept</a></li>
 <li class="chapter" data-level="6.2" data-path="resources.html"><a href="resources.html#types"><i class="fa fa-check"></i><b>6.2</b> Types</a></li>
 <li class="chapter" data-level="6.3" data-path="resources.html"><a href="resources.html#definition"><i class="fa fa-check"></i><b>6.3</b> Definition</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a><ul>
+<li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a><ul>
+<li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
 <li class="chapter" data-level="7.2.2" data-path="resourcer.html"><a href="resourcer.html#file-data-format"><i class="fa fa-check"></i><b>7.2.2</b> File Data Format</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>7.3</b> Database Resources</a><ul>
+<li class="chapter" data-level="7.3" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>7.3</b> Database Resources</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="resourcer.html"><a href="resourcer.html#dbi-connectors"><i class="fa fa-check"></i><b>7.3.1</b> DBI Connectors</a></li>
 <li class="chapter" data-level="7.3.2" data-path="resourcer.html"><a href="resourcer.html#use-dplyr"><i class="fa fa-check"></i><b>7.3.2</b> Use dplyr</a></li>
 <li class="chapter" data-level="7.3.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>7.3.3</b> Document Databases</a></li>
@@ -158,7 +195,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.5" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>7.5</b> Interacting with R Resources</a></li>
 <li class="chapter" data-level="7.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>7.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="7.7" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>7.7</b> Resource Forms</a></li>
-<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a><ul>
+<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a>
+<ul>
 <li class="chapter" data-level="7.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.8.1</b> TSV File into a tibble or data.frame</a></li>
 <li class="chapter" data-level="7.8.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.8.2</b> R Data File into a R object</a></li>
 </ul></li>
@@ -167,18 +205,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>8</b> VCF files to GDS to peform GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="9" data-path="shell-extension.html"><a href="shell-extension.html"><i class="fa fa-check"></i><b>9</b> Secure shell programs: GWAS with PLINK</a></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="10" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>10</b> Setup</a><ul>
+<li class="chapter" data-level="10" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>10</b> Setup</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="setup.html"><a href="setup.html#providing-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>10.1</b> Providing DataSHIELD packages in the opal server</a></li>
-<li class="chapter" data-level="10.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.local-machine"><i class="fa fa-check"></i><b>10.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
+<li class="chapter" data-level="10.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>10.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>11</b> Basic statistical analyses</a><ul>
+<li class="chapter" data-level="11" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>11</b> Basic statistical analyses</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-single-study"><i class="fa fa-check"></i><b>11.1</b> Analysis from a single study</a></li>
 <li class="chapter" data-level="11.2" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-multiple-studies"><i class="fa fa-check"></i><b>11.2</b> Analysis from a multiple studies</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>12</b> Omic data analysis</a><ul>
+<li class="chapter" data-level="12" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>12</b> Omic data analysis</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="Omic.html"><a href="Omic.html#types-of-analyses-implemented"><i class="fa fa-check"></i><b>12.1</b> Types of analyses implemented</a></li>
 <li class="chapter" data-level="12.2" data-path="Omic.html"><a href="Omic.html#differential-gene-expression-dge-analysis"><i class="fa fa-check"></i><b>12.2</b> Differential gene expression (DGE) analysis</a></li>
-<li class="chapter" data-level="12.3" data-path="Omic.html"><a href="Omic.html#epigenome-wide-association-analysis-ewas"><i class="fa fa-check"></i><b>12.3</b> Epigenome-wide association analysis (EWAS)</a><ul>
+<li class="chapter" data-level="12.3" data-path="Omic.html"><a href="Omic.html#epigenome-wide-association-analysis-ewas"><i class="fa fa-check"></i><b>12.3</b> Epigenome-wide association analysis (EWAS)</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="Omic.html"><a href="Omic.html#single-cpg-analysis"><i class="fa fa-check"></i><b>12.3.1</b> Single CpG analysis</a></li>
 <li class="chapter" data-level="12.3.2" data-path="Omic.html"><a href="Omic.html#multiple-cpg-analysis"><i class="fa fa-check"></i><b>12.3.2</b> Multiple CpG analysis</a></li>
 <li class="chapter" data-level="12.3.3" data-path="Omic.html"><a href="Omic.html#adjusting-for-surrogate-variables"><i class="fa fa-check"></i><b>12.3.3</b> Adjusting for Surrogate Variables</a></li>
@@ -186,32 +228,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>12.4</b> GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="12.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>12.5</b> GWAS with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>13</b> Geospatial data analysis</a><ul>
+<li class="chapter" data-level="13" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>13</b> Geospatial data analysis</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="GIS.html"><a href="GIS.html#introducing-the-analysis"><i class="fa fa-check"></i><b>13.1</b> Introducing the analysis</a></li>
 <li class="chapter" data-level="13.2" data-path="GIS.html"><a href="GIS.html#setting-up-the-analysis"><i class="fa fa-check"></i><b>13.2</b> Setting up the analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="GIS.html"><a href="GIS.html#data-manipulation"><i class="fa fa-check"></i><b>13.3</b> Data manipulation</a></li>
 <li class="chapter" data-level="13.4" data-path="GIS.html"><a href="GIS.html#generating-the-final-result"><i class="fa fa-check"></i><b>13.4</b> Generating the final result</a></li>
 </ul></li>
 <li class="part"><span><b>V Developers</b></span></li>
-<li class="chapter" data-level="14" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>14</b> DSLite: DataSHIELD Implementation on Local Datasets</a><ul>
-<li class="chapter" data-level="14.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>14.1</b> Development Environment Setup</a><ul>
+<li class="chapter" data-level="14" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>14</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>14.1</b> Development Environment Setup</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-packages"><i class="fa fa-check"></i><b>14.1.1</b> DataSHIELD Packages</a></li>
 <li class="chapter" data-level="14.1.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#test-datasets"><i class="fa fa-check"></i><b>14.1.2</b> Test Datasets</a></li>
 <li class="chapter" data-level="14.1.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#r-package-development-tools"><i class="fa fa-check"></i><b>14.1.3</b> R Package Development Tools</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.2</b> DataSHIELD Development Flow</a><ul>
+<li class="chapter" data-level="14.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.2</b> DataSHIELD Development Flow</a>
+<ul>
 <li class="chapter" data-level="14.2.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#dsliteserver"><i class="fa fa-check"></i><b>14.2.1</b> DSLiteServer</a></li>
 <li class="chapter" data-level="14.2.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-configuration"><i class="fa fa-check"></i><b>14.2.2</b> DataSHIELD Configuration</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-sessions"><i class="fa fa-check"></i><b>14.3</b> DataSHIELD Sessions</a></li>
 <li class="chapter" data-level="14.4" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#debugging"><i class="fa fa-check"></i><b>14.4</b> Debugging</a></li>
-<li class="chapter" data-level="14.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>14.5</b> Limitations</a><ul>
+<li class="chapter" data-level="14.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>14.5</b> Limitations</a>
+<ul>
 <li class="chapter" data-level="14.5.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#function-parameters-parser"><i class="fa fa-check"></i><b>14.5.1</b> Function Parameters Parser</a></li>
 <li class="chapter" data-level="14.5.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#server-side-environments"><i class="fa fa-check"></i><b>14.5.2</b> Server Side Environments</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
-<li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
 <li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
 <li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
@@ -236,32 +284,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="BioC" class="section level1">
+<div id="BioC" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Bioconductor Data Structures</h1>
 <p><a href="https://www.bioconductor.org/">Bioconductor</a> promotes the statistical analysis and comprehension of current and emerging high-throughput biological assays. Bioconductor is based on packages written primarily in the R programming language. Bioconductor is committed to open source, collaborative, distributed software development and literate, reproducible research. Most Bioconductor components are distributed as <a href="https://cran.r-project.org/">R</a> packages. The functional scope of <a href="http://bioconductor.org/packages/release/BiocViews.html#___Software">Bioconductor packages</a> includes the analysis of DNA microarray, sequence, flow, SNP, and other data.</p>
 <p>Bioconductor provides several data infrastructures for efficiently managing omic data. See <a href="https://www.nature.com/articles/nmeth.3252">this paper</a> for a global overview. Here we provide a quick introduction for the most commonly used ones. We also recommend to learn how to deal with <a href="https://blog.dominodatalab.com/genomic-ranges-an-introduction-to-working-with-genomic-data/">GenomicRanges</a> which helps to efficiently manage genomic data information.</p>
-<div id="snp-array-data" class="section level2">
+<div id="snp-array-data" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> SNP Array Data</h2>
 <p>SNP array data are normally stored in <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a> format (or <a href="https://en.wikipedia.org/wiki/Variant_Call_Format">VCF</a> for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00).</p>
 <ul>
-<li>FAM file: one row per individual - identification information: Family ID, Individual ID Paternal ID, Maternal ID, Sex (1=male; 2=female; other=unknown), Phenotype.</li>
+<li>FAM file: one row per individual - identification information: Family ID, Individual ID
+Paternal ID, Maternal ID, Sex (1=male; 2=female; other=unknown), Phenotype.</li>
 <li>BIM file: one row per SNP (rs id, chromosome, position, allele 1, allele 2).</li>
 <li>BED file: one row per individual. Genotypes in columns.</li>
 </ul>
 <p>Data are easily loaded into R by using <code>read.plink</code> function</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(snpStats)
-snps &lt;-<span class="st"> </span><span class="kw">read.plink</span>(<span class="st">&quot;data/obesity&quot;</span>) <span class="co"># there are three files obesity.fam, obesity.bim, obesity.bed</span>
-<span class="kw">names</span>(snps)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="BioC.html#cb1-1"></a><span class="kw">require</span>(snpStats)</span>
+<span id="cb1-2"><a href="BioC.html#cb1-2"></a>snps &lt;-<span class="st"> </span><span class="kw">read.plink</span>(<span class="st">&quot;data/obesity&quot;</span>) <span class="co"># there are three files obesity.fam, obesity.bim, obesity.bed</span></span>
+<span id="cb1-3"><a href="BioC.html#cb1-3"></a><span class="kw">names</span>(snps)</span></code></pre></div>
 <pre><code>[1] &quot;genotypes&quot; &quot;fam&quot;       &quot;map&quot;      </code></pre>
 <p>Genotypes is a <code>snpMatrix</code> object</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geno &lt;-<span class="st"> </span>snps<span class="op">$</span>genotypes
-geno</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="BioC.html#cb3-1"></a>geno &lt;-<span class="st"> </span>snps<span class="op">$</span>genotypes</span>
+<span id="cb3-2"><a href="BioC.html#cb3-2"></a>geno</span></code></pre></div>
 <pre><code>A SnpMatrix with  2312 rows and  100000 columns
 Row names:  100 ... 998 
 Col names:  MitoC3993T ... rs28600179 </code></pre>
 <p>Annotation is a <code>data.frame</code> object</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">annotation &lt;-<span class="st"> </span>snps<span class="op">$</span>map
-<span class="kw">head</span>(annotation)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="BioC.html#cb5-1"></a>annotation &lt;-<span class="st"> </span>snps<span class="op">$</span>map</span>
+<span id="cb5-2"><a href="BioC.html#cb5-2"></a><span class="kw">head</span>(annotation)</span></code></pre></div>
 <pre><code>           chromosome   snp.name cM position allele.1 allele.2
 MitoC3993T         NA MitoC3993T NA     3993        T        C
 MitoG4821A         NA MitoG4821A NA     4821        A        G
@@ -270,11 +319,11 @@ MitoT6153C         NA MitoT6153C NA     6153        C        T
 MitoC7275T         NA MitoC7275T NA     7275        T        C
 MitoT9699C         NA MitoT9699C NA     9699        C        T</code></pre>
 </div>
-<div id="expression-sets" class="section level2">
+<div id="expression-sets" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Expression Sets</h2>
 <p><a href="">ExpressionSet</a></p>
 <div class="figure">
-<img src="fig/eSet_vs_dataframe.png" alt="Alt ExpressionSet" />
+<img src="fig/eSet_vs_dataframe.png" alt="" />
 <p class="caption">Alt ExpressionSet</p>
 </div>
 <p>Description</p>
@@ -285,9 +334,9 @@ MitoT9699C         NA MitoT9699C NA     9699        C        T</code></pre>
 <li><p>The data in an <code>ExpressionSet</code> consists of expression data from microarray experiments, `meta-data’ describing samples in the experiment, annotations and meta-data about the features on the chip and information related to the protocol used for processing each sample</p></li>
 <li><p>Print</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tweeDEseqCountData)
-<span class="kw">data</span>(pickrell)
-pickrell.eset</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="BioC.html#cb7-1"></a><span class="kw">library</span>(tweeDEseqCountData)</span>
+<span id="cb7-2"><a href="BioC.html#cb7-2"></a><span class="kw">data</span>(pickrell)</span>
+<span id="cb7-3"><a href="BioC.html#cb7-3"></a>pickrell.eset</span></code></pre></div>
 <pre><code>ExpressionSet (storageMode: lockedEnvironment)
 assayData: 52580 features, 69 samples 
   element names: exprs 
@@ -297,8 +346,7 @@ phenoData
   varLabels: num.tech.reps population study gender
   varMetadata: labelDescription
 featureData
-  featureNames: ENSG00000000003 ENSG00000000005 ... LRG_99 (52580
-    total)
+  featureNames: ENSG00000000003 ENSG00000000005 ... LRG_99 (52580 total)
   fvarLabels: gene
   fvarMetadata: labelDescription
 experimentData: use &#39;experimentData(object)&#39;
@@ -306,16 +354,16 @@ Annotation:  </code></pre>
 <ul>
 <li>Get experimental data (e.g., gene expression)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">exprs</span>(pickrell.eset)
-genes[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="BioC.html#cb9-1"></a>genes &lt;-<span class="st"> </span><span class="kw">exprs</span>(pickrell.eset)</span>
+<span id="cb9-2"><a href="BioC.html#cb9-2"></a>genes[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span></code></pre></div>
 <pre><code>                NA18486 NA18498 NA18499 NA18501
 ENSG00000000003       0       0       0       0
 ENSG00000000005       0       0       0       0
 ENSG00000000419      22     105      40      55
 ENSG00000000457      22     100     107      53</code></pre>
 <p>Get phenotypic data (e.g. covariates, disease status, outcomes, …)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pheno &lt;-<span class="st"> </span><span class="kw">pData</span>(pickrell.eset)
-<span class="kw">head</span>(pheno)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="BioC.html#cb11-1"></a>pheno &lt;-<span class="st"> </span><span class="kw">pData</span>(pickrell.eset)</span>
+<span id="cb11-2"><a href="BioC.html#cb11-2"></a><span class="kw">head</span>(pheno)</span></code></pre></div>
 <pre><code>        num.tech.reps population    study gender
 NA18486             2        YRI Pickrell   male
 NA18498             2        YRI Pickrell   male
@@ -323,28 +371,26 @@ NA18499             2        YRI Pickrell female
 NA18501             2        YRI Pickrell   male
 NA18502             2        YRI Pickrell female
 NA18504             2        YRI Pickrell   male</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pheno<span class="op">$</span>gender</code></pre></div>
-<pre><code> [1] male   male   female male   female male   female male   female male  
-[11] female male   female male   female male   female female male   female
-[21] male   female female male   female male   female female male   female
-[31] female male   female male   female female female female male   female
-[41] male   male   female female male   female female male   female female
-[51] male   female male   male   female female male   female male   female
-[61] male   female female male   female female female male   female
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="BioC.html#cb13-1"></a>pheno<span class="op">$</span>gender</span></code></pre></div>
+<pre><code> [1] male   male   female male   female male   female male   female male   female male   female
+[14] male   female male   female female male   female male   female female male   female male  
+[27] female female male   female female male   female male   female female female female male  
+[40] female male   male   female female male   female female male   female female male   female
+[53] male   male   female female male   female male   female male   female female male   female
+[66] female female male   female
 Levels: female male</code></pre>
 <p>This also works</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pickrell.eset<span class="op">$</span>gender</code></pre></div>
-<pre><code> [1] male   male   female male   female male   female male   female male  
-[11] female male   female male   female male   female female male   female
-[21] male   female female male   female male   female female male   female
-[31] female male   female male   female female female female male   female
-[41] male   male   female female male   female female male   female female
-[51] male   female male   male   female female male   female male   female
-[61] male   female female male   female female female male   female
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="BioC.html#cb15-1"></a>pickrell.eset<span class="op">$</span>gender</span></code></pre></div>
+<pre><code> [1] male   male   female male   female male   female male   female male   female male   female
+[14] male   female male   female female male   female male   female female male   female male  
+[27] female female male   female female male   female male   female female female female male  
+[40] female male   male   female female male   female female male   female female male   female
+[53] male   male   female female male   female male   female male   female female male   female
+[66] female female male   female
 Levels: female male</code></pre>
 <p>Subsetting (everything is synchronized)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eSet.male &lt;-<span class="st"> </span>pickrell.eset[, pickrell.eset<span class="op">$</span>gender<span class="op">==</span><span class="st">&quot;male&quot;</span>]
-eSet.male</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="BioC.html#cb17-1"></a>eSet.male &lt;-<span class="st"> </span>pickrell.eset[, pickrell.eset<span class="op">$</span>gender<span class="op">==</span><span class="st">&quot;male&quot;</span>]</span>
+<span id="cb17-2"><a href="BioC.html#cb17-2"></a>eSet.male</span></code></pre></div>
 <pre><code>ExpressionSet (storageMode: lockedEnvironment)
 assayData: 52580 features, 29 samples 
   element names: exprs 
@@ -354,20 +400,19 @@ phenoData
   varLabels: num.tech.reps population study gender
   varMetadata: labelDescription
 featureData
-  featureNames: ENSG00000000003 ENSG00000000005 ... LRG_99 (52580
-    total)
+  featureNames: ENSG00000000003 ENSG00000000005 ... LRG_99 (52580 total)
   fvarLabels: gene
   fvarMetadata: labelDescription
 experimentData: use &#39;experimentData(object)&#39;
 Annotation:  </code></pre>
 <p>Finally, the <code>fData</code> function gets the probes’ annotation in a <code>data.frame</code>. Let us first illustrate how to provide an annotation to an <code>ExpressionSet</code> object</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(Homo.sapiens)
-geneSymbols &lt;-<span class="st"> </span><span class="kw">rownames</span>(genes)
-annot &lt;-<span class="st"> </span><span class="kw">select</span>(Homo.sapiens, geneSymbols, 
-                <span class="dt">columns=</span><span class="kw">c</span>(<span class="st">&quot;TXCHROM&quot;</span>, <span class="st">&quot;SYMBOL&quot;</span>), <span class="dt">keytype=</span><span class="st">&quot;ENSEMBL&quot;</span>)
-<span class="kw">annotation</span>(pickrell.eset) &lt;-<span class="st"> &quot;Homo.sapiens&quot;</span>
-<span class="kw">fData</span>(pickrell.eset) &lt;-<span class="st"> </span>annot
-pickrell.eset</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="BioC.html#cb19-1"></a><span class="kw">require</span>(Homo.sapiens)</span>
+<span id="cb19-2"><a href="BioC.html#cb19-2"></a>geneSymbols &lt;-<span class="st"> </span><span class="kw">rownames</span>(genes)</span>
+<span id="cb19-3"><a href="BioC.html#cb19-3"></a>annot &lt;-<span class="st"> </span><span class="kw">select</span>(Homo.sapiens, geneSymbols, </span>
+<span id="cb19-4"><a href="BioC.html#cb19-4"></a>                <span class="dt">columns=</span><span class="kw">c</span>(<span class="st">&quot;TXCHROM&quot;</span>, <span class="st">&quot;SYMBOL&quot;</span>), <span class="dt">keytype=</span><span class="st">&quot;ENSEMBL&quot;</span>)</span>
+<span id="cb19-5"><a href="BioC.html#cb19-5"></a><span class="kw">annotation</span>(pickrell.eset) &lt;-<span class="st"> &quot;Homo.sapiens&quot;</span></span>
+<span id="cb19-6"><a href="BioC.html#cb19-6"></a><span class="kw">fData</span>(pickrell.eset) &lt;-<span class="st"> </span>annot</span>
+<span id="cb19-7"><a href="BioC.html#cb19-7"></a>pickrell.eset</span></code></pre></div>
 <pre><code>ExpressionSet (storageMode: lockedEnvironment)
 assayData: 52580 features, 69 samples 
   element names: exprs 
@@ -377,13 +422,13 @@ phenoData
   varLabels: num.tech.reps population study gender
   varMetadata: labelDescription
 featureData
-  featureNames: 1 2 ... 59330 (59330 total)
+  featureNames: 1 2 ... 59545 (59545 total)
   fvarLabels: ENSEMBL SYMBOL TXCHROM
   fvarMetadata: labelDescription
 experimentData: use &#39;experimentData(object)&#39;
 Annotation: Homo.sapiens </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">probes &lt;-<span class="st"> </span><span class="kw">fData</span>(pickrell.eset)
-<span class="kw">head</span>(probes)</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="BioC.html#cb21-1"></a>probes &lt;-<span class="st"> </span><span class="kw">fData</span>(pickrell.eset)</span>
+<span id="cb21-2"><a href="BioC.html#cb21-2"></a><span class="kw">head</span>(probes)</span></code></pre></div>
 <pre><code>          ENSEMBL   SYMBOL TXCHROM
 1 ENSG00000000003   TSPAN6    chrX
 2 ENSG00000000005     TNMD    chrX
@@ -392,12 +437,15 @@ Annotation: Homo.sapiens </code></pre>
 5 ENSG00000000460 C1orf112    chr1
 6 ENSG00000000938      FGR    chr1</code></pre>
 </div>
-<div id="genomic-ranges" class="section level2">
+<div id="genomic-ranges" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Genomic Ranges</h2>
 <p><a href="">GenomicRanges</a></p>
 <ul>
-<li><p><code>GRanges()</code>: genomic coordinates to represent annotations (exons, genes, regulatory marks, …) and data (called peaks, variants, aligned reads)</p></li>
-<li><p><code>GRangesList()</code>: genomic coordinates grouped into list elements (e.g., paired-end reads; exons grouped by transcript)</p></li>
+<li><p><code>GRanges()</code>: genomic coordinates to represent annotations (exons,
+genes, regulatory marks, …) and data (called peaks, variants,
+aligned reads)</p></li>
+<li><p><code>GRangesList()</code>: genomic coordinates grouped into list elements
+(e.g., paired-end reads; exons grouped by transcript)</p></li>
 </ul>
 <p>Operations</p>
 <ul>
@@ -405,17 +453,15 @@ Annotation: Homo.sapiens </code></pre>
 <ul>
 <li>e.g., <code>shift()</code></li>
 </ul></li>
-<li>inter-range: act on all ranges in a <code>GRanges</code> object or <code>GRangesList</code> element
-<ul>
-<li>e.g., <code>reduce()</code>; <code>disjoin()</code></li>
-</ul></li>
-<li>between-range: act on two separate <code>GRanges</code> or <code>GRangesList</code> objects
-<ul>
-<li>e.g., <code>findOverlaps()</code>, <code>nearest()</code></li>
-</ul></li>
+<li>inter-range: act on all ranges in a <code>GRanges</code> object or
+<code>GRangesList</code> element
+- e.g., <code>reduce()</code>; <code>disjoin()</code></li>
+<li>between-range: act on two separate <code>GRanges</code> or <code>GRangesList</code>
+objects
+- e.g., <code>findOverlaps()</code>, <code>nearest()</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gr &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="st">&quot;chr1&quot;</span>, <span class="kw">IRanges</span>(<span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">22</span>), <span class="dt">width=</span><span class="dv">5</span>), <span class="st">&quot;+&quot;</span>)
-gr</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="BioC.html#cb23-1"></a>gr &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="st">&quot;chr1&quot;</span>, <span class="kw">IRanges</span>(<span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">22</span>), <span class="dt">width=</span><span class="dv">5</span>), <span class="st">&quot;+&quot;</span>)</span>
+<span id="cb23-2"><a href="BioC.html#cb23-2"></a>gr</span></code></pre></div>
 <pre><code>GRanges object with 3 ranges and 0 metadata columns:
       seqnames    ranges strand
          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
@@ -424,8 +470,8 @@ gr</code></pre></div>
   [3]     chr1     22-26      +
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># shift move all intervals 3 base pair towards the end</span>
-<span class="kw">shift</span>(gr, <span class="dv">3</span>) </code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="BioC.html#cb25-1"></a><span class="co"># shift move all intervals 3 base pair towards the end</span></span>
+<span id="cb25-2"><a href="BioC.html#cb25-2"></a><span class="kw">shift</span>(gr, <span class="dv">3</span>) </span></code></pre></div>
 <pre><code>GRanges object with 3 ranges and 0 metadata columns:
       seqnames    ranges strand
          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
@@ -434,17 +480,17 @@ gr</code></pre></div>
   [3]     chr1     25-29      +
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># inter-range</span>
-<span class="kw">range</span>(gr)    </code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="BioC.html#cb27-1"></a><span class="co"># inter-range</span></span>
+<span id="cb27-2"><a href="BioC.html#cb27-2"></a><span class="kw">range</span>(gr)    </span></code></pre></div>
 <pre><code>GRanges object with 1 range and 0 metadata columns:
       seqnames    ranges strand
          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
   [1]     chr1     10-26      +
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># two Granges: knowing the intervals that overlap with a targeted region</span>
-snps &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="st">&quot;chr1&quot;</span>, <span class="kw">IRanges</span>(<span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">17</span>), <span class="dt">width=</span><span class="dv">1</span>))
-snps</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="BioC.html#cb29-1"></a><span class="co"># two Granges: knowing the intervals that overlap with a targeted region</span></span>
+<span id="cb29-2"><a href="BioC.html#cb29-2"></a>snps &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="st">&quot;chr1&quot;</span>, <span class="kw">IRanges</span>(<span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">17</span>), <span class="dt">width=</span><span class="dv">1</span>))</span>
+<span id="cb29-3"><a href="BioC.html#cb29-3"></a>snps</span></code></pre></div>
 <pre><code>GRanges object with 2 ranges and 0 metadata columns:
       seqnames    ranges strand
          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
@@ -452,58 +498,58 @@ snps</code></pre></div>
   [2]     chr1        17      *
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gr.ov &lt;-<span class="st"> </span><span class="kw">findOverlaps</span>(snps, gr)
-gr.ov</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="BioC.html#cb31-1"></a>gr.ov &lt;-<span class="st"> </span><span class="kw">findOverlaps</span>(snps, gr)</span>
+<span id="cb31-2"><a href="BioC.html#cb31-2"></a>gr.ov</span></code></pre></div>
 <pre><code>Hits object with 1 hit and 0 metadata columns:
       queryHits subjectHits
       &lt;integer&gt;   &lt;integer&gt;
   [1]         1           1
   -------
   queryLength: 2 / subjectLength: 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># recover the overlapping intervals</span>
-gr[<span class="kw">subjectHits</span>(gr.ov)]</code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="BioC.html#cb33-1"></a><span class="co"># recover the overlapping intervals</span></span>
+<span id="cb33-2"><a href="BioC.html#cb33-2"></a>gr[<span class="kw">subjectHits</span>(gr.ov)]</span></code></pre></div>
 <pre><code>GRanges object with 1 range and 0 metadata columns:
       seqnames    ranges strand
          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt;
   [1]     chr1     10-14      +
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#coverage: summarizes the times each base is covered by an interval</span>
-<span class="kw">coverage</span>(gr)</code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="BioC.html#cb35-1"></a><span class="co">#coverage: summarizes the times each base is covered by an interval</span></span>
+<span id="cb35-2"><a href="BioC.html#cb35-2"></a><span class="kw">coverage</span>(gr)</span></code></pre></div>
 <pre><code>RleList of length 1
 $chr1
 integer-Rle of length 26 with 6 runs
   Lengths: 9 5 5 2 3 2
   Values : 0 1 0 1 2 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get counts</span>
-<span class="kw">countOverlaps</span>(gr, snps)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="BioC.html#cb37-1"></a><span class="co"># get counts</span></span>
+<span id="cb37-2"><a href="BioC.html#cb37-2"></a><span class="kw">countOverlaps</span>(gr, snps)</span></code></pre></div>
 <pre><code>[1] 1 0 0</code></pre>
 <p>This table shows the common operations of <code>GenomicRanges</code></p>
-
 </div>
-<div id="summarized-experiments" class="section level2">
+<div id="summarized-experiments" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Summarized Experiments</h2>
 <p><a href="">SummarizedExperiment</a></p>
 <div class="figure">
-<img src="fig/SummarizedExperiment.png" alt="Alt SummarizedExperiment" />
+<img src="fig/SummarizedExperiment.png" alt="" />
 <p class="caption">Alt SummarizedExperiment</p>
 </div>
 <ul>
 <li><p>Comprehensive data structure that can be used to store expression and methylation data from microarrays or read counts from RNA-seq experiments, among others.</p></li>
 <li><p>Can contain slots for one or more <em>omic</em> datasets, feature annotation (e.g. genes, transcripts, SNPs, CpGs), individual phenotypes and experimental details, such as laboratory and experimental protocols.</p></li>
 <li><p>As in an <code>ExpressionSet</code> a <code>SummarizedExperiment</code>, the rows of <em>omic</em> data are features and columns are subjects.</p></li>
-<li><p>Coordinate feature x sample ‘assays’ with row (feature) and column (sample) descriptions.</p></li>
+<li><p>Coordinate feature x sample ‘assays’ with row (feature) and column
+(sample) descriptions.</p></li>
 <li><p>‘assays’ (similar to ‘exprs’ in <code>ExpressionSet</code>objects) can be any matrix-like object, including very large on-disk representations such as <a href="">HDF5Array</a></p></li>
 <li><p>‘assays’ are annotated using <code>GenomicRanges</code></p></li>
 <li><p>It is being deprecated</p></li>
 </ul>
 </div>
-<div id="ranged-summarized-experiments" class="section level2">
+<div id="ranged-summarized-experiments" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Ranged Summarized Experiments</h2>
 <p><code>SummarizedExperiment</code> is extended to <code>RangedSummarizedExperiment</code>, a child class that contains the annotation data of the features in a <code>GenomicRanges</code> object. An example dataset, stored as a <code>RangedSummarizedExperiment</code> is available in the <code>airway</code> package. This data represents an RNA sequencing experiment.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(airway)
-<span class="kw">data</span>(airway)
-airway</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="BioC.html#cb39-1"></a><span class="kw">library</span>(airway)</span>
+<span id="cb39-2"><a href="BioC.html#cb39-2"></a><span class="kw">data</span>(airway)</span>
+<span id="cb39-3"><a href="BioC.html#cb39-3"></a>airway</span></code></pre></div>
 <pre><code>class: RangedSummarizedExperiment 
 dim: 64102 8 
 metadata(1): &#39;&#39;
@@ -515,63 +561,63 @@ colData names(9): SampleName cell ... Sample BioSample</code></pre>
 <ul>
 <li>Some aspects of the object are very similar to <code>ExpressionSet</code>, although with slightly different names and types. <code>colData</code> contains phenotype (sample) information, like <code>pData</code> for <code>ExpressionSet</code>. It returns a <code>DataFrame</code> instead of a data.frame:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colData</span>(airway)</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="BioC.html#cb41-1"></a><span class="kw">colData</span>(airway)</span></code></pre></div>
 <pre><code>DataFrame with 8 rows and 9 columns
-           SampleName     cell      dex    albut        Run avgLength
-             &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;
-SRR1039508 GSM1275862   N61311    untrt    untrt SRR1039508       126
-SRR1039509 GSM1275863   N61311      trt    untrt SRR1039509       126
-SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126
-SRR1039513 GSM1275867  N052611      trt    untrt SRR1039513        87
-SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120
-SRR1039517 GSM1275871  N080611      trt    untrt SRR1039517       126
-SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101
-SRR1039521 GSM1275875  N061011      trt    untrt SRR1039521        98
-           Experiment    Sample    BioSample
-             &lt;factor&gt;  &lt;factor&gt;     &lt;factor&gt;
-SRR1039508  SRX384345 SRS508568 SAMN02422669
-SRR1039509  SRX384346 SRS508567 SAMN02422675
-SRR1039512  SRX384349 SRS508571 SAMN02422678
-SRR1039513  SRX384350 SRS508572 SAMN02422670
-SRR1039516  SRX384353 SRS508575 SAMN02422682
-SRR1039517  SRX384354 SRS508576 SAMN02422673
-SRR1039520  SRX384357 SRS508579 SAMN02422683
-SRR1039521  SRX384358 SRS508580 SAMN02422677</code></pre>
+           SampleName     cell      dex    albut        Run avgLength Experiment    Sample
+             &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;   &lt;factor&gt;  &lt;factor&gt;
+SRR1039508 GSM1275862   N61311    untrt    untrt SRR1039508       126  SRX384345 SRS508568
+SRR1039509 GSM1275863   N61311      trt    untrt SRR1039509       126  SRX384346 SRS508567
+SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126  SRX384349 SRS508571
+SRR1039513 GSM1275867  N052611      trt    untrt SRR1039513        87  SRX384350 SRS508572
+SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120  SRX384353 SRS508575
+SRR1039517 GSM1275871  N080611      trt    untrt SRR1039517       126  SRX384354 SRS508576
+SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101  SRX384357 SRS508579
+SRR1039521 GSM1275875  N061011      trt    untrt SRR1039521        98  SRX384358 SRS508580
+              BioSample
+               &lt;factor&gt;
+SRR1039508 SAMN02422669
+SRR1039509 SAMN02422675
+SRR1039512 SAMN02422678
+SRR1039513 SAMN02422670
+SRR1039516 SAMN02422682
+SRR1039517 SAMN02422673
+SRR1039520 SAMN02422683
+SRR1039521 SAMN02422677</code></pre>
 <ul>
 <li>You can still use <code>$</code> to get a particular column:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airway<span class="op">$</span>cell</code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="BioC.html#cb43-1"></a>airway<span class="op">$</span>cell</span></code></pre></div>
 <pre><code>[1] N61311  N61311  N052611 N052611 N080611 N080611 N061011 N061011
 Levels: N052611 N061011 N080611 N61311</code></pre>
 <ul>
 <li>The measurement data are accessed by <code>assay</code> and <code>assays</code>. A <code>SummarizedExperiment</code> can contain multiple measurement matrices (all of the same dimension). You get all of them by assays and you select a particular one by <code>assay(OBJECT, NAME)</code> where you can see the names when you print the object or by using <code>assayNames</code>. In this case there is a single matrix called counts:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assayNames</span>(airway)</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="BioC.html#cb45-1"></a><span class="kw">assayNames</span>(airway)</span></code></pre></div>
 <pre><code>[1] &quot;counts&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assays</span>(airway)</code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="BioC.html#cb47-1"></a><span class="kw">assays</span>(airway)</span></code></pre></div>
 <pre><code>List of length 1
 names(1): counts</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">assay</span>(airway, <span class="st">&quot;counts&quot;</span>))</code></pre></div>
-<pre><code>                SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
-ENSG00000000003        679        448        873        408       1138
-ENSG00000000005          0          0          0          0          0
-ENSG00000000419        467        515        621        365        587
-ENSG00000000457        260        211        263        164        245
-ENSG00000000460         60         55         40         35         78
-ENSG00000000938          0          0          2          0          1
-                SRR1039517 SRR1039520 SRR1039521
-ENSG00000000003       1047        770        572
-ENSG00000000005          0          0          0
-ENSG00000000419        799        417        508
-ENSG00000000457        331        233        229
-ENSG00000000460         63         76         60
-ENSG00000000938          0          0          0</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="BioC.html#cb49-1"></a><span class="kw">head</span>(<span class="kw">assay</span>(airway, <span class="st">&quot;counts&quot;</span>))</span></code></pre></div>
+<pre><code>                SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 SRR1039520
+ENSG00000000003        679        448        873        408       1138       1047        770
+ENSG00000000005          0          0          0          0          0          0          0
+ENSG00000000419        467        515        621        365        587        799        417
+ENSG00000000457        260        211        263        164        245        331        233
+ENSG00000000460         60         55         40         35         78         63         76
+ENSG00000000938          0          0          2          0          1          0          0
+                SRR1039521
+ENSG00000000003        572
+ENSG00000000005          0
+ENSG00000000419        508
+ENSG00000000457        229
+ENSG00000000460         60
+ENSG00000000938          0</code></pre>
 <ul>
 <li>Annotation is a <code>GenomicRanges</code> object</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rowRanges</span>(airway)</code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="BioC.html#cb51-1"></a><span class="kw">rowRanges</span>(airway)</span></code></pre></div>
 <pre><code>GRangesList object of length 64102:
-$ENSG00000000003 
+$ENSG00000000003
 GRanges object with 17 ranges and 2 metadata columns:
        seqnames            ranges strand |   exon_id       exon_name
           &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;     &lt;character&gt;
@@ -586,38 +632,40 @@ GRanges object with 17 ranges and 2 metadata columns:
   [15]        X 99891605-99891803      - |    667159 ENSE00001855382
   [16]        X 99891790-99892101      - |    667160 ENSE00001863395
   [17]        X 99894942-99894988      - |    667161 ENSE00001828996
+  -------
+  seqinfo: 722 sequences (1 circular) from an unspecified genome
 
 ...
-&lt;64101 more elements&gt;
--------
-seqinfo: 722 sequences (1 circular) from an unspecified genome</code></pre>
+&lt;64101 more elements&gt;</code></pre>
 <ul>
 <li>Subset for only rows (e.g. features) which are in the interval 1 to 1Mb of chromosome 1</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">roi &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="dt">seqnames=</span><span class="st">&quot;1&quot;</span>, <span class="dt">ranges=</span><span class="kw">IRanges</span>(<span class="dt">start=</span><span class="dv">1</span>, <span class="dt">end=</span><span class="fl">1e6</span>))
-<span class="kw">subsetByOverlaps</span>(airway, roi)</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="BioC.html#cb53-1"></a>roi &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="dt">seqnames=</span><span class="st">&quot;1&quot;</span>, <span class="dt">ranges=</span><span class="kw">IRanges</span>(<span class="dt">start=</span><span class="dv">1</span>, <span class="dt">end=</span><span class="fl">1e6</span>))</span>
+<span id="cb53-2"><a href="BioC.html#cb53-2"></a><span class="kw">subsetByOverlaps</span>(airway, roi)</span></code></pre></div>
 <pre><code>class: RangedSummarizedExperiment 
 dim: 79 8 
 metadata(1): &#39;&#39;
 assays(1): counts
-rownames(79): ENSG00000177757 ENSG00000185097 ... ENSG00000272512
-  ENSG00000273443
+rownames(79): ENSG00000177757 ENSG00000185097 ... ENSG00000272512 ENSG00000273443
 rowData names(0):
 colnames(8): SRR1039508 SRR1039509 ... SRR1039520 SRR1039521
 colData names(9): SampleName cell ... Sample BioSample</code></pre>
 </div>
-<div id="multi-data-set" class="section level2">
+<div id="multi-data-set" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Multi Data Set</h2>
 <p><a href="">MultiDataSet</a></p>
 <div class="figure">
-<img src="fig/mds.png" alt="Alt MultiDataSet" />
+<img src="fig/mds.png" alt="" />
 <p class="caption">Alt MultiDataSet</p>
 </div>
 <ul>
-<li>Designed to encapsulate different types of datasets (including all classes in Bioconductor)</li>
-<li>It properly deals with non-complete cases situations</li>
-<li>Subsetting is easily performed in both: samples and features (using GenomicRanges)</li>
-<li><p>It allows to: – perform integration analysis with third party packages; – create new methods and functions for omic data integration; – encapsule new unimplemented data from any biological experiment</p></li>
+<li><p>Designed to encapsulate different types of datasets (including all classes in Bioconductor)</p></li>
+<li><p>It properly deals with non-complete cases situations</p></li>
+<li><p>Subsetting is easily performed in both: samples and features (using GenomicRanges)</p></li>
+<li><p>It allows to:
+– perform integration analysis with third party packages;
+– create new methods and functions for omic data integration;
+– encapsule new unimplemented data from any biological experiment</p></li>
 <li><p><a href="">MultiAssayExperiment</a> is another infrastructure (created by BioC developers) that can be used to manage multi-omic data</p></li>
 </ul>
 

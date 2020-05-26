@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16 Tips and tricks | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="16 Tips and tricks | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16 Tips and tricks | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-25" />
+<meta name="date" content="2020-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="creating-datashield-packages.html"/>
 <link rel="next" href="session-info.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,41 +53,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -103,13 +130,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="part"><span><b>I Preamble</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-you-will-learn"><i class="fa fa-check"></i><b>1.1</b> What you will learn</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#preliminaries"><i class="fa fa-check"></i><b>1.2</b> Preliminaries</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#acknowledgments"><i class="fa fa-check"></i><b>1.3</b> Acknowledgments</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="learnR.html"><a href="learnR.html"><i class="fa fa-check"></i><b>2</b> Learning R</a></li>
-<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor Data Structures</a><ul>
+<li class="chapter" data-level="3" data-path="BioC.html"><a href="BioC.html"><i class="fa fa-check"></i><b>3</b> Bioconductor Data Structures</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="BioC.html"><a href="BioC.html#snp-array-data"><i class="fa fa-check"></i><b>3.1</b> SNP Array Data</a></li>
 <li class="chapter" data-level="3.2" data-path="BioC.html"><a href="BioC.html#expression-sets"><i class="fa fa-check"></i><b>3.2</b> Expression Sets</a></li>
 <li class="chapter" data-level="3.3" data-path="BioC.html"><a href="BioC.html#genomic-ranges"><i class="fa fa-check"></i><b>3.3</b> Genomic Ranges</a></li>
@@ -117,39 +146,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="BioC.html"><a href="BioC.html#ranged-summarized-experiments"><i class="fa fa-check"></i><b>3.5</b> Ranged Summarized Experiments</a></li>
 <li class="chapter" data-level="3.6" data-path="BioC.html"><a href="BioC.html#multi-data-set"><i class="fa fa-check"></i><b>3.6</b> Multi Data Set</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a><ul>
+<li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
 <li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a><ul>
+<li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a><ul>
+<li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="datashield.html"><a href="datashield.html#datashieldopal-implementation"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD/Opal Implementation</a><ul>
+<li class="chapter" data-level="5.3" data-path="datashield.html"><a href="datashield.html#datashieldopal-implementation"><i class="fa fa-check"></i><b>5.3</b> DataSHIELD/Opal Implementation</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 <li class="chapter" data-level="5.3.3" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.3.3</b> Demo</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
-<li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a><ul>
+<li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="resources.html"><a href="resources.html#concept"><i class="fa fa-check"></i><b>6.1</b> Concept</a></li>
 <li class="chapter" data-level="6.2" data-path="resources.html"><a href="resources.html#types"><i class="fa fa-check"></i><b>6.2</b> Types</a></li>
 <li class="chapter" data-level="6.3" data-path="resources.html"><a href="resources.html#definition"><i class="fa fa-check"></i><b>6.3</b> Definition</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a><ul>
+<li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a><ul>
+<li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
 <li class="chapter" data-level="7.2.2" data-path="resourcer.html"><a href="resourcer.html#file-data-format"><i class="fa fa-check"></i><b>7.2.2</b> File Data Format</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>7.3</b> Database Resources</a><ul>
+<li class="chapter" data-level="7.3" data-path="resourcer.html"><a href="resourcer.html#database-resources"><i class="fa fa-check"></i><b>7.3</b> Database Resources</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="resourcer.html"><a href="resourcer.html#dbi-connectors"><i class="fa fa-check"></i><b>7.3.1</b> DBI Connectors</a></li>
 <li class="chapter" data-level="7.3.2" data-path="resourcer.html"><a href="resourcer.html#use-dplyr"><i class="fa fa-check"></i><b>7.3.2</b> Use dplyr</a></li>
 <li class="chapter" data-level="7.3.3" data-path="resourcer.html"><a href="resourcer.html#document-databases"><i class="fa fa-check"></i><b>7.3.3</b> Document Databases</a></li>
@@ -158,7 +195,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.5" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>7.5</b> Interacting with R Resources</a></li>
 <li class="chapter" data-level="7.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>7.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="7.7" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>7.7</b> Resource Forms</a></li>
-<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a><ul>
+<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a>
+<ul>
 <li class="chapter" data-level="7.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.8.1</b> TSV File into a tibble or data.frame</a></li>
 <li class="chapter" data-level="7.8.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.8.2</b> R Data File into a R object</a></li>
 </ul></li>
@@ -167,18 +205,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8" data-path="omic-extension.html"><a href="omic-extension.html"><i class="fa fa-check"></i><b>8</b> VCF files to GDS to peform GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="9" data-path="shell-extension.html"><a href="shell-extension.html"><i class="fa fa-check"></i><b>9</b> Secure shell programs: GWAS with PLINK</a></li>
 <li class="part"><span><b>IV Workflows</b></span></li>
-<li class="chapter" data-level="10" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>10</b> Setup</a><ul>
+<li class="chapter" data-level="10" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>10</b> Setup</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="setup.html"><a href="setup.html#providing-datashield-packages-in-the-opal-server"><i class="fa fa-check"></i><b>10.1</b> Providing DataSHIELD packages in the opal server</a></li>
-<li class="chapter" data-level="10.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.local-machine"><i class="fa fa-check"></i><b>10.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
+<li class="chapter" data-level="10.2" data-path="setup.html"><a href="setup.html#required-r-packages-in-the-client-site-e.g.-local-machine"><i class="fa fa-check"></i><b>10.2</b> Required R Packages in the client site (e.g. local machine)</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>11</b> Basic statistical analyses</a><ul>
+<li class="chapter" data-level="11" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html"><i class="fa fa-check"></i><b>11</b> Basic statistical analyses</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-single-study"><i class="fa fa-check"></i><b>11.1</b> Analysis from a single study</a></li>
 <li class="chapter" data-level="11.2" data-path="basic-statistical-analyses.html"><a href="basic-statistical-analyses.html#analysis-from-a-multiple-studies"><i class="fa fa-check"></i><b>11.2</b> Analysis from a multiple studies</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>12</b> Omic data analysis</a><ul>
+<li class="chapter" data-level="12" data-path="Omic.html"><a href="Omic.html"><i class="fa fa-check"></i><b>12</b> Omic data analysis</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="Omic.html"><a href="Omic.html#types-of-analyses-implemented"><i class="fa fa-check"></i><b>12.1</b> Types of analyses implemented</a></li>
 <li class="chapter" data-level="12.2" data-path="Omic.html"><a href="Omic.html#differential-gene-expression-dge-analysis"><i class="fa fa-check"></i><b>12.2</b> Differential gene expression (DGE) analysis</a></li>
-<li class="chapter" data-level="12.3" data-path="Omic.html"><a href="Omic.html#epigenome-wide-association-analysis-ewas"><i class="fa fa-check"></i><b>12.3</b> Epigenome-wide association analysis (EWAS)</a><ul>
+<li class="chapter" data-level="12.3" data-path="Omic.html"><a href="Omic.html#epigenome-wide-association-analysis-ewas"><i class="fa fa-check"></i><b>12.3</b> Epigenome-wide association analysis (EWAS)</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="Omic.html"><a href="Omic.html#single-cpg-analysis"><i class="fa fa-check"></i><b>12.3.1</b> Single CpG analysis</a></li>
 <li class="chapter" data-level="12.3.2" data-path="Omic.html"><a href="Omic.html#multiple-cpg-analysis"><i class="fa fa-check"></i><b>12.3.2</b> Multiple CpG analysis</a></li>
 <li class="chapter" data-level="12.3.3" data-path="Omic.html"><a href="Omic.html#adjusting-for-surrogate-variables"><i class="fa fa-check"></i><b>12.3.3</b> Adjusting for Surrogate Variables</a></li>
@@ -186,32 +228,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.4" data-path="Omic.html"><a href="Omic.html#gwas-with-bioconductor"><i class="fa fa-check"></i><b>12.4</b> GWAS with Bioconductor</a></li>
 <li class="chapter" data-level="12.5" data-path="Omic.html"><a href="Omic.html#gwas-with-plink"><i class="fa fa-check"></i><b>12.5</b> GWAS with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>13</b> Geospatial data analysis</a><ul>
+<li class="chapter" data-level="13" data-path="GIS.html"><a href="GIS.html"><i class="fa fa-check"></i><b>13</b> Geospatial data analysis</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="GIS.html"><a href="GIS.html#introducing-the-analysis"><i class="fa fa-check"></i><b>13.1</b> Introducing the analysis</a></li>
 <li class="chapter" data-level="13.2" data-path="GIS.html"><a href="GIS.html#setting-up-the-analysis"><i class="fa fa-check"></i><b>13.2</b> Setting up the analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="GIS.html"><a href="GIS.html#data-manipulation"><i class="fa fa-check"></i><b>13.3</b> Data manipulation</a></li>
 <li class="chapter" data-level="13.4" data-path="GIS.html"><a href="GIS.html#generating-the-final-result"><i class="fa fa-check"></i><b>13.4</b> Generating the final result</a></li>
 </ul></li>
 <li class="part"><span><b>V Developers</b></span></li>
-<li class="chapter" data-level="14" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>14</b> DSLite: DataSHIELD Implementation on Local Datasets</a><ul>
-<li class="chapter" data-level="14.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>14.1</b> Development Environment Setup</a><ul>
+<li class="chapter" data-level="14" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html"><i class="fa fa-check"></i><b>14</b> DSLite: DataSHIELD Implementation on Local Datasets</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-environment-setup"><i class="fa fa-check"></i><b>14.1</b> Development Environment Setup</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-packages"><i class="fa fa-check"></i><b>14.1.1</b> DataSHIELD Packages</a></li>
 <li class="chapter" data-level="14.1.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#test-datasets"><i class="fa fa-check"></i><b>14.1.2</b> Test Datasets</a></li>
 <li class="chapter" data-level="14.1.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#r-package-development-tools"><i class="fa fa-check"></i><b>14.1.3</b> R Package Development Tools</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.2</b> DataSHIELD Development Flow</a><ul>
+<li class="chapter" data-level="14.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-development-flow"><i class="fa fa-check"></i><b>14.2</b> DataSHIELD Development Flow</a>
+<ul>
 <li class="chapter" data-level="14.2.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#dsliteserver"><i class="fa fa-check"></i><b>14.2.1</b> DSLiteServer</a></li>
 <li class="chapter" data-level="14.2.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-configuration"><i class="fa fa-check"></i><b>14.2.2</b> DataSHIELD Configuration</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#datashield-sessions"><i class="fa fa-check"></i><b>14.3</b> DataSHIELD Sessions</a></li>
 <li class="chapter" data-level="14.4" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#debugging"><i class="fa fa-check"></i><b>14.4</b> Debugging</a></li>
-<li class="chapter" data-level="14.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>14.5</b> Limitations</a><ul>
+<li class="chapter" data-level="14.5" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#limitations"><i class="fa fa-check"></i><b>14.5</b> Limitations</a>
+<ul>
 <li class="chapter" data-level="14.5.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#function-parameters-parser"><i class="fa fa-check"></i><b>14.5.1</b> Function Parameters Parser</a></li>
 <li class="chapter" data-level="14.5.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#server-side-environments"><i class="fa fa-check"></i><b>14.5.2</b> Server Side Environments</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
-<li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
 <li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
 <li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
@@ -236,15 +284,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tips-and-tricks" class="section level1">
+<div id="tips-and-tricks" class="section level1" number="16">
 <h1><span class="header-section-number">16</span> Tips and tricks</h1>
-<div id="how-to-install-r-packages-into-opal-server-from-r" class="section level2">
+<div id="how-to-install-r-packages-into-opal-server-from-r" class="section level2" number="16.1">
 <h2><span class="header-section-number">16.1</span> How to install R packages into OPAL server from R</h2>
 </div>
-<div id="how-to-check-whether-there-are-open-r-sesions-in-the-opal-server" class="section level2">
+<div id="how-to-check-whether-there-are-open-r-sesions-in-the-opal-server" class="section level2" number="16.2">
 <h2><span class="header-section-number">16.2</span> How to check whether there are open R sesions in the OPAL server</h2>
 </div>
-<div id="how" class="section level2">
+<div id="how" class="section level2" number="16.3">
 <h2><span class="header-section-number">16.3</span> How</h2>
 
 </div>
