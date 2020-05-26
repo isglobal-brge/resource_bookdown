@@ -1,10 +1,10 @@
-# Bioconductor data infrastructures {#BioC}
+# Bioconductor Data Structures {#BioC}
 
 [Bioconductor](https://www.bioconductor.org/) promotes the statistical analysis and comprehension of current and emerging high-throughput biological assays. Bioconductor is based on packages written primarily in the R programming language. Bioconductor is committed to open source, collaborative, distributed software development and literate, reproducible research. Most Bioconductor components are distributed as [R](https://cran.r-project.org/) packages. The functional scope of [Bioconductor packages](http://bioconductor.org/packages/release/BiocViews.html#___Software) includes the analysis of DNA microarray, sequence, flow, SNP, and other data.
 
 Bioconductor provides several data infrastructures for efficiently managing omic data. See [this paper](https://www.nature.com/articles/nmeth.3252) for a global overview.  Here we provide a quick introduction for the most commonly used ones. We also recommend to learn how to deal with [GenomicRanges](https://blog.dominodatalab.com/genomic-ranges-an-introduction-to-working-with-genomic-data/) which helps to efficiently manage genomic data information. 
 
-## SNP array data
+## SNP Array Data
 
 SNP array data are normally stored in [PLINK](http://zzz.bwh.harvard.edu/plink/) format (or [VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) for NGS data). PLINK data are normally stored in three files .ped, .bim, .fam. The advantage is that SNP data are stored in binary format in the BED file (Homozygous normal 01, Heterozygous 02, Homozygous variant 03, missing 00). 
 
@@ -35,7 +35,7 @@ annotation <- snps$map
 head(annotation)
 ```
 
-## ExpressionSet
+## Expression Sets
 
 [ExpressionSet]()
 
@@ -104,7 +104,7 @@ probes <- fData(pickrell.eset)
 head(probes)
 ```
 
-## Genomic ranges
+## Genomic Ranges
 
 [GenomicRanges]()
 
@@ -228,9 +228,9 @@ This table shows the common operations of `GenomicRanges`
 \end{table}
 
 
-## Summarized experiments
+## Summarized Experiments
 
-[SummarizedExperiment](): 
+[SummarizedExperiment]()
 
  ![Alt SummarizedExperiment](fig/SummarizedExperiment.png)
 
@@ -250,7 +250,7 @@ This table shows the common operations of `GenomicRanges`
 - It is being deprecated
 
 
-## RangedSummarizedExperiments
+## Ranged Summarized Experiments
 
 `SummarizedExperiment` is extended to `RangedSummarizedExperiment`, a child class that contains the annotation data of the features in a `GenomicRanges` object. An example dataset, stored as a `RangedSummarizedExperiment` is available in the `airway` package. This data represents an RNA sequencing experiment.
 
@@ -297,7 +297,7 @@ subsetByOverlaps(airway, roi)
 
 
 
-## MultiDataSet
+## Multi Data Set
 
 [MultiDataSet]()
 
