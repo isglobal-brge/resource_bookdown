@@ -249,9 +249,9 @@ A real example of how to create this file for the `{r Githubpkg("isglobal-brge",
 
 ## Examples of Resources
 
-Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-test.obiba.org which has the following reources 
+Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-demo.obiba.org which has the following reources 
 
-```{r testResources2, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-test.obiba.org", fig.align='center'}
+```{r testResources2, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-demo.obiba.org", fig.align='center'}
 knitr::include_graphics("fig/opal_resources.png", dpi=NA)
 ```
 
@@ -265,12 +265,12 @@ This code describes how to get the resource (a TSV file) as a data.frame into th
 library(DSOpal)
 library(dsBaseClient)
 
-# access to the 'brge' resource (NOTE: test.brge is need since the project
+# access to the 'brge' resource (NOTE: RSRC.brge is need since the project
 # is called test)
 builder <- newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.brge", driver = "OpalDriver")
+               resource = "RSRC.brge", driver = "OpalDriver")
 logindata <- builder$build()
 
 # the resource is loaded into R as the object 'res' 
@@ -296,9 +296,9 @@ Now let us describe how to get an specific type of R object into de R server. Ou
 ```{r load_eSet}
 # prepare login data and resource to assign
 builder <- newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.GSE80970", driver = "OpalDriver")
+               resource = "RSRC.GSE80970", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resource (to 'res' symbol)

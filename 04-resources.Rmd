@@ -20,9 +20,9 @@ The data format refers to the intrinsic structure of the data. A very common fam
 
 When the data model is getting complex (data types and objects relationships), a domain-specific data format is sometimes designed to handle this complexity so that statistical analysis and data retrieval can be executed as efficiently as possible. Examples of domain-specific data formats are encountered in the omic or geospatial fields of research that are described in the Workflows part: [Omic](#Omic) and [Geospatial](#GIS). A data format can also include some additional features such as data compression, encoding or encryption. Each data format requires an appropriate reader software library or application to extract the information or perform data aggregation or filtering operations. 
 
-We have prepared a test environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: [opal-test.obiba.org](https://opal-test.obiba.org). This figure illustrate the resources which are available for the `test` project and can serve as a starting example of the different types of resources that can be dealt with
+We have prepared a test environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: [opal-demo.obiba.org](https://opal-demo.obiba.org). This figure illustrate the resources which are available for the `test` project and can serve as a starting example of the different types of resources that can be dealt with
 
-```{r testResources, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-test.obiba.org", fig.align='center' }
+```{r testResources, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-demo.obiba.org", fig.align='center' }
 knitr::include_graphics("fig/opal_resources.png", dpi=NA)
 ```
 

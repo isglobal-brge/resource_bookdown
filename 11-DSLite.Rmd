@@ -14,9 +14,8 @@ datasets that are being analyzed must be fully accessible in the local environme
 Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration. The minimum required packages should be:
 
 ```{r install_resourcer, eval=FALSE}
-install.packages("resourcer", dependencies = TRUE)
-devtools::install_github("datashield/DSLite", dependencies = TRUE)
-devtools::install_github("datashield/dsBase", ref = "v6.0-dev", dependencies = TRUE)
+install.packages(c("resourcer", "DSLite"), dependencies = TRUE)
+install.packages("dsBase", repos = c("https://cloud.r-project.org", "https://cran.obiba.org"), dependencies = TRUE)
 ```
 
 
