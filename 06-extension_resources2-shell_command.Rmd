@@ -9,7 +9,7 @@ Here we describe how [PLINK](http://zzz.bwh.harvard.edu/plink/) program can be u
 We use this following code to illustrate how analyses should be performed using the `r CRANpkg("resourcer")` package. This code could be considered as the base code for creating a DataSHIELD package for the OPAL server as performed in `plinkDS()` function implemented in the `r Githubpkg("isglobal-brge", "dsOmics")` package
 
 
-We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources)) using the `r CRANpkg("resourcer")` package as follows:
+We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources2)) using the `r CRANpkg("resourcer")` package as follows:
 
 
 ```{r plink_resource}

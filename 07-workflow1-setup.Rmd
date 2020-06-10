@@ -15,7 +15,7 @@ In order to achive this `resourcer` extension, two `R6` classes have been implem
 
 Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both `dsBase` and `dsOmics` and `resourcer` packages must be installed as is illustrated in the figure. 
 
-```{r installPackagesOpal, echo=FALSE, fig.cap="Installed packages in the test opal server", fig.align='center'}
+```{r installPackagesOpal, echo=FALSE, fig.cap="Installed packages in the demo opal server", fig.align='center'}
 knitr::include_graphics("fig/add_packages_opal.png")
 ```
 
@@ -23,7 +23,7 @@ knitr::include_graphics("fig/add_packages_opal.png")
 The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was intalled into the opal server
 
 
-```{r installPackagesOpal2, echo=FALSE, fig.cap="Description how `dsOmics` package was intalled into the test opal server", fig.align='center'}
+```{r installPackagesOpal2, echo=FALSE, fig.cap="Description how `dsOmics` package was intalled into the demo opal server", fig.align='center'}
 knitr::include_graphics("fig/add_packages_opal_2.png")
 ```
 

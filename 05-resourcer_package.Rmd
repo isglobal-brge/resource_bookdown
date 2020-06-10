@@ -249,9 +249,9 @@ A real example of how to create this file for the `{r Githubpkg("isglobal-brge",
 
 ## Examples of Resources
 
-Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal test example available at https://opal-demo.obiba.org which has the following reources 
+Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal demo example (RSRC project) available at https://opal-demo.obiba.org which has the following resources 
 
-```{r testResources2, echo=FALSE, fig.cap="Resources from a test enviroment available at https://opal-demo.obiba.org", fig.align='center'}
+```{r testResources2, echo=FALSE, fig.cap="Resources from a demo enviroment available at https://opal-demo.obiba.org", fig.align='center'}
 knitr::include_graphics("fig/opal_resources.png", dpi=NA)
 ```
 
@@ -291,7 +291,7 @@ datashield.logout(conns)
 
 ### R Data File into a R object
 
-Now let us describe how to get an specific type of R object into de R server. Our Opal test contains a resource called GSE80970 which is in a local machine. The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
+Now let us describe how to get an specific type of R object into de R server. Our Opal demo  contains a resource called GSE80970 which is in a local machine (see Figure \@ref(fig:testResources2)). The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
 
 ```{r load_eSet}
 # prepare login data and resource to assign
