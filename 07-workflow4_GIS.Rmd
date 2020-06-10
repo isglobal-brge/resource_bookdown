@@ -20,9 +20,9 @@ In order to perform geospatial data analyses, we need first to login and assign 
 
 ```{r login_assign_GIS}
 builder <- DSI::newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.gps_data", driver = "OpalDriver")
+               resource = "RSRC.gps_data", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -32,8 +32,8 @@ conns <- DSI::datashield.login(logins = logindata, assign = TRUE,
 # Assign additional datasets as resources for the location of the food outlets / takeaways and
 # the participant phenotype data
 
-datashield.assign.resource(conns, symbol="takeaway.res", resource="test.takeaway_gps")
-datashield.assign.resource(conns, symbol="participant.res", resource="test.gps_participant")
+datashield.assign.resource(conns, symbol="takeaway.res", resource="RSRC.takeaway_gps")
+datashield.assign.resource(conns, symbol="participant.res", resource="RSRC.gps_participant")
 
 # Assign to the original R classes (e.g Spatial)
 

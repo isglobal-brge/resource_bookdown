@@ -14,7 +14,7 @@ We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources))
 
 ```{r plink_resource}
 library(resourcer)
-brge_plink <- resourcer::newResource(url="ssh://plink-test.obiba.org:2222/home/master/brge?exec=ls,plink,plink1", 
+brge_plink <- resourcer::newResource(url="ssh://plink-demo.obiba.org:2222/home/master/brge?exec=ls,plink,plink1", 
                                      identity = "master", secret = "master")
 client <- resourcer::newResourceClient(brge_plink)
 ```

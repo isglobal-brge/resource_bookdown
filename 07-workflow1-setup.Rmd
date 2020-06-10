@@ -50,7 +50,7 @@ Using DataSHIELD also requires some R packages to be install from the client sit
 
 ```{r install_all, eval=FALSE}
 install.packages("DSOpal", dependencies = TRUE)
-devtools::install_github("datashield/dsBaseClient", ref = "v6.0-dev", dependencies = TRUE)
+install.packages("dsBaseClient", repos = c("https://cloud.r-project.org", "https://cran.obiba.org"), dependencies = TRUE)
 devtools::install_github("isglobal-brge/dsOmicsClient", dependencies = TRUE)
 devtools::install_github("tombisho/dsGeoClient", dependencies = TRUE)
 ```

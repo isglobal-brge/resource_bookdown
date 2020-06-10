@@ -45,9 +45,9 @@ Let us start by creating the connection to the opal server:
 
 ```{r pipeline_gene_expr}
 builder <- newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.tcga_liver", driver = "OpalDriver")
+               resource = "RSRC.tcga_liver", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -121,12 +121,12 @@ In order to perform omic data analyses, we need first to login and assign resour
 
 ```{r login_assign_eSet}
 builder <- DSI::newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.GSE66351_1", driver = "OpalDriver")
-builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               resource = "RSRC.GSE66351_1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.GSE66351_2", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_2", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -267,12 +267,12 @@ Performing this type of analysis using the `ds.lmFeature` function is not allowe
 ```{r login_assign_eSet_new, echo=FALSE}
 datashield.logout(conns)
 builder <- DSI::newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.GSE66351_1", driver = "OpalDriver")
-builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               resource = "RSRC.GSE66351_1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.GSE66351_2", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_2", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -320,9 +320,9 @@ The GWAS analysis is then perform as follows. We first start by preparing login 
 
 ```{r add_resources_vcf}
 builder <- newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org",
+builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "test.brge_vcf", driver = "OpalDriver")
+               resource = "RSRC.brge_vcf", driver = "OpalDriver")
 logindata <- builder$build()
 
 conns <- datashield.login(logins = logindata, assign = TRUE,
@@ -334,13 +334,13 @@ In this case we have to assign to different resources. One for the VCF (obesity_
 
 ```{r assign_vcf}
 datashield.assign.resource(conns, symbol = "vcf.res", 
-                           resource = list(study1 = "test.brge_vcf"))
+                           resource = list(study1 = "RSRC.brge_vcf"))
 datashield.assign.expr(conns, symbol = "gds", 
                        expr = quote(as.resource.object(vcf.res)))
 
 
 datashield.assign.resource(conns, symbol = "covars.res", 
-                           resource = list(study1 = "test.brge"))
+                           resource = list(study1 = "RSRC.brge"))
 datashield.assign.expr(conns, symbol = "covars", 
                        expr = quote(as.resource.data.frame(covars.res)))
 ```
@@ -405,9 +405,9 @@ library(DSOpal)
 library(dsBaseClient)
 library(dsOmicsClient)
 builder <- newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org",
+builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "test.brge_plink", driver = "OpalDriver")
+               resource = "RSRC.brge_plink", driver = "OpalDriver")
 logindata <- builder$build()
 ```
 

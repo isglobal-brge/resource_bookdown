@@ -21,9 +21,9 @@ library(dsBaseClient)
 
 # prepare login data and resource to assign
 builder <- DSI::newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.CNSIM1", driver = "OpalDriver")
+               resource = "RSRC.CNSIM1", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resource
@@ -74,15 +74,15 @@ library(dsBaseClient)
 
 # prepare login data and resources to assign
 builder <- DSI::newDSLoginBuilder()
-builder$append(server = "study1", url = "https://opal-test.obiba.org", 
+builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.CNSIM1", driver = "OpalDriver")
-builder$append(server = "study2", url = "https://opal-test.obiba.org", 
+               resource = "RSRC.CNSIM1", driver = "OpalDriver")
+builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.CNSIM2", driver = "OpalDriver")
-builder$append(server = "study3", url = "https://opal-test.obiba.org", 
+               resource = "RSRC.CNSIM2", driver = "OpalDriver")
+builder$append(server = "study3", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "test.CNSIM3", driver = "OpalDriver")
+               resource = "RSRC.CNSIM3", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resources
