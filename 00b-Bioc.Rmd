@@ -37,7 +37,7 @@ head(annotation)
 
 ## Expression Sets
 
-[ExpressionSet]()
+The [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) is a fundamental data container in Bioconductor
 
 ![Alt ExpressionSet](fig/eSet_vs_dataframe.png)
 
@@ -106,7 +106,7 @@ head(probes)
 
 ## Genomic Ranges
 
-[GenomicRanges]()
+The [GenomicRanges](https://bioconductor.org/packages/release/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.html) package serves as the foundation for representing genomic locations within the Bioconductor project. 
 
 - `GRanges()`: genomic coordinates to represent annotations (exons,
   genes, regulatory marks, ...) and data (called peaks, variants,
@@ -230,7 +230,7 @@ This table shows the common operations of `GenomicRanges`
 
 ## Summarized Experiments
 
-[SummarizedExperiment]()
+The [SummarizedExperiment](https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html) container encapsulates one or more assays, each represented by a matrix-like object of numeric or other mode. The rows typically represent genomic ranges of interest and the columns represent samples.
 
  ![Alt SummarizedExperiment](fig/SummarizedExperiment.png)
 
@@ -243,7 +243,7 @@ This table shows the common operations of `GenomicRanges`
 - Coordinate feature x sample 'assays' with row (feature) and column
   (sample) descriptions.
 
-- 'assays' (similar to 'exprs' in `ExpressionSet`objects) can be any matrix-like object, including very large on-disk representations such as [HDF5Array]()
+- 'assays' (similar to 'exprs' in `ExpressionSet`objects) can be any matrix-like object, including very large on-disk representations such as [HDF5Array](https://bioconductor.org/packages/release/bioc/html/HDF5Array.html)
 
 - 'assays' are annotated using `GenomicRanges`
 
@@ -299,7 +299,7 @@ subsetByOverlaps(airway, roi)
 
 ## Multi Data Set
 
-[MultiDataSet]()
+[MultiDataSet](http://bioconductor.org/packages/release/bioc/html/MultiDataSet.html) is designed for integrating multi omic datasets. 
 
    ![Alt MultiDataSet](fig/mds.png)
 
@@ -311,70 +311,4 @@ subsetByOverlaps(airway, roi)
 -- create new methods and functions for omic data integration; 
 -- encapsule new unimplemented data from any biological experiment
 
-- [MultiAssayExperiment]() is another infrastructure (created by BioC developers) that can be used to manage multi-omic data
-
-
-[Bioconductor]: https://bioconductor.org
-[CRAN]: https://cran.r-project.org
-[R]: https://cran.r-project.org
-[DataSHIELD]: http://www.datashield.ac.uk/
-[resourcer]: https://cran.r-project.org/web/packages/resourcer/index.html
-
-[biocViews]: https://bioconductor.org/packages/
-[HDF5Array]: https://bioconductor.org/packages/HDF5Array
-[AnnotationDbi]: https://bioconductor.org/packages/AnnotationDbi
-[AnnotationHub]: https://bioconductor.org/packages/AnnotationHub
-[BSgenome.Hsapiens.UCSC.hg19]: https://bioconductor.org/packages/BSgenome.Hsapiens.UCSC.hg19
-[BSgenome]: https://bioconductor.org/packages/BSgenome
-[BiocParallel]: https://bioconductor.org/packages/BiocParallel
-[Biostrings]: https://bioconductor.org/packages/Biostrings
-[CNTools]: https://bioconductor.org/packages/CNTools
-[ChIPQC]: https://bioconductor.org/packages/ChIPQC
-[ChIPseeker]: https://bioconductor.org/packages/ChIPseeker
-[DESeq2]: https://bioconductor.org/packages/DESeq2
-[DiffBind]: https://bioconductor.org/packages/DiffBind
-[GenomicAlignments]: https://bioconductor.org/packages/GenomicAlignments
-[GenomicFeatures]: https://bioconductor.org/packages/GenomicFeatures
-[GenomicFiles]: https://bioconductor.org/packages/GenomicFiles
-[GenomicRanges]: https://bioconductor.org/packages/GenomicRanges
-[Gviz]: https://bioconductor.org/packages/Gviz
-[Homo.sapiens]: https://bioconductor.org/packages/Homo.sapiens
-[IRanges]: https://bioconductor.org/packages/IRanges
-[KEGGREST]: https://bioconductor.org/packages/KEGGREST
-[OmicCircos]: https://bioconductor.org/packages/OmicCircos
-[PSICQUIC]: https://bioconductor.org/packages/PSICQUIC
-[Rsamtools]: https://bioconductor.org/packages/Rsamtools
-[Rsubread]: https://bioconductor.org/packages/Rsubread
-[ShortRead]: https://bioconductor.org/packages/ShortRead
-[SomaticSignatures]: https://bioconductor.org/packages/SomaticSignatures
-[SummarizedExperiment]: https://bioconductor.org/packages/SummarizedExperiment
-[TxDb.Hsapiens.UCSC.hg19.knownGene]: https://bioconductor.org/packages/TxDb.Hsapiens.UCSC.hg19.knownGene
-[VariantAnnotation]: https://bioconductor.org/packages/VariantAnnotation
-[VariantFiltering]: https://bioconductor.org/packages/VariantFiltering
-[VariantTools]: https://bioconductor.org/packages/VariantTools
-[airway]: https://bioconductor.org/packages/airway
-[biomaRt]: https://bioconductor.org/packages/biomaRt
-[cn.mops]: https://bioconductor.org/packages/cn.mops
-[csaw]: https://bioconductor.org/packages/csaw
-[edgeR]: https://bioconductor.org/packages/edgeR
-[ensemblVEP]: https://bioconductor.org/packages/ensemblVEP
-[epivizr]: https://bioconductor.org/packages/epivizr
-[ggbio]: https://bioconductor.org/packages/ggbio
-[h5vc]: https://bioconductor.org/packages/h5vc
-[limma]: https://bioconductor.org/packages/limma
-[metagenomeSeq]: https://bioconductor.org/packages/metagenomeSeq
-[org.Hs.eg.db]: https://bioconductor.org/packages/org.Hs.eg.db
-[org.Sc.sgd.db]: https://bioconductor.org/packages/org.Sc.sgd.db
-[phyloseq]: https://bioconductor.org/packages/phyloseq
-[rtracklayer]: https://bioconductor.org/packages/rtracklayer
-[snpStats]: https://bioconductor.org/packages/snpStats
-
-[dplyr]: https://cran.r-project.org/package=dplyr
-[data.table]: https://cran.r-project.org/package=data.table
-[Rcpp]: https://cran.r-project.org/package=Rcpp
-[kallisto]: https://pachterlab.github.io/kallisto
-
-[MultiDataSet]: https://bioconductor.org/packages/MultiDataSet
-[snpMatrix]: http://www.bioconductor.org/packages//2.7/bioc/html/snpMatrix.html
-[PLINK]: http://pngu.mgh.harvard.edu/~purcell/plink/
-[MultiAssayExperiment]: https://bioconductor.org/packages/MultiAssayExperiment
+- [MultiAssayExperiment](https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html) is another infrastructure container (created by BioC developers) that can be used to manage multi-omic data
