@@ -1,6 +1,6 @@
 # Geospatial data analysis {#GIS}
 
-In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data.  The objectives of the analyses are intended to mimic the real-life usage of data covered in REF BURGOINE ET AL.
+In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data.  The objectives of the analyses are intended to mimic the real-life usage of data as described in [Burgoine et al](https://doi.org/10.1136/bmj.g1464).
 
 ## Introducing the analysis
 
@@ -14,7 +14,7 @@ knitr::include_graphics("fig/takeaways.png")
 ```
 
 ## Setting up the analysis
-THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK
+Note that in this example, the data are held in a single resource. There is scope for the data to be held in different resources.
  
 In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the `as.resource.object()` function. The data have been uploaded to the server and configured as resources.
 
