@@ -134,6 +134,34 @@ datashield.symbols(conns)
 # TODO show up some basic analysis
 ```
 
+Then we use the DataSHIELD functions from the dsBaseClient package to analyse the data and get non-disclosive summary statistics. For example we can get the column names and the dimension of the dataset from each study, we can get the summary of a variable which includes its class, length, quantiles and mean, we can get contigency tables between categorical variables, we can apply a generalized linear model and many other functions:
+
+```{r survivalDemoAssign}
+ds.colnames("D")
+```
+
+```{r survivalDemoAssign}
+ds.dim("D")
+```
+
+```{r survivalDemoAssign}
+ds.summary("D$age.60")
+```
+
+```{r survivalDemoAssign}
+ds.table2D("D$female", "D$cens")
+```
+
+```{r survivalDemoAssign}
+ds.glm(formula="cens~female+bmi.26+pm10.16", data="D", family="binomial")
+```
+
+For a full list of the dsBaseClient functions you can use the following command:
+
+```{r survivalDemoAssign}
+ds.listClientsideFunctions()
+```
+
 Finaly we clean up the R server sessions: 
 
 ```{r survivalDemoLogout}
