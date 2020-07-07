@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="GIS" class="section level1" number="13">
 <h1><span class="header-section-number">13</span> Geospatial data analysis</h1>
-<p>In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data. The objectives of the analyses are intended to mimic the real-life usage of data covered in REF BURGOINE ET AL.</p>
+<p>In this section we will provide some realistic data anlyses of geographic data including Geospatial Positionning System (GPS) and geolocation data, which is then combined with phenotypic data. The objectives of the analyses are intended to mimic the real-life usage of data as described in <a href="https://doi.org/10.1136/bmj.g1464">Burgoine et al</a>.</p>
 <div id="introducing-the-analysis" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Introducing the analysis</h2>
 <p>In this example we consider GPS traces captured by individuals in some eastern districts of London, publically available from <a href="https://www.openstreetmap.org/">OpenStreetMap</a>. For this example analysis, we will imagine these 819 GPS traces as commutes between individuals’ home and work. If these data were actual commutes, they would be highly sensitive as they identify an individual’s home and work location. Therefore it is less likely that commuting data would be readily accessible for traditional pooled analysis and a federated approach with DataSHIELD could be more practical. We also have real data on the location of 6100 fast food or takeaway outlets in this same area, sourced from the <a href="https://api.ratings.food.gov.uk/">Food Standards Agency</a>. This is shown in the figure below. We manufactured a corresponding data set on individuals’ BMI, age, sex, total household income, highest educational qualification (as proxies for individual level socioeconomic status) and smoking status. The purpose of the analysis is to test the association between exposure to takeaway food on a commute with BMI, using the other variables to adjust for confounding factors. Given that reducing obesity is a public health priority, this type of research could help inform local authority policies towards food outlet location, type and density. We illustrate how the tools available in the dsGeo package allow this question to be addressed.</p>
@@ -305,7 +305,7 @@ Figure 13.2: Location of food outlets in eastern London
 </div>
 <div id="setting-up-the-analysis" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Setting up the analysis</h2>
-<p>THE DATA ARE NOT CURRENTLY SPLIT, BUT COULD DO THIS AT A LATER DATE WHEN IT IS ALL WORKING OK</p>
+<p>Note that in this example, the data are held in a single resource. There is scope for the data to be held in different resources.</p>
 <p>In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the <code>as.resource.object()</code> function. The data have been uploaded to the server and configured as resources.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="GIS.html#cb205-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
 <span id="cb205-2"><a href="GIS.html#cb205-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
