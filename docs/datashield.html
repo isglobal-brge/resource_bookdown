@@ -167,8 +167,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
-<li class="chapter" data-level="5.3.3" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.3.3</b> Demo</a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -452,8 +452,9 @@ Figure 5.2: DataSHIELD configuration in Opal
 <li>processing of the incoming R operation requests (aggregation and assignment function calls authorization is required) that are forwarded to the R server session; non-disclosive aggregated result is then returned to the R client.</li>
 </ul>
 </div>
-<div id="demo-1" class="section level3" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Demo</h3>
+</div>
+<div id="demo-1" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Demo</h2>
 <p>Readers can read <a href="http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html">the DataSHIELD page in Opal documentation</a> to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, linear and generalized linear models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtained in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD Wiki</a>.</p>
 <p>The following is a simple illustration of how to analyze some data available in the <a href="http://opal-demo.obiba.org/">Opal demo site</a>. The <a href="https://opal-demo.obiba.org/ui/index.html#!projects">Projects page</a> gives access to the different projects avaialble in this Opal server. If we select the <code>SURVIVAL</code> project we see that there are three tables:</p>
 <div class="figure" style="text-align: center"><span id="fig:survivalTables"></span>
@@ -828,7 +829,6 @@ If you cannot see one or more of the clientside functions you expected to find p
 <p>Finaly we clean up the R server sessions:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="datashield.html#cb74-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 
-</div>
 </div>
 </div>
 

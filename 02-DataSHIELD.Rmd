@@ -97,7 +97,7 @@ When performing a DataSHIELD analysis session, a typical workflow on a single Op
 * assignment of Opal-managed data into the R server session (data access authorization is required),
 * processing of the incoming R operation requests (aggregation and assignment function calls authorization is required) that are forwarded to the R server session; non-disclosive aggregated result is then returned to the R client. 
 
-### Demo
+## Demo
 
 Readers can read [the DataSHIELD page in Opal documentation](http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html) to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, linear and generalized linear models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtained in the [DataSHIELD Wiki](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview).
 
