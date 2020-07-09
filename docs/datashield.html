@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,9 +458,9 @@ Figure 5.2: DataSHIELD configuration in Opal
 <p>The following is a simple illustration of how to analyze some data available in the <a href="http://opal-demo.obiba.org/">Opal demo site</a>. The <a href="https://opal-demo.obiba.org/ui/index.html#!projects">Projects page</a> gives access to the different projects avaialble in this Opal server. If we select the <code>SURVIVAL</code> project we see that there are three tables:</p>
 <div class="figure" style="text-align: center"><span id="fig:survivalTables"></span>
 <p class="caption">
-Figure 5.3: Tables available in the SURVIVAL project from our Opal example
+Figure 5.3: Tables available in the SURVIVAL project from our Opal example (<a href="https://opal-demo.obiba.org/" class="uri">https://opal-demo.obiba.org/</a>)
 </p>
-<img src="fig/survival_tables.png" alt="Tables available in the SURVIVAL project from our Opal example" width="940" />
+<img src="fig/survival_tables.png" alt="Tables available in the SURVIVAL project from our Opal example (https://opal-demo.obiba.org/)" width="940" />
 </div>
 <p>First we build a connection object with user credentials and the location of the server for each of the study:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="datashield.html#cb55-1"></a><span class="kw">library</span>(DSOpal)</span>
@@ -492,9 +492,341 @@ $study2
 
 $study3
 [1] &quot;D&quot;</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="datashield.html#cb59-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> show up some basic analysis</span></span></code></pre></div>
+<p>Then we use the DataSHIELD functions from the <code>dsBaseClient</code> package to analyse the data and get non-disclosive summary statistics. The package should be first loaded</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="datashield.html#cb59-1"></a><span class="kw">library</span>(dsBaseClient)</span></code></pre></div>
+<p>Then, for example, we can get the column names and the dimension of the dataset from each study:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="datashield.html#cb60-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
+ [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   
+
+$study2
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
+ [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   
+
+$study3
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
+ [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   </code></pre>
+<p>we can get the dimension of the datasetes:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="datashield.html#cb62-1"></a><span class="kw">ds.dim</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<pre><code>$`dimensions of D in study1`
+[1] 2060   12
+
+$`dimensions of D in study2`
+[1] 1640   12
+
+$`dimensions of D in study3`
+[1] 2688   12
+
+$`dimensions of D in combined studies`
+[1] 6388   12</code></pre>
+<p>the summary of a variable which includes its class, length, quantiles and mean:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="datashield.html#cb64-1"></a><span class="kw">ds.summary</span>(<span class="st">&quot;D$age.60&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+$study1$class
+[1] &quot;numeric&quot;
+
+$study1$length
+[1] 2060
+
+$study1$`quantiles &amp; mean`
+        5%        10%        25%        50%        75%        90%        95%       Mean 
+-27.000000 -21.000000 -13.000000  -3.000000   7.000000  15.000000  20.000000  -3.167883 
+
+
+$study2
+$study2$class
+[1] &quot;numeric&quot;
+
+$study2$length
+[1] 1640
+
+$study2$`quantiles &amp; mean`
+        5%        10%        25%        50%        75%        90%        95%       Mean 
+-27.000000 -22.000000 -15.000000  -4.000000   7.000000  14.000000  20.000000  -4.008637 
+
+
+$study3
+$study3$class
+[1] &quot;numeric&quot;
+
+$study3$length
+[1] 2688
+
+$study3$`quantiles &amp; mean`
+        5%        10%        25%        50%        75%        90%        95%       Mean 
+-25.700000 -21.000000 -13.000000  -3.000000   7.000000  14.000000  20.000000  -3.089989 </code></pre>
+<p>we can get contigency table between categorical variables:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="datashield.html#cb66-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;D$female&quot;</span>, <span class="st">&quot;D$cens&quot;</span>)</span></code></pre></div>
+<pre><code>
+ Data in all studies were valid 
+
+Study 1 :  No errors reported from this study
+Study 2 :  No errors reported from this study
+Study 3 :  No errors reported from this study</code></pre>
+<pre><code>$output.list
+$output.list$TABLE.STUDY.1_row.props
+        D$cens
+D$female     0     1      NA
+      0  0.726 0.261 0.01280
+      1  0.833 0.158 0.00901
+      NA 0.750 0.250 0.00000
+
+$output.list$TABLE.STUDY.1_col.props
+        D$cens
+D$female       0       1    NA
+      0  0.42000 0.57700 0.545
+      1  0.57300 0.41400 0.455
+      NA 0.00743 0.00946 0.000
+
+$output.list$TABLE.STUDY.2_row.props
+        D$cens
+D$female     0     1      NA
+      0  0.759 0.239 0.00286
+      1  0.860 0.139 0.00107
+      NA 0.800 0.200 0.00000
+
+$output.list$TABLE.STUDY.2_col.props
+        D$cens
+D$female       0       1    NA
+      0  0.39700 0.56000 0.667
+      1  0.60000 0.43600 0.333
+      NA 0.00299 0.00336 0.000
+
+$output.list$TABLE.STUDY.3_row.props
+        D$cens
+D$female     0     1      NA
+      0  0.714 0.274 0.01190
+      1  0.828 0.164 0.00802
+      NA 0.706 0.294 0.00000
+
+$output.list$TABLE.STUDY.3_col.props
+        D$cens
+D$female       0       1    NA
+      0  0.40100 0.56300 0.538
+      1  0.59300 0.42800 0.462
+      NA 0.00574 0.00874 0.000
+
+$output.list$TABLES.COMBINED_all.sources_row.props
+        D$cens
+D$female     0     1      NA
+      0  0.729 0.261 0.00997
+      1  0.838 0.155 0.00650
+      NA 0.737 0.263 0.00000
+
+$output.list$TABLES.COMBINED_all.sources_col.props
+        D$cens
+D$female       0       1    NA
+      0  0.40600 0.56700 0.549
+      1  0.58800 0.42500 0.451
+      NA 0.00555 0.00773 0.000
+
+$output.list$TABLE_STUDY.1_counts
+        D$cens
+D$female   0   1 NA
+      0  678 244 12
+      1  925 175 10
+      NA  12   4  0
+
+$output.list$TABLE_STUDY.2_counts
+        D$cens
+D$female   0   1 NA
+      0  531 167  2
+      1  804 130  1
+      NA   4   1  0
+
+$output.list$TABLE_STUDY.3_counts
+        D$cens
+D$female    0   1 NA
+      0   839 322 14
+      1  1239 245 12
+      NA   12   5  0
+
+$output.list$TABLES.COMBINED_all.sources_counts
+        D$cens
+D$female    0   1 NA
+      0  2048 733 28
+      1  2968 550 23
+      NA   28  10  0
+
+
+$validity.message
+[1] &quot;Data in all studies were valid&quot;</code></pre>
+<p>or we can fit a generalized linear model among many other analyses:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="datashield.html#cb69-1"></a><span class="kw">ds.glm</span>(<span class="dt">formula=</span><span class="st">&quot;cens~female+bmi.26+pm10.16&quot;</span>, <span class="dt">data=</span><span class="st">&quot;D&quot;</span>, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
+<pre><code>$Nvalid
+[1] 6169
+
+$Nmissing
+[1] 219
+
+$Ntotal
+[1] 6388
+
+$disclosure.risk
+       RISK OF DISCLOSURE
+study1                  0
+study2                  0
+study3                  0
+
+$errorMessage
+       ERROR MESSAGES
+study1 &quot;No errors&quot;   
+study2 &quot;No errors&quot;   
+study3 &quot;No errors&quot;   
+
+$nsubs
+[1] 6169
+
+$iter
+[1] 6
+
+$family
+
+Family: binomial 
+Link function: logit 
+
+
+$formula
+[1] &quot;cens ~ female + bmi.26 + pm10.16&quot;
+
+$coefficients
+              Estimate  Std. Error   z-value      p-value low0.95CI.LP high0.95CI.LP      P_OR
+(Intercept) -0.9465551 0.046427292 -20.38790 2.141278e-92   -1.0375510    -0.8555593 0.2795781
+female1     -0.7240154 0.067603806 -10.70968 9.167462e-27   -0.8565164    -0.5915143 0.4848017
+bmi.26       0.1239566 0.007308207  16.96129 1.588245e-64    0.1096328     0.1382804 1.1319667
+pm10.16      0.6620624 0.037059614  17.86479 2.217477e-71    0.5894269     0.7346979 1.9387867
+            low0.95CI.P_OR high0.95CI.P_OR
+(Intercept)      0.2616228       0.2982680
+female1          0.4246388       0.5534885
+bmi.26           1.1158682       1.1482975
+pm10.16          1.8029548       2.0848521
+
+$dev
+[1] 5544.853
+
+$df
+[1] 6165
+
+$output.information
+[1] &quot;SEE TOP OF OUTPUT FOR INFORMATION ON MISSING DATA AND ERROR MESSAGES&quot;</code></pre>
+<p>For a full list of the dsBaseClient functions you can use the following command:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="datashield.html#cb71-1"></a><span class="kw">ds.listClientsideFunctions</span>()</span></code></pre></div>
+<pre><code>
+### Full search path 
+ [1] &quot;.GlobalEnv&quot;                                &quot;package:dsBaseClient&quot;                     
+ [3] &quot;package:airway&quot;                            &quot;package:Homo.sapiens&quot;                     
+ [5] &quot;package:TxDb.Hsapiens.UCSC.hg19.knownGene&quot; &quot;package:org.Hs.eg.db&quot;                     
+ [7] &quot;package:GO.db&quot;                             &quot;package:OrganismDbi&quot;                      
+ [9] &quot;package:GenomicFeatures&quot;                   &quot;package:AnnotationDbi&quot;                    
+[11] &quot;package:tweeDEseqCountData&quot;                &quot;package:forcats&quot;                          
+[13] &quot;package:stringr&quot;                           &quot;package:dplyr&quot;                            
+[15] &quot;package:purrr&quot;                             &quot;package:readr&quot;                            
+[17] &quot;package:tidyr&quot;                             &quot;package:tibble&quot;                           
+[19] &quot;package:ggplot2&quot;                           &quot;package:tidyverse&quot;                        
+[21] &quot;package:kableExtra&quot;                        &quot;package:BiocStyle&quot;                        
+[23] &quot;package:snpStats&quot;                          &quot;package:Matrix&quot;                           
+[25] &quot;package:survival&quot;                          &quot;package:DSOpal&quot;                           
+[27] &quot;package:DSI&quot;                               &quot;package:R6&quot;                               
+[29] &quot;package:progress&quot;                          &quot;package:opalr&quot;                            
+[31] &quot;package:httr&quot;                              &quot;package:SummarizedExperiment&quot;             
+[33] &quot;package:DelayedArray&quot;                      &quot;package:BiocParallel&quot;                     
+[35] &quot;package:matrixStats&quot;                       &quot;package:Biobase&quot;                          
+[37] &quot;package:GenomicRanges&quot;                     &quot;package:GenomeInfoDb&quot;                     
+[39] &quot;package:IRanges&quot;                           &quot;package:S4Vectors&quot;                        
+[41] &quot;package:BiocGenerics&quot;                      &quot;package:parallel&quot;                         
+[43] &quot;package:stats4&quot;                            &quot;tools:rstudio&quot;                            
+[45] &quot;package:stats&quot;                             &quot;package:graphics&quot;                         
+[47] &quot;package:grDevices&quot;                         &quot;package:utils&quot;                            
+[49] &quot;package:datasets&quot;                          &quot;package:methods&quot;                          
+[51] &quot;Autoloads&quot;                                 &quot;package:base&quot;                             
+
+### userDefinedClient functions 
+[1] &quot;No clientside functions in this repository&quot;
+
+### dsBaseClient functions 
+ [1] &quot;ds.asCharacter&quot;             &quot;ds.asDataMatrix&quot;            &quot;ds.asFactor&quot;               
+ [4] &quot;ds.asInteger&quot;               &quot;ds.asList&quot;                  &quot;ds.asLogical&quot;              
+ [7] &quot;ds.asMatrix&quot;                &quot;ds.asNumeric&quot;               &quot;ds.assign&quot;                 
+[10] &quot;ds.Boole&quot;                   &quot;ds.c&quot;                       &quot;ds.cbind&quot;                  
+[13] &quot;ds.changeRefGroup&quot;          &quot;ds.class&quot;                   &quot;ds.colnames&quot;               
+[16] &quot;ds.completeCases&quot;           &quot;ds.contourPlot&quot;             &quot;ds.cor&quot;                    
+[19] &quot;ds.corTest&quot;                 &quot;ds.cov&quot;                     &quot;ds.dataFrame&quot;              
+[22] &quot;ds.dataFrameFill&quot;           &quot;ds.dataFrameSort&quot;           &quot;ds.dataFrameSubset&quot;        
+[25] &quot;ds.densityGrid&quot;             &quot;ds.dim&quot;                     &quot;ds.exists&quot;                 
+[28] &quot;ds.exp&quot;                     &quot;ds.glm&quot;                     &quot;ds.glmerSLMA&quot;              
+[31] &quot;ds.glmSLMA&quot;                 &quot;ds.heatmapPlot&quot;             &quot;ds.histogram&quot;              
+[34] &quot;ds.isNA&quot;                    &quot;ds.isValid&quot;                 &quot;ds.length&quot;                 
+[37] &quot;ds.levels&quot;                  &quot;ds.lexis&quot;                   &quot;ds.list&quot;                   
+[40] &quot;ds.listClientsideFunctions&quot; &quot;ds.listDisclosureSettings&quot;  &quot;ds.listOpals&quot;              
+[43] &quot;ds.listServersideFunctions&quot; &quot;ds.lmerSLMA&quot;                &quot;ds.log&quot;                    
+[46] &quot;ds.look&quot;                    &quot;ds.ls&quot;                      &quot;ds.make&quot;                   
+[49] &quot;ds.matrix&quot;                  &quot;ds.matrixDet&quot;               &quot;ds.matrixDet.report&quot;       
+[52] &quot;ds.matrixDiag&quot;              &quot;ds.matrixDimnames&quot;          &quot;ds.matrixInvert&quot;           
+[55] &quot;ds.matrixMult&quot;              &quot;ds.matrixTranspose&quot;         &quot;ds.mean&quot;                   
+[58] &quot;ds.meanByClass&quot;             &quot;ds.meanSdGp&quot;                &quot;ds.merge&quot;                  
+[61] &quot;ds.message&quot;                 &quot;ds.names&quot;                   &quot;ds.numNA&quot;                  
+[64] &quot;ds.quantileMean&quot;            &quot;ds.rbind&quot;                   &quot;ds.rBinom&quot;                 
+[67] &quot;ds.recodeLevels&quot;            &quot;ds.recodeValues&quot;            &quot;ds.rep&quot;                    
+[70] &quot;ds.replaceNA&quot;               &quot;ds.reShape&quot;                 &quot;ds.rm&quot;                     
+[73] &quot;ds.rNorm&quot;                   &quot;ds.rowColCalc&quot;              &quot;ds.rPois&quot;                  
+[76] &quot;ds.rUnif&quot;                   &quot;ds.sample&quot;                  &quot;ds.scatterPlot&quot;            
+[79] &quot;ds.seq&quot;                     &quot;ds.setDefaultOpals&quot;         &quot;ds.setSeed&quot;                
+[82] &quot;ds.subset&quot;                  &quot;ds.subsetByClass&quot;           &quot;ds.summary&quot;                
+[85] &quot;ds.table&quot;                   &quot;ds.table1D&quot;                 &quot;ds.table2D&quot;                
+[88] &quot;ds.tapply&quot;                  &quot;ds.tapply.assign&quot;           &quot;ds.testObjExists&quot;          
+[91] &quot;ds.unList&quot;                  &quot;ds.var&quot;                     &quot;ds.vectorCalc&quot;             
+
+If you cannot see one or more of the clientside functions you expected to find please see above for the full search path. If one of the paths is a possible clientside repository issue the R command ls(pos=&#39;package:dsPackageName&#39;) where &#39;package:dsPackageName&#39; is the full name stated in the search path</code></pre>
+<pre><code> [1] &quot;No clientside functions in this repository&quot; &quot;ds.asCharacter&quot;                            
+ [3] &quot;ds.asDataMatrix&quot;                            &quot;ds.asFactor&quot;                               
+ [5] &quot;ds.asInteger&quot;                               &quot;ds.asList&quot;                                 
+ [7] &quot;ds.asLogical&quot;                               &quot;ds.asMatrix&quot;                               
+ [9] &quot;ds.asNumeric&quot;                               &quot;ds.assign&quot;                                 
+[11] &quot;ds.Boole&quot;                                   &quot;ds.c&quot;                                      
+[13] &quot;ds.cbind&quot;                                   &quot;ds.changeRefGroup&quot;                         
+[15] &quot;ds.class&quot;                                   &quot;ds.colnames&quot;                               
+[17] &quot;ds.completeCases&quot;                           &quot;ds.contourPlot&quot;                            
+[19] &quot;ds.cor&quot;                                     &quot;ds.corTest&quot;                                
+[21] &quot;ds.cov&quot;                                     &quot;ds.dataFrame&quot;                              
+[23] &quot;ds.dataFrameFill&quot;                           &quot;ds.dataFrameSort&quot;                          
+[25] &quot;ds.dataFrameSubset&quot;                         &quot;ds.densityGrid&quot;                            
+[27] &quot;ds.dim&quot;                                     &quot;ds.exists&quot;                                 
+[29] &quot;ds.exp&quot;                                     &quot;ds.glm&quot;                                    
+[31] &quot;ds.glmerSLMA&quot;                               &quot;ds.glmSLMA&quot;                                
+[33] &quot;ds.heatmapPlot&quot;                             &quot;ds.histogram&quot;                              
+[35] &quot;ds.isNA&quot;                                    &quot;ds.isValid&quot;                                
+[37] &quot;ds.length&quot;                                  &quot;ds.levels&quot;                                 
+[39] &quot;ds.lexis&quot;                                   &quot;ds.list&quot;                                   
+[41] &quot;ds.listClientsideFunctions&quot;                 &quot;ds.listDisclosureSettings&quot;                 
+[43] &quot;ds.listOpals&quot;                               &quot;ds.listServersideFunctions&quot;                
+[45] &quot;ds.lmerSLMA&quot;                                &quot;ds.log&quot;                                    
+[47] &quot;ds.look&quot;                                    &quot;ds.ls&quot;                                     
+[49] &quot;ds.make&quot;                                    &quot;ds.matrix&quot;                                 
+[51] &quot;ds.matrixDet&quot;                               &quot;ds.matrixDet.report&quot;                       
+[53] &quot;ds.matrixDiag&quot;                              &quot;ds.matrixDimnames&quot;                         
+[55] &quot;ds.matrixInvert&quot;                            &quot;ds.matrixMult&quot;                             
+[57] &quot;ds.matrixTranspose&quot;                         &quot;ds.mean&quot;                                   
+[59] &quot;ds.meanByClass&quot;                             &quot;ds.meanSdGp&quot;                               
+[61] &quot;ds.merge&quot;                                   &quot;ds.message&quot;                                
+[63] &quot;ds.names&quot;                                   &quot;ds.numNA&quot;                                  
+[65] &quot;ds.quantileMean&quot;                            &quot;ds.rbind&quot;                                  
+[67] &quot;ds.rBinom&quot;                                  &quot;ds.recodeLevels&quot;                           
+[69] &quot;ds.recodeValues&quot;                            &quot;ds.rep&quot;                                    
+[71] &quot;ds.replaceNA&quot;                               &quot;ds.reShape&quot;                                
+[73] &quot;ds.rm&quot;                                      &quot;ds.rNorm&quot;                                  
+[75] &quot;ds.rowColCalc&quot;                              &quot;ds.rPois&quot;                                  
+[77] &quot;ds.rUnif&quot;                                   &quot;ds.sample&quot;                                 
+[79] &quot;ds.scatterPlot&quot;                             &quot;ds.seq&quot;                                    
+[81] &quot;ds.setDefaultOpals&quot;                         &quot;ds.setSeed&quot;                                
+[83] &quot;ds.subset&quot;                                  &quot;ds.subsetByClass&quot;                          
+[85] &quot;ds.summary&quot;                                 &quot;ds.table&quot;                                  
+[87] &quot;ds.table1D&quot;                                 &quot;ds.table2D&quot;                                
+[89] &quot;ds.tapply&quot;                                  &quot;ds.tapply.assign&quot;                          
+[91] &quot;ds.testObjExists&quot;                           &quot;ds.unList&quot;                                 
+[93] &quot;ds.var&quot;                                     &quot;ds.vectorCalc&quot;                             </code></pre>
 <p>Finaly we clean up the R server sessions:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="datashield.html#cb60-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="datashield.html#cb74-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 
 </div>
 </div>

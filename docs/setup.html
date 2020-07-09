@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -322,15 +322,15 @@ sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
 <div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Required R Packages in the client site (e.g. local machine)</h2>
 <p>Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="setup.html#cb100-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb100-2"><a href="setup.html#cb100-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBaseClient&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb100-3"><a href="setup.html#cb100-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb100-4"><a href="setup.html#cb100-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="setup.html#cb114-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb114-2"><a href="setup.html#cb114-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBaseClient&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb114-3"><a href="setup.html#cb114-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb114-4"><a href="setup.html#cb114-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="setup.html#cb101-1"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb101-2"><a href="setup.html#cb101-2"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb101-3"><a href="setup.html#cb101-3"></a><span class="kw">library</span>(dsOmicsClient)</span>
-<span id="cb101-4"><a href="setup.html#cb101-4"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="setup.html#cb115-1"></a><span class="kw">library</span>(DSOpal)</span>
+<span id="cb115-2"><a href="setup.html#cb115-2"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb115-3"><a href="setup.html#cb115-3"></a><span class="kw">library</span>(dsOmicsClient)</span>
+<span id="cb115-4"><a href="setup.html#cb115-4"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
 
 </div>
 </div>

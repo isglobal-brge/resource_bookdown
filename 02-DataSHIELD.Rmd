@@ -103,7 +103,7 @@ Readers can read [the DataSHIELD page in Opal documentation](http://opaldoc.obib
 
 The following is a simple illustration of how to analyze some data available in the [Opal demo site](http://opal-demo.obiba.org/). The [Projects page](https://opal-demo.obiba.org/ui/index.html#!projects) gives access to the different projects avaialble in this Opal server. If we select the `SURVIVAL` project we see that there are three tables:
 
-```{r survivalTables, echo=FALSE, fig.cap="Tables available in the SURVIVAL project from our Opal example", fig.align='center'}
+```{r survivalTables, echo=FALSE, fig.cap="Tables available in the SURVIVAL project from our Opal example (https://opal-demo.obiba.org/)", fig.align='center'}
 knitr::include_graphics("fig/survival_tables.png")
 ```
 
@@ -131,34 +131,48 @@ datashield.assign.table(conns, symbol = "D",
                                      study2 = "SURVIVAL.EXPAND_WITH_MISSING2",
                                      study3 = "SURVIVAL.EXPAND_WITH_MISSING3"))
 datashield.symbols(conns)
-# TODO show up some basic analysis
 ```
 
-Then we use the DataSHIELD functions from the dsBaseClient package to analyse the data and get non-disclosive summary statistics. For example we can get the column names and the dimension of the dataset from each study, we can get the summary of a variable which includes its class, length, quantiles and mean, we can get contigency tables between categorical variables, we can apply a generalized linear model and many other functions:
+Then we use the DataSHIELD functions from the `dsBaseClient` package to analyse the data and get non-disclosive summary statistics. The package should be first loaded
 
-```{r survivalDemoAssign}
+```{r load_dsBaseClient}
+library(dsBaseClient)
+```
+
+Then, for example, we can get the column names and the dimension of the dataset from each study:
+
+```{r survivalDemoAssign2}
 ds.colnames("D")
 ```
 
-```{r survivalDemoAssign}
+we can get the dimension of the datasetes:
+
+```{r survivalDemoAssign3}
 ds.dim("D")
 ```
 
-```{r survivalDemoAssign}
+the summary of a variable which includes its class, length, quantiles and mean:
+
+
+```{r survivalDemoAssign4}
 ds.summary("D$age.60")
 ```
 
-```{r survivalDemoAssign}
-ds.table2D("D$female", "D$cens")
+we can get contigency table between categorical variables:
+
+```{r survivalDemoAssign5}
+ds.table("D$female", "D$cens")
 ```
 
-```{r survivalDemoAssign}
+or we can fit a generalized linear model among many other analyses:
+
+```{r survivalDemoAssign6}
 ds.glm(formula="cens~female+bmi.26+pm10.16", data="D", family="binomial")
 ```
 
 For a full list of the dsBaseClient functions you can use the following command:
 
-```{r survivalDemoAssign}
+```{r survivalDemoAssign7}
 ds.listClientsideFunctions()
 ```
 
