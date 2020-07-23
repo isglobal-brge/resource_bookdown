@@ -101,6 +101,12 @@ ans.gender <- ds.limma(model =  ~ gdc_cases.demographic.gender,
 
 Notice that we have set `type.data='RNAseq'` to consider that our data are counts obtained from a RNA-seq experiment. By indicating so, the differential analysis is performed by using  `voom` + `limma` as previously mention.
 
+The top differentially expressed genes can be visualized by:
+
+```{r show_ans.gender}
+ans.gender
+```
+
 As usual, we close the DataSHIELD session by:
   
 ```{r close_ds2}
@@ -251,8 +257,14 @@ res2 <- ds.lmFeature(feature = "cg13772815",
 res2
 ```
 
+We can create a QQ-plot by using the function `qqplot` available in our package.
 
-We can create a QQ-plot by using the generic function `plot` (here not showed). In some cases inflation can be observed, so that, correction for cell-type or surrogate variables must be performed. We describe how we can do that in the next two sections.
+```{r qqplot}
+qqplot(ans.meta$p.meta)
+```
+
+
+Here we see inflation, so that, correction for cell-type or surrogate variables must be performed. We describe how we can do that in the next two sections.
 
 
 
