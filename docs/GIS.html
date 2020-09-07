@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13 Geospatial data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="13 Geospatial data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13 Geospatial data analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="Omic.html"/>
 <link rel="next" href="dslite-datashield-implementation-on-local-datasets.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -148,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
@@ -168,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -179,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
@@ -307,49 +308,49 @@ Figure 13.2: Location of food outlets in eastern London
 <h2><span class="header-section-number">13.2</span> Setting up the analysis</h2>
 <p>Note that in this example, the data are held in a single resource. There is scope for the data to be held in different resources.</p>
 <p>In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the <code>as.resource.object()</code> function. The data have been uploaded to the server and configured as resources.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="GIS.html#cb222-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb222-2"><a href="GIS.html#cb222-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb222-3"><a href="GIS.html#cb222-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb222-4"><a href="GIS.html#cb222-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.gps_data&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb222-5"><a href="GIS.html#cb222-5"></a></span>
-<span id="cb222-6"><a href="GIS.html#cb222-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb222-7"><a href="GIS.html#cb222-7"></a></span>
-<span id="cb222-8"><a href="GIS.html#cb222-8"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb222-9"><a href="GIS.html#cb222-9"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;gps.res&quot;</span>)</span>
-<span id="cb222-10"><a href="GIS.html#cb222-10"></a></span>
-<span id="cb222-11"><a href="GIS.html#cb222-11"></a><span class="co"># Assign additional datasets as resources for the location of the food outlets / takeaways and</span></span>
-<span id="cb222-12"><a href="GIS.html#cb222-12"></a><span class="co"># the participant phenotype data</span></span>
-<span id="cb222-13"><a href="GIS.html#cb222-13"></a></span>
-<span id="cb222-14"><a href="GIS.html#cb222-14"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;takeaway.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;RSRC.takeaway_gps&quot;</span>)</span>
-<span id="cb222-15"><a href="GIS.html#cb222-15"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;participant.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;RSRC.gps_participant&quot;</span>)</span>
-<span id="cb222-16"><a href="GIS.html#cb222-16"></a></span>
-<span id="cb222-17"><a href="GIS.html#cb222-17"></a><span class="co"># Assign to the original R classes (e.g Spatial)</span></span>
-<span id="cb222-18"><a href="GIS.html#cb222-18"></a></span>
-<span id="cb222-19"><a href="GIS.html#cb222-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;takeaway&quot;</span>,</span>
-<span id="cb222-20"><a href="GIS.html#cb222-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(takeaway.res)))</span>
-<span id="cb222-21"><a href="GIS.html#cb222-21"></a></span>
-<span id="cb222-22"><a href="GIS.html#cb222-22"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;journeys&quot;</span>,</span>
-<span id="cb222-23"><a href="GIS.html#cb222-23"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(gps.res)))</span>
-<span id="cb222-24"><a href="GIS.html#cb222-24"></a></span>
-<span id="cb222-25"><a href="GIS.html#cb222-25"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;participant&quot;</span>,</span>
-<span id="cb222-26"><a href="GIS.html#cb222-26"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(participant.res)))</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="GIS.html#cb223-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb223-2"><a href="GIS.html#cb223-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb223-3"><a href="GIS.html#cb223-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb223-4"><a href="GIS.html#cb223-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.gps_data&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb223-5"><a href="GIS.html#cb223-5"></a></span>
+<span id="cb223-6"><a href="GIS.html#cb223-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb223-7"><a href="GIS.html#cb223-7"></a></span>
+<span id="cb223-8"><a href="GIS.html#cb223-8"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb223-9"><a href="GIS.html#cb223-9"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;gps.res&quot;</span>)</span>
+<span id="cb223-10"><a href="GIS.html#cb223-10"></a></span>
+<span id="cb223-11"><a href="GIS.html#cb223-11"></a><span class="co"># Assign additional datasets as resources for the location of the food outlets / takeaways and</span></span>
+<span id="cb223-12"><a href="GIS.html#cb223-12"></a><span class="co"># the participant phenotype data</span></span>
+<span id="cb223-13"><a href="GIS.html#cb223-13"></a></span>
+<span id="cb223-14"><a href="GIS.html#cb223-14"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;takeaway.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;RSRC.takeaway_gps&quot;</span>)</span>
+<span id="cb223-15"><a href="GIS.html#cb223-15"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol=</span><span class="st">&quot;participant.res&quot;</span>, <span class="dt">resource=</span><span class="st">&quot;RSRC.gps_participant&quot;</span>)</span>
+<span id="cb223-16"><a href="GIS.html#cb223-16"></a></span>
+<span id="cb223-17"><a href="GIS.html#cb223-17"></a><span class="co"># Assign to the original R classes (e.g Spatial)</span></span>
+<span id="cb223-18"><a href="GIS.html#cb223-18"></a></span>
+<span id="cb223-19"><a href="GIS.html#cb223-19"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;takeaway&quot;</span>,</span>
+<span id="cb223-20"><a href="GIS.html#cb223-20"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(takeaway.res)))</span>
+<span id="cb223-21"><a href="GIS.html#cb223-21"></a></span>
+<span id="cb223-22"><a href="GIS.html#cb223-22"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;journeys&quot;</span>,</span>
+<span id="cb223-23"><a href="GIS.html#cb223-23"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(gps.res)))</span>
+<span id="cb223-24"><a href="GIS.html#cb223-24"></a></span>
+<span id="cb223-25"><a href="GIS.html#cb223-25"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;participant&quot;</span>,</span>
+<span id="cb223-26"><a href="GIS.html#cb223-26"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(participant.res)))</span></code></pre></div>
 <p>Now, we can see that the resources are loaded into the R servers as their original class</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="GIS.html#cb223-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;takeaway&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="GIS.html#cb224-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;takeaway&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;SpatialPointsDataFrame&quot;
 attr(,&quot;package&quot;)
 [1] &quot;sp&quot;</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="GIS.html#cb225-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;journeys&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="GIS.html#cb226-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;journeys&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;SpatialLinesDataFrame&quot;
 attr(,&quot;package&quot;)
 [1] &quot;sp&quot;</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="GIS.html#cb227-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;participant&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="GIS.html#cb228-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;participant&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;data.frame&quot;</code></pre>
 <p>In the same way that BioConductor provides convenient data structures for ’omics data, the sp package allows each row of data to have a corresponding set of geometries. So if a row of data has information about an individual (age, BMI, etc.) it can also have a set of many points defining geometries such as points, lines and polygons.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="GIS.html#cb229-1"></a><span class="co"># Standard ds.summary can be used on the &#39;data&#39; part of the spatial dataframe</span></span>
-<span id="cb229-2"><a href="GIS.html#cb229-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;journeys$age&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="GIS.html#cb230-1"></a><span class="co"># Standard ds.summary can be used on the &#39;data&#39; part of the spatial dataframe</span></span>
+<span id="cb230-2"><a href="GIS.html#cb230-2"></a><span class="kw">ds.summary</span>(<span class="st">&#39;journeys$age&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $study1$class
 [1] &quot;numeric&quot;
@@ -361,7 +362,7 @@ $study1$`quantiles &amp; mean`
       5%      10%      25%      50%      75%      90%      95%     Mean 
 41.23623 42.76502 46.61040 52.53669 58.73395 62.25656 63.72577 52.58792 </code></pre>
 <p>We have provided an additional function to allow a summary of the geometries to be provided.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="GIS.html#cb231-1"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;journeys&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="GIS.html#cb232-1"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;journeys&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialLinesDataFrame&quot;
@@ -380,20 +381,13 @@ $proj4string
 [1] &quot;+init=epsg:27700 +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +datum=OSGB36 +units=m +no_defs +ellps=airy +towgs84=446.448,-125.157,542.060,0.1502,0.2470,0.8421,-20.4894&quot;
 
 $data
-       id             age             sex              inc            fsmoke           fedu    
- Min.   :  1.0   Min.   :40.02   Min.   :0.0000   Min.   : 2479   current:240   Secondary:156  
- 1st Qu.:218.5   1st Qu.:46.61   1st Qu.:0.0000   1st Qu.:40545   former :169   Higher   :393  
- Median :426.0   Median :52.54   Median :0.0000   Median :50949   never  :410   Advanced :270  
- Mean   :427.6   Mean   :52.59   Mean   :0.4872   Mean   :50395                                
- 3rd Qu.:640.5   3rd Qu.:58.73   3rd Qu.:1.0000   3rd Qu.:59912                                
- Max.   :849.0   Max.   :64.99   Max.   :1.0000   Max.   :99301                                
-      BMI        
- Min.   : 17.01  
- 1st Qu.: 22.42  
- Median : 24.34  
- Mean   : 25.13  
- 3rd Qu.: 26.60  
- Max.   :116.72  
+       id             age             sex              inc            fsmoke           fedu          BMI        
+ Min.   :  1.0   Min.   :40.02   Min.   :0.0000   Min.   : 2479   current:240   Secondary:156   Min.   : 17.01  
+ 1st Qu.:218.5   1st Qu.:46.61   1st Qu.:0.0000   1st Qu.:40545   former :169   Higher   :393   1st Qu.: 22.42  
+ Median :426.0   Median :52.54   Median :0.0000   Median :50949   never  :410   Advanced :270   Median : 24.34  
+ Mean   :427.6   Mean   :52.59   Mean   :0.4872   Mean   :50395                                 Mean   : 25.13  
+ 3rd Qu.:640.5   3rd Qu.:58.73   3rd Qu.:1.0000   3rd Qu.:59912                                 3rd Qu.: 26.60  
+ Max.   :849.0   Max.   :64.99   Max.   :1.0000   Max.   :99301                                 Max.   :116.72  
 
 attr(,&quot;class&quot;)
 [1] &quot;summary.Spatial&quot;</code></pre>
@@ -401,9 +395,9 @@ attr(,&quot;class&quot;)
 <div id="data-manipulation" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Data manipulation</h2>
 <p>In our analysis we need to define how we determine whether an individual has been ‘exposed’ to a food outlet. First we will define a 10m buffer around the location of the food outlet. If an indivudal’s GPS trace falls within that buffered region, we will say that they are ‘exposed’ to that outlet. The food outlets are defined as points, and after the buffer is applied they become polygons.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="GIS.html#cb233-1"></a><span class="co"># Add a buffer to each takeaway - now they are polygons</span></span>
-<span id="cb233-2"><a href="GIS.html#cb233-2"></a><span class="kw">ds.gBuffer</span>(<span class="dt">input =</span> <span class="st">&#39;takeaway&#39;</span>, <span class="dt">ip_width=</span><span class="dv">10</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">by_id=</span><span class="ot">TRUE</span>)</span>
-<span id="cb233-3"><a href="GIS.html#cb233-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="GIS.html#cb234-1"></a><span class="co"># Add a buffer to each takeaway - now they are polygons</span></span>
+<span id="cb234-2"><a href="GIS.html#cb234-2"></a><span class="kw">ds.gBuffer</span>(<span class="dt">input =</span> <span class="st">&#39;takeaway&#39;</span>, <span class="dt">ip_width=</span><span class="dv">10</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">by_id=</span><span class="ot">TRUE</span>)</span>
+<span id="cb234-3"><a href="GIS.html#cb234-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialPolygonsDataFrame&quot;
@@ -434,9 +428,9 @@ $data
 attr(,&quot;class&quot;)
 [1] &quot;summary.Spatial&quot;</code></pre>
 <p>To simplify the next step, we remove the data part of the <code>SpatialPolygonsDataFrame</code> to leave the polygons</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="GIS.html#cb235-1"></a><span class="co">#extract the polygons</span></span>
-<span id="cb235-2"><a href="GIS.html#cb235-2"></a><span class="kw">ds.geometry</span>(<span class="dt">input_x =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer.strip&#39;</span>)</span>
-<span id="cb235-3"><a href="GIS.html#cb235-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer.strip&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="GIS.html#cb236-1"></a><span class="co">#extract the polygons</span></span>
+<span id="cb236-2"><a href="GIS.html#cb236-2"></a><span class="kw">ds.geometry</span>(<span class="dt">input_x =</span> <span class="st">&#39;take.buffer&#39;</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;take.buffer.strip&#39;</span>)</span>
+<span id="cb236-3"><a href="GIS.html#cb236-3"></a><span class="kw">ds.geoSummary</span>(<span class="st">&#39;take.buffer.strip&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $class
 [1] &quot;SpatialPolygons&quot;
@@ -464,18 +458,18 @@ Figure 13.3: Food outlets with a buffer are shown by a cross surrounded by a cir
 <img src="fig/trace_intercept.png" alt="Food outlets with a buffer are shown by a cross surrounded by a circle. The line segments represent the GPS trace. In this case there is an intersection with 2 of the 3 food outlets." width="368" />
 </div>
 <p>This results in a list of individuals, with each list element being a numeric vector containing the ids of the food outlet buffers that were intersected by the GPS trace. These are the food outlets that the individual was ‘exposed’ to. We then convert the numeric vectors to counts by applying the <code>length</code> function to the list.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="GIS.html#cb237-1"></a><span class="co"># Do the intersection of journeys with buffered takeaways</span></span>
-<span id="cb237-2"><a href="GIS.html#cb237-2"></a><span class="kw">ds.over</span>(<span class="dt">input_x =</span> <span class="st">&#39;journeys&#39;</span>, <span class="dt">input_y =</span> <span class="st">&#39;take.buffer.strip&#39;</span>,</span>
-<span id="cb237-3"><a href="GIS.html#cb237-3"></a>        <span class="dt">newobj.name =</span> <span class="st">&#39;my.over&#39;</span>, <span class="dt">retList =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb237-4"><a href="GIS.html#cb237-4"></a><span class="kw">ds.lapply</span>(<span class="dt">input =</span> <span class="st">&#39;my.over&#39;</span>,<span class="dt">newobj.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">fun =</span> <span class="st">&#39;length&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="GIS.html#cb238-1"></a><span class="co"># Do the intersection of journeys with buffered takeaways</span></span>
+<span id="cb238-2"><a href="GIS.html#cb238-2"></a><span class="kw">ds.over</span>(<span class="dt">input_x =</span> <span class="st">&#39;journeys&#39;</span>, <span class="dt">input_y =</span> <span class="st">&#39;take.buffer.strip&#39;</span>,</span>
+<span id="cb238-3"><a href="GIS.html#cb238-3"></a>        <span class="dt">newobj.name =</span> <span class="st">&#39;my.over&#39;</span>, <span class="dt">retList =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb238-4"><a href="GIS.html#cb238-4"></a><span class="kw">ds.lapply</span>(<span class="dt">input =</span> <span class="st">&#39;my.over&#39;</span>,<span class="dt">newobj.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">fun =</span> <span class="st">&#39;length&#39;</span>)</span></code></pre></div>
 <p>The result of the lapply needs to be unlisted, and we check the result looks reasonable</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="GIS.html#cb238-1"></a><span class="kw">ds.unList</span>(<span class="dt">x.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">newobj=</span><span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="GIS.html#cb239-1"></a><span class="kw">ds.unList</span>(<span class="dt">x.name =</span> <span class="st">&#39;count.list&#39;</span>, <span class="dt">newobj=</span><span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
 <pre><code>$is.object.created
 [1] &quot;A data object &lt;counts&gt; has been created in all specified data sources&quot;
 
 $validity.check
 [1] &quot;&lt;counts&gt; appears valid in all sources&quot;</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="GIS.html#cb240-1"></a><span class="kw">ds.summary</span>(<span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="GIS.html#cb241-1"></a><span class="kw">ds.summary</span>(<span class="st">&#39;counts&#39;</span>)</span></code></pre></div>
 <pre><code>$study1
 $study1$class
 [1] &quot;integer&quot;
@@ -490,15 +484,15 @@ $study1$`quantiles &amp; mean`
 <div id="generating-the-final-result" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Generating the final result</h2>
 <p>Finally we complete the association analysis and see that BMI is positively associated with the count of food outlets that an individual is exposed to on commutes (see the ‘counts’ coefficient). This type of analysis could be used to convey a public health message about density and location of takeaway food outlets.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="GIS.html#cb242-1"></a><span class="kw">ds.dataFrame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;participant&#39;</span>, <span class="st">&#39;counts&#39;</span>), <span class="dt">newobj =</span> <span class="st">&#39;geo.df&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="GIS.html#cb243-1"></a><span class="kw">ds.dataFrame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;participant&#39;</span>, <span class="st">&#39;counts&#39;</span>), <span class="dt">newobj =</span> <span class="st">&#39;geo.df&#39;</span>)</span></code></pre></div>
 <pre><code>$is.object.created
 [1] &quot;A data object &lt;geo.df&gt; has been created in all specified data sources&quot;
 
 $validity.check
 [1] &quot;&lt;geo.df&gt; appears valid in all sources&quot;</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="GIS.html#cb244-1"></a>result &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(<span class="dt">formula =</span> <span class="st">&#39;BMI ~ age + sex + inc + fsmoke + fedu + counts&#39;</span>, </span>
-<span id="cb244-2"><a href="GIS.html#cb244-2"></a>                <span class="dt">data =</span> <span class="st">&#39;geo.df&#39;</span>, <span class="dt">family =</span> <span class="st">&#39;gaussian&#39;</span>)</span>
-<span id="cb244-3"><a href="GIS.html#cb244-3"></a>result<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="GIS.html#cb245-1"></a>result &lt;-<span class="st"> </span><span class="kw">ds.glm</span>(<span class="dt">formula =</span> <span class="st">&#39;BMI ~ age + sex + inc + fsmoke + fedu + counts&#39;</span>, </span>
+<span id="cb245-2"><a href="GIS.html#cb245-2"></a>                <span class="dt">data =</span> <span class="st">&#39;geo.df&#39;</span>, <span class="dt">family =</span> <span class="st">&#39;gaussian&#39;</span>)</span>
+<span id="cb245-3"><a href="GIS.html#cb245-3"></a>result<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>                  Estimate   Std. Error     z-value      p-value     low0.95CI    high0.95CI
 (Intercept)   2.379500e+01 6.334955e-01  37.5614341 0.000000e+00  2.255337e+01  2.503663e+01
 age           2.698037e-02 1.023046e-02   2.6372581 8.357921e-03  6.929033e-03  4.703171e-02

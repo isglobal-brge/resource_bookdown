@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 DataSHIELD | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="opal.html"/>
 <link rel="next" href="resources.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -148,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
@@ -168,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -179,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
@@ -286,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="datashield" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> DataSHIELD</h1>
-<div id="introduction-2" class="section level2" number="5.1">
+<div id="introduction" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Introduction</h2>
 <p>Some research projects require pooling data from several studies to obtain sample sizes large and diverse enough for detecting interactions. Unfortunately, important ethico-legal constraints often prevent or impede the sharing of individual-level data across multiple studies. DataSHIELD aims to address this issue. DataSHIELD is a method that enables advanced statistical analysis of individual-level data from several sources without actually pooling the data from these sources together. DataSHIELD facilitates important research in settings where:</p>
 <ul>
@@ -453,7 +454,7 @@ Figure 5.2: DataSHIELD configuration in Opal
 </ul>
 </div>
 </div>
-<div id="demo-1" class="section level2" number="5.4">
+<div id="demo" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Demo</h2>
 <p>Readers can read <a href="http://opaldoc.obiba.org/en/latest/r-user-guide/datashield.html">the DataSHIELD page in Opal documentation</a> to have a global overview about how to use DataSHIELD functions. It describes how to perform basic statistical analyses, linear and generalized linear models and some data visualization. A complete description of how DataSHIELD works, with lots of materials, examples, courses and real data analyses can be obtained in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD Wiki</a>.</p>
 <p>The following is a simple illustration of how to analyze some data available in the <a href="http://opal-demo.obiba.org/">Opal demo site</a>. The <a href="https://opal-demo.obiba.org/ui/index.html#!projects">Projects page</a> gives access to the different projects avaialble in this Opal server. If we select the <code>SURVIVAL</code> project we see that there are three tables:</p>
@@ -498,16 +499,16 @@ $study3
 <p>Then, for example, we can get the column names and the dimension of the dataset from each study:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="datashield.html#cb60-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
- [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;    &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;  
+[12] &quot;bmi.26&quot;   
 
 $study2
- [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
- [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;    &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;  
+[12] &quot;bmi.26&quot;   
 
 $study3
- [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;   
- [9] &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;   &quot;bmi.26&quot;   </code></pre>
+ [1] &quot;id&quot;        &quot;study.id&quot;  &quot;time.id&quot;   &quot;starttime&quot; &quot;endtime&quot;   &quot;survtime&quot;  &quot;cens&quot;      &quot;age.60&quot;    &quot;female&quot;    &quot;noise.56&quot;  &quot;pm10.16&quot;  
+[12] &quot;bmi.26&quot;   </code></pre>
 <p>we can get the dimension of the datasetes:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="datashield.html#cb62-1"></a><span class="kw">ds.dim</span>(<span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 <pre><code>$`dimensions of D in study1`
@@ -692,16 +693,11 @@ $formula
 [1] &quot;cens ~ female + bmi.26 + pm10.16&quot;
 
 $coefficients
-              Estimate  Std. Error   z-value      p-value low0.95CI.LP high0.95CI.LP      P_OR
-(Intercept) -0.9465551 0.046427292 -20.38790 2.141278e-92   -1.0375510    -0.8555593 0.2795781
-female1     -0.7240154 0.067603806 -10.70968 9.167462e-27   -0.8565164    -0.5915143 0.4848017
-bmi.26       0.1239566 0.007308207  16.96129 1.588245e-64    0.1096328     0.1382804 1.1319667
-pm10.16      0.6620624 0.037059614  17.86479 2.217477e-71    0.5894269     0.7346979 1.9387867
-            low0.95CI.P_OR high0.95CI.P_OR
-(Intercept)      0.2616228       0.2982680
-female1          0.4246388       0.5534885
-bmi.26           1.1158682       1.1482975
-pm10.16          1.8029548       2.0848521
+              Estimate  Std. Error   z-value      p-value low0.95CI.LP high0.95CI.LP      P_OR low0.95CI.P_OR high0.95CI.P_OR
+(Intercept) -0.9465551 0.046427292 -20.38790 2.141278e-92   -1.0375510    -0.8555593 0.2795781      0.2616228       0.2982680
+female1     -0.7240154 0.067603806 -10.70968 9.167462e-27   -0.8565164    -0.5915143 0.4848017      0.4246388       0.5534885
+bmi.26       0.1239566 0.007308207  16.96129 1.588245e-64    0.1096328     0.1382804 1.1319667      1.1158682       1.1482975
+pm10.16      0.6620624 0.037059614  17.86479 2.217477e-71    0.5894269     0.7346979 1.9387867      1.8029548       2.0848521
 
 $dev
 [1] 5544.853
@@ -715,68 +711,52 @@ $output.information
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="datashield.html#cb71-1"></a><span class="kw">ds.listClientsideFunctions</span>()</span></code></pre></div>
 <pre><code>
 ### Full search path 
- [1] &quot;.GlobalEnv&quot;                                &quot;package:dsBaseClient&quot;                     
- [3] &quot;package:airway&quot;                            &quot;package:Homo.sapiens&quot;                     
- [5] &quot;package:TxDb.Hsapiens.UCSC.hg19.knownGene&quot; &quot;package:org.Hs.eg.db&quot;                     
- [7] &quot;package:GO.db&quot;                             &quot;package:OrganismDbi&quot;                      
- [9] &quot;package:GenomicFeatures&quot;                   &quot;package:AnnotationDbi&quot;                    
-[11] &quot;package:tweeDEseqCountData&quot;                &quot;package:forcats&quot;                          
-[13] &quot;package:stringr&quot;                           &quot;package:dplyr&quot;                            
-[15] &quot;package:purrr&quot;                             &quot;package:readr&quot;                            
-[17] &quot;package:tidyr&quot;                             &quot;package:tibble&quot;                           
-[19] &quot;package:ggplot2&quot;                           &quot;package:tidyverse&quot;                        
-[21] &quot;package:kableExtra&quot;                        &quot;package:BiocStyle&quot;                        
-[23] &quot;package:snpStats&quot;                          &quot;package:Matrix&quot;                           
-[25] &quot;package:survival&quot;                          &quot;package:DSOpal&quot;                           
-[27] &quot;package:DSI&quot;                               &quot;package:R6&quot;                               
-[29] &quot;package:progress&quot;                          &quot;package:opalr&quot;                            
-[31] &quot;package:httr&quot;                              &quot;package:SummarizedExperiment&quot;             
-[33] &quot;package:DelayedArray&quot;                      &quot;package:BiocParallel&quot;                     
-[35] &quot;package:matrixStats&quot;                       &quot;package:Biobase&quot;                          
-[37] &quot;package:GenomicRanges&quot;                     &quot;package:GenomeInfoDb&quot;                     
-[39] &quot;package:IRanges&quot;                           &quot;package:S4Vectors&quot;                        
-[41] &quot;package:BiocGenerics&quot;                      &quot;package:parallel&quot;                         
-[43] &quot;package:stats4&quot;                            &quot;tools:rstudio&quot;                            
-[45] &quot;package:stats&quot;                             &quot;package:graphics&quot;                         
-[47] &quot;package:grDevices&quot;                         &quot;package:utils&quot;                            
-[49] &quot;package:datasets&quot;                          &quot;package:methods&quot;                          
-[51] &quot;Autoloads&quot;                                 &quot;package:base&quot;                             
+ [1] &quot;.GlobalEnv&quot;                                &quot;package:dsBaseClient&quot;                      &quot;package:DSOpal&quot;                           
+ [4] &quot;package:DSI&quot;                               &quot;package:R6&quot;                                &quot;package:progress&quot;                         
+ [7] &quot;package:opalr&quot;                             &quot;package:httr&quot;                              &quot;package:airway&quot;                           
+[10] &quot;package:SummarizedExperiment&quot;              &quot;package:DelayedArray&quot;                      &quot;package:matrixStats&quot;                      
+[13] &quot;package:Homo.sapiens&quot;                      &quot;package:TxDb.Hsapiens.UCSC.hg19.knownGene&quot; &quot;package:org.Hs.eg.db&quot;                     
+[16] &quot;package:GO.db&quot;                             &quot;package:OrganismDbi&quot;                       &quot;package:GenomicFeatures&quot;                  
+[19] &quot;package:GenomicRanges&quot;                     &quot;package:GenomeInfoDb&quot;                      &quot;package:AnnotationDbi&quot;                    
+[22] &quot;package:IRanges&quot;                           &quot;package:S4Vectors&quot;                         &quot;package:stats4&quot;                           
+[25] &quot;package:tweeDEseqCountData&quot;                &quot;package:Biobase&quot;                           &quot;package:BiocGenerics&quot;                     
+[28] &quot;package:parallel&quot;                          &quot;package:snpStats&quot;                          &quot;package:Matrix&quot;                           
+[31] &quot;package:survival&quot;                          &quot;package:forcats&quot;                           &quot;package:stringr&quot;                          
+[34] &quot;package:dplyr&quot;                             &quot;package:purrr&quot;                             &quot;package:readr&quot;                            
+[37] &quot;package:tidyr&quot;                             &quot;package:tibble&quot;                            &quot;package:ggplot2&quot;                          
+[40] &quot;package:tidyverse&quot;                         &quot;package:kableExtra&quot;                        &quot;package:BiocStyle&quot;                        
+[43] &quot;tools:rstudio&quot;                             &quot;package:stats&quot;                             &quot;package:graphics&quot;                         
+[46] &quot;package:grDevices&quot;                         &quot;package:utils&quot;                             &quot;package:datasets&quot;                         
+[49] &quot;package:methods&quot;                           &quot;Autoloads&quot;                                 &quot;package:base&quot;                             
 
 ### userDefinedClient functions 
 [1] &quot;No clientside functions in this repository&quot;
 
 ### dsBaseClient functions 
- [1] &quot;ds.asCharacter&quot;             &quot;ds.asDataMatrix&quot;            &quot;ds.asFactor&quot;               
- [4] &quot;ds.asInteger&quot;               &quot;ds.asList&quot;                  &quot;ds.asLogical&quot;              
- [7] &quot;ds.asMatrix&quot;                &quot;ds.asNumeric&quot;               &quot;ds.assign&quot;                 
-[10] &quot;ds.Boole&quot;                   &quot;ds.c&quot;                       &quot;ds.cbind&quot;                  
-[13] &quot;ds.changeRefGroup&quot;          &quot;ds.class&quot;                   &quot;ds.colnames&quot;               
-[16] &quot;ds.completeCases&quot;           &quot;ds.contourPlot&quot;             &quot;ds.cor&quot;                    
-[19] &quot;ds.corTest&quot;                 &quot;ds.cov&quot;                     &quot;ds.dataFrame&quot;              
-[22] &quot;ds.dataFrameFill&quot;           &quot;ds.dataFrameSort&quot;           &quot;ds.dataFrameSubset&quot;        
-[25] &quot;ds.densityGrid&quot;             &quot;ds.dim&quot;                     &quot;ds.exists&quot;                 
-[28] &quot;ds.exp&quot;                     &quot;ds.glm&quot;                     &quot;ds.glmerSLMA&quot;              
-[31] &quot;ds.glmSLMA&quot;                 &quot;ds.heatmapPlot&quot;             &quot;ds.histogram&quot;              
-[34] &quot;ds.isNA&quot;                    &quot;ds.isValid&quot;                 &quot;ds.length&quot;                 
-[37] &quot;ds.levels&quot;                  &quot;ds.lexis&quot;                   &quot;ds.list&quot;                   
-[40] &quot;ds.listClientsideFunctions&quot; &quot;ds.listDisclosureSettings&quot;  &quot;ds.listOpals&quot;              
-[43] &quot;ds.listServersideFunctions&quot; &quot;ds.lmerSLMA&quot;                &quot;ds.log&quot;                    
-[46] &quot;ds.look&quot;                    &quot;ds.ls&quot;                      &quot;ds.make&quot;                   
-[49] &quot;ds.matrix&quot;                  &quot;ds.matrixDet&quot;               &quot;ds.matrixDet.report&quot;       
-[52] &quot;ds.matrixDiag&quot;              &quot;ds.matrixDimnames&quot;          &quot;ds.matrixInvert&quot;           
-[55] &quot;ds.matrixMult&quot;              &quot;ds.matrixTranspose&quot;         &quot;ds.mean&quot;                   
-[58] &quot;ds.meanByClass&quot;             &quot;ds.meanSdGp&quot;                &quot;ds.merge&quot;                  
-[61] &quot;ds.message&quot;                 &quot;ds.names&quot;                   &quot;ds.numNA&quot;                  
-[64] &quot;ds.quantileMean&quot;            &quot;ds.rbind&quot;                   &quot;ds.rBinom&quot;                 
-[67] &quot;ds.recodeLevels&quot;            &quot;ds.recodeValues&quot;            &quot;ds.rep&quot;                    
-[70] &quot;ds.replaceNA&quot;               &quot;ds.reShape&quot;                 &quot;ds.rm&quot;                     
-[73] &quot;ds.rNorm&quot;                   &quot;ds.rowColCalc&quot;              &quot;ds.rPois&quot;                  
-[76] &quot;ds.rUnif&quot;                   &quot;ds.sample&quot;                  &quot;ds.scatterPlot&quot;            
-[79] &quot;ds.seq&quot;                     &quot;ds.setDefaultOpals&quot;         &quot;ds.setSeed&quot;                
-[82] &quot;ds.subset&quot;                  &quot;ds.subsetByClass&quot;           &quot;ds.summary&quot;                
-[85] &quot;ds.table&quot;                   &quot;ds.table1D&quot;                 &quot;ds.table2D&quot;                
-[88] &quot;ds.tapply&quot;                  &quot;ds.tapply.assign&quot;           &quot;ds.testObjExists&quot;          
-[91] &quot;ds.unList&quot;                  &quot;ds.var&quot;                     &quot;ds.vectorCalc&quot;             
+ [1] &quot;ds.asCharacter&quot;             &quot;ds.asDataMatrix&quot;            &quot;ds.asFactor&quot;                &quot;ds.asInteger&quot;              
+ [5] &quot;ds.asList&quot;                  &quot;ds.asLogical&quot;               &quot;ds.asMatrix&quot;                &quot;ds.asNumeric&quot;              
+ [9] &quot;ds.assign&quot;                  &quot;ds.Boole&quot;                   &quot;ds.c&quot;                       &quot;ds.cbind&quot;                  
+[13] &quot;ds.changeRefGroup&quot;          &quot;ds.class&quot;                   &quot;ds.colnames&quot;                &quot;ds.completeCases&quot;          
+[17] &quot;ds.contourPlot&quot;             &quot;ds.cor&quot;                     &quot;ds.corTest&quot;                 &quot;ds.cov&quot;                    
+[21] &quot;ds.dataFrame&quot;               &quot;ds.dataFrameFill&quot;           &quot;ds.dataFrameSort&quot;           &quot;ds.dataFrameSubset&quot;        
+[25] &quot;ds.densityGrid&quot;             &quot;ds.dim&quot;                     &quot;ds.exists&quot;                  &quot;ds.exp&quot;                    
+[29] &quot;ds.glm&quot;                     &quot;ds.glmerSLMA&quot;               &quot;ds.glmSLMA&quot;                 &quot;ds.heatmapPlot&quot;            
+[33] &quot;ds.histogram&quot;               &quot;ds.isNA&quot;                    &quot;ds.isValid&quot;                 &quot;ds.length&quot;                 
+[37] &quot;ds.levels&quot;                  &quot;ds.lexis&quot;                   &quot;ds.list&quot;                    &quot;ds.listClientsideFunctions&quot;
+[41] &quot;ds.listDisclosureSettings&quot;  &quot;ds.listOpals&quot;               &quot;ds.listServersideFunctions&quot; &quot;ds.lmerSLMA&quot;               
+[45] &quot;ds.log&quot;                     &quot;ds.look&quot;                    &quot;ds.ls&quot;                      &quot;ds.make&quot;                   
+[49] &quot;ds.matrix&quot;                  &quot;ds.matrixDet&quot;               &quot;ds.matrixDet.report&quot;        &quot;ds.matrixDiag&quot;             
+[53] &quot;ds.matrixDimnames&quot;          &quot;ds.matrixInvert&quot;            &quot;ds.matrixMult&quot;              &quot;ds.matrixTranspose&quot;        
+[57] &quot;ds.mean&quot;                    &quot;ds.meanByClass&quot;             &quot;ds.meanSdGp&quot;                &quot;ds.merge&quot;                  
+[61] &quot;ds.message&quot;                 &quot;ds.names&quot;                   &quot;ds.numNA&quot;                   &quot;ds.quantileMean&quot;           
+[65] &quot;ds.rbind&quot;                   &quot;ds.rBinom&quot;                  &quot;ds.recodeLevels&quot;            &quot;ds.recodeValues&quot;           
+[69] &quot;ds.rep&quot;                     &quot;ds.replaceNA&quot;               &quot;ds.reShape&quot;                 &quot;ds.rm&quot;                     
+[73] &quot;ds.rNorm&quot;                   &quot;ds.rowColCalc&quot;              &quot;ds.rPois&quot;                   &quot;ds.rUnif&quot;                  
+[77] &quot;ds.sample&quot;                  &quot;ds.scatterPlot&quot;             &quot;ds.seq&quot;                     &quot;ds.setDefaultOpals&quot;        
+[81] &quot;ds.setSeed&quot;                 &quot;ds.subset&quot;                  &quot;ds.subsetByClass&quot;           &quot;ds.summary&quot;                
+[85] &quot;ds.table&quot;                   &quot;ds.table1D&quot;                 &quot;ds.table2D&quot;                 &quot;ds.tapply&quot;                 
+[89] &quot;ds.tapply.assign&quot;           &quot;ds.testObjExists&quot;           &quot;ds.unList&quot;                  &quot;ds.var&quot;                    
+[93] &quot;ds.vectorCalc&quot;             
 
 If you cannot see one or more of the clientside functions you expected to find please see above for the full search path. If one of the paths is a possible clientside repository issue the R command ls(pos=&#39;package:dsPackageName&#39;) where &#39;package:dsPackageName&#39; is the full name stated in the search path</code></pre>
 <pre><code> [1] &quot;No clientside functions in this repository&quot; &quot;ds.asCharacter&quot;                            

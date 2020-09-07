@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Bioconductor Data Structures | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="learnR.html"/>
 <link rel="next" href="opal.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -148,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
@@ -156,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
@@ -168,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -179,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
@@ -372,21 +373,17 @@ NA18501             2        YRI Pickrell   male
 NA18502             2        YRI Pickrell female
 NA18504             2        YRI Pickrell   male</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="BioC.html#cb13-1"></a>pheno<span class="op">$</span>gender</span></code></pre></div>
-<pre><code> [1] male   male   female male   female male   female male   female male   female male   female
-[14] male   female male   female female male   female male   female female male   female male  
-[27] female female male   female female male   female male   female female female female male  
-[40] female male   male   female female male   female female male   female female male   female
-[53] male   male   female female male   female male   female male   female female male   female
-[66] female female male   female
+<pre><code> [1] male   male   female male   female male   female male   female male   female male   female male   female male   female female male  
+[20] female male   female female male   female male   female female male   female female male   female male   female female female female
+[39] male   female male   male   female female male   female female male   female female male   female male   male   female female male  
+[58] female male   female male   female female male   female female female male   female
 Levels: female male</code></pre>
 <p>This also works</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="BioC.html#cb15-1"></a>pickrell.eset<span class="op">$</span>gender</span></code></pre></div>
-<pre><code> [1] male   male   female male   female male   female male   female male   female male   female
-[14] male   female male   female female male   female male   female female male   female male  
-[27] female female male   female female male   female male   female female female female male  
-[40] female male   male   female female male   female female male   female female male   female
-[53] male   male   female female male   female male   female male   female female male   female
-[66] female female male   female
+<pre><code> [1] male   male   female male   female male   female male   female male   female male   female male   female male   female female male  
+[20] female male   female female male   female male   female female male   female female male   female male   female female female female
+[39] male   female male   male   female female male   female female male   female female male   female male   male   female female male  
+[58] female male   female male   female female male   female female female male   female
 Levels: female male</code></pre>
 <p>Subsetting (everything is synchronized)</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="BioC.html#cb17-1"></a>eSet.male &lt;-<span class="st"> </span>pickrell.eset[, pickrell.eset<span class="op">$</span>gender<span class="op">==</span><span class="st">&quot;male&quot;</span>]</span>
@@ -422,7 +419,7 @@ phenoData
   varLabels: num.tech.reps population study gender
   varMetadata: labelDescription
 featureData
-  featureNames: 1 2 ... 59545 (59545 total)
+  featureNames: 1 2 ... 59351 (59351 total)
   fvarLabels: ENSEMBL SYMBOL TXCHROM
   fvarMetadata: labelDescription
 experimentData: use &#39;experimentData(object)&#39;
@@ -563,26 +560,16 @@ colData names(9): SampleName cell ... Sample BioSample</code></pre>
 </ul>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="BioC.html#cb41-1"></a><span class="kw">colData</span>(airway)</span></code></pre></div>
 <pre><code>DataFrame with 8 rows and 9 columns
-           SampleName     cell      dex    albut        Run avgLength Experiment    Sample
-             &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;   &lt;factor&gt;  &lt;factor&gt;
-SRR1039508 GSM1275862   N61311    untrt    untrt SRR1039508       126  SRX384345 SRS508568
-SRR1039509 GSM1275863   N61311      trt    untrt SRR1039509       126  SRX384346 SRS508567
-SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126  SRX384349 SRS508571
-SRR1039513 GSM1275867  N052611      trt    untrt SRR1039513        87  SRX384350 SRS508572
-SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120  SRX384353 SRS508575
-SRR1039517 GSM1275871  N080611      trt    untrt SRR1039517       126  SRX384354 SRS508576
-SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101  SRX384357 SRS508579
-SRR1039521 GSM1275875  N061011      trt    untrt SRR1039521        98  SRX384358 SRS508580
-              BioSample
-               &lt;factor&gt;
-SRR1039508 SAMN02422669
-SRR1039509 SAMN02422675
-SRR1039512 SAMN02422678
-SRR1039513 SAMN02422670
-SRR1039516 SAMN02422682
-SRR1039517 SAMN02422673
-SRR1039520 SAMN02422683
-SRR1039521 SAMN02422677</code></pre>
+           SampleName     cell      dex    albut        Run avgLength Experiment    Sample    BioSample
+             &lt;factor&gt; &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;   &lt;factor&gt; &lt;integer&gt;   &lt;factor&gt;  &lt;factor&gt;     &lt;factor&gt;
+SRR1039508 GSM1275862  N61311     untrt    untrt SRR1039508       126  SRX384345 SRS508568 SAMN02422669
+SRR1039509 GSM1275863  N61311     trt      untrt SRR1039509       126  SRX384346 SRS508567 SAMN02422675
+SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126  SRX384349 SRS508571 SAMN02422678
+SRR1039513 GSM1275867  N052611    trt      untrt SRR1039513        87  SRX384350 SRS508572 SAMN02422670
+SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120  SRX384353 SRS508575 SAMN02422682
+SRR1039517 GSM1275871  N080611    trt      untrt SRR1039517       126  SRX384354 SRS508576 SAMN02422673
+SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101  SRX384357 SRS508579 SAMN02422683
+SRR1039521 GSM1275875  N061011    trt      untrt SRR1039521        98  SRX384358 SRS508580 SAMN02422677</code></pre>
 <ul>
 <li>You can still use <code>$</code> to get a particular column:</li>
 </ul>
@@ -598,20 +585,13 @@ Levels: N052611 N061011 N080611 N61311</code></pre>
 <pre><code>List of length 1
 names(1): counts</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="BioC.html#cb49-1"></a><span class="kw">head</span>(<span class="kw">assay</span>(airway, <span class="st">&quot;counts&quot;</span>))</span></code></pre></div>
-<pre><code>                SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 SRR1039520
-ENSG00000000003        679        448        873        408       1138       1047        770
-ENSG00000000005          0          0          0          0          0          0          0
-ENSG00000000419        467        515        621        365        587        799        417
-ENSG00000000457        260        211        263        164        245        331        233
-ENSG00000000460         60         55         40         35         78         63         76
-ENSG00000000938          0          0          2          0          1          0          0
-                SRR1039521
-ENSG00000000003        572
-ENSG00000000005          0
-ENSG00000000419        508
-ENSG00000000457        229
-ENSG00000000460         60
-ENSG00000000938          0</code></pre>
+<pre><code>                SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 SRR1039520 SRR1039521
+ENSG00000000003        679        448        873        408       1138       1047        770        572
+ENSG00000000005          0          0          0          0          0          0          0          0
+ENSG00000000419        467        515        621        365        587        799        417        508
+ENSG00000000457        260        211        263        164        245        331        233        229
+ENSG00000000460         60         55         40         35         78         63         76         60
+ENSG00000000938          0          0          2          0          1          0          0          0</code></pre>
 <ul>
 <li>Annotation is a <code>GenomicRanges</code> object</li>
 </ul>
