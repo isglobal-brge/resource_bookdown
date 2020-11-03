@@ -1,12 +1,12 @@
 # Secure shell programs: GWAS with PLINK {#shell_extension}
 
-GWAS can also be performed using program that are executed using shell commands. This is the case of [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that requires efficient and scalable pipelines. 
+GWAS can also be performed using programs that are executed using shell commands. This is the case for [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that require efficient and scalable pipelines. 
 
-The resources also allow the use of secure SSH service to run programs on a remote server accessible through ssh containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allow us to create functions to analyze data using specific shell programs.
+Resources also allow the use of secure SSH service to run programs on a remote server accessible through SSH containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allows us to create functions to analyze data using specific shell programs.
 
-Here we describe how [PLINK](http://zzz.bwh.harvard.edu/plink/) program can be use to perform GWAS  [**Yannick** some overview about how this is created should be described]
+Here we describe how the [PLINK](http://zzz.bwh.harvard.edu/plink/) program can be used to perform GWAS. In this case, the resource describes that access is given via SSH, the credentials required to connect, and the commands that can be run (of which one is plink).
 
-We use this following code to illustrate how analyses should be performed using the `r CRANpkg("resourcer")` package. This code could be considered as the base code for creating a DataSHIELD package for the OPAL server as performed in `plinkDS()` function implemented in the `r Githubpkg("isglobal-brge", "dsOmics")` package
+We use the following code to illustrate how analyses should be performed using the `r CRANpkg("resourcer")` package. This code could be considered as the base code for creating a server-side DataSHIELD package as performed in the `plinkDS()` function implemented in the `r Githubpkg("isglobal-brge", "dsOmics")` package
 
 
 We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources2)) using the `r CRANpkg("resourcer")` package as follows:
@@ -43,7 +43,7 @@ For instance
 client$exec("ls", "-la")
 ```
 
-Then, to avoid multiple accesses to the resource, it is recommended to create a temporal directory to save our results
+Then, to avoid multiple accesses to the resource, it is recommended to create a temporary directory to save our results
 
 ```{r plink_resource_temp}
 tempDir <- client$tempDir()
@@ -57,7 +57,7 @@ Then, we can use R to launch the shell commands
 client$exec('plink1', c('--bfile', 'brge', '--freq', '--out', paste0(tempDir, '/out'), '--noweb'))
 ```
 
-The results can be retrieve as an R object
+The results can be retrieved as an R object
 
 ```{r plink_resource_retrieve}
 outs <- client$exec('ls', tempDir)$output
@@ -67,7 +67,7 @@ ans <- readr::read_table("out.frq")
 ans
 ```
 
-Finally temporal directories are removed and session closed
+Finally temporary directories are removed and the session closed
 
 ```{r plink_resource_close}
 client$removeTempDir()

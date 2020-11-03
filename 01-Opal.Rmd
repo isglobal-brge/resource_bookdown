@@ -2,16 +2,16 @@
 
 ## Introduction
 
-Opal is [OBiBa](https://www.obiba.org/)’s core database application for epidemiological studies. Participant data, collected by questionnaires, medical instruments, sensors, administrative databases etc. can be integrated and stored in a central data repository under a uniform model. Opal is a web application that can import, process, copy data and has advanced features for cataloging the data (fully described, annotatted and searchable data dictionaries) as recommended by the [Maelstrom Research](https://www.maelstrom-research.org) group at McGill University, Canada. Opal is typically used in a research center to analyze the data acquired at assessment centres. Its ultimate purpose is to achieve seamless data-sharing among epidemiological studies. Opal is the reference implementation of the [DataSHIELD](http://www.datashield.ac.uk/) infrastructure. More information on Opal can be seen in [Opal description on OBiBa](https://www.obiba.org/pages/products/opal/).
+Opal is [OBiBa](https://www.obiba.org/)’s core database application for epidemiological studies. Participant data, collected by questionnaires, medical instruments, sensors, administrative databases etc. can be integrated and stored in a central data repository under a uniform model. Opal is a web application that can import, process, copy data and has advanced features for cataloging the data (fully described, annotated and searchable data dictionaries) as recommended by the [Maelstrom Research](https://www.maelstrom-research.org) group at McGill University, Canada. Opal is typically used by a research center to analyze the data acquired from assessment centres. Its ultimate purpose is to achieve seamless data-sharing among epidemiological studies. Opal is the reference implementation of the [DataSHIELD](http://www.datashield.ac.uk/) infrastructure. More information on Opal can be found in the [Opal description on OBiBa](https://www.obiba.org/pages/products/opal/).
 
 Opal provides the following main features:
 
 * Use of MongoDB, Mysql, MariaDB and/or PostgreSQL as database software backends,
-* Import data from various file formats (CSV, SPSS, SAS, Stata etc.) and from SQL databases,
-* Export data to various file formats (CSV, SPSS, SAS, Stata etc.) and to SQL databases,
-* Plugin architecture to extend import/export capabilities for instance by connecting to data source software such as REDCap, LimeSurvey etc.,
-* Store data about any type of "entity", such as subject, sample, geographic area, etc.,
-* Store data of any type (e.g., texts, numbers, geo-localisation, images, videos, etc.),
+* Import of data from various file formats (CSV, SPSS, SAS, Stata etc.) and from SQL databases,
+* Export of data to various file formats (CSV, SPSS, SAS, Stata etc.) and to SQL databases,
+* Plugin architecture to extend import/export capabilities, for instance by connecting to data source software such as REDCap, LimeSurvey etc.,
+* Storage of data about any type of "entity", such as subject, sample, geographic area, etc.,
+* Storage of data of any type (e.g., texts, numbers, geo-localisation, images, videos, etc.),
 * Advanced authentication and authorization features,
 * Reporting using R markdown,
 * Data analysis plugins using R,
@@ -20,7 +20,7 @@ Opal provides the following main features:
 
 ## Data Management
 
-In Opal the data sets are represented by tables which are grouped by projects. A table has variables (columns) and entity values (rows). Opal has also a concept of views, which are logical tables where variable derivation scripts are defined. The storage of the data and of the meta-data (data dictionaries) is done in a managed database (can be a SQL database such as MySQL, MariaDB or PostgreSQL, or a document-oriented database such as MongoDB).
+In Opal the data sets are represented by tables, which are grouped by projects. A table has variables (columns) and entity values (rows). Opal also has the concept of views, which are logical tables where the variables are derived from physical tables via scripts. The storage of the data and of the meta-data (data dictionaries) is managed in a database (for example, a SQL database such as MySQL, MariaDB or PostgreSQL, or a document-oriented database such as MongoDB).
 
 Detailed concepts and tutorials for tables can be found here:
 
@@ -41,22 +41,22 @@ Opal connects to a R server to perform different kind of operations:
 
 The R server is based on the [Rserve](https://cran.r-project.org/package=Rserve) R package. The user R sessions that are running in this R server are managed by Opal.
 
-This Opal/R integration works well for small to mid-size datasets (usually less than 10M data points). For bigger datasets, extracting and transferring data from the database to the R server is time, CPU and memory consuming. In this work, we will present a more flexible data description paradigm called [resources](#resources) that will enable Opal to manage access to Big Data sets, complex data structures and computation units for analysis purpose, while still having the security and the analysis features provided by Opal.
+This Opal/R integration works well for small to mid-size datasets (usually less than 10M data points). For bigger datasets, extracting and transferring data from the database to the R server is time, CPU and memory intensive. In this work, we will present a more flexible data description paradigm called [resources](#resources) that enables Opal to manage access to Big Data sets, complex data structures and computation units for analysis purpose, while still having the security and the analysis features provided by Opal.
 
 ## Opal demo site
 
-We have set up an [Opal demo site](http://opal-demo.obiba.org/) to illustrate how to perform some basic analyses using DataSHIELD as well as how to deal with different *resources* for omic data. The Opal server can be accessed with the credentials:
+We have set up an [Opal demo site](http://opal-demo.obiba.org/) to illustrate how to perform some basic analyses using DataSHIELD as well as how to deal with different *resources* for 'omic data. The Opal server can be accessed with the credentials:
 
 - username: `administrator`
 - password: `password`
 
 
-In this figure we can see all the available projects. 
+In this figure we can see all the projects available. 
 
 ![Opal demo site available projects](fig/opal_projects.png)
 
-This vignette will make mainly use of those resources available at `RSRC` project
+This vignette will mainly make use of the resources available at `RSRC` project
 
 ![Resources available at Opal demo site of RSRC project](fig/resources_rsrc.png)
 
-In order to make the reader familiar with Opal we recommend to visit [the Opal online documentation](http://opaldoc.obiba.org/).
+In order to make the reader familiar with Opal we recommend visiting [the Opal online documentation](http://opaldoc.obiba.org/).
