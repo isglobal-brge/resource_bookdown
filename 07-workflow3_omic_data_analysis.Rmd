@@ -107,6 +107,10 @@ The top differentially expressed genes can be visualized by:
 ans.gender
 ```
 
+
+We have also implemented two other functions `ds.DESeq2` and `ds.edgeR` that perform DGE analysis using [DESeq2](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) and [edgeR](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) methods. 
+
+
 As usual, we close the DataSHIELD session by:
   
 ```{r close_ds2}
@@ -382,6 +386,16 @@ Then, an object of class `GenotypeData` must be created at the server side to pe
 ds.GenotypeData(x='gds', covars = 'covars', columnId = 1, newobj.name = 'gds.Data')
 ``` 
 
+
+
+
+
+
+
+
+
+
+
 The association analysis for a given SNP is performed by simply
 
 ```{r snp_analysis}
@@ -393,6 +407,7 @@ The analysis of all available SNPs is performed when the argument `snps.fit` is 
 
 ```{r GWAS}
 ans.bioC <- ds.GWAS('gds.Data', model=asthma~age+country)
+ans.bioC
 ```
 
 
