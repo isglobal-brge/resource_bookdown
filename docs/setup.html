@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -289,42 +289,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="setup" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> Setup</h1>
-<p>As describe in <a href="resourcer.html#resourcer">a previous Chapter</a> the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.rdata</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
+<p>As described in <a href="resourcer.html#resourcer">a previous Chapter</a> the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> R package allows users to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.RData</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
 <p>In order to achive this <code>resourcer</code> extension, two <code>R6</code> classes have been implemented:</p>
 <ul>
 <li><code>GDSFileResourceResolver</code> class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a <code>GDSFileResourceClient</code> object instance from an assigned resource.</li>
-<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it’s this connection handle to the GDS file that will be used.</li>
+<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it is this connection handle to the GDS file that will be used.</li>
 </ul>
 <div id="providing-datashield-packages-in-the-opal-server" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Providing DataSHIELD packages in the opal server</h2>
-<p>Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
+<p>The required DataSHIELD packages must be uploaded to Opal through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
 <div class="figure" style="text-align: center"><span id="fig:installPackagesOpal"></span>
 <p class="caption">
 Figure 10.1: Installed packages in the demo opal server
 </p>
 <img src="fig/add_packages_opal.png" alt="Installed packages in the demo opal server" width="921" />
 </div>
-<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled into the opal server</p>
+<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled on Opal</p>
 <div class="figure" style="text-align: center"><span id="fig:installPackagesOpal2"></span>
 <p class="caption">
 Figure 10.2: Description how <code>dsOmics</code> package was intalled into the demo opal server
 </p>
 <img src="fig/add_packages_opal_2.png" alt="Description how `dsOmics` package was intalled into the demo opal server" width="415" />
 </div>
-<p>For reproducing this book the following packages must be installed in the opal server</p>
+<p>For reproducing this book the following packages must be installed on Opal</p>
 <pre><code>From CRAN: 
    - resourcer
 From Github: 
    - datashield/dsBase
    - datashield/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics</code></pre>
-<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
+<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes in <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
 <pre><code>sudo apt-get update
 sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
 </div>
 <div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Required R Packages in the client site (e.g. local machine)</h2>
-<p>Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):</p>
+<p>Using DataSHIELD also requires some R packages to be installed on the client site. So far, the following R packages must be installed (in their development version):</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="setup.html#cb114-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb114-2"><a href="setup.html#cb114-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBaseClient&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb114-3"><a href="setup.html#cb114-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>

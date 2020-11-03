@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -296,22 +296,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a co-analysis of individual-level data from several studies is scientifically necessary but governance restrictions prevent the release or sharing of some of the required data, and/or render data access unacceptably slow,</li>
 <li>equivalent governance concerns prevent or hinder access to a single dataset,</li>
 <li>a research group wishes to actively share the information held in its data with others but does not wish to cede control of the governance of those data and/or the intellectual property they represent by physically handing over the data themselves,</li>
-<li>a dataset which is to be remotely analysed, or included in a multi-study co-analysis, contains data objects (e.g. images) which are too large to be physically transferred to the site of analysis.</li>
+<li>a dataset which is to be remotely analysed, or included in a multi-study co-analysis, contains data objects (e.g. images) which are too large to be physically transferred to the analysis location.</li>
 </ul>
-<p>A typical DataSHIELD infrastructure (see Figure <a href="datashield.html#fig:dsArchitec">5.1</a>) is composed of one central analysis node (the DataSHIELD client) connected to one or several data analysis nodes (the DataSHIELD servers). In each of these server nodes, there is a R server application which can be accessed only through a DataSHIELD compliant middleware application. This middleware application acts as a broker for managing R server sessions in a multi-user environment, assigning data and launching analysis in the R server. The analysis execution environment is then fully controlled: users must be authenticated, must have the proper permissions to access the data of interest and can only perform some predefined assignment and aggregation operations. Importantly, the operations that are permitted are designed to prevent the user having access to individual data items while still allowing useful work to be done with the data. For example, users can fit a generalised linear model to a dataset and receive information about the model coefficients, but are not given the residuals, as these could be used to reconstruct the original data.The reference implementation of this DataSHIELD infrastructure is based on the <a href="http://opaldoc.obiba.org/">Opal</a> data repository.</p>
+<p>A typical DataSHIELD infrastructure (see Figure <a href="datashield.html#fig:dsArchitec">5.1</a>) is composed of one analysis node (the DataSHIELD client) connected to one or several data analysis nodes (the DataSHIELD servers). In each of these server nodes, there is an R server application which can only be accessed through a DataSHIELD-compliant middleware application. This middleware application acts as a broker for managing R server sessions in a multi-user environment, assigning data and launching analysis on the R server. The analysis execution environment is then fully controlled: users must be authenticated, must have the proper permissions to access the data of interest and can only perform some predefined assignment and aggregation operations. Importantly, the operations that are permitted are designed to prevent the user having access to individual data items while still allowing useful work to be done with the data. For example, users can fit a generalised linear model to a dataset and receive information about the model coefficients, but are not given the residuals, as these could be used to reconstruct the original data.The reference implementation of this DataSHIELD infrastructure is based on the <a href="http://opaldoc.obiba.org/">Opal</a> data repository.</p>
 <div class="figure" style="text-align: center"><span id="fig:dsArchitec"></span>
 <p class="caption">
 Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers).
 </p>
 <img src="fig/singleSiteDSInfrastructure.jpg" alt="Typical DataSHIELD infrastructure, including one central analysis node (client) and several data nodes (servers). " width="80%" />
 </div>
-<p>The client node interacts programmatically in R with the server nodes using the DataSHIELD Interface implemented as the <a href="https://cran.r-project.org/package=DSI">DSI</a> R package. The DSI defines prototype functions to authenticate the user and to perform assignment and aggregation operations in each of the R servers sitting in the server nodes. The reference implementation of DSI is the <a href="https://cran.r-project.org/package=DSOpal">DSOpal</a> R package. An alternate implementation of DSI is the <a href="https://cran.r-project.org/package=DSLite">DSLite</a> R package which mainly targets DataSHIELD developers by offering a pure R implementation of the whole DataSHIELD infrastructure.</p>
+<p>The client node interacts programmatically in R with the server nodes using the DataSHIELD Interface implemented as the <a href="https://cran.r-project.org/package=DSI">DSI</a> R package. The DSI defines prototype functions to authenticate the user and to perform assignment and aggregation operations in each of the R servers sitting in the server nodes. The reference implementation of DSI is the <a href="https://cran.r-project.org/package=DSOpal">DSOpal</a> R package. An alternate implementation of DSI is <a href="https://cran.r-project.org/package=DSLite">DSLite</a>, an R package targetted at DataSHIELD developers by offering a lightweight, pure R implementation of the whole DataSHIELD infrastructure.</p>
 </div>
 <div id="datashield-r-interface-dsi" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> DataSHIELD R Interface (DSI)</h2>
-<p>The DataSHIELD Interface (DSI) defines a set of <a href="http://adv-r.had.co.nz/S4.html">S4 classes and generic methods</a> that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled R commands to be executed on the server side are garanteeing that non disclosive information is returned to client side.</p>
-<div id="classes-structure" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Classes Structure</h3>
+<p>The DataSHIELD Interface (DSI) defines a set of <a href="http://adv-r.had.co.nz/S4.html">S4 classes and generic methods</a> that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled R commands to be executed on the server side that ensure only non disclosive information is returned to client side.</p>
+<div id="class-structures" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Class Structures</h3>
 <p>The DSI S4 classes are:</p>
 <table>
 <thead>
@@ -340,7 +340,7 @@ Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis no
 </tbody>
 </table>
 <p>All classes are <em>virtual</em>: they cannot be instantiated directly and instead must be subclassed. See <a href="https://github.com/datashield/DSOpal">DSOpal</a> for a reference implementation of DSI based on the <a href="http://opaldoc.obiba.org/">Opal</a> data repository.</p>
-<p>These S4 classes and generic methods are meant <strong>to be used for implementing connection to a DataSHIELD-aware data repository.</strong></p>
+<p>These S4 classes and generic methods are meant <strong>to be used for implementing connections to a DataSHIELD-aware data repository.</strong></p>
 </div>
 <div id="higher-level-functions" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Higher Level Functions</h3>
@@ -355,7 +355,7 @@ Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis no
 <tbody>
 <tr class="odd">
 <td align="left"><code>datashield.login</code></td>
-<td align="left">Create <code>DSConnection</code> objects to the data repositories, using the <code>DSDriver</code> specification.</td>
+<td align="left">Create <code>DSConnection</code> objects for the data repositories, using the <code>DSDriver</code> specification.</td>
 </tr>
 <tr class="even">
 <td align="left"><code>datashield.logout</code></td>
@@ -363,15 +363,15 @@ Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis no
 </tr>
 <tr class="odd">
 <td align="left"><code>datashield.aggregate</code>, <code>datashield.assign</code></td>
-<td align="left">Typical DataSHIELD operations on <code>DSConnection</code> objects, which result will be fetched through <code>DSResult</code> objects.</td>
+<td align="left">Typical DataSHIELD operations on <code>DSConnection</code> objects; results can be fetched through <code>DSResult</code> objects.</td>
 </tr>
 <tr class="even">
 <td align="left"><code>datashield.connections</code>, <code>datashield.connections_default</code>, <code>datashield.connections_find</code></td>
-<td align="left">Management of the list of <code>DSConnection</code> objects that will be discovered and used by the client-side analytic functions.</td>
+<td align="left">Management of the list of <code>DSConnection</code> objects that can be discovered and used by the client-side analytic functions.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>datashield.workspaces</code>, <code>datashield.workspace_save</code>, <code>datashield.workspace_rm</code></td>
-<td align="left">Manage R images of the remote DataSHIELD sessions (to speed up data analysis sessions).</td>
+<td align="left">Manage R images of the remote DataSHIELD sessions (to speed up restoration of data analysis sessions).</td>
 </tr>
 <tr class="even">
 <td align="left"><code>datashield.symbols</code>, <code>datashield.symbol_rm</code></td>
@@ -410,7 +410,7 @@ Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis no
 </tr>
 <tr class="even">
 <td align="left"><code>datashield.progress</code></td>
-<td align="left">A logical to enable the visibility of the progress bars. Default value is <code>TRUE</code>.</td>
+<td align="left">A logical to enable visibility of progress bars. Default value is <code>TRUE</code>.</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>datashield.progress.clear</code></td>
@@ -426,21 +426,21 @@ Figure 5.1: Typical DataSHIELD infrastructure, including one central analysis no
 </div>
 <div id="datashieldopal-implementation" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> DataSHIELD/Opal Implementation</h2>
-<p><a href="opal.html#opal">Opal</a> is a web application that is accessible through web services. It is implementing the DataSHIELD method thanks to the following built-in features:</p>
+<p><a href="opal.html#opal">Opal</a> is a web application that is accessible through web services. It implements DataSHIELD methods thanks to the following built-in features:</p>
 <ul>
-<li>integration with a R server, where the DataSHIELD operations will take place,</li>
-<li>secure data management, with fine-grain permissions (to restrict access to individual level data),</li>
-<li>web services API, that allows to run Opal operations from a R script.</li>
+<li>integration with an R server, where the DataSHIELD operations will take place,</li>
+<li>secure data management, with fine-grained permissions (to restrict access to individual level data),</li>
+<li>web services API, that allows Opal operations to be run from an R script.</li>
 </ul>
-<p>In addition to these features, Opal manages the DataSHIELD configuration which consists of declaring the set of the allowed aggregation/assignment R functions and some R options.</p>
+<p>In addition to these features, Opal manages the DataSHIELD configuration which consists of declaring the set of permitted aggregation/assignment R functions and some R options.</p>
 <div id="client" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Client</h3>
-<p>The <a href="https://cran.r-project.org/package=opalr">opalr</a> R package is a general purpose Opal connection R library (authentication is required) that is used to perform various operations (authorization may be required). The <a href="https://cran.r-project.org/package=DSOpal">DSOpal</a> R package is an implementation of the <em>DSI</em>, built on top of <em>opalr</em>. All the DataSHIELD operations are transparently applied to one or more Opal server using the <a href="datashield.html#higher-level-functions">DSI higher-level functions</a>. Opal also supports asynchronous function calls (submission of a R operation, then later retrieval of the result) which allows to operate on several DataSHIELD analysis nodes in parallel.</p>
+<p>The <a href="https://cran.r-project.org/package=opalr">opalr</a> R package is a general purpose Opal connection R library (authentication is required) that is used to perform various operations (authorization may be required). The <a href="https://cran.r-project.org/package=DSOpal">DSOpal</a> R package is an implementation of the <em>DSI</em>, built on top of <em>opalr</em>. All the DataSHIELD operations are transparently applied to one or more Opal server using the <a href="datashield.html#higher-level-functions">DSI higher-level functions</a>. Opal also supports asynchronous function calls (submission of a R operation, then later retrieval of the result) which allows operations on several DataSHIELD analysis nodes in parallel.</p>
 </div>
 <div id="server" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Server</h3>
-<p>On the Opal’s R server side, some DataSHIELD-compliant R packages can be managed using the Opal’s web interface: installation, removal of DataSHIELD-compliant R packages and automatic DataSHIELD configuration discovery. Opal guarantees that only the allowed functions can be called. The DataSHIELD-compliant R package guarantees that only aggregated results are returned to the client. The term ‘aggregated’ here means that the data in the R server will go through a function that summarizes individual-level data into a non-disclosive form. For example, obtaining the length of a vector, or obtaining the summary statistics of a vector (min, max, mean, etc.).</p>
-<p>These DataSHIELD functions that are customisable. That is, administrators of the Opal server can add, remove, modify or create completely custom aggregating methods that are proposed to DataSHIELD clients.</p>
+<p>On the R server managed by Opal, some DataSHIELD-compliant R packages can be managed using the Opal’s web interface: installation, removal of DataSHIELD-compliant R packages and automatic DataSHIELD configuration discovery. Opal guarantees that only the allowed functions can be called. The DataSHIELD-compliant R package guarantees that only aggregated results are returned to the client. The term ‘aggregated’ here means that the data in the R server will go through a function that summarizes individual-level data into a non-disclosive form. For example, obtaining the length of a vector, or obtaining the summary statistics of a vector (min, max, mean, etc.).</p>
+<p>These DataSHIELD functions are customisable. That is, administrators of the Opal server can add, remove, modify or create completely custom aggregating methods that are proposed to DataSHIELD clients.</p>
 <div class="figure" style="text-align: center"><span id="fig:opalDSAdmin"></span>
 <p class="caption">
 Figure 5.2: DataSHIELD configuration in Opal
@@ -449,10 +449,10 @@ Figure 5.2: DataSHIELD configuration in Opal
 </div>
 <p>When performing a DataSHIELD analysis session, a typical workflow on a single Opal analysis node is the following:</p>
 <ul>
-<li>authentication of the user (autorization to use DataSHIELD service is required),</li>
-<li>creation and initialization of a R server session,</li>
-<li>assignment of Opal-managed data into the R server session (data access authorization is required),</li>
-<li>processing of the incoming R operation requests (aggregation and assignment function calls authorization is required) that are forwarded to the R server session; non-disclosive aggregated result is then returned to the R client.</li>
+<li>authentication of the user (requires authorization to use DataSHIELD service),</li>
+<li>creation and initialization of an R server session,</li>
+<li>assignment of Opal-managed data into the R server session (requires data access authorization),</li>
+<li>processing incoming R operation requests (aggregation and assignment function calls requires authorization) that are forwarded to the R server session; non-disclosive aggregated result is then returned to the R client.</li>
 </ul>
 </div>
 </div>

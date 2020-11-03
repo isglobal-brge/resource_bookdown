@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -289,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="basic-statistical-analyses" class="section level1" number="11">
 <h1><span class="header-section-number">11</span> Basic statistical analyses</h1>
-<p>Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are avaialbe in our OPAL demo repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are avaialble as three different resources: mySQL database, SPSS file and CSV file (see Figure <a href="resources.html#fig:testResources">6.2</a>). This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different number of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of the obesity methodological development project. This dataset does contain some NA values. The available variables are:</p>
+<p>Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are available in our Opal demo repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 and are available as three different resources: mySQL database, SPSS file and CSV file (see Figure <a href="resources.html#fig:testResources">6.2</a>). This example mimics real situations where different hospitals or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different numbers of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of an obesity methodological development project. This dataset does contain some NA values. The available variables are:</p>
 <table>
 <thead>
 <tr>
@@ -464,7 +464,7 @@ factor
 </tr>
 </tbody>
 </table>
-<p>The analyses that are described here, can also be found in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS">DataSHIELD Tutorial</a> where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.</p>
+<p>The analyses that are described here, can also be found in the <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS">DataSHIELD Tutorial</a> where these resources here uploaded to the Opal server as three tables, an inferior approach since data have to be moved from their original repositories.</p>
 <div id="analysis-from-a-single-study" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Analysis from a single study</h2>
 <p>Let us start by illustrating how to analyze one data set (CNSIM2).</p>
@@ -595,7 +595,7 @@ GENDER          0.6315685 0.797650197    0.338328242      1.88055787</code></pre
 </div>
 <div id="analysis-from-a-multiple-studies" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Analysis from a multiple studies</h2>
-<p>Now, let us illustrate ….</p>
+<p>Now, let us illustrate a similar analysis with multiple studies. In this case we see results aggregated across all three studies.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="basic-statistical-analyses.html#cb130-1"></a><span class="kw">library</span>(DSOpal)</span>
 <span id="cb130-2"><a href="basic-statistical-analyses.html#cb130-2"></a><span class="kw">library</span>(dsBaseClient)</span>
 <span id="cb130-3"><a href="basic-statistical-analyses.html#cb130-3"></a></span>
