@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -261,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -298,34 +300,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-4"><a href="shell-extension.html#cb90-4"></a>client &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResourceClient</span>(brge_plink)</span></code></pre></div>
 <p>This creates an object of this class:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="shell-extension.html#cb91-1"></a><span class="kw">class</span>(client)</span></code></pre></div>
-<pre><code>[1] &quot;SshResourceClient&quot;     &quot;CommandResourceClient&quot; &quot;ResourceClient&quot;        &quot;R6&quot;                   </code></pre>
+<pre><code>[1] &quot;SshResourceClient&quot;     &quot;CommandResourceClient&quot; &quot;ResourceClient&quot;       
+[4] &quot;R6&quot;                   </code></pre>
 <p>These are the actions we can do with an <code>SshResourceClient</code> object</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="shell-extension.html#cb93-1"></a><span class="kw">names</span>(client)</span></code></pre></div>
-<pre><code> [1] &quot;.__enclos_env__&quot;    &quot;clone&quot;              &quot;close&quot;              &quot;exec&quot;               &quot;removeTempDir&quot;      &quot;tempDir&quot;           
- [7] &quot;uploadFile&quot;         &quot;downloadFile&quot;       &quot;getConnection&quot;      &quot;getAllowedCommands&quot; &quot;initialize&quot;         &quot;asTbl&quot;             
+<pre><code> [1] &quot;.__enclos_env__&quot;    &quot;clone&quot;              &quot;close&quot;             
+ [4] &quot;exec&quot;               &quot;removeTempDir&quot;      &quot;tempDir&quot;           
+ [7] &quot;uploadFile&quot;         &quot;downloadFile&quot;       &quot;getConnection&quot;     
+[10] &quot;getAllowedCommands&quot; &quot;initialize&quot;         &quot;asTbl&quot;             
 [13] &quot;asDataFrame&quot;        &quot;getResource&quot;       </code></pre>
 <p>For this specific resource (e.g. PLINK) we can execute these shell commands</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="shell-extension.html#cb95-1"></a>client<span class="op">$</span><span class="kw">getAllowedCommands</span>()</span></code></pre></div>
 <pre><code>[1] &quot;ls&quot;     &quot;plink&quot;  &quot;plink1&quot;</code></pre>
 <p>For instance</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="shell-extension.html#cb97-1"></a>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&quot;ls&quot;</span>, <span class="st">&quot;-la&quot;</span>)</span></code></pre></div>
-<pre><code>package &#39;hunspell&#39; successfully unpacked and MD5 sums checked
-package &#39;credentials&#39; successfully unpacked and MD5 sums checked
-package &#39;spelling&#39; successfully unpacked and MD5 sums checked
-package &#39;mongolite&#39; successfully unpacked and MD5 sums checked
-package &#39;ssh&#39; successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-	C:\Users\jrgonzalez\AppData\Local\Temp\RtmpIFoyvV\downloaded_packages</code></pre>
 <pre><code>$status
 [1] 0
 
 $output
-[1] &quot;total 92992&quot;                                               &quot;dr-xr-xr-x 2 master master     4096 Apr 29 09:50 .&quot;       
-[3] &quot;drwxr-xr-x 6 master master     4096 Aug 26 22:19 ..&quot;       &quot;-r--r--r-- 1 master master 57800003 Apr 29 09:50 brge.bed&quot;
-[5] &quot;-r--r--r-- 1 master master  2781294 Apr 29 09:50 brge.bim&quot; &quot;-r--r--r-- 1 master master    45771 Apr 29 09:50 brge.fam&quot;
-[7] &quot;-r--r--r-- 1 master master 34442346 Apr 29 09:50 brge.gds&quot; &quot;-r--r--r-- 1 master master    59802 Apr 29 09:50 brge.phe&quot;
-[9] &quot;-r--r--r-- 1 master master    72106 Apr 29 09:50 brge.txt&quot;
+[1] &quot;total 92992&quot;                                              
+[2] &quot;dr-xr-xr-x 2 master master     4096 Apr 29  2020 .&quot;       
+[3] &quot;drwxr-xr-x 7 master master     4096 Nov  1 12:48 ..&quot;      
+[4] &quot;-r--r--r-- 1 master master 57800003 Apr 29  2020 brge.bed&quot;
+[5] &quot;-r--r--r-- 1 master master  2781294 Apr 29  2020 brge.bim&quot;
+[6] &quot;-r--r--r-- 1 master master    45771 Apr 29  2020 brge.fam&quot;
+[7] &quot;-r--r--r-- 1 master master 34442346 Apr 29  2020 brge.gds&quot;
+[8] &quot;-r--r--r-- 1 master master    59802 Apr 29  2020 brge.phe&quot;
+[9] &quot;-r--r--r-- 1 master master    72106 Apr 29  2020 brge.txt&quot;
 
 $error
 character(0)
@@ -336,10 +337,10 @@ $command
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
 <p>Then, to avoid multiple accesses to the resource, it is recommended to create a temporal directory to save our results</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="shell-extension.html#cb100-1"></a>tempDir &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">tempDir</span>()</span>
-<span id="cb100-2"><a href="shell-extension.html#cb100-2"></a>tempDir</span></code></pre></div>
-<pre><code>[1] &quot;/tmp/ssh-7664&quot;</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="shell-extension.html#cb102-1"></a>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&quot;ls&quot;</span>, tempDir)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="shell-extension.html#cb99-1"></a>tempDir &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">tempDir</span>()</span>
+<span id="cb99-2"><a href="shell-extension.html#cb99-2"></a>tempDir</span></code></pre></div>
+<pre><code>[1] &quot;/tmp/ssh-9448&quot;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="shell-extension.html#cb101-1"></a>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&quot;ls&quot;</span>, tempDir)</span></code></pre></div>
 <pre><code>$status
 [1] 0
 
@@ -350,12 +351,12 @@ $error
 character(0)
 
 $command
-[1] &quot;cd /home/master/brge &amp;&amp; ls /tmp/ssh-7664&quot;
+[1] &quot;cd /home/master/brge &amp;&amp; ls /tmp/ssh-9448&quot;
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
 <p>Then, we can use R to launch the shell commands</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="shell-extension.html#cb104-1"></a>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&#39;plink1&#39;</span>, <span class="kw">c</span>(<span class="st">&#39;--bfile&#39;</span>, <span class="st">&#39;brge&#39;</span>, <span class="st">&#39;--freq&#39;</span>, <span class="st">&#39;--out&#39;</span>, <span class="kw">paste0</span>(tempDir, <span class="st">&#39;/out&#39;</span>), <span class="st">&#39;--noweb&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="shell-extension.html#cb103-1"></a>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&#39;plink1&#39;</span>, <span class="kw">c</span>(<span class="st">&#39;--bfile&#39;</span>, <span class="st">&#39;brge&#39;</span>, <span class="st">&#39;--freq&#39;</span>, <span class="st">&#39;--out&#39;</span>, <span class="kw">paste0</span>(tempDir, <span class="st">&#39;/out&#39;</span>), <span class="st">&#39;--noweb&#39;</span>))</span></code></pre></div>
 <pre><code>$status
 [1] 0
 
@@ -371,13 +372,13 @@ $output
  [9] &quot;@----------------------------------------------------------@&quot;              
 [10] &quot;&quot;                                                                          
 [11] &quot;Skipping web check... [ --noweb ] &quot;                                        
-[12] &quot;Writing this text to log file [ /tmp/ssh-7664/out.log ]&quot;                   
-[13] &quot;Analysis started: Mon Sep  7 14:26:45 2020&quot;                                
+[12] &quot;Writing this text to log file [ /tmp/ssh-9448/out.log ]&quot;                   
+[13] &quot;Analysis started: Tue Nov  3 09:20:39 2020&quot;                                
 [14] &quot;&quot;                                                                          
 [15] &quot;Options in effect:&quot;                                                        
 [16] &quot;\t--bfile brge&quot;                                                             
 [17] &quot;\t--freq&quot;                                                                   
-[18] &quot;\t--out /tmp/ssh-7664/out&quot;                                                  
+[18] &quot;\t--out /tmp/ssh-9448/out&quot;                                                  
 [19] &quot;\t--noweb&quot;                                                                  
 [20] &quot;&quot;                                                                          
 [21] &quot;Reading map (extended format) from [ brge.bim ] &quot;                          
@@ -394,31 +395,31 @@ $output
 [32] &quot;Before frequency and genotyping pruning, there are 100000 SNPs&quot;            
 [33] &quot;2312 founders and 0 non-founders found&quot;                                    
 [34] &quot;6009 heterozygous haploid genotypes; set to missing&quot;                       
-[35] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-7664/out.hh ]&quot;
+[35] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-9448/out.hh ]&quot;
 [36] &quot;7 SNPs with no founder genotypes observed&quot;                                 
 [37] &quot;Warning, MAF set to 0 for these SNPs (see --nonfounders)&quot;                  
-[38] &quot;Writing list of these SNPs to [ /tmp/ssh-7664/out.nof ]&quot;                   
-[39] &quot;Writing allele frequencies (founders-only) to [ /tmp/ssh-7664/out.frq ] &quot;  
+[38] &quot;Writing list of these SNPs to [ /tmp/ssh-9448/out.nof ]&quot;                   
+[39] &quot;Writing allele frequencies (founders-only) to [ /tmp/ssh-9448/out.frq ] &quot;  
 [40] &quot;&quot;                                                                          
-[41] &quot;Analysis finished: Mon Sep  7 14:26:49 2020&quot;                               
+[41] &quot;Analysis finished: Tue Nov  3 09:20:44 2020&quot;                               
 [42] &quot;&quot;                                                                          
 
 $error
 character(0)
 
 $command
-[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --freq --out /tmp/ssh-7664/out --noweb&quot;
+[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --freq --out /tmp/ssh-9448/out --noweb&quot;
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
 <p>The results can be retrieve as an R object</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="shell-extension.html#cb106-1"></a>outs &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&#39;ls&#39;</span>, tempDir)<span class="op">$</span>output</span>
-<span id="cb106-2"><a href="shell-extension.html#cb106-2"></a>outs</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="shell-extension.html#cb105-1"></a>outs &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&#39;ls&#39;</span>, tempDir)<span class="op">$</span>output</span>
+<span id="cb105-2"><a href="shell-extension.html#cb105-2"></a>outs</span></code></pre></div>
 <pre><code>[1] &quot;out.frq&quot; &quot;out.hh&quot;  &quot;out.log&quot; &quot;out.nof&quot;</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="shell-extension.html#cb108-1"></a>client<span class="op">$</span><span class="kw">downloadFile</span>(<span class="kw">paste0</span>(tempDir, <span class="st">&#39;/out.frq&#39;</span>))  </span></code></pre></div>
-<pre><code>NULL</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="shell-extension.html#cb110-1"></a>ans &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_table</span>(<span class="st">&quot;out.frq&quot;</span>)</span>
-<span id="cb110-2"><a href="shell-extension.html#cb110-2"></a>ans</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="shell-extension.html#cb107-1"></a>client<span class="op">$</span><span class="kw">downloadFile</span>(<span class="kw">paste0</span>(tempDir, <span class="st">&#39;/out.frq&#39;</span>))  </span></code></pre></div>
+<pre><code>[1] &quot;./out.frq&quot;</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="shell-extension.html#cb109-1"></a>ans &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_table</span>(<span class="st">&quot;out.frq&quot;</span>)</span>
+<span id="cb109-2"><a href="shell-extension.html#cb109-2"></a>ans</span></code></pre></div>
 <pre><code># A tibble: 100,000 x 6
      CHR SNP         A1    A2         MAF NCHROBS
    &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
@@ -434,8 +435,8 @@ attr(,&quot;class&quot;)
 10     0 MitoT11900C C     T     0.000868    4608
 # ... with 99,990 more rows</code></pre>
 <p>Finally temporal directories are removed and session closed</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="shell-extension.html#cb112-1"></a>client<span class="op">$</span><span class="kw">removeTempDir</span>()</span>
-<span id="cb112-2"><a href="shell-extension.html#cb112-2"></a>client<span class="op">$</span><span class="kw">close</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="shell-extension.html#cb111-1"></a>client<span class="op">$</span><span class="kw">removeTempDir</span>()</span>
+<span id="cb111-2"><a href="shell-extension.html#cb111-2"></a>client<span class="op">$</span><span class="kw">close</span>()</span></code></pre></div>
 
 </div>
 

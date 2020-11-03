@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -261,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -324,49 +326,57 @@ Figure 12.3: Non-disclosive omic data analysis with DataSHIELD and Bioconductor.
 <h2><span class="header-section-number">12.2</span> Differential gene expression (DGE) analysis</h2>
 <p>Let us start by illustrating a simple example where a researcher may be interested in perfoming differential gene expression anaylis (DGE) having data in a single repository (e.g. one study). To this end, we will use bulk transcriptomic data from <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">TCGA project</a>. We have uploaded to the opal server a resource called <code>tcga_liver</code> whose URL is <a href="http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata" class="uri">http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata</a> which is available through the <a href="https://jhubiostatistics.shinyapps.io/recount/">recount project</a>. This resource contains the <code>RangeSummarizedExperiment</code> with the RNAseq profiling of liver cancer data from TCGA. Next, we illustrate how a differential expression analysis to compare RNAseq profiling of women vs men (variable <code>gdc_cases.demographic.gender</code>). The DGE analysis is normally performed using <em><a href="https://bioconductor.org/packages/3.11/limma">limma</a></em> package. In that case, as we are analyzing RNA-seq data, <code>limma + voom</code> method will be required.</p>
 <p>Let us start by creating the connection to the opal server:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="Omic.html#cb146-1"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb146-2"><a href="Omic.html#cb146-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb146-3"><a href="Omic.html#cb146-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb146-4"><a href="Omic.html#cb146-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.tcga_liver&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb146-5"><a href="Omic.html#cb146-5"></a></span>
-<span id="cb146-6"><a href="Omic.html#cb146-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb146-7"><a href="Omic.html#cb146-7"></a></span>
-<span id="cb146-8"><a href="Omic.html#cb146-8"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb146-9"><a href="Omic.html#cb146-9"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="Omic.html#cb145-1"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb145-2"><a href="Omic.html#cb145-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb145-3"><a href="Omic.html#cb145-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb145-4"><a href="Omic.html#cb145-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.tcga_liver&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb145-5"><a href="Omic.html#cb145-5"></a></span>
+<span id="cb145-6"><a href="Omic.html#cb145-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb145-7"><a href="Omic.html#cb145-7"></a></span>
+<span id="cb145-8"><a href="Omic.html#cb145-8"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb145-9"><a href="Omic.html#cb145-9"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span></code></pre></div>
 <p>Then, let us coerce the resource to a <code>RangedSummarizedExperiment</code> which is the type of object that is available in the <a href="https://jhubiostatistics.shinyapps.io/recount/">recount project</a>.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="Omic.html#cb147-1"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;rse&quot;</span>, </span>
-<span id="cb147-2"><a href="Omic.html#cb147-2"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
-<span id="cb147-3"><a href="Omic.html#cb147-3"></a><span class="kw">ds.class</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="Omic.html#cb146-1"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;rse&quot;</span>, </span>
+<span id="cb146-2"><a href="Omic.html#cb146-2"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
+<span id="cb146-3"><a href="Omic.html#cb146-3"></a><span class="kw">ds.class</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;RangedSummarizedExperiment&quot;
 attr(,&quot;package&quot;)
 [1] &quot;SummarizedExperiment&quot;</code></pre>
 <p>The number of features and samples can be inspected by</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="Omic.html#cb149-1"></a><span class="kw">ds.dim</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="Omic.html#cb148-1"></a><span class="kw">ds.dim</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
 <pre><code>$`dimensions of rse in study1`
 [1] 58037   424
 
 $`dimensions of rse in combined studies`
 [1] 58037   424</code></pre>
 <p>And the names of the features using the same function used in the case of analyzing an <code>ExpressionSet</code></p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="Omic.html#cb151-1"></a>name.features &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;rse&quot;</span>)</span>
-<span id="cb151-2"><a href="Omic.html#cb151-2"></a><span class="kw">lapply</span>(name.features, head)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="Omic.html#cb150-1"></a>name.features &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;rse&quot;</span>)</span>
+<span id="cb150-2"><a href="Omic.html#cb150-2"></a><span class="kw">lapply</span>(name.features, head)</span></code></pre></div>
 <pre><code>$study1
-[1] &quot;ENSG00000000003.14&quot; &quot;ENSG00000000005.5&quot;  &quot;ENSG00000000419.12&quot; &quot;ENSG00000000457.13&quot; &quot;ENSG00000000460.16&quot; &quot;ENSG00000000938.12&quot;</code></pre>
+[1] &quot;ENSG00000000003.14&quot; &quot;ENSG00000000005.5&quot;  &quot;ENSG00000000419.12&quot;
+[4] &quot;ENSG00000000457.13&quot; &quot;ENSG00000000460.16&quot; &quot;ENSG00000000938.12&quot;</code></pre>
 <p>Also the covariate names can be inspected by</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="Omic.html#cb153-1"></a>name.vars &lt;-<span class="st"> </span><span class="kw">ds.featureData</span>(<span class="st">&quot;rse&quot;</span>)</span>
-<span id="cb153-2"><a href="Omic.html#cb153-2"></a><span class="kw">lapply</span>(name.vars, head, <span class="dt">n=</span><span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="Omic.html#cb152-1"></a>name.vars &lt;-<span class="st"> </span><span class="kw">ds.featureData</span>(<span class="st">&quot;rse&quot;</span>)</span>
+<span id="cb152-2"><a href="Omic.html#cb152-2"></a><span class="kw">lapply</span>(name.vars, head, <span class="dt">n=</span><span class="dv">15</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;project&quot;                                        &quot;sample&quot;                                        
- [3] &quot;experiment&quot;                                     &quot;run&quot;                                           
- [5] &quot;read_count_as_reported_by_sra&quot;                  &quot;reads_downloaded&quot;                              
- [7] &quot;proportion_of_reads_reported_by_sra_downloaded&quot; &quot;paired_end&quot;                                    
- [9] &quot;sra_misreported_paired_end&quot;                     &quot;mapped_read_count&quot;                             
-[11] &quot;auc&quot;                                            &quot;sharq_beta_tissue&quot;                             
-[13] &quot;sharq_beta_cell_type&quot;                           &quot;biosample_submission_date&quot;                     
+ [1] &quot;project&quot;                                       
+ [2] &quot;sample&quot;                                        
+ [3] &quot;experiment&quot;                                    
+ [4] &quot;run&quot;                                           
+ [5] &quot;read_count_as_reported_by_sra&quot;                 
+ [6] &quot;reads_downloaded&quot;                              
+ [7] &quot;proportion_of_reads_reported_by_sra_downloaded&quot;
+ [8] &quot;paired_end&quot;                                    
+ [9] &quot;sra_misreported_paired_end&quot;                    
+[10] &quot;mapped_read_count&quot;                             
+[11] &quot;auc&quot;                                           
+[12] &quot;sharq_beta_tissue&quot;                             
+[13] &quot;sharq_beta_cell_type&quot;                          
+[14] &quot;biosample_submission_date&quot;                     
 [15] &quot;biosample_publication_date&quot;                    </code></pre>
 <p>We can visualize the levels of the variable having gender information</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="Omic.html#cb155-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;rse$gdc_cases.demographic.gender&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="Omic.html#cb154-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;rse$gdc_cases.demographic.gender&quot;</span>)</span></code></pre></div>
 <pre><code>
  Data in all studies were valid 
 
@@ -404,32 +414,33 @@ female   male
 $validity.message
 [1] &quot;Data in all studies were valid&quot;</code></pre>
 <p>The differential expression analysis is then performed by:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="Omic.html#cb158-1"></a>ans.gender &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span>  <span class="op">~</span><span class="st"> </span>gdc_cases.demographic.gender, </span>
-<span id="cb158-2"><a href="Omic.html#cb158-2"></a>                   <span class="dt">Set =</span> <span class="st">&quot;rse&quot;</span>, <span class="dt">type.data =</span> <span class="st">&quot;RNAseq&quot;</span>, </span>
-<span id="cb158-3"><a href="Omic.html#cb158-3"></a>                   <span class="dt">sva =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="Omic.html#cb157-1"></a>ans.gender &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span>  <span class="op">~</span><span class="st"> </span>gdc_cases.demographic.gender, </span>
+<span id="cb157-2"><a href="Omic.html#cb157-2"></a>                   <span class="dt">Set =</span> <span class="st">&quot;rse&quot;</span>, <span class="dt">type.data =</span> <span class="st">&quot;RNAseq&quot;</span>, </span>
+<span id="cb157-3"><a href="Omic.html#cb157-3"></a>                   <span class="dt">sva =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Notice that we have set <code>type.data='RNAseq'</code> to consider that our data are counts obtained from a RNA-seq experiment. By indicating so, the differential analysis is performed by using <code>voom</code> + <code>limma</code> as previously mention.</p>
 <p>The top differentially expressed genes can be visualized by:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="Omic.html#cb159-1"></a>ans.gender</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="Omic.html#cb158-1"></a>ans.gender</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 58,037 x 10
-   id                  logFC   CI.L   CI.R AveExpr     t   P.Value adj.P.Val     B     SE
-   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
- 1 ENSG00000233070.1   10.9   10.5   11.3   -5.59   53.6 7.05e-191 4.09e-186  402. 0.0761
- 2 ENSG00000213318.4   11.4   10.9   11.8   -4.35   49.4 5.93e-178 1.72e-173  376. 0.462 
- 3 ENSG00000067048.16   9.63   9.24  10.0    0.856  47.9 5.05e-173 9.78e-169  366. 0.0608
- 4 ENSG00000260197.1   10.2    9.76  10.6   -5.88   46.3 5.27e-168 7.65e-164  355. 0.0654
- 5 ENSG00000012817.15  11.3   10.8   11.8   -0.226  44.7 1.29e-162 1.50e-158  344. 0.0880
- 6 ENSG00000131002.11  11.4   10.9   11.9   -1.10   44.5 7.80e-162 7.55e-158  343. 0.120 
- 7 ENSG00000198692.9   12.3   11.8   12.9   -0.882  44.4 1.62e-161 1.34e-157  342. 0.129 
- 8 ENSG00000183878.15   8.66   8.27   9.05  -0.781  43.9 9.83e-160 7.13e-156  338. 0.0813
- 9 ENSG00000129824.15  11.4   10.8   11.9    2.37   43.3 1.44e-157 9.29e-154  334. 0.0896
-10 ENSG00000274655.1  -12.4  -12.9  -11.8   -7.71  -43.1 5.20e-157 3.02e-153  333. 0.0931
+   id           logFC   CI.L   CI.R AveExpr     t   P.Value adj.P.Val     B     SE
+   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 ENSG000002~  10.9   10.5   11.3   -5.59   53.6 7.05e-191 4.09e-186  402. 0.0761
+ 2 ENSG000002~  11.4   10.9   11.8   -4.35   49.4 5.93e-178 1.72e-173  376. 0.462 
+ 3 ENSG000000~   9.63   9.24  10.0    0.856  47.9 5.05e-173 9.78e-169  366. 0.0608
+ 4 ENSG000002~  10.2    9.76  10.6   -5.88   46.3 5.27e-168 7.65e-164  355. 0.0654
+ 5 ENSG000000~  11.3   10.8   11.8   -0.226  44.7 1.29e-162 1.50e-158  344. 0.0880
+ 6 ENSG000001~  11.4   10.9   11.9   -1.10   44.5 7.80e-162 7.55e-158  343. 0.120 
+ 7 ENSG000001~  12.3   11.8   12.9   -0.882  44.4 1.62e-161 1.34e-157  342. 0.129 
+ 8 ENSG000001~   8.66   8.27   9.05  -0.781  43.9 9.83e-160 7.13e-156  338. 0.0813
+ 9 ENSG000001~  11.4   10.8   11.9    2.37   43.3 1.44e-157 9.29e-154  334. 0.0896
+10 ENSG000002~ -12.4  -12.9  -11.8   -7.71  -43.1 5.20e-157 3.02e-153  333. 0.0931
 # ... with 58,027 more rows
 
 attr(,&quot;class&quot;)
 [1] &quot;dsLimma&quot; &quot;list&quot;   </code></pre>
+<p>We have also implemented two other functions <code>ds.DESeq2</code> and <code>ds.edgeR</code> that perform DGE analysis using <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">DESeq2</a> and <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf">edgeR</a> methods.</p>
 <p>As usual, we close the DataSHIELD session by:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="Omic.html#cb161-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="Omic.html#cb160-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
 <div id="epigenome-wide-association-analysis-ewas" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> Epigenome-wide association analysis (EWAS)</h2>
@@ -437,25 +448,25 @@ attr(,&quot;class&quot;)
 <p>We have downloaded data from <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> corresponding to the accesion number GSE66351 which includes DNA methylation profiling (Illumina 450K array) of 190 individuals. Data corresponds to CpGs beta values measured in the superior temporal gyrus and prefrontal cortex brain regions of patients with Alzheimer’s. Data have been downloaded using <em><a href="https://bioconductor.org/packages/3.11/GEOquery">GEOquery</a></em> package that gets GEO data as <code>ExpressionSet</code> objects. Researchers who are not familiar with <code>ExpressionSet</code>s can read <a href="BioC.html#BioC">this Section</a>. Notice that data are encoded as beta-values that ensure data harmonization across studies.</p>
 <p>In order to illustrate how to perform data analyses using federated data, we have split the data into two <code>ExpressionSet</code>s having 100 and 90 samples as if they were two different studies. Figure <a href="resources.html#fig:testResources">6.2</a> shows the two resources defined for both studies (GSE66351_1 and GSE66351_2)</p>
 <p>In order to perform omic data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the <code>as.resource.object()</code> function</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="Omic.html#cb162-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb162-2"><a href="Omic.html#cb162-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb162-3"><a href="Omic.html#cb162-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb162-4"><a href="Omic.html#cb162-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb162-5"><a href="Omic.html#cb162-5"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb162-6"><a href="Omic.html#cb162-6"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb162-7"><a href="Omic.html#cb162-7"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb162-8"><a href="Omic.html#cb162-8"></a></span>
-<span id="cb162-9"><a href="Omic.html#cb162-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb162-10"><a href="Omic.html#cb162-10"></a></span>
-<span id="cb162-11"><a href="Omic.html#cb162-11"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb162-12"><a href="Omic.html#cb162-12"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
-<span id="cb162-13"><a href="Omic.html#cb162-13"></a></span>
-<span id="cb162-14"><a href="Omic.html#cb162-14"></a></span>
-<span id="cb162-15"><a href="Omic.html#cb162-15"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
-<span id="cb162-16"><a href="Omic.html#cb162-16"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb162-17"><a href="Omic.html#cb162-17"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="Omic.html#cb161-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb161-2"><a href="Omic.html#cb161-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb161-3"><a href="Omic.html#cb161-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb161-4"><a href="Omic.html#cb161-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb161-5"><a href="Omic.html#cb161-5"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb161-6"><a href="Omic.html#cb161-6"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb161-7"><a href="Omic.html#cb161-7"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb161-8"><a href="Omic.html#cb161-8"></a></span>
+<span id="cb161-9"><a href="Omic.html#cb161-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb161-10"><a href="Omic.html#cb161-10"></a></span>
+<span id="cb161-11"><a href="Omic.html#cb161-11"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb161-12"><a href="Omic.html#cb161-12"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb161-13"><a href="Omic.html#cb161-13"></a></span>
+<span id="cb161-14"><a href="Omic.html#cb161-14"></a></span>
+<span id="cb161-15"><a href="Omic.html#cb161-15"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
+<span id="cb161-16"><a href="Omic.html#cb161-16"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb161-17"><a href="Omic.html#cb161-17"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span></code></pre></div>
 <p>Now, we can see that the resources are actually loaded into the R servers as their original class</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="Omic.html#cb163-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="Omic.html#cb162-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;ExpressionSet&quot;
 attr(,&quot;package&quot;)
@@ -466,49 +477,63 @@ $study2
 attr(,&quot;package&quot;)
 [1] &quot;Biobase&quot;</code></pre>
 <p>Then, some Bioconductor-type functions can be use to return non-disclosive information of <code>ExpressionSet</code>s from each server to the client, using similar functions as those defined in the <code>dsBaseClient</code> package. For example, feature names can be returned by</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="Omic.html#cb165-1"></a>fn &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;methy&quot;</span>)</span>
-<span id="cb165-2"><a href="Omic.html#cb165-2"></a><span class="kw">lapply</span>(fn, head)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="Omic.html#cb164-1"></a>fn &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;methy&quot;</span>)</span>
+<span id="cb164-2"><a href="Omic.html#cb164-2"></a><span class="kw">lapply</span>(fn, head)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot; &quot;cg00000289&quot;
 
 $study2
 [1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot; &quot;cg00000289&quot;</code></pre>
 <p>Experimental phenotypes variables can be obtained by</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="Omic.html#cb167-1"></a><span class="kw">ds.varLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="Omic.html#cb166-1"></a><span class="kw">ds.varLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                  &quot;submission_date&quot;         &quot;last_update_date&quot;       
- [6] &quot;type&quot;                    &quot;channel_count&quot;           &quot;source_name_ch1&quot;         &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;    
-[11] &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;   &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;  
-[16] &quot;characteristics_ch1.6&quot;   &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;   &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
-[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;            &quot;scan_protocol&quot;          
-[26] &quot;description&quot;             &quot;data_processing&quot;         &quot;platform_id&quot;             &quot;contact_name&quot;            &quot;contact_email&quot;          
-[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;      &quot;contact_institute&quot;       &quot;contact_address&quot;         &quot;contact_city&quot;           
-[36] &quot;contact_zip/postal_code&quot; &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
-[41] &quot;age&quot;                     &quot;braak_stage&quot;             &quot;brain_region&quot;            &quot;cell type&quot;               &quot;diagnosis&quot;              
-[46] &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;        &quot;Sex&quot;                    
+ [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                 
+ [4] &quot;submission_date&quot;         &quot;last_update_date&quot;        &quot;type&quot;                   
+ [7] &quot;channel_count&quot;           &quot;source_name_ch1&quot;         &quot;organism_ch1&quot;           
+[10] &quot;characteristics_ch1&quot;     &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
+[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;  
+[16] &quot;characteristics_ch1.6&quot;   &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;  
+[19] &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;    &quot;label_ch1&quot;              
+[22] &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
+[25] &quot;scan_protocol&quot;           &quot;description&quot;             &quot;data_processing&quot;        
+[28] &quot;platform_id&quot;             &quot;contact_name&quot;            &quot;contact_email&quot;          
+[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;      &quot;contact_institute&quot;      
+[34] &quot;contact_address&quot;         &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
+[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;   
+[40] &quot;data_row_count&quot;          &quot;age&quot;                     &quot;braak_stage&quot;            
+[43] &quot;brain_region&quot;            &quot;cell type&quot;               &quot;diagnosis&quot;              
+[46] &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
+[49] &quot;Sex&quot;                    
 
 $study2
- [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                  &quot;submission_date&quot;         &quot;last_update_date&quot;       
- [6] &quot;type&quot;                    &quot;channel_count&quot;           &quot;source_name_ch1&quot;         &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;    
-[11] &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;   &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;  
-[16] &quot;characteristics_ch1.6&quot;   &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;   &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
-[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;            &quot;scan_protocol&quot;          
-[26] &quot;description&quot;             &quot;data_processing&quot;         &quot;platform_id&quot;             &quot;contact_name&quot;            &quot;contact_email&quot;          
-[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;      &quot;contact_institute&quot;       &quot;contact_address&quot;         &quot;contact_city&quot;           
-[36] &quot;contact_zip/postal_code&quot; &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
-[41] &quot;age&quot;                     &quot;braak_stage&quot;             &quot;brain_region&quot;            &quot;cell type&quot;               &quot;diagnosis&quot;              
-[46] &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;        &quot;Sex&quot;                    
+ [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                 
+ [4] &quot;submission_date&quot;         &quot;last_update_date&quot;        &quot;type&quot;                   
+ [7] &quot;channel_count&quot;           &quot;source_name_ch1&quot;         &quot;organism_ch1&quot;           
+[10] &quot;characteristics_ch1&quot;     &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
+[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;  
+[16] &quot;characteristics_ch1.6&quot;   &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;  
+[19] &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;    &quot;label_ch1&quot;              
+[22] &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
+[25] &quot;scan_protocol&quot;           &quot;description&quot;             &quot;data_processing&quot;        
+[28] &quot;platform_id&quot;             &quot;contact_name&quot;            &quot;contact_email&quot;          
+[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;      &quot;contact_institute&quot;      
+[34] &quot;contact_address&quot;         &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
+[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;   
+[40] &quot;data_row_count&quot;          &quot;age&quot;                     &quot;braak_stage&quot;            
+[43] &quot;brain_region&quot;            &quot;cell type&quot;               &quot;diagnosis&quot;              
+[46] &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
+[49] &quot;Sex&quot;                    
 
 attr(,&quot;class&quot;)
 [1] &quot;dsvarLabels&quot; &quot;list&quot;       </code></pre>
 <div id="single-cpg-analysis" class="section level3" number="12.3.1">
 <h3><span class="header-section-number">12.3.1</span> Single CpG analysis</h3>
 <p>Once the methylation data have been loaded into the opal server, we can perform different type of analyses using functions from the <code>dsOmicsClient</code> package. Let us start by illustrating how to analyze a single CpG from two studies by using an approach that is mathematically equivalent to placing all individual-level.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="Omic.html#cb169-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg07363416&quot;</span>, </span>
-<span id="cb169-2"><a href="Omic.html#cb169-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb169-3"><a href="Omic.html#cb169-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb169-4"><a href="Omic.html#cb169-4"></a>                    <span class="dt">datasources =</span> conns)</span>
-<span id="cb169-5"><a href="Omic.html#cb169-5"></a>ans</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="Omic.html#cb168-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg07363416&quot;</span>, </span>
+<span id="cb168-2"><a href="Omic.html#cb168-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb168-3"><a href="Omic.html#cb168-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb168-4"><a href="Omic.html#cb168-4"></a>                    <span class="dt">datasources =</span> conns)</span>
+<span id="cb168-5"><a href="Omic.html#cb168-5"></a>ans</span></code></pre></div>
 <pre><code>             Estimate Std. Error   p-value
 cg07363416 0.03459886 0.02504291 0.1670998
 attr(,&quot;class&quot;)
@@ -517,95 +542,115 @@ attr(,&quot;class&quot;)
 <div id="multiple-cpg-analysis" class="section level3" number="12.3.2">
 <h3><span class="header-section-number">12.3.2</span> Multiple CpG analysis</h3>
 <p>The same analysis can be performed for all features (e.g. CpGs) just avoiding the <code>feature</code> argument. This process can be parallelized using <code>mclapply</code> function from the <code>multicore</code> package.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="Omic.html#cb171-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb171-2"><a href="Omic.html#cb171-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb171-3"><a href="Omic.html#cb171-3"></a>                    <span class="dt">datasources =</span> conns,</span>
-<span id="cb171-4"><a href="Omic.html#cb171-4"></a>                    <span class="dt">mc.cores =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="Omic.html#cb170-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb170-2"><a href="Omic.html#cb170-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb170-3"><a href="Omic.html#cb170-3"></a>                    <span class="dt">datasources =</span> conns,</span>
+<span id="cb170-4"><a href="Omic.html#cb170-4"></a>                    <span class="dt">mc.cores =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p>This method corresponds to the <strong>pooled analysis</strong> approach and can be very time consiming since the function repeatedly calls the DataSHIELD function <code>ds.glm()</code>. We can adopt another strategy that is to run a glm of each feature independently at each study using <code>limma</code> package (which is really fast) and then combine the results (i.e. <strong>meta-analysis</strong> approach).</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="Omic.html#cb172-1"></a>ans.limma &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
-<span id="cb172-2"><a href="Omic.html#cb172-2"></a>                      <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb172-3"><a href="Omic.html#cb172-3"></a>                      <span class="dt">datasources =</span> conns)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="Omic.html#cb171-1"></a>ans.limma &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
+<span id="cb171-2"><a href="Omic.html#cb171-2"></a>                      <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb171-3"><a href="Omic.html#cb171-3"></a>                      <span class="dt">datasources =</span> conns)</span></code></pre></div>
 <p>Then, we can visualize the top genes at each study (i.e server) by</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="Omic.html#cb173-1"></a><span class="kw">lapply</span>(ans.limma, head)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="Omic.html#cb172-1"></a><span class="kw">lapply</span>(ans.limma, head)</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 6 x 10
-  id           logFC    CI.L    CI.R AveExpr     t       P.Value adj.P.Val     B      SE
-  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cg13138089 -0.147  -0.191  -0.103    0.380 -6.62 0.00000000190  0.000466 10.6  0.0122 
-2 cg23859635 -0.0569 -0.0741 -0.0397   0.200 -6.58 0.00000000232  0.000466 10.4  0.00520
-3 cg13772815 -0.0820 -0.107  -0.0570   0.437 -6.50 0.00000000327  0.000466 10.0  0.0135 
-4 cg12706938 -0.0519 -0.0678 -0.0359   0.145 -6.45 0.00000000425  0.000466  9.76 0.00872
-5 cg24724506 -0.0452 -0.0593 -0.0312   0.139 -6.39 0.00000000547  0.000466  9.51 0.00775
-6 cg02812891 -0.125  -0.165  -0.0860   0.247 -6.33 0.00000000731  0.000466  9.23 0.0163 
+  id         logFC    CI.L    CI.R AveExpr     t   P.Value adj.P.Val     B      SE
+  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg13138~ -0.147  -0.191  -0.103    0.380 -6.62   1.90e-9  0.000466 10.6  0.0122 
+2 cg23859~ -0.0569 -0.0741 -0.0397   0.200 -6.58   2.32e-9  0.000466 10.4  0.00520
+3 cg13772~ -0.0820 -0.107  -0.0570   0.437 -6.50   3.27e-9  0.000466 10.0  0.0135 
+4 cg12706~ -0.0519 -0.0678 -0.0359   0.145 -6.45   4.25e-9  0.000466  9.76 0.00872
+5 cg24724~ -0.0452 -0.0593 -0.0312   0.139 -6.39   5.47e-9  0.000466  9.51 0.00775
+6 cg02812~ -0.125  -0.165  -0.0860   0.247 -6.33   7.31e-9  0.000466  9.23 0.0163 
 
 $study2
 # A tibble: 6 x 10
-  id           logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
-  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cg04046629 -0.101  -0.135  -0.0669  0.345  -5.91 0.0000000621    0.0172  7.18 0.0128 
-2 cg07664323 -0.0431 -0.0577 -0.0284  0.776  -5.85 0.0000000822    0.0172  6.90 0.00390
-3 cg27098804 -0.0688 -0.0924 -0.0452  0.277  -5.79 0.000000107     0.0172  6.64 0.0147 
-4 cg08933615 -0.0461 -0.0627 -0.0296  0.166  -5.55 0.000000298     0.0360  5.64 0.00791
-5 cg18349298 -0.0491 -0.0671 -0.0311  0.157  -5.42 0.000000507     0.0489  5.12 0.00848
-6 cg02182795 -0.0199 -0.0272 -0.0125  0.0947 -5.36 0.000000670     0.0538  4.84 0.0155 </code></pre>
+  id         logFC    CI.L    CI.R AveExpr     t   P.Value adj.P.Val     B      SE
+  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg04046~ -0.101  -0.135  -0.0669  0.345  -5.91   6.21e-8    0.0172  7.18 0.0128 
+2 cg07664~ -0.0431 -0.0577 -0.0284  0.776  -5.85   8.22e-8    0.0172  6.90 0.00390
+3 cg27098~ -0.0688 -0.0924 -0.0452  0.277  -5.79   1.07e-7    0.0172  6.64 0.0147 
+4 cg08933~ -0.0461 -0.0627 -0.0296  0.166  -5.55   2.98e-7    0.0360  5.64 0.00791
+5 cg18349~ -0.0491 -0.0671 -0.0311  0.157  -5.42   5.07e-7    0.0489  5.12 0.00848
+6 cg02182~ -0.0199 -0.0272 -0.0125  0.0947 -5.36   6.70e-7    0.0538  4.84 0.0155 </code></pre>
 <p>The annotation can be added by using the argument <code>annotCols</code>. It should be a vector with the columns of the annotation available in the <code>ExpressionSet</code> or <code>RangedSummarizedExperiment</code> that want to be showed. The columns of the annotation can be obtained by</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="Omic.html#cb175-1"></a><span class="kw">ds.fvarLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="Omic.html#cb174-1"></a><span class="kw">ds.fvarLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;ID&quot;                          &quot;Name&quot;                        &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
- [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;            &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
- [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;            &quot;Genome_Build&quot;                &quot;CHR&quot;                        
-[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                   &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
-[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                  &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
-[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;           &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
-[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot; &quot;Phantom&quot;                     &quot;DMR&quot;                        
-[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                  &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
-[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                 &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
+ [1] &quot;ID&quot;                          &quot;Name&quot;                       
+ [3] &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
+ [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
+ [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
+ [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;           
+[11] &quot;Genome_Build&quot;                &quot;CHR&quot;                        
+[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                  
+[15] &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
+[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
+[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
+[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;          
+[23] &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
+[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot;
+[27] &quot;Phantom&quot;                     &quot;DMR&quot;                        
+[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
+[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
+[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                
+[35] &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
 [37] &quot;SPOT_ID&quot;                    
 
 $study2
- [1] &quot;ID&quot;                          &quot;Name&quot;                        &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
- [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;            &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
- [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;            &quot;Genome_Build&quot;                &quot;CHR&quot;                        
-[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                   &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
-[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                  &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
-[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;           &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
-[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot; &quot;Phantom&quot;                     &quot;DMR&quot;                        
-[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                  &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
-[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                 &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
+ [1] &quot;ID&quot;                          &quot;Name&quot;                       
+ [3] &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
+ [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
+ [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
+ [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;           
+[11] &quot;Genome_Build&quot;                &quot;CHR&quot;                        
+[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                  
+[15] &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
+[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
+[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
+[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;          
+[23] &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
+[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot;
+[27] &quot;Phantom&quot;                     &quot;DMR&quot;                        
+[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
+[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
+[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                
+[35] &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
 [37] &quot;SPOT_ID&quot;                    
 
 attr(,&quot;class&quot;)
 [1] &quot;dsfvarLabels&quot; &quot;list&quot;        </code></pre>
 <p>Then we can run the analysis and obtain the output with the chromosome and gene symbol by:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="Omic.html#cb177-1"></a>ans.limma.annot &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
-<span id="cb177-2"><a href="Omic.html#cb177-2"></a>                            <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb177-3"><a href="Omic.html#cb177-3"></a>                            <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>),</span>
-<span id="cb177-4"><a href="Omic.html#cb177-4"></a>                            <span class="dt">datasources =</span> conns)</span></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="Omic.html#cb178-1"></a><span class="kw">lapply</span>(ans.limma.annot, head)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="Omic.html#cb176-1"></a>ans.limma.annot &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
+<span id="cb176-2"><a href="Omic.html#cb176-2"></a>                            <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb176-3"><a href="Omic.html#cb176-3"></a>                            <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>),</span>
+<span id="cb176-4"><a href="Omic.html#cb176-4"></a>                            <span class="dt">datasources =</span> conns)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="Omic.html#cb177-1"></a><span class="kw">lapply</span>(ans.limma.annot, head)</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 6 x 12
-  id         CHR   UCSC_RefGene_Name     logFC    CI.L    CI.R AveExpr     t       P.Value adj.P.Val     B      SE
-  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cg13138089 2     &quot;ECEL1P2&quot;           -0.147  -0.191  -0.103    0.380 -6.62 0.00000000190  0.000466 10.6  0.0122 
-2 cg23859635 2     &quot;MTA3&quot;              -0.0569 -0.0741 -0.0397   0.200 -6.58 0.00000000232  0.000466 10.4  0.00520
-3 cg13772815 17    &quot;&quot;                  -0.0820 -0.107  -0.0570   0.437 -6.50 0.00000000327  0.000466 10.0  0.0135 
-4 cg12706938 19    &quot;MEX3D&quot;             -0.0519 -0.0678 -0.0359   0.145 -6.45 0.00000000425  0.000466  9.76 0.00872
-5 cg24724506 19    &quot;ISOC2;ISOC2;ISOC2&quot; -0.0452 -0.0593 -0.0312   0.139 -6.39 0.00000000547  0.000466  9.51 0.00775
-6 cg02812891 2     &quot;ECEL1P2&quot;           -0.125  -0.165  -0.0860   0.247 -6.33 0.00000000731  0.000466  9.23 0.0163 
+  id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t P.Value
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg13~ 2     &quot;ECEL1P2&quot;        -0.147  -0.191  -0.103    0.380 -6.62 1.90e-9
+2 cg23~ 2     &quot;MTA3&quot;           -0.0569 -0.0741 -0.0397   0.200 -6.58 2.32e-9
+3 cg13~ 17    &quot;&quot;               -0.0820 -0.107  -0.0570   0.437 -6.50 3.27e-9
+4 cg12~ 19    &quot;MEX3D&quot;          -0.0519 -0.0678 -0.0359   0.145 -6.45 4.25e-9
+5 cg24~ 19    &quot;ISOC2;ISOC2;IS~ -0.0452 -0.0593 -0.0312   0.139 -6.39 5.47e-9
+6 cg02~ 2     &quot;ECEL1P2&quot;        -0.125  -0.165  -0.0860   0.247 -6.33 7.31e-9
+# ... with 3 more variables: adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;, SE &lt;dbl&gt;
 
 $study2
 # A tibble: 6 x 12
-  id         CHR   UCSC_RefGene_Name   logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
-  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cg04046629 11    &quot;CD6&quot;             -0.101  -0.135  -0.0669  0.345  -5.91 0.0000000621    0.0172  7.18 0.0128 
-2 cg07664323 6     &quot;MUC21&quot;           -0.0431 -0.0577 -0.0284  0.776  -5.85 0.0000000822    0.0172  6.90 0.00390
-3 cg27098804 11    &quot;CD6&quot;             -0.0688 -0.0924 -0.0452  0.277  -5.79 0.000000107     0.0172  6.64 0.0147 
-4 cg08933615 1     &quot;&quot;                -0.0461 -0.0627 -0.0296  0.166  -5.55 0.000000298     0.0360  5.64 0.00791
-5 cg18349298 3     &quot;RARRES1;RARRES1&quot; -0.0491 -0.0671 -0.0311  0.157  -5.42 0.000000507     0.0489  5.12 0.00848
-6 cg02182795 8     &quot;&quot;                -0.0199 -0.0272 -0.0125  0.0947 -5.36 0.000000670     0.0538  4.84 0.0155 </code></pre>
+  id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t P.Value
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg04~ 11    &quot;CD6&quot;            -0.101  -0.135  -0.0669  0.345  -5.91 6.21e-8
+2 cg07~ 6     &quot;MUC21&quot;          -0.0431 -0.0577 -0.0284  0.776  -5.85 8.22e-8
+3 cg27~ 11    &quot;CD6&quot;            -0.0688 -0.0924 -0.0452  0.277  -5.79 1.07e-7
+4 cg08~ 1     &quot;&quot;               -0.0461 -0.0627 -0.0296  0.166  -5.55 2.98e-7
+5 cg18~ 3     &quot;RARRES1;RARRES~ -0.0491 -0.0671 -0.0311  0.157  -5.42 5.07e-7
+6 cg02~ 8     &quot;&quot;               -0.0199 -0.0272 -0.0125  0.0947 -5.36 6.70e-7
+# ... with 3 more variables: adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;, SE &lt;dbl&gt;</code></pre>
 <p>Then, the last step is to meta-analyze the results. Different methods can be used to this end. We have implemented a method that meta-analyze the p-pvalues of each study as follows:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="Omic.html#cb180-1"></a>ans.meta &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.limma)</span>
-<span id="cb180-2"><a href="Omic.html#cb180-2"></a>ans.meta</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="Omic.html#cb179-1"></a>ans.meta &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.limma)</span>
+<span id="cb179-2"><a href="Omic.html#cb179-2"></a>ans.meta</span></code></pre></div>
 <pre><code># A tibble: 481,868 x 4
    id                study1      study2   p.meta
    &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
@@ -621,26 +666,26 @@ $study2
 10 cg21488617 0.0000000186  0.0000299   1.62e-11
 # ... with 481,858 more rows</code></pre>
 <p>This is a genreal method that can be used … We can verify that the results are pretty similar to those obtained using pooled analyses. Here we compute the association for two of the top-CpGs:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="Omic.html#cb182-1"></a>res1 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13138089&quot;</span>, </span>
-<span id="cb182-2"><a href="Omic.html#cb182-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb182-3"><a href="Omic.html#cb182-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb182-4"><a href="Omic.html#cb182-4"></a>                    <span class="dt">datasources =</span> conns)</span>
-<span id="cb182-5"><a href="Omic.html#cb182-5"></a>res1</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="Omic.html#cb181-1"></a>res1 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13138089&quot;</span>, </span>
+<span id="cb181-2"><a href="Omic.html#cb181-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb181-3"><a href="Omic.html#cb181-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb181-4"><a href="Omic.html#cb181-4"></a>                    <span class="dt">datasources =</span> conns)</span>
+<span id="cb181-5"><a href="Omic.html#cb181-5"></a>res1</span></code></pre></div>
 <pre><code>             Estimate Std. Error      p-value
 cg13138089 -0.1373348 0.01712405 1.057482e-15
 attr(,&quot;class&quot;)
 [1] &quot;dsLmFeature&quot; &quot;matrix&quot;      &quot;array&quot;      </code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="Omic.html#cb184-1"></a>res2 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13772815&quot;</span>, </span>
-<span id="cb184-2"><a href="Omic.html#cb184-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb184-3"><a href="Omic.html#cb184-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb184-4"><a href="Omic.html#cb184-4"></a>                    <span class="dt">datasources =</span> conns)</span>
-<span id="cb184-5"><a href="Omic.html#cb184-5"></a>res2</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="Omic.html#cb183-1"></a>res2 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13772815&quot;</span>, </span>
+<span id="cb183-2"><a href="Omic.html#cb183-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb183-3"><a href="Omic.html#cb183-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb183-4"><a href="Omic.html#cb183-4"></a>                    <span class="dt">datasources =</span> conns)</span>
+<span id="cb183-5"><a href="Omic.html#cb183-5"></a>res2</span></code></pre></div>
 <pre><code>              Estimate  Std. Error      p-value
 cg13772815 -0.06786137 0.009128915 1.056225e-13
 attr(,&quot;class&quot;)
 [1] &quot;dsLmFeature&quot; &quot;matrix&quot;      &quot;array&quot;      </code></pre>
 <p>We can create a QQ-plot by using the function <code>qqplot</code> available in our package.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="Omic.html#cb186-1"></a><span class="kw">qqplot</span>(ans.meta<span class="op">$</span>p.meta)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="Omic.html#cb185-1"></a><span class="kw">qqplot</span>(ans.meta<span class="op">$</span>p.meta)</span></code></pre></div>
 <p><img src="_main_files/figure-html/qqplot-1.png" width="672" /></p>
 <p>Here we see inflation, so that, correction for cell-type or surrogate variables must be performed. We describe how we can do that in the next two sections.</p>
 </div>
@@ -648,47 +693,47 @@ attr(,&quot;class&quot;)
 <h3><span class="header-section-number">12.3.3</span> Adjusting for Surrogate Variables</h3>
 <p>The vast majority of omic studies require to control for unwanted variability. The surrogate variable analysis (SVA) can address this issue by estimating some hidden covariates that capture differences across individuals due to some artifacts such as batch effects or sample quality among others. The method is implemented in <em><a href="https://bioconductor.org/packages/3.11/SVA">SVA</a></em> package.</p>
 <p>Performing this type of analysis using the <code>ds.lmFeature</code> function is not allowed since estimating SVA would require to implement a non-disclosive method that computes SVA from the different servers. This will be a future topic of the <code>dsOmicsClient</code>. NOTE that, estimating SVA separately at each server would not be a good idea since the aim of SVA is to capture differences mainly due to experimental issues among ALL individuals. What we can do instead is to use the <code>ds.limma</code> function to perform the analyses adjusted for SVA at each study.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="Omic.html#cb187-1"></a>ans.sva &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb187-2"><a href="Omic.html#cb187-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb187-3"><a href="Omic.html#cb187-3"></a>                    <span class="dt">sva =</span> <span class="ot">TRUE</span>, <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>))</span>
-<span id="cb187-4"><a href="Omic.html#cb187-4"></a>ans.sva</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="Omic.html#cb186-1"></a>ans.sva &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb186-2"><a href="Omic.html#cb186-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb186-3"><a href="Omic.html#cb186-3"></a>                    <span class="dt">sva =</span> <span class="ot">TRUE</span>, <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>))</span>
+<span id="cb186-4"><a href="Omic.html#cb186-4"></a>ans.sva</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 481,868 x 12
-   id         CHR   UCSC_RefGene_Name        logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
-   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 cg10181414 19    &quot;GNG7&quot;                 -0.0547 -0.0721 -0.0373   0.338 -6.25 0.0000000131   0.00591  8.51 0.0103 
- 2 cg13772815 17    &quot;&quot;                     -0.0569 -0.0757 -0.0381   0.437 -6.00 0.0000000391   0.00591  7.43 0.00425
- 3 cg11802027 19    &quot;PODNL1;PODNL1;PODNL1&quot;  0.0334  0.0223  0.0445   0.568  5.97 0.0000000453   0.00591  7.29 0.00897
- 4 cg27231068 17    &quot;SLC47A2;SLC47A2&quot;       0.0274  0.0182  0.0365   0.548  5.95 0.0000000491   0.00591  7.21 0.00696
- 5 cg21078963 6     &quot;&quot;                     -0.0453 -0.0609 -0.0297   0.799 -5.78 0.000000105    0.00666  6.46 0.00733
- 6 cg23859635 2     &quot;MTA3&quot;                 -0.0327 -0.0440 -0.0215   0.200 -5.77 0.000000109    0.00666  6.42 0.0149 
- 7 cg10297473 16    &quot;SALL1;SALL1&quot;           0.0366  0.0240  0.0492   0.137  5.77 0.000000110    0.00666  6.42 0.00688
- 8 cg24924572 1     &quot;&quot;                      0.0317  0.0208  0.0427   0.821  5.76 0.000000111    0.00666  6.41 0.00969
- 9 cg13663116 9     &quot;&quot;                     -0.0326 -0.0440 -0.0213   0.367 -5.72 0.000000132    0.00705  6.24 0.00562
-10 cg13138089 2     &quot;ECEL1P2&quot;              -0.106  -0.144  -0.0686   0.380 -5.61 0.000000215    0.00835  5.76 0.00137
-# ... with 481,858 more rows
+   id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t P.Value adj.P.Val     B
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+ 1 cg10~ 19    &quot;GNG7&quot;           -0.0547 -0.0721 -0.0373   0.338 -6.25 1.31e-8   0.00591  8.51
+ 2 cg13~ 17    &quot;&quot;               -0.0569 -0.0757 -0.0381   0.437 -6.00 3.91e-8   0.00591  7.43
+ 3 cg11~ 19    &quot;PODNL1;PODNL1;~  0.0334  0.0223  0.0445   0.568  5.97 4.53e-8   0.00591  7.29
+ 4 cg27~ 17    &quot;SLC47A2;SLC47A~  0.0274  0.0182  0.0365   0.548  5.95 4.91e-8   0.00591  7.21
+ 5 cg21~ 6     &quot;&quot;               -0.0453 -0.0609 -0.0297   0.799 -5.78 1.05e-7   0.00666  6.46
+ 6 cg23~ 2     &quot;MTA3&quot;           -0.0327 -0.0440 -0.0215   0.200 -5.77 1.09e-7   0.00666  6.42
+ 7 cg10~ 16    &quot;SALL1;SALL1&quot;     0.0366  0.0240  0.0492   0.137  5.77 1.10e-7   0.00666  6.42
+ 8 cg24~ 1     &quot;&quot;                0.0317  0.0208  0.0427   0.821  5.76 1.11e-7   0.00666  6.41
+ 9 cg13~ 9     &quot;&quot;               -0.0326 -0.0440 -0.0213   0.367 -5.72 1.32e-7   0.00705  6.24
+10 cg13~ 2     &quot;ECEL1P2&quot;        -0.106  -0.144  -0.0686   0.380 -5.61 2.15e-7   0.00835  5.76
+# ... with 481,858 more rows, and 1 more variable: SE &lt;dbl&gt;
 
 $study2
 # A tibble: 481,868 x 12
-   id         CHR   UCSC_RefGene_Name   logFC    CI.L    CI.R AveExpr     t       P.Value adj.P.Val     B      SE
-   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 cg16766632 12    &quot;LRP1&quot;            -0.0418 -0.0548 -0.0289   0.388 -6.42 0.00000000782   0.00374  9.05 0.00917
- 2 cg25036710 1     &quot;&quot;                -0.0664 -0.0874 -0.0453   0.569 -6.27 0.0000000155    0.00374  8.37 0.00373
- 3 cg12938128 11    &quot;NRXN2;NRXN2&quot;     -0.0273 -0.0367 -0.0179   0.728 -5.81 0.000000113     0.0149   6.42 0.00901
- 4 cg07349815 3     &quot;&quot;                -0.0393 -0.0529 -0.0258   0.160 -5.78 0.000000124     0.0149   6.32 0.00737
- 5 cg07664323 6     &quot;MUC21&quot;           -0.0427 -0.0579 -0.0276   0.776 -5.61 0.000000263     0.0163   5.59 0.00682
- 6 cg00228891 1     &quot;CR1L&quot;            -0.0568 -0.0771 -0.0365   0.350 -5.56 0.000000318     0.0163   5.40 0.0139 
- 7 cg11743675 12    &quot;CNTN1;CNTN1&quot;     -0.0443 -0.0601 -0.0284   0.152 -5.56 0.000000318     0.0163   5.40 0.00786
- 8 cg03470754 7     &quot;PGAM2;PGAM2&quot;     -0.0442 -0.0600 -0.0283   0.211 -5.56 0.000000326     0.0163   5.38 0.00790
- 9 cg07015749 1     &quot;KCNAB2;KCNAB2&quot;    0.0611  0.0392  0.0831   0.659  5.54 0.000000347     0.0163   5.31 0.00469
-10 cg25647784 17    &quot;WNK4&quot;            -0.0392 -0.0533 -0.0251   0.512 -5.52 0.000000370     0.0163   5.25 0.00157
-# ... with 481,858 more rows
+   id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t P.Value adj.P.Val     B
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+ 1 cg16~ 12    &quot;LRP1&quot;           -0.0418 -0.0548 -0.0289   0.388 -6.42 7.82e-9   0.00374  9.05
+ 2 cg25~ 1     &quot;&quot;               -0.0664 -0.0874 -0.0453   0.569 -6.27 1.55e-8   0.00374  8.37
+ 3 cg12~ 11    &quot;NRXN2;NRXN2&quot;    -0.0273 -0.0367 -0.0179   0.728 -5.81 1.13e-7   0.0149   6.42
+ 4 cg07~ 3     &quot;&quot;               -0.0393 -0.0529 -0.0258   0.160 -5.78 1.24e-7   0.0149   6.32
+ 5 cg07~ 6     &quot;MUC21&quot;          -0.0427 -0.0579 -0.0276   0.776 -5.61 2.63e-7   0.0163   5.59
+ 6 cg00~ 1     &quot;CR1L&quot;           -0.0568 -0.0771 -0.0365   0.350 -5.56 3.18e-7   0.0163   5.40
+ 7 cg11~ 12    &quot;CNTN1;CNTN1&quot;    -0.0443 -0.0601 -0.0284   0.152 -5.56 3.18e-7   0.0163   5.40
+ 8 cg03~ 7     &quot;PGAM2;PGAM2&quot;    -0.0442 -0.0600 -0.0283   0.211 -5.56 3.26e-7   0.0163   5.38
+ 9 cg07~ 1     &quot;KCNAB2;KCNAB2&quot;   0.0611  0.0392  0.0831   0.659  5.54 3.47e-7   0.0163   5.31
+10 cg25~ 17    &quot;WNK4&quot;           -0.0392 -0.0533 -0.0251   0.512 -5.52 3.70e-7   0.0163   5.25
+# ... with 481,858 more rows, and 1 more variable: SE &lt;dbl&gt;
 
 attr(,&quot;class&quot;)
 [1] &quot;dsLimma&quot; &quot;list&quot;   </code></pre>
 <p>Then, data can be combined meta-anlyzed as follows:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="Omic.html#cb189-1"></a>ans.meta.sv &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.sva)</span>
-<span id="cb189-2"><a href="Omic.html#cb189-2"></a>ans.meta.sv</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="Omic.html#cb188-1"></a>ans.meta.sv &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.sva)</span>
+<span id="cb188-2"><a href="Omic.html#cb188-2"></a>ans.meta.sv</span></code></pre></div>
 <pre><code># A tibble: 481,868 x 4
    id               study1      study2   p.meta
    &lt;chr&gt;             &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
@@ -704,7 +749,7 @@ attr(,&quot;class&quot;)
 10 cg21212881 0.000000340  0.000248    2.04e- 9
 # ... with 481,858 more rows</code></pre>
 <p>The DataSHIELD session must by closed by:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="Omic.html#cb191-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="Omic.html#cb190-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
 </div>
 <div id="gwas-with-bioconductor" class="section level2" number="12.4">
@@ -712,27 +757,27 @@ attr(,&quot;class&quot;)
 <p>We have a GWAS example available at <a href="https://github.com/isglobal-brge/brgedata">BRGE data repository</a> that aims to find SNPs associated with asthma. We have genomic data in a VCF file (brge.vcf) along with several covariates and phenotypes in the file brge.txt (gender, age, obesity, smoking, country and asthma status). The same data is also available in PLINK format (brge.bed, brge.bim, brge.fam) with covariates in the file brge.phe.</p>
 <p>We have created a resource having the <a href="(https://www.internationalgenome.org/wiki/Analysis/vcf4.0/)">VCF</a> file of our study on asthma as previously described. The name of the resource is <code>brge_vcf</code> the phenotypes are available in another resource called <code>brge</code> that is a .txt file (see <a href="resources.html#fig:testResources">6.2</a>).</p>
 <p>The GWAS analysis is then perform as follows. We first start by preparing login data</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="Omic.html#cb192-1"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb192-2"><a href="Omic.html#cb192-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>,</span>
-<span id="cb192-3"><a href="Omic.html#cb192-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>,</span>
-<span id="cb192-4"><a href="Omic.html#cb192-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.brge_vcf&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb192-5"><a href="Omic.html#cb192-5"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb192-6"><a href="Omic.html#cb192-6"></a></span>
-<span id="cb192-7"><a href="Omic.html#cb192-7"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb192-8"><a href="Omic.html#cb192-8"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="Omic.html#cb191-1"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb191-2"><a href="Omic.html#cb191-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>,</span>
+<span id="cb191-3"><a href="Omic.html#cb191-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>,</span>
+<span id="cb191-4"><a href="Omic.html#cb191-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.brge_vcf&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb191-5"><a href="Omic.html#cb191-5"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb191-6"><a href="Omic.html#cb191-6"></a></span>
+<span id="cb191-7"><a href="Omic.html#cb191-7"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb191-8"><a href="Omic.html#cb191-8"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span></code></pre></div>
 <p>In this case we have to assign to different resources. One for the VCF (obesity_vcf) and another one for the phenotypic data (obesity). To this end, the <code>datashield.assign.resource</code> function is required before assigning any object to the specific resource. Notice that the VCF resource can be load into R as a GDS thanks to <a href="#ext_VCF">our extension</a> of existing resources in the <em><a href="https://CRAN.R-project.org/package=reourcer">reourcer</a></em></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="Omic.html#cb193-1"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;vcf.res&quot;</span>, </span>
-<span id="cb193-2"><a href="Omic.html#cb193-2"></a>                           <span class="dt">resource =</span> <span class="kw">list</span>(<span class="dt">study1 =</span> <span class="st">&quot;RSRC.brge_vcf&quot;</span>))</span>
-<span id="cb193-3"><a href="Omic.html#cb193-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;gds&quot;</span>, </span>
-<span id="cb193-4"><a href="Omic.html#cb193-4"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(vcf.res)))</span>
-<span id="cb193-5"><a href="Omic.html#cb193-5"></a></span>
-<span id="cb193-6"><a href="Omic.html#cb193-6"></a></span>
-<span id="cb193-7"><a href="Omic.html#cb193-7"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;covars.res&quot;</span>, </span>
-<span id="cb193-8"><a href="Omic.html#cb193-8"></a>                           <span class="dt">resource =</span> <span class="kw">list</span>(<span class="dt">study1 =</span> <span class="st">&quot;RSRC.brge&quot;</span>))</span>
-<span id="cb193-9"><a href="Omic.html#cb193-9"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;covars&quot;</span>, </span>
-<span id="cb193-10"><a href="Omic.html#cb193-10"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(covars.res)))</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="Omic.html#cb192-1"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;vcf.res&quot;</span>, </span>
+<span id="cb192-2"><a href="Omic.html#cb192-2"></a>                           <span class="dt">resource =</span> <span class="kw">list</span>(<span class="dt">study1 =</span> <span class="st">&quot;RSRC.brge_vcf&quot;</span>))</span>
+<span id="cb192-3"><a href="Omic.html#cb192-3"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;gds&quot;</span>, </span>
+<span id="cb192-4"><a href="Omic.html#cb192-4"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(vcf.res)))</span>
+<span id="cb192-5"><a href="Omic.html#cb192-5"></a></span>
+<span id="cb192-6"><a href="Omic.html#cb192-6"></a></span>
+<span id="cb192-7"><a href="Omic.html#cb192-7"></a><span class="kw">datashield.assign.resource</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;covars.res&quot;</span>, </span>
+<span id="cb192-8"><a href="Omic.html#cb192-8"></a>                           <span class="dt">resource =</span> <span class="kw">list</span>(<span class="dt">study1 =</span> <span class="st">&quot;RSRC.brge&quot;</span>))</span>
+<span id="cb192-9"><a href="Omic.html#cb192-9"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;covars&quot;</span>, </span>
+<span id="cb192-10"><a href="Omic.html#cb192-10"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.data.frame</span>(covars.res)))</span></code></pre></div>
 <p>These are the objects available in the Opal server</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="Omic.html#cb194-1"></a><span class="kw">ds.ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="Omic.html#cb193-1"></a><span class="kw">ds.ls</span>()</span></code></pre></div>
 <pre><code>$study1
 $study1$environment.searched
 [1] &quot;R_GlobalEnv&quot;
@@ -740,11 +785,11 @@ $study1$environment.searched
 $study1$objects.found
 [1] &quot;covars&quot;     &quot;covars.res&quot; &quot;gds&quot;        &quot;res&quot;        &quot;vcf.res&quot;   </code></pre>
 <p>We can use <em><a href="https://github.com/datashield/dsBaseClient">dsBaseClient</a></em> functions to inspect the variables that are in the <code>covars</code> data.frame. The variables are</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="Omic.html#cb196-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;covars&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="Omic.html#cb195-1"></a><span class="kw">ds.colnames</span>(<span class="st">&quot;covars&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;scanID&quot;  &quot;gender&quot;  &quot;obese&quot;   &quot;age&quot;     &quot;smoke&quot;   &quot;country&quot; &quot;asthma&quot; </code></pre>
 <p>The <code>asthma</code> variable has this number of individuals at each level (1: controls, 2: cases)</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="Omic.html#cb198-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;covars$asthma&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="Omic.html#cb197-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;covars$asthma&quot;</span>)</span></code></pre></div>
 <pre><code>
  Data in all studies were valid 
 
@@ -782,15 +827,34 @@ covars$asthma
 $validity.message
 [1] &quot;Data in all studies were valid&quot;</code></pre>
 <p>Then, an object of class <code>GenotypeData</code> must be created at the server side to perform genetic data analyses. This is a container defined in the <em><a href="https://bioconductor.org/packages/3.11/GWASTools">GWASTools</a></em> package for storing genotype and phenotypic data from genetic association studies. By doing that we will also verify whether individuals in the GDS (e.g VCF) and covariates files have the same individuals and are in the same order. This can be performed by</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="Omic.html#cb201-1"></a><span class="kw">ds.GenotypeData</span>(<span class="dt">x=</span><span class="st">&#39;gds&#39;</span>, <span class="dt">covars =</span> <span class="st">&#39;covars&#39;</span>, <span class="dt">columnId =</span> <span class="dv">1</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;gds.Data&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="Omic.html#cb200-1"></a><span class="kw">ds.GenotypeData</span>(<span class="dt">x=</span><span class="st">&#39;gds&#39;</span>, <span class="dt">covars =</span> <span class="st">&#39;covars&#39;</span>, <span class="dt">columnId =</span> <span class="dv">1</span>, <span class="dt">newobj.name =</span> <span class="st">&#39;gds.Data&#39;</span>)</span></code></pre></div>
 <p>The association analysis for a given SNP is performed by simply</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="Omic.html#cb202-1"></a><span class="kw">ds.glmSNP</span>(<span class="dt">snps.fit =</span> <span class="st">&quot;rs11247693&quot;</span>, <span class="dt">model =</span> asthma <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age, <span class="dt">genoData=</span><span class="st">&#39;gds.Data&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="Omic.html#cb201-1"></a><span class="kw">ds.glmSNP</span>(<span class="dt">snps.fit =</span> <span class="st">&quot;rs11247693&quot;</span>, <span class="dt">model =</span> asthma <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age, <span class="dt">genoData=</span><span class="st">&#39;gds.Data&#39;</span>)</span></code></pre></div>
 <pre><code>             Estimate Std. Error   p-value
 rs11247693 -0.1543215  0.2309585 0.5040196
 attr(,&quot;class&quot;)
 [1] &quot;dsGlmSNP&quot; &quot;matrix&quot;   &quot;array&quot;   </code></pre>
 <p>The analysis of all available SNPs is performed when the argument <code>snps.fit</code> is missing. The function performs the analysis of the selected SNPs in a single repository or in multiple repositories as performing pooled analyses (it uses <code>ds.glm</code> DataSHIELD function). As in the case of transcriptomic data, analyzing all the SNPs in the genome (e.g GWAS) will be high time-consuming. We can adopt a similar approach as the one adopted using the <em><a href="https://bioconductor.org/packages/3.11/limma">limma</a></em> at each server. That is, we run GWAS at each repository using specific and scalable packages available in R/Bioc. In that case we use the <em><a href="https://bioconductor.org/packages/3.11/GWASTools">GWASTools</a></em> and <em><a href="https://bioconductor.org/packages/3.11/GENESIS">GENESIS</a></em> packages. The complete pipeline is implemented in this function</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="Omic.html#cb204-1"></a>ans.bioC &lt;-<span class="st"> </span><span class="kw">ds.GWAS</span>(<span class="st">&#39;gds.Data&#39;</span>, <span class="dt">model=</span>asthma<span class="op">~</span>age<span class="op">+</span>country)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="Omic.html#cb203-1"></a>ans.bioC &lt;-<span class="st"> </span><span class="kw">ds.GWAS</span>(<span class="st">&#39;gds.Data&#39;</span>, <span class="dt">model=</span>asthma<span class="op">~</span>age<span class="op">+</span>country)</span>
+<span id="cb203-2"><a href="Omic.html#cb203-2"></a>ans.bioC</span></code></pre></div>
+<pre><code>$study1
+# A tibble: 99,288 x 14
+   variant.id rs    chr      pos n.obs    freq   MAC Score Score.SE Score.Stat Score.pval    Est
+        &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+ 1      97800 rs12~ X     6.50e7  2227 0.0126     56  19.5     3.84       5.07    4.08e-7  1.32 
+ 2      91449 rs22~ 20    1.86e6  2311 0.104     481  47.5     9.62       4.93    8.09e-7  0.513
+ 3      19742 rs71~ 3     1.23e8  2308 0.256    1181  62.3    13.7        4.56    5.08e-6  0.334
+ 4      93268 rs60~ 20    5.13e7  2311 0.125     579  46.4    10.3        4.51    6.42e-6  0.439
+ 5      19744 rs37~ 3     1.23e8  2308 0.254    1173  60.3    13.6        4.43    9.40e-6  0.325
+ 6      66984 rs11~ 12    1.38e7  2306 0.446    2057 -67.6    15.7       -4.31    1.61e-5 -0.275
+ 7      74760 rs79~ 13    1.12e8  2304 0.0527    243  29.7     6.96       4.27    1.95e-5  0.614
+ 8      59678 rs70~ 10    8.33e7  2295 0.210     963 -54.5    12.8       -4.25    2.14e-5 -0.331
+ 9      13835 rs13~ 2     1.86e8  2311 0.00649    30  10.6     2.52       4.22    2.44e-5  1.67 
+10      27337 rs16~ 4     1.68e8  2299 0.101     463  39.7     9.46       4.20    2.64e-5  0.444
+# ... with 99,278 more rows, and 2 more variables: Est.SE &lt;dbl&gt;, PVE &lt;dbl&gt;
+
+attr(,&quot;class&quot;)
+[1] &quot;dsGWAS&quot; &quot;list&quot;  </code></pre>
 <p>This close the DataSHIELD session</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="Omic.html#cb205-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
@@ -812,7 +876,8 @@ attr(,&quot;class&quot;)
 <span id="cb207-2"><a href="Omic.html#cb207-2"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;client&quot;</span>)</span>
 <span id="cb207-3"><a href="Omic.html#cb207-3"></a><span class="kw">ds.class</span>(<span class="st">&quot;client&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
-[1] &quot;SshResourceClient&quot;     &quot;CommandResourceClient&quot; &quot;ResourceClient&quot;        &quot;R6&quot;                   </code></pre>
+[1] &quot;SshResourceClient&quot;     &quot;CommandResourceClient&quot; &quot;ResourceClient&quot;       
+[4] &quot;R6&quot;                   </code></pre>
 <p>Now, we are ready to run any PLINK command from the client site. Notice that in this case we want to assess association between the genotype data in bed format and use as phenotype the variable ‘obese’ that is in the file ‘obesity.phe’. The sentence in a PLINK command would be (NOTE: we avoid –out to indicate the output file since the file will be available in R as a tibble).</p>
 <pre><code>plink --bfile obesity --assoc --pheno obesity.phe --pheno-name obese </code></pre>
 <p>The arguments musth be encapsulated in a single character without the command ‘plink’</p>
@@ -849,8 +914,8 @@ $output
  [9] &quot;@----------------------------------------------------------@&quot;                       
 [10] &quot;&quot;                                                                                   
 [11] &quot;Skipping web check... [ --noweb ] &quot;                                                 
-[12] &quot;Writing this text to log file [ /tmp/ssh-2573/out.log ]&quot;                            
-[13] &quot;Analysis started: Mon Sep  7 14:38:57 2020&quot;                                         
+[12] &quot;Writing this text to log file [ /tmp/ssh-4587/out.log ]&quot;                            
+[13] &quot;Analysis started: Tue Nov  3 09:28:16 2020&quot;                                         
 [14] &quot;&quot;                                                                                   
 [15] &quot;Options in effect:&quot;                                                                 
 [16] &quot;\t--bfile brge&quot;                                                                      
@@ -858,7 +923,7 @@ $output
 [18] &quot;\t--covar brge.phe&quot;                                                                  
 [19] &quot;\t--covar-name gender,age&quot;                                                           
 [20] &quot;\t--noweb&quot;                                                                           
-[21] &quot;\t--out /tmp/ssh-2573/out&quot;                                                           
+[21] &quot;\t--out /tmp/ssh-4587/out&quot;                                                           
 [22] &quot;&quot;                                                                                   
 [23] &quot;Reading map (extended format) from [ brge.bim ] &quot;                                   
 [24] &quot;100000 markers to be included from [ brge.bim ]&quot;                                    
@@ -877,10 +942,10 @@ $output
 [37] &quot;Before frequency and genotyping pruning, there are 100000 SNPs&quot;                     
 [38] &quot;2312 founders and 0 non-founders found&quot;                                             
 [39] &quot;6009 heterozygous haploid genotypes; set to missing&quot;                                
-[40] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-2573/out.hh ]&quot;         
+[40] &quot;Writing list of heterozygous haploid genotypes to [ /tmp/ssh-4587/out.hh ]&quot;         
 [41] &quot;7 SNPs with no founder genotypes observed&quot;                                          
 [42] &quot;Warning, MAF set to 0 for these SNPs (see --nonfounders)&quot;                           
-[43] &quot;Writing list of these SNPs to [ /tmp/ssh-2573/out.nof ]&quot;                            
+[43] &quot;Writing list of these SNPs to [ /tmp/ssh-4587/out.nof ]&quot;                            
 [44] &quot;Total genotyping rate in remaining individuals is 0.994408&quot;                         
 [45] &quot;0 SNPs failed missingness test ( GENO &gt; 1 )&quot;                                        
 [46] &quot;0 SNPs failed frequency test ( MAF &lt; 0 )&quot;                                           
@@ -888,16 +953,16 @@ $output
 [48] &quot;After filtering, 725 cases, 1587 controls and 0 missing&quot;                            
 [49] &quot;After filtering, 1097 males, 1215 females, and 0 of unspecified sex&quot;                
 [50] &quot;Converting data to Individual-major format&quot;                                         
-[51] &quot;Writing logistic model association results to [ /tmp/ssh-2573/out.assoc.logistic ] &quot;
+[51] &quot;Writing logistic model association results to [ /tmp/ssh-4587/out.assoc.logistic ] &quot;
 [52] &quot;&quot;                                                                                   
-[53] &quot;Analysis finished: Mon Sep  7 14:40:54 2020&quot;                                        
+[53] &quot;Analysis finished: Tue Nov  3 09:30:13 2020&quot;                                        
 [54] &quot;&quot;                                                                                   
 
 $error
 character(0)
 
 $command
-[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --logistic --covar brge.phe --covar-name gender,age --noweb --out /tmp/ssh-2573/out&quot;
+[1] &quot;cd /home/master/brge &amp;&amp; plink1 --bfile brge --logistic --covar brge.phe --covar-name gender,age --noweb --out /tmp/ssh-4587/out&quot;
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
