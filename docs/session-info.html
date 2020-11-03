@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -261,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -287,63 +289,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="session-info" class="section level1" number="17">
 <h1><span class="header-section-number">17</span> Session Info</h1>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="session-info.html#cb257-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="session-info.html#cb259-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
 <pre><code>R version 4.0.2 (2020-06-22)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18362)
+Running under: Windows 10 x64 (build 19041)
 
 Matrix products: default
 
 locale:
-[1] LC_COLLATE=Spanish_Spain.1252  LC_CTYPE=Spanish_Spain.1252    LC_MONETARY=Spanish_Spain.1252 LC_NUMERIC=C                  
-[5] LC_TIME=Spanish_Spain.1252    
+[1] LC_COLLATE=Spanish_Spain.1252  LC_CTYPE=Spanish_Spain.1252    LC_MONETARY=Spanish_Spain.1252
+[4] LC_NUMERIC=C                   LC_TIME=Spanish_Spain.1252    
 
 attached base packages:
-[1] stats4    parallel  stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] dsGeoClient_0.1.0                       dsOmicsClient_1.0.0                     ssh_0.7.0                              
- [4] resourcer_1.0.1                         dsBaseClient_6.0.1                      DSOpal_1.1.0                           
- [7] DSI_1.1.0                               R6_2.4.1                                progress_1.2.2                         
-[10] opalr_1.4.1                             httr_1.4.2                              airway_1.8.0                           
-[13] SummarizedExperiment_1.18.2             DelayedArray_0.14.1                     matrixStats_0.56.0                     
-[16] Homo.sapiens_1.3.1                      TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2 org.Hs.eg.db_3.11.4                    
-[19] GO.db_3.11.4                            OrganismDbi_1.30.0                      GenomicFeatures_1.40.1                 
-[22] GenomicRanges_1.40.0                    GenomeInfoDb_1.24.2                     AnnotationDbi_1.50.3                   
-[25] IRanges_2.22.2                          S4Vectors_0.26.1                        tweeDEseqCountData_1.26.0              
-[28] Biobase_2.48.0                          BiocGenerics_0.34.0                     snpStats_1.38.0                        
-[31] Matrix_1.2-18                           survival_3.2-3                          forcats_0.5.0                          
-[34] stringr_1.4.0                           dplyr_1.0.2                             purrr_0.3.4                            
-[37] readr_1.3.1                             tidyr_1.1.2                             tibble_3.0.3                           
-[40] ggplot2_3.3.2                           tidyverse_1.3.0                         kableExtra_1.2.1                       
-[43] BiocStyle_2.16.0                       
+ [1] dsGeoClient_0.1.0                       dsOmicsClient_1.0.0                    
+ [3] ssh_0.7.0                               resourcer_1.0.1                        
+ [5] dsBaseClient_6.0.1                      airway_1.8.0                           
+ [7] Homo.sapiens_1.3.1                      TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2
+ [9] org.Hs.eg.db_3.11.4                     GO.db_3.11.4                           
+[11] OrganismDbi_1.30.0                      GenomicFeatures_1.40.1                 
+[13] AnnotationDbi_1.50.3                    tweeDEseqCountData_1.26.0              
+[15] forcats_0.5.0                           stringr_1.4.0                          
+[17] dplyr_1.0.2                             purrr_0.3.4                            
+[19] readr_1.3.1                             tidyr_1.1.2                            
+[21] tibble_3.0.3                            ggplot2_3.3.2                          
+[23] tidyverse_1.3.0                         kableExtra_1.2.1                       
+[25] BiocStyle_2.16.0                        snpStats_1.38.0                        
+[27] Matrix_1.2-18                           survival_3.2-3                         
+[29] DSOpal_1.1.0                            DSI_1.1.0                              
+[31] R6_2.4.1                                progress_1.2.2                         
+[33] opalr_1.4.1                             httr_1.4.2                             
+[35] SummarizedExperiment_1.18.2             DelayedArray_0.14.1                    
+[37] matrixStats_0.56.0                      Biobase_2.48.0                         
+[39] GenomicRanges_1.40.0                    GenomeInfoDb_1.24.2                    
+[41] IRanges_2.22.2                          S4Vectors_0.26.1                       
+[43] BiocGenerics_0.34.0                    
 
 loaded via a namespace (and not attached):
-  [1] utf8_1.1.4               tidyselect_1.1.0         RSQLite_2.2.0            grid_4.0.2               BiocParallel_1.22.0     
-  [6] devtools_2.3.1           munsell_0.5.0            codetools_0.2-16         mutoss_0.1-12            withr_2.2.0             
- [11] colorspace_1.4-1         highr_0.8                knitr_1.29               rstudioapi_0.11          gbRd_0.4-11             
- [16] labeling_0.3             Rdpack_1.0.0             GenomeInfoDbData_1.2.3   mnormt_2.0.2             farver_2.0.3            
- [21] bit64_4.0.4              rprojroot_1.3-2          vctrs_0.3.3              generics_0.0.2           TH.data_1.0-10          
- [26] xfun_0.16                BiocFileCache_1.12.1     bitops_1.0-6             assertthat_0.2.1         scales_1.1.1            
- [31] multcomp_1.4-13          gtable_0.3.0             processx_3.4.3           sandwich_2.5-1           rlang_0.4.7             
- [36] splines_4.0.2            rtracklayer_1.48.0       broom_0.7.0              BiocManager_1.30.10      yaml_2.2.1              
- [41] modelr_0.1.8             backports_1.1.9          RBGL_1.64.0              tools_4.0.2              usethis_1.6.1           
- [46] bookdown_0.20            ellipsis_0.3.1           RColorBrewer_1.1-2       sessioninfo_1.1.1        TFisher_0.2.0           
- [51] Rcpp_1.0.5               zlibbioc_1.34.0          RCurl_1.98-1.2           ps_1.3.4                 prettyunits_1.1.1       
- [56] openssl_1.4.2            zoo_1.8-8                haven_2.3.1              ggrepel_0.8.2            fs_1.5.0                
- [61] magrittr_1.5             reprex_0.3.0             tmvnsim_1.0-2            mvtnorm_1.1-1            pkgload_1.1.0           
- [66] hms_0.5.3                mime_0.9                 evaluate_0.14            XML_3.99-0.5             jpeg_0.1-8.1            
- [71] readxl_1.3.1             testthat_2.3.2           compiler_4.0.2           biomaRt_2.44.1           credentials_1.3.0       
- [76] crayon_1.3.4             htmltools_0.5.0          lubridate_1.7.9          DBI_1.1.0                dbplyr_1.4.4            
- [81] MASS_7.3-52              rappdirs_0.3.1           cli_2.0.2                metap_1.4                pkgconfig_2.0.3         
- [86] sn_1.6-2                 GenomicAlignments_1.24.0 numDeriv_2016.8-1.1      foreign_0.8-80           xml2_1.3.2              
- [91] multtest_2.44.0          webshot_0.5.2            XVector_0.28.0           bibtex_0.4.2.2           rvest_0.3.6             
- [96] callr_3.4.3              digest_0.6.25            graph_1.66.0             Biostrings_2.56.0        rmarkdown_2.3           
-[101] cellranger_1.1.0         curl_4.3                 Rsamtools_2.4.0          lifecycle_0.2.0          jsonlite_1.7.0          
-[106] desc_1.2.0               viridisLite_0.3.0        askpass_1.1              fansi_0.4.1              pillar_1.4.6            
-[111] lattice_0.20-41          plotrix_3.7-8            pkgbuild_1.1.0           glue_1.4.2               remotes_2.2.0           
-[116] png_0.1-7                bit_4.0.4                stringi_1.4.6            blob_1.2.1               memoise_1.1.0           
-[121] mathjaxr_1.0-1          </code></pre>
+  [1] readxl_1.3.1             backports_1.1.9          BiocFileCache_1.12.1    
+  [4] sn_1.6-2                 splines_4.0.2            BiocParallel_1.22.0     
+  [7] TH.data_1.0-10           digest_0.6.25            htmltools_0.5.0         
+ [10] fansi_0.4.1              magrittr_1.5             memoise_1.1.0           
+ [13] credentials_1.3.0        Biostrings_2.56.0        modelr_0.1.8            
+ [16] sandwich_2.5-1           askpass_1.1              prettyunits_1.1.1       
+ [19] jpeg_0.1-8.1             colorspace_1.4-1         blob_1.2.1              
+ [22] rvest_0.3.6              rappdirs_0.3.1           ggrepel_0.8.2           
+ [25] haven_2.3.1              xfun_0.16                crayon_1.3.4            
+ [28] RCurl_1.98-1.2           jsonlite_1.7.0           graph_1.66.0            
+ [31] zoo_1.8-8                glue_1.4.2               gtable_0.3.0            
+ [34] zlibbioc_1.34.0          XVector_0.28.0           webshot_0.5.2           
+ [37] scales_1.1.1             mvtnorm_1.1-1            DBI_1.1.0               
+ [40] bibtex_0.4.2.2           Rcpp_1.0.5               plotrix_3.7-8           
+ [43] metap_1.4                viridisLite_0.3.0        tmvnsim_1.0-2           
+ [46] bit_4.0.4                RColorBrewer_1.1-2       TFisher_0.2.0           
+ [49] ellipsis_0.3.1           farver_2.0.3             pkgconfig_2.0.3         
+ [52] XML_3.99-0.5             dbplyr_1.4.4             utf8_1.1.4              
+ [55] labeling_0.3             tidyselect_1.1.0         rlang_0.4.7             
+ [58] munsell_0.5.0            cellranger_1.1.0         tools_4.0.2             
+ [61] cli_2.0.2                generics_0.0.2           RSQLite_2.2.0           
+ [64] mathjaxr_1.0-1           broom_0.7.0              evaluate_0.14           
+ [67] yaml_2.2.1               knitr_1.29               bit64_4.0.4             
+ [70] fs_1.5.0                 RBGL_1.64.0              mime_0.9                
+ [73] xml2_1.3.2               biomaRt_2.44.1           compiler_4.0.2          
+ [76] rstudioapi_0.11          curl_4.3                 png_0.1-7               
+ [79] reprex_0.3.0             stringi_1.4.6            highr_0.8               
+ [82] lattice_0.20-41          multtest_2.44.0          vctrs_0.3.3             
+ [85] mutoss_0.1-12            pillar_1.4.6             lifecycle_0.2.0         
+ [88] BiocManager_1.30.10      Rdpack_1.0.0             bitops_1.0-6            
+ [91] gbRd_0.4-11              rtracklayer_1.48.0       bookdown_0.20           
+ [94] codetools_0.2-16         MASS_7.3-52              assertthat_0.2.1        
+ [97] openssl_1.4.2            withr_2.2.0              GenomicAlignments_1.24.0
+[100] Rsamtools_2.4.0          mnormt_2.0.2             multcomp_1.4-13         
+[103] GenomeInfoDbData_1.2.3   hms_0.5.3                grid_4.0.2              
+[106] rmarkdown_2.3            numDeriv_2016.8-1.1      lubridate_1.7.9         </code></pre>
 
 </div>
             </section>

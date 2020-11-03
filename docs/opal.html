@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -261,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -329,13 +331,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The R server is based on the <a href="https://cran.r-project.org/package=Rserve">Rserve</a> R package. The user R sessions that are running in this R server are managed by Opal.</p>
 <p>This Opal/R integration works well for small to mid-size datasets (usually less than 10M data points). For bigger datasets, extracting and transferring data from the database to the R server is time, CPU and memory consuming. In this work, we will present a more flexible data description paradigm called <a href="resources.html#resources">resources</a> that will enable Opal to manage access to Big Data sets, complex data structures and computation units for analysis purpose, while still having the security and the analysis features provided by Opal.</p>
 </div>
-<div id="demo" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Demo</h2>
-<p>To have a closer look at Opal you can try <a href="http://opal-demo.obiba.org/">the demo site</a> with the credentials:</p>
+<div id="opal-demo-site" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Opal demo site</h2>
+<p>We have set up an <a href="http://opal-demo.obiba.org/">Opal demo site</a> to illustrate how to perform some basic analyses using DataSHIELD as well as how to deal with different <em>resources</em> for omic data. The Opal server can be accessed with the credentials:</p>
 <ul>
 <li>username: <code>administrator</code></li>
 <li>password: <code>password</code></li>
 </ul>
+<p>In this figure we can see all the available projects.</p>
+<div class="figure">
+<img src="fig/opal_projects.png" alt="" />
+<p class="caption">Opal demo site available projects</p>
+</div>
+<p>This vignette will make mainly use of those resources available at <code>RSRC</code> project</p>
+<div class="figure">
+<img src="fig/resources_rsrc.png" alt="" />
+<p class="caption">Resources available at Opal demo site of RSRC project</p>
+</div>
 <p>In order to make the reader familiar with Opal we recommend to visit <a href="http://opaldoc.obiba.org/">the Opal online documentation</a>.</p>
 
 </div>

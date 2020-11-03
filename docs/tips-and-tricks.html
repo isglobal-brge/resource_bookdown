@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-07" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -261,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -287,14 +289,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="tips-and-tricks" class="section level1" number="16">
 <h1><span class="header-section-number">16</span> Tips and tricks</h1>
-<div id="how-to-install-r-packages-into-opal-server-from-r" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> How to install R packages into OPAL server from R</h2>
+<p>The user can see in <a href="http://opaldoc.obiba.org/en/latest/admin/installation.html">this link</a> how to create and install an Opal server. Next we illustrate how to deal with some of the basics for setting up a server to be used within DataSHIELD environment.</p>
+<p>In order to do that, we are using our Opal demo server available here: <a href="https://opal-demo.obiba.org/" class="uri">https://opal-demo.obiba.org/</a></p>
+<p>This is the how an Opal looks like once enter the credentials:</p>
+<ul>
+<li>username: <code>administrator</code></li>
+<li>password: <code>password</code></li>
+</ul>
+<div class="figure">
+<img src="fig/opal_1.png" alt="" />
+<p class="caption">Opal demo main page</p>
 </div>
-<div id="how-to-check-whether-there-are-open-r-sesions-in-the-opal-server" class="section level2" number="16.2">
-<h2><span class="header-section-number">16.2</span> How to check whether there are open R sesions in the OPAL server</h2>
+<div id="how-to-create-a-new-project-into-opal" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> How to create a new project into OPAL</h2>
+<p>The tab <code>Projects</code> (top-left) goes to our available projects in the Opal demo</p>
+<div class="figure">
+<img src="fig/opal_2.png" alt="" />
+<p class="caption">Opal demo projects</p>
 </div>
-<div id="how" class="section level2" number="16.3">
-<h2><span class="header-section-number">16.3</span> How</h2>
+<p>A new project can be created by clicking on <code>+Add Project</code> tab. Then this information must be filled in</p>
+<div class="figure">
+<img src="fig/opal_3.png" alt="" />
+<p class="caption">Adding a new project to Opal</p>
+</div>
+</div>
+<div id="how-to-upload-a-new-resource-into-opal" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> How to upload a new resource into OPAL</h2>
+<p>Once a new project has been created, a new resource can be uploaded by clicking on project’s name. In this case, let us assume that we are working on RSRC project that has been created to illustrate the main examples in this bookdown. After clicking on that project this window will appear</p>
+<div class="figure">
+<img src="fig/opal_4.png" alt="" />
+<p class="caption">Tables, variables and resources from an Opal project</p>
+</div>
+<p>Here we can observe that this project contains 16 resources a no tables or variables. We can add a new resource by clicking on the “link tab” (see red circle)</p>
+<div class="figure">
+<img src="fig/opal_4b.png" alt="" />
+<p class="caption">Going to the resources of a given project</p>
+</div>
+<p>Then a new resource can be added by clicking on the <code>+Add Resource</code> tab</p>
+<div class="figure">
+<img src="fig/opal_5.png" alt="" />
+<p class="caption">Adding a resource of a given project</p>
+</div>
+<p>Then this window will appear and information of your resource must be filled in</p>
+<div class="figure">
+<img src="fig/opal_6.png" alt="" />
+<p class="caption">Adding a resource of a given project</p>
+</div>
+<p>The different types of resources have been described Chapter <a href="resourcer.html#resourcer">7</a></p>
+</div>
+<div id="how-to-install-datashield-packages-into-opal-server" class="section level2" number="16.3">
+<h2><span class="header-section-number">16.3</span> How to install DataSHIELD packages into OPAL server</h2>
+<div class="figure">
+<img src="fig/opal_1_administration.png" alt="" />
+<p class="caption">Administration tab at Opal</p>
+</div>
+<p>The tab <code>Administration</code> (red circle in the previous figure) allows the user access to the administration part</p>
+<div class="figure">
+<img src="fig/opal_7.png" alt="" />
+<p class="caption">Administration tab at Opal</p>
+</div>
+<p>The <code>DataSHIELD</code> tab goes to the DataSHIELD administration site</p>
+<div class="figure">
+<img src="fig/opal_8.png" alt="" />
+<p class="caption">Managing DataSHIELD packages in Opal</p>
+</div>
+<p>The tab <code>+Add Pacakge</code> allow the user to install a DataSHIELD package either from DataSHIELD repository or any other GitHub site</p>
+<div class="figure">
+<img src="fig/opal_9.png" alt="" />
+<p class="caption">Install DataSHIELD packages in Opal</p>
+</div>
+</div>
+<div id="how-to-install-r-packages-into-opal-server" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> How to install R packages into OPAL server</h2>
+<p>All the dependencies in a DataSHIELD package are automatically installed when installing it into the Opal Server. If necessary the user can also use the <code>+Install</code> buttom from Administration/R tab</p>
+<div class="figure">
+<img src="fig/opal_10.png" alt="" />
+<p class="caption">Install DataSHIELD packages in Opal</p>
+</div>
+</div>
+<div id="how-to-install-r-packages-into-opal-server-from-r" class="section level2" number="16.5">
+<h2><span class="header-section-number">16.5</span> How to install R packages into OPAL server from R</h2>
+<p>The user can also install R packages from CRAN/Bioconductor using the next R code:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tips-and-tricks.html#cb257-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb257-2"><a href="tips-and-tricks.html#cb257-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb257-3"><a href="tips-and-tricks.html#cb257-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-test.obiba.org&quot;</span>)</span>
+<span id="cb257-4"><a href="tips-and-tricks.html#cb257-4"></a><span class="kw">opal.execute</span>(o, <span class="st">&quot;BiocManager::install(&#39;packageName&#39;, ask=FALSE)&quot;</span>)</span></code></pre></div>
+<p>A package from GitHub can also be installed by</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="tips-and-tricks.html#cb258-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb258-2"><a href="tips-and-tricks.html#cb258-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb258-3"><a href="tips-and-tricks.html#cb258-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-test.obiba.org&quot;</span>)</span>
+<span id="cb258-4"><a href="tips-and-tricks.html#cb258-4"></a><span class="kw">opal.execute</span>(o, <span class="st">&quot;devtools::install_github(&#39;packageName&#39;, ask=FALSE)&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
