@@ -112,7 +112,7 @@ The following figure illustrates a setup where a single DSLiteServer holds sever
 
 ![DSLite architecture](https://raw.githubusercontent.com/datashield/DSLite/master/inst/images/dslite.png)
 
-After performing the login DataSHIELD phase, the DSLiteServer holds the different DataSHIELD server side sessions, i.e. R environments identified by an ID. These IDs are also stored within the DataSHIELD connection objects that are the result of the `datashield.login()` call. The folllowing example shows how to access these session IDs:
+After performing the login DataSHIELD phase, the DSLiteServer holds the different DataSHIELD server side sessions, i.e. R environments identified by an ID. These IDs are also stored within the DataSHIELD connection objects that are the result of the `datashield.login()` call. The following example shows how to access these session IDs:
 
 ```{r eval=FALSE}
 # datashield logins and assignments
@@ -125,7 +125,7 @@ dslite.server$hasSession(conns$sim1@sid)
 
 ## Debugging
 
-Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developping.
+Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developing.
 
 For instance, this code adds an aggregate function `print()`: 
 

@@ -19,7 +19,7 @@ The client node interacts programmatically in R with the server nodes using the 
 
 ## DataSHIELD R Interface (DSI)
 
-The DataSHIELD Interface (DSI) defines a set of [S4 classes and generic methods](http://adv-r.had.co.nz/S4.html) that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled R commands to be executed on the server side are garanteeing that non disclosive information is returned to client side.
+The DataSHIELD Interface (DSI) defines a set of [S4 classes and generic methods](http://adv-r.had.co.nz/S4.html) that can be implemented for accessing a data repository supporting the DataSHIELD infrastructure: controlled R commands to be executed on the server side are guaranteeing that non disclosive information is returned to client side.
 
 ### Classes Structure
 
@@ -63,7 +63,7 @@ Option                       Description
 `datashield.env`             The R environment in which the `DSConnection` object list is to be looked for. Default value is the Global Environment: `globalenv()`.
 `datashield.progress`        A logical to enable the visibility of the progress bars. Default value is `TRUE`.
 `datashield.progress.clear`  A logical to make the progress bar disappear after it has been completed. Default value is `FALSE`. 
-`datashiel.error.stop`       A logical to alter error handling behavior: if `TRUE` an error is raised when at least one server has failed, otherwise a warning message is issued. Default value is `TRUE`.
+`datashield.error.stop`       A logical to alter error handling behavior: if `TRUE` an error is raised when at least one server has failed, otherwise a warning message is issued. Default value is `TRUE`.
 
 
 ## DataSHIELD/Opal Implementation

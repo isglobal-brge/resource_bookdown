@@ -4,7 +4,7 @@
 
 As describe in [a previous Chapter](#resourcer) the `r BiocStyle::CRANpkg("resourcer")` R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.rdata` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
 
-In order to achive this `resourcer` extension, two `R6` classes have been implemented:
+In order to achieve this `resourcer` extension, two `R6` classes have been implemented:
 
 * `GDSFileResourceResolver` class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a `GDSFileResourceClient` object instance from an assigned resource.
 * `GDSFileResourceClient` class which is responsible for getting the referenced file and making a connection (created by `GWASTools`) to the GDS file (will also convert the VCF file to a GDS file on the fly, using `SNPRelate`). For the subsequent analysis, it's this connection handle to the GDS file that will be used.
@@ -20,7 +20,7 @@ knitr::include_graphics("fig/add_packages_opal.png")
 ```
 
 
-The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was intalled into the opal server
+The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was installed into the opal server
 
 
 ```{r installPackagesOpal2, echo=FALSE, fig.cap="Description how `dsOmics` package was intalled into the demo opal server", fig.align='center'}

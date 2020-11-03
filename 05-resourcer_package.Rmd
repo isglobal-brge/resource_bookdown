@@ -90,7 +90,7 @@ NoSQL databases can be described by a resource. The [nodbi](https://docs.ropensc
 
 ## Computation Resources
 
-Computation resources are resources on which tasks/commands can be triggerred and from which resulting data can be retrieved.
+Computation resources are resources on which tasks/commands can be triggered and from which resulting data can be retrieved.
 
 Example of computation resource that connects to a server through SSH:
 

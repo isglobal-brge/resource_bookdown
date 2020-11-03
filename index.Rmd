@@ -28,11 +28,11 @@ While we focus here in genomic and geospatial data, dozens of data analysis apli
 
 This book is organized into five parts. In the Preamble, we introduce the book, provides a tutorial for key data infrastructure useful for omic and geospatial data and a general overview for learning how Opal and DataSHIELD allows performing non-disclosive data analyses from multiple studies simultaneously. So far, DataSHIELD uses tables from repository data in Opal which have some limitations to perfom Big Data analyses. 
 
-The second part, Focus Topic, dive into information for for non-disclosive analyses using any type of resource which is one of the key advances provided in this work. It allow, among others, perform big data analyses using genomic or geospatial information where thousand of sensitive data have to be managed.  
+The second part, Focus Topic, dive into information for non-disclosive analyses using any type of resource which is one of the key advances provided in this work. It allow, among others, perform big data analyses using genomic or geospatial information where thousand of sensitive data have to be managed.  
 
 The third part, Resources Extensions, provides examples illustrating how to extend existing resources. We describe how to create functions to deal with omic data in [Variant Calling Format](https://en.wikipedia.org/wiki/Variant_Call_Format) (VCF files) which specifies the format of a text file used in bioinformatics for storing [gene sequence](https://en.wikipedia.org/wiki/Gene) variations. It also shows how to perform genomic data analysis using secure shell commands. This can be consider as an illustrative example for using shell programs to perform Big Data analyses that could be extend to other frameworks of Big Data such as “Apache Spark”. 
 
-The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidenciallity is an important issue. 
+The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidentiality is an important issue. 
 
 The fifth part, Developers, provides information about how to develop DataSHIELD packages using specific R packages devoted to Big Data analyses as well as using shell programs. It also provides some useful trips and trick that developers or end users may face when using our proposed infrastructure.
 
