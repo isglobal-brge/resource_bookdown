@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -292,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The procedure for the development of a client-side or a server-side package in DataSHIELD is similar as the procedure of creating packages in native R and RStudio. For the devevelopment of a package, the developer will need the R packages <a href="https://cran.r-project.org/web/packages/devtools/readme/README.html">devtools</a> and <a href="https://cran.r-project.org/web/packages/roxygen2/index.html">roxygen2</a>. Having those packages installed and loaded in the R session, the developer should follow five basic steps:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.2.2/topics/create">Create</a> the package directory: this will create the R and the man folders and the DESCRIPTION file in a specified directory.</p></li>
-<li><p>Add functions: copy the R scripts of the developed functions in the R folder created at step (1).</p></li>
+<li><p>Add functions: copy the R scripts of the functions developed in the R folder created at step (1).</p></li>
 <li><p>Add documentation: add comments at the beginning of each function to give information to the user on what the function does and how the arguments of the function are used. Those comments are compiled into the correct format for the package documentation. More details can be found in the roxygen2 <a href="https://roxygen2.r-lib.org">documentation</a>.</p></li>
 <li><p>Create the documentation: this automatically adds in the .Rd files to the man directory and a NAMESPACE file to the main package directory. (see the function <a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/document">document</a> in devtools)</p></li>
 <li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/install">Install</a> the development package.</p></li>

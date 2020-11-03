@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -291,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> The resourcer Package</h1>
 <div id="introduction" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Introduction</h2>
-<p>The <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the <a href="https://r6.r-lib.org/">R6 library</a>.</p>
-<p>It is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.</p>
+<p>The <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package is an R implementation of the data and computation resources description and connection. It resuse many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package’s role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the <a href="https://r6.r-lib.org/">R6 library</a>.</p>
+<p>The purpose of the package is to allow access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.</p>
 <p>The main concepts are:</p>
 <table>
 <thead>
@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="file-data-format" class="section level3" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> File Data Format</h3>
-<p>The data format specified within the <em>resource</em> object, helps at finding the appropriate file reader. Currently supported data formats are:</p>
+<p>The data format specified within the <em>resource</em> object, helps with finding the appropriate file reader. Currently supported data formats are:</p>
 <ul>
 <li>the data formats that have a reader in <a href="https://www.tidyverse.org/">tidyverse</a>: <a href="https://readr.tidyverse.org/">readr</a> (<code>csv</code>, <code>csv2</code>, <code>tsv</code>, <code>ssv</code>, <code>delim</code>), <a href="https://haven.tidyverse.org/">haven</a> (<code>spss</code>, <code>sav</code>, <code>por</code>, <code>dta</code>, <code>stata</code>, <code>sas</code>, <code>xpt</code>), <a href="https://readxl.tidyverse.org/">readxl</a> (<code>excel</code>, <code>xls</code>, <code>xlsx</code>). This can be easily applied to other data file formats by extending the <em>FileResourceClient</em> class.</li>
 <li>the R data format that can be loaded in a child R environment from which object of interest will be retrieved.</li>
@@ -357,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb76-6"><a href="resourcer.html#cb76-6"></a>)</span>
 <span id="cb76-7"><a href="resourcer.html#cb76-7"></a><span class="co"># coerce the csv file in the opal server to a data.frame</span></span>
 <span id="cb76-8"><a href="resourcer.html#cb76-8"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(res)</span></code></pre></div>
-<p>To support other file data format, extend the <em>FileResourceClient</em> class with the new data format reader implementation. Associate factory class, an extension of the <em>ResourceResolver</em> class is also to be implemented and registered.</p>
+<p>To support other file data format, extend the <em>FileResourceClient</em> class with the new data format reader implementation. The associated factory class, an extension of the <em>ResourceResolver</em> class, is also to be implemented and registered.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="resourcer.html#cb77-1"></a>resourcer<span class="op">::</span><span class="kw">registerResourceResolver</span>(MyFileFormatResourceResolver<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
 </div>
 </div>
@@ -365,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.3</span> Database Resources</h2>
 <div id="dbi-connectors" class="section level3" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> DBI Connectors</h3>
-<p><a href="https://www.r-dbi.org/">DBI</a> is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Then any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource’s URL. For instance a resource URL starting with <code>postgres://</code> will require the <a href="https://rpostgres.r-dbi.org/">RPostgres</a> driver. To separate the DBI connector instanciation from the DBI interface interactions in the <em>SQLResourceClient</em>, a <em>DBIResourceConnector</em> registry is to be populated. The currently supported SQL database connectors are:</p>
+<p><a href="https://www.r-dbi.org/">DBI</a> is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Thus any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource’s URL. For instance a resource URL starting with <code>postgres://</code> will require the <a href="https://rpostgres.r-dbi.org/">RPostgres</a> driver. To separate the DBI connector instantiation from the DBI interface interactions in the <em>SQLResourceClient</em>, a <em>DBIResourceConnector</em> registry is to be populated. The currently supported SQL database connectors are:</p>
 <ul>
 <li><code>mariadb</code> MariaDB connector,</li>
 <li><code>mysql</code> MySQL connector,</li>
@@ -373,12 +373,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>presto</code>, <code>presto+http</code> or <code>presto+https</code> <a href="https://prestodb.io/">Presto</a> connector,</li>
 <li><code>spark</code>, <code>spark+http</code> or <code>spark+https</code> <a href="https://spark.apache.org/">Spark</a> connector.</li>
 </ul>
-<p>To support another SQL database having a DBI driver, extend the <em>DBIResourceConnector</em> class and register it:</p>
+<p>To support another SQL database with a DBI driver, extend the <em>DBIResourceConnector</em> class and register it:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="resourcer.html#cb78-1"></a>resourcer<span class="op">::</span><span class="kw">registerDBIResourceConnector</span>(MyDBResourceConnector<span class="op">$</span><span class="kw">new</span>())</span></code></pre></div>
 </div>
 <div id="use-dplyr" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Use dplyr</h3>
-<p>Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using <a href="https://dplyr.tidyverse.org/">dplyr</a> which will delegate as much as possible operations to the database.</p>
+<p>Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using <a href="https://dplyr.tidyverse.org/">dplyr</a> which will delegate as many operations as possible to the database.</p>
 </div>
 <div id="document-databases" class="section level3" number="7.3.3">
 <h3><span class="header-section-number">7.3.3</span> Document Databases</h3>
@@ -410,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets.</li>
 <li><a href="https://dplyr.tidyverse.org/">dplyr</a> tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.</li>
 </ul>
-<p>In the case when the resource is a R object, the <em>RDataFileResourceClient</em> offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain can be accessed with the most appropriate tools.</p>
+<p>In the case when the resource is a R object, the <em>RDataFileResourceClient</em> offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain, can be accessed with the most appropriate tools.</p>
 <p>When the resource is a computation service provider, the interaction with the resource client will consist of issuing commands/requests with parameters and getting the result from it either as a response object or as a file to be downloaded.</p>
 <p>Another way of interacting with a resource is to get the internal connection object (a database connector, a SSH connector etc.) from the <em>ResourceClient</em> and then apply any kind of operations that are defined for it. The general purpose of a resource is not to substitute itself to the underlying library, it is to facilitate the access to the related data and services.</p>
 </div>
@@ -425,9 +425,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The design of the URL that will describe your new resource should not overlap an existing one, otherwise the different registries will return the first instance for which the <code>isFor(resource)</code> is <code>TRUE</code>. In order to distinguish resource locations, the URL’s scheme can be extended, for instance the scheme for accessing a file in a Opal server is <code>opal+https</code> so that the credentials be applied as needed by Opal.</p>
 <p>In order to simplify the usage of these resource client classes, the resourcer package combines several software design patterns:</p>
 <ul>
-<li>The factory pattern, a classic <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">creational design pattern</a>. It is realized by the <em>ResourceResolver</em> R6 class which is responsible for making a <em>ResourceClient</em> object matching a provided resource object.</li>
-<li>The registry pattern, “a well-known object that other objects can use to find common objects and services” as <a href="https://martinfowler.com/eaaCatalog/registry.html">described by M. Fowler</a>. It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of <em>ResourceResolver</em> objects (the ResourceClient factories), (2) the registry of <em>FileResourceGetter</em> objects and (3) the registry of <em>DBIResourceConnector</em> objects.</li>
-<li>The self-registration pattern, which consists of delegating the registration of new services to their provider. The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html">package event mechanism of R</a> is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.</li>
+<li>The factory pattern, a classic <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">creational design pattern</a>. It is realized by the <em>ResourceResolver</em> R6 class which is responsible for making a <em>ResourceClient</em> object matching a resource object provided.</li>
+<li>The registry pattern, “a well-known object that other objects can use to find common objects and services” as <a href="https://martinfowler.com/eaaCatalog/registry.html">described by M. Fowler</a>. It is basically a global list of objects to iterate through to find the appropriate one. In the resourcer package there are several registries: (1) the registry of <em>ResourceResolver</em> objects (the ResourceClient factories), (2) the registry of <em>FileResourceGetter</em> objects and (3) the registry of <em>DBIResourceConnector</em> objects.</li>
+<li>The self-registration pattern, which consists of delegating the registration of new services to their provider. The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html">package event mechanism of R</a> is used so that an R package self-registers its resource components in the registries previously mentioned when the package is loaded at runtime.</li>
 </ul>
 <p>For implementing <em>ResourceClient</em> factories the resourcer package provides different <em>ResourceResolver</em> classes (see Figure <a href="resourcer.html#fig:resourceResolver">7.1</a>):</p>
 <ul>
@@ -441,13 +441,13 @@ Figure 7.1: ResourceResolver class diagram
 </p>
 <img src="fig/ResourceResolver.png" alt="ResourceResolver class diagram" width="574" />
 </div>
-<p>Additional <em>ResourceResolver</em> and <em>ResourceClient</em> extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.</p>
+<p>Additional <em>ResourceResolver</em> and <em>ResourceClient</em> extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that an R connection API exists for the considered application.</p>
 <p>The process of creating a new <em>ResourceClient</em> instance from a resource object consists of iterating over a registry of <em>ResourceResolver</em> instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the <em>FileResourceGetter</em> registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the <em>DBIResourceConnector</em> registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.</p>
 </div>
 <div id="resource-forms" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Resource Forms</h2>
-<p>As it can be error prone to define a new resource, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in javascript, as this is a very commonly used language for building graphical user interfaces.</p>
-<p>These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the <code>inst/resources</code> folder), so that an external application can lookup statically the packages having declared some resources.</p>
+<p>As the definition a new resource can be error prone, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in JavaScript, as this is a very commonly used language for building graphical user interfaces.</p>
+<p>These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the <code>inst/resources</code> folder), so that an external application can lookup the packages statically having declared some resources.</p>
 <p>The configuration file <code>inst/resources/resource.js</code> is a javascript file which contains an object with the properties:</p>
 <ul>
 <li><code>settings</code>, a JSON object that contains the description and the documentation of the web forms (based on the <a href="http://json-schema.org">json-schema</a> specification).</li>
@@ -618,7 +618,7 @@ Figure 7.2: Resources from a demo enviroment available at <a href="https://opal-
 <p>Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: <a href="https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt" class="uri">https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt</a> and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.</p>
 <div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="7.8.1">
 <h3><span class="header-section-number">7.8.1</span> TSV File into a tibble or data.frame</h3>
-<p>This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided</p>
+<p>This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is secure access since a user name and password must be provided</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="resourcer.html#cb81-1"></a><span class="kw">library</span>(DSOpal)</span>
 <span id="cb81-2"><a href="resourcer.html#cb81-2"></a><span class="kw">library</span>(dsBaseClient)</span>
 <span id="cb81-3"><a href="resourcer.html#cb81-3"></a></span>
@@ -647,7 +647,7 @@ Figure 7.2: Resources from a demo enviroment available at <a href="https://opal-
 </div>
 <div id="r-data-file-into-a-r-object" class="section level3" number="7.8.2">
 <h3><span class="header-section-number">7.8.2</span> R Data File into a R object</h3>
-<p>Now let us describe how to get an specific type of R object into de R server. Our Opal demo contains a resource called GSE80970 which is in a local machine (see Figure <a href="resourcer.html#fig:testResources2">7.2</a>). The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
+<p>Now let us describe how to get a specific type of R object into the R server. Our Opal demo contains a resource called GSE80970 which is located on a local machine (see Figure <a href="resourcer.html#fig:testResources2">7.2</a>). The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly encapsulate gene expression, metadata and annotation. In general, we can retrieve any R object in its original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="resourcer.html#cb84-1"></a><span class="co"># prepare login data and resource to assign</span></span>
 <span id="cb84-2"><a href="resourcer.html#cb84-2"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
 <span id="cb84-3"><a href="resourcer.html#cb84-3"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>

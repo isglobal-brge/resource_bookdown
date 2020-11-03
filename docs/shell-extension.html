@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -289,10 +289,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="shell_extension" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Secure shell programs: GWAS with PLINK</h1>
-<p>GWAS can also be performed using program that are executed using shell commands. This is the case of <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a>, one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that requires efficient and scalable pipelines.</p>
-<p>The resources also allow the use of secure SSH service to run programs on a remote server accessible through ssh containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allow us to create functions to analyze data using specific shell programs.</p>
-<p>Here we describe how <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a> program can be use to perform GWAS [<strong>Yannick</strong> some overview about how this is created should be described]</p>
-<p>We use this following code to illustrate how analyses should be performed using the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package. This code could be considered as the base code for creating a DataSHIELD package for the OPAL server as performed in <code>plinkDS()</code> function implemented in the <em><a href="https://github.com/isglobal-brge">dsOmics</a></em> package</p>
+<p>GWAS can also be performed using programs that are executed using shell commands. This is the case for <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a>, one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that require efficient and scalable pipelines.</p>
+<p>Resources also allow the use of secure SSH service to run programs on a remote server accessible through SSH containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allows us to create functions to analyze data using specific shell programs.</p>
+<p>Here we describe how the <a href="http://zzz.bwh.harvard.edu/plink/">PLINK</a> program can be used to perform GWAS. In this case, the resource describes that access is given via SSH, the credentials required to connect, and the commands that can be run (of which one is plink).</p>
+<p>We use the following code to illustrate how analyses should be performed using the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package. This code could be considered as the base code for creating a server-side DataSHIELD package as performed in the <code>plinkDS()</code> function implemented in the <em><a href="https://github.com/isglobal-brge">dsOmics</a></em> package</p>
 <p>We access the ssh resource called <code>brge_plink</code> (Figure <a href="resourcer.html#fig:testResources2">7.2</a>) using the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package as follows:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="shell-extension.html#cb90-1"></a><span class="kw">library</span>(resourcer)</span>
 <span id="cb90-2"><a href="shell-extension.html#cb90-2"></a>brge_plink &lt;-<span class="st"> </span>resourcer<span class="op">::</span><span class="kw">newResource</span>(<span class="dt">url=</span><span class="st">&quot;ssh://plink-demo.obiba.org:2222/home/master/brge?exec=ls,plink,plink1&quot;</span>, </span>
@@ -336,7 +336,7 @@ $command
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
-<p>Then, to avoid multiple accesses to the resource, it is recommended to create a temporal directory to save our results</p>
+<p>Then, to avoid multiple accesses to the resource, it is recommended to create a temporary directory to save our results</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="shell-extension.html#cb99-1"></a>tempDir &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">tempDir</span>()</span>
 <span id="cb99-2"><a href="shell-extension.html#cb99-2"></a>tempDir</span></code></pre></div>
 <pre><code>[1] &quot;/tmp/ssh-9448&quot;</code></pre>
@@ -412,7 +412,7 @@ $command
 
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
-<p>The results can be retrieve as an R object</p>
+<p>The results can be retrieved as an R object</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="shell-extension.html#cb105-1"></a>outs &lt;-<span class="st"> </span>client<span class="op">$</span><span class="kw">exec</span>(<span class="st">&#39;ls&#39;</span>, tempDir)<span class="op">$</span>output</span>
 <span id="cb105-2"><a href="shell-extension.html#cb105-2"></a>outs</span></code></pre></div>
 <pre><code>[1] &quot;out.frq&quot; &quot;out.hh&quot;  &quot;out.log&quot; &quot;out.nof&quot;</code></pre>
@@ -434,7 +434,7 @@ attr(,&quot;class&quot;)
  9     0 MitoA11252G G     A     0.182       4518
 10     0 MitoT11900C C     T     0.000868    4608
 # ... with 99,990 more rows</code></pre>
-<p>Finally temporal directories are removed and session closed</p>
+<p>Finally temporary directories are removed and the session closed</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="shell-extension.html#cb111-1"></a>client<span class="op">$</span><span class="kw">removeTempDir</span>()</span>
 <span id="cb111-2"><a href="shell-extension.html#cb111-2"></a>client<span class="op">$</span><span class="kw">close</span>()</span></code></pre></div>
 
