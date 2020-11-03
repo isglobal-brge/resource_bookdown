@@ -1,6 +1,6 @@
 # Contributors
 
-- Juan R Gonzalez
-- Yannick Marcon
-- Tom Bishop
-- Demetris Avraam
+- Juan R Gonzalez, Associate Research Professor at Barcelona Institute for Global Health (ISGlobal) and Adjunct Professor at Department of Mathematics at Autonomous University of Barcelona (UAB)
+- Yannick Marcon, 
+- Tom Bishop,
+- Demetris Avraam, 
