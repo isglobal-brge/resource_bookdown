@@ -2,32 +2,32 @@
 
 # Setup
 
-As describe in [a previous Chapter](#resourcer) the `r BiocStyle::CRANpkg("resourcer")` R package allows to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.rdata` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
+As described in [a previous Chapter](#resourcer) the `r BiocStyle::CRANpkg("resourcer")` R package allows users to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far `ExpressionSet` and `RangedSummarizedExperiment` objects saved in `.RData` files are accesible through the `resourcer` package. The `dsOmics` package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS). 
 
 In order to achive this `resourcer` extension, two `R6` classes have been implemented:
 
 * `GDSFileResourceResolver` class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a `GDSFileResourceClient` object instance from an assigned resource.
-* `GDSFileResourceClient` class which is responsible for getting the referenced file and making a connection (created by `GWASTools`) to the GDS file (will also convert the VCF file to a GDS file on the fly, using `SNPRelate`). For the subsequent analysis, it's this connection handle to the GDS file that will be used.
+* `GDSFileResourceClient` class which is responsible for getting the referenced file and making a connection (created by `GWASTools`) to the GDS file (will also convert the VCF file to a GDS file on the fly, using `SNPRelate`). For the subsequent analysis, it is this connection handle to the GDS file that will be used.
 
 
 
 ## Providing DataSHIELD packages in the opal server
 
-Required DataSHIELD packages must be uploaded in the opal server through the Administration site by accessing to DataSHIELD tab. In our case, both `dsBase` and `dsOmics` and `resourcer` packages must be installed as is illustrated in the figure. 
+The required DataSHIELD packages must be uploaded to Opal through the Administration site by accessing to DataSHIELD tab. In our case, both `dsBase` and `dsOmics` and `resourcer` packages must be installed as is illustrated in the figure. 
 
 ```{r installPackagesOpal, echo=FALSE, fig.cap="Installed packages in the demo opal server", fig.align='center'}
 knitr::include_graphics("fig/add_packages_opal.png")
 ```
 
 
-The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was intalled into the opal server
+The tab **+Add package** can be used to install a new package. The figure depicts how `dsOmics` was intalled on Opal
 
 
 ```{r installPackagesOpal2, echo=FALSE, fig.cap="Description how `dsOmics` package was intalled into the demo opal server", fig.align='center'}
 knitr::include_graphics("fig/add_packages_opal_2.png")
 ```
 
-For reproducing this book the following packages must be installed in the opal server 
+For reproducing this book the following packages must be installed on Opal
 
 ```
 From CRAN: 
@@ -37,7 +37,7 @@ From Github:
    - datashield/dsGeo (tombisho/dsGeo)
    - isglobal-brge/dsOmics
 ```
-Note that the `dsGeo` package imports the `sp`, `rgeos` and `rgdal` R packages. `rgeos` and `rgdal` in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes of `rgeos` and `rgdal` for other operating systems):
+Note that the `dsGeo` package imports the `sp`, `rgeos` and `rgdal` R packages. `rgeos` and `rgdal` in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes in `rgeos` and `rgdal` for other operating systems):
 
 ```
 sudo apt-get update
@@ -46,7 +46,7 @@ sudo apt-get install libgdal-dev libproj-dev libgeos++dev
 
 ## Required R Packages in the client site (e.g. local machine)
 
-Using DataSHIELD also requires some R packages to be install from the client site. So far, the following R packages must be installed (in their development version):
+Using DataSHIELD also requires some R packages to be installed on the client site. So far, the following R packages must be installed (in their development version):
 
 ```{r install_all, eval=FALSE}
 install.packages("DSOpal", dependencies = TRUE)
