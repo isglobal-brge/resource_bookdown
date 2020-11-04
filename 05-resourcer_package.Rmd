@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It is reusing many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
+The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It resuse many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package's role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
 
-It is meant to access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
+The purpose of the package is to allow access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
 
 The main concepts are:
 
@@ -38,7 +38,7 @@ resourcer::registerFileResourceGetter(MyFileLocationResourceGetter$new())
 
 ### File Data Format
 
-The data format specified within the _resource_ object, helps at finding the appropriate file reader. Currently supported data formats are:
+The data format specified within the _resource_ object, helps with finding the appropriate file reader. Currently supported data formats are:
 
 * the data formats that have a reader in [tidyverse](https://www.tidyverse.org/): [readr](https://readr.tidyverse.org/) (`csv`, `csv2`, `tsv`, `ssv`, `delim`), [haven](https://haven.tidyverse.org/) (`spss`, `sav`, `por`, `dta`, `stata`, `sas`, `xpt`), [readxl](https://readxl.tidyverse.org/) (`excel`, `xls`, `xlsx`). This can be easily applied to other data file formats by extending the _FileResourceClient_ class.
 * the R data format that can be loaded in a child R environment from which object of interest will be retrieved.
@@ -56,7 +56,7 @@ res <- resourcer::newResource(
 df <- as.data.frame(res)
 ```
 
-To support other file data format, extend the _FileResourceClient_ class with the new data format reader implementation. Associate factory class, an extension of the _ResourceResolver_ class is also to be implemented and registered.
+To support other file data format, extend the _FileResourceClient_ class with the new data format reader implementation. The associated factory class, an extension of the _ResourceResolver_ class, is also to be implemented and registered.
 
 ```{r eval=FALSE}
 resourcer::registerResourceResolver(MyFileFormatResourceResolver$new())
@@ -66,7 +66,7 @@ resourcer::registerResourceResolver(MyFileFormatResourceResolver$new())
 
 ### DBI Connectors
 
-[DBI](https://www.r-dbi.org/) is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Then any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource's URL. For instance a resource URL starting with `postgres://` will require the [RPostgres](https://rpostgres.r-dbi.org/) driver. To separate the DBI connector instanciation from the DBI interface interactions in the _SQLResourceClient_, a _DBIResourceConnector_ registry is to be populated. The currently supported SQL database connectors are:
+[DBI](https://www.r-dbi.org/) is a set of virtual classes that are are used to abstract the SQL database connections and operations within R. Thus any DBI implementation can be used to access to a SQL table. Which DBI connector to be used is an information that can be extracted from the scheme part of the resource's URL. For instance a resource URL starting with `postgres://` will require the [RPostgres](https://rpostgres.r-dbi.org/) driver. To separate the DBI connector instantiation from the DBI interface interactions in the _SQLResourceClient_, a _DBIResourceConnector_ registry is to be populated. The currently supported SQL database connectors are:
 
 * `mariadb` MariaDB connector,
 * `mysql` MySQL connector,
@@ -74,7 +74,7 @@ resourcer::registerResourceResolver(MyFileFormatResourceResolver$new())
 * `presto`, `presto+http` or `presto+https` [Presto](https://prestodb.io/) connector,
 * `spark`, `spark+http` or `spark+https` [Spark](https://spark.apache.org/) connector.
 
-To support another SQL database having a DBI driver, extend the _DBIResourceConnector_ class and register it:
+To support another SQL database with a DBI driver, extend the _DBIResourceConnector_ class and register it:
 
 ```{r eval=FALSE}
 resourcer::registerDBIResourceConnector(MyDBResourceConnector$new())
@@ -82,7 +82,7 @@ resourcer::registerDBIResourceConnector(MyDBResourceConnector$new())
 
 ### Use dplyr
 
-Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using [dplyr](https://dplyr.tidyverse.org/) which will delegate as much as possible operations to the database.
+Having the data stored in the database allows to handle large (common SQL databases) to big (PrestoDB, Spark) datasets using [dplyr](https://dplyr.tidyverse.org/) which will delegate as many operations as possible to the database.
 
 ### Document Databases
 
@@ -118,7 +118,7 @@ As the _ResourceClient_ is just a connector to a resource, to make this useful s
 * R data.frame, which is the most common representation of tabular data in R. A data frame, as defined in R base, is an object stored in memory that may be not suitable for large to big datasets. 
 * [dplyr](https://dplyr.tidyverse.org/) tbl, which is another representation of tabular data that nicely integrates with the DBI: filtering, mutation and aggregation operations can be delegated to the underlying SQL database, reducing the R memory and computation footprint. Useful functions are also provided to perform join operations on relational datasets. A data.frame can be accessed as a tbl and vice versa.
 
-In the case when the resource is a R object, the _RDataFileResourceClient_ offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain can be accessed with the most appropriate tools.
+In the case when the resource is a R object, the _RDataFileResourceClient_ offers the ability to get the internal raw data object. Then complex data structures, optimized for a specific research domain, can be accessed with the most appropriate tools.
 
 When the resource is a computation service provider, the interaction with the resource client will consist of issuing commands/requests with parameters and getting the result from it either as a response object or as a file to be downloaded.
 
@@ -136,9 +136,9 @@ The design of the URL that will describe your new resource should not overlap an
 
 In order to simplify the usage of these resource client classes, the resourcer package combines several software design patterns:
 
-* The factory pattern, a classic [creational design pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). It is realized by the _ResourceResolver_ R6 class which is responsible for making a _ResourceClient_ object matching a provided resource object.
-* The registry pattern, “a well-known object that other objects can use to find common objects and services” as [described by M. Fowler](https://martinfowler.com/eaaCatalog/registry.html). It is basically a global list of objects to iterate to find the appropriate one. In the resourcer package there are several registries: (1) the registry of _ResourceResolver_ objects (the ResourceClient factories), (2) the registry of _FileResourceGetter_ objects and (3) the registry of _DBIResourceConnector_ objects.
-* The self-registration pattern, which consists of delegating the registration of new services to their provider. The [package event mechanism of R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html) is used so that a R package self-registers its resource components in the previously mentioned registries when the package is loaded at runtime.
+* The factory pattern, a classic [creational design pattern](https://en.wikipedia.org/wiki/Factory_method_pattern). It is realized by the _ResourceResolver_ R6 class which is responsible for making a _ResourceClient_ object matching a resource object provided.
+* The registry pattern, “a well-known object that other objects can use to find common objects and services” as [described by M. Fowler](https://martinfowler.com/eaaCatalog/registry.html). It is basically a global list of objects to iterate through to find the appropriate one. In the resourcer package there are several registries: (1) the registry of _ResourceResolver_ objects (the ResourceClient factories), (2) the registry of _FileResourceGetter_ objects and (3) the registry of _DBIResourceConnector_ objects.
+* The self-registration pattern, which consists of delegating the registration of new services to their provider. The [package event mechanism of R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/ns-hooks.html) is used so that an R package self-registers its resource components in the registries previously mentioned when the package is loaded at runtime.
 
 For implementing _ResourceClient_ factories the resourcer package provides different _ResourceResolver_ classes (see Figure \@ref(fig:resourceResolver)):
 
@@ -150,15 +150,15 @@ For implementing _ResourceClient_ factories the resourcer package provides diffe
 knitr::include_graphics("fig/ResourceResolver.png")
 ```
 
-Additional _ResourceResolver_ and _ResourceClient_ extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that a R connection API exists for the considered application.
+Additional _ResourceResolver_ and _ResourceClient_ extensions could be implemented for accessing domain specific applications which would expose data extraction and/or analysis services, the only requirement is that an R connection API exists for the considered application.
 
 The process of creating a new _ResourceClient_ instance from a resource object consists of iterating over a registry of _ResourceResolver_ instances and finding the one that can handle the resource object by inspecting its properties (URL, data format etc.). The URL property inspection can imply a lookup in the additional registries: if the resource is a data file, the file resource resolvers will check in the _FileResourceGetter_ registry whether there is one that applies; if the resource is a DBI-compatible database, the SQL resource resolver will check in the _DBIResourceConnector_ registry whether there is one that applies. This workflow is simply triggered by a resourcer’s function call.
 
 ## Resource Forms
 
-As it can be error prone to define a new resource, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in javascript, as this is a very commonly used language for building graphical user interfaces.
+As the definition a new resource can be error prone, when a URL is complex, or when there is a limited choice of formats or when credentials can be on different types, it is recommended to declare the resources forms and factory functions within the R package. This resource declaration is to be done in JavaScript, as this is a very commonly used language for building graphical user interfaces.
 
-These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the `inst/resources` folder), so that an external application can lookup statically the packages having declared some resources.
+These files are expected to be installed at the root of the package folder (then in the source code of the R package, they will be declared in the `inst/resources` folder), so that an external application can lookup the packages statically having declared some resources.
 
 The configuration file `inst/resources/resource.js` is a javascript file which contains an object with the properties:
 
@@ -259,7 +259,7 @@ Let us start by illustrating how to get a simple TSV file (brge.txt) into the R 
 
 ### TSV File into a tibble or data.frame
 
-This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is a secure access since user name and password must be provided
+This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is secure access since a user name and password must be provided
 
 ```{r load_tsv}
 library(DSOpal)
@@ -291,7 +291,7 @@ datashield.logout(conns)
 
 ### R Data File into a R object
 
-Now let us describe how to get an specific type of R object into de R server. Our Opal demo  contains a resource called GSE80970 which is in a local machine (see Figure \@ref(fig:testResources2)). The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly capsulate gene expression, metadata and annotation. In general, we can retrieve any R object in their original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
+Now let us describe how to get a specific type of R object into the R server. Our Opal demo contains a resource called GSE80970 which is located on a local machine (see Figure \@ref(fig:testResources2)). The resource is an R object of class [ExpressionSet](https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html) which is normally used to jointly encapsulate gene expression, metadata and annotation. In general, we can retrieve any R object in its original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame. 
 
 ```{r load_eSet}
 # prepare login data and resource to assign

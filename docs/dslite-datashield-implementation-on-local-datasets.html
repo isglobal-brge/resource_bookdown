@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
   <meta name="description" content="14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14 DSLite: DataSHIELD Implementation on Local Datasets | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-06-10" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="GIS.html"/>
 <link rel="next" href="creating-datashield-packages.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -148,18 +149,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="opal.html"><a href="opal.html"><i class="fa fa-check"></i><b>4</b> Opal</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="opal.html"><a href="opal.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="opal.html"><a href="opal.html#data-management"><i class="fa fa-check"></i><b>4.2</b> Data Management</a></li>
 <li class="chapter" data-level="4.3" data-path="opal.html"><a href="opal.html#security"><i class="fa fa-check"></i><b>4.3</b> Security</a></li>
 <li class="chapter" data-level="4.4" data-path="opal.html"><a href="opal.html#r-integration"><i class="fa fa-check"></i><b>4.4</b> R Integration</a></li>
-<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#demo"><i class="fa fa-check"></i><b>4.5</b> Demo</a></li>
+<li class="chapter" data-level="4.5" data-path="opal.html"><a href="opal.html#opal-demo-site"><i class="fa fa-check"></i><b>4.5</b> Opal demo site</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="datashield.html"><a href="datashield.html"><i class="fa fa-check"></i><b>5</b> DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="datashield.html"><a href="datashield.html#introduction-2"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="datashield.html"><a href="datashield.html#datashield-r-interface-dsi"><i class="fa fa-check"></i><b>5.2</b> DataSHIELD R Interface (DSI)</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#classes-structure"><i class="fa fa-check"></i><b>5.2.1</b> Classes Structure</a></li>
+<li class="chapter" data-level="5.2.1" data-path="datashield.html"><a href="datashield.html#class-structures"><i class="fa fa-check"></i><b>5.2.1</b> Class Structures</a></li>
 <li class="chapter" data-level="5.2.2" data-path="datashield.html"><a href="datashield.html#higher-level-functions"><i class="fa fa-check"></i><b>5.2.2</b> Higher Level Functions</a></li>
 <li class="chapter" data-level="5.2.3" data-path="datashield.html"><a href="datashield.html#options"><i class="fa fa-check"></i><b>5.2.3</b> Options</a></li>
 </ul></li>
@@ -167,8 +168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="datashield.html"><a href="datashield.html#client"><i class="fa fa-check"></i><b>5.3.1</b> Client</a></li>
 <li class="chapter" data-level="5.3.2" data-path="datashield.html"><a href="datashield.html#server"><i class="fa fa-check"></i><b>5.3.2</b> Server</a></li>
-<li class="chapter" data-level="5.3.3" data-path="datashield.html"><a href="datashield.html#demo-1"><i class="fa fa-check"></i><b>5.3.3</b> Demo</a></li>
 </ul></li>
+<li class="chapter" data-level="5.4" data-path="datashield.html"><a href="datashield.html#demo"><i class="fa fa-check"></i><b>5.4</b> Demo</a></li>
 </ul></li>
 <li class="part"><span><b>II Focus Topics</b></span></li>
 <li class="chapter" data-level="6" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>6</b> The Resources</a>
@@ -179,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="resourcer.html"><a href="resourcer.html"><i class="fa fa-check"></i><b>7</b> The resourcer Package</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="resourcer.html"><a href="resourcer.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="introduction.html"><a href="introduction.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="resourcer.html"><a href="resourcer.html#file-resources"><i class="fa fa-check"></i><b>7.2</b> File Resources</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="resourcer.html"><a href="resourcer.html#file-getter"><i class="fa fa-check"></i><b>7.2.1</b> File Getter</a></li>
@@ -260,9 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>15</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="16" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>16</b> Tips and tricks</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.1</b> How to install R packages into OPAL server from R</a></li>
-<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-check-whether-there-are-open-r-sesions-in-the-opal-server"><i class="fa fa-check"></i><b>16.2</b> How to check whether there are open R sesions in the OPAL server</a></li>
-<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how"><i class="fa fa-check"></i><b>16.3</b> How</a></li>
+<li class="chapter" data-level="16.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>16.1</b> How to create a new project into OPAL</a></li>
+<li class="chapter" data-level="16.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-upload-a-new-resource-into-opal"><i class="fa fa-check"></i><b>16.2</b> How to upload a new resource into OPAL</a></li>
+<li class="chapter" data-level="16.3" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-datashield-packages-into-opal-server"><i class="fa fa-check"></i><b>16.3</b> How to install DataSHIELD packages into OPAL server</a></li>
+<li class="chapter" data-level="16.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>16.4</b> How to install R packages into OPAL server</a></li>
+<li class="chapter" data-level="16.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server-from-r"><i class="fa fa-check"></i><b>16.5</b> How to install R packages into OPAL server from R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="17" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>17</b> Session Info</a></li>
@@ -286,16 +289,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="dslite-datashield-implementation-on-local-datasets" class="section level1" number="14">
 <h1><span class="header-section-number">14</span> DSLite: DataSHIELD Implementation on Local Datasets</h1>
-<p>DSLite is a serverless <a href="https://github.com/datashield/DSI/">DataSHIELD Interface (DSI)</a> implementation which purpose is to mimic
-the behavior of a distant (virtualized or barebone) data repository server (see <a href="https://github.com/datashield/DSOpal">DSOpal</a> for instance). The
-datasets that are being analyzed must be fully accessible in the local environment and then the non-disclosive constraint of the analysis is not relevant for DSLite: some DSLite functionalities allows to inspect what is under the hood of the DataSHIELD computation nodes, making it a perfect tool for DataSHIELD analysis package developers.</p>
+<p>DSLite is a serverless <a href="https://github.com/datashield/DSI/">DataSHIELD Interface (DSI)</a> implementation whose purpose is to mimic
+the behavior of a distant (virtualized or barebone) data repository server (see <a href="https://github.com/datashield/DSOpal">DSOpal</a> for instance). The datasets that are being analyzed must be fully accessible in the local environment and then the non-disclosive constraint of the analysis is not relevant for DSLite: some DSLite functionalities allow inspection of what is under the hood of the DataSHIELD computation nodes, making it a perfect tool for DataSHIELD analysis package developers.</p>
 <div id="development-environment-setup" class="section level2" number="14.1">
 <h2><span class="header-section-number">14.1</span> Development Environment Setup</h2>
 <div id="datashield-packages" class="section level3" number="14.1.1">
 <h3><span class="header-section-number">14.1.1</span> DataSHIELD Packages</h3>
-<p>Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration. The minimum required packages should be:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb229-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;resourcer&quot;</span>, <span class="st">&quot;DSLite&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb229-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb229-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBase&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>Both client and server side packages must be installed in your local R session. The entry point is still the client side package and DSLite will automatically load the corresponding server side package on DataSHIELD aggregate and assignment functions call, based on the DataSHIELD configuration. The minimum required packages are:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb247-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;resourcer&quot;</span>, <span class="st">&quot;DSLite&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb247-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb247-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBase&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="test-datasets" class="section level3" number="14.1.2">
 <h3><span class="header-section-number">14.1.2</span> Test Datasets</h3>
@@ -332,24 +334,24 @@ datasets that are being analyzed must be fully accessible in the local environme
 </ul>
 <p>See the R documentation of the DSLiteServer class for details.</p>
 <p>As an example:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-1"></a><span class="kw">library</span>(DSLite)</span>
-<span id="cb230-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-2"></a><span class="co"># prepare test data in a light DS server</span></span>
-<span id="cb230-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-3"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM1&quot;</span>)</span>
-<span id="cb230-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-4"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM2&quot;</span>)</span>
-<span id="cb230-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-5"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM3&quot;</span>)</span>
-<span id="cb230-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-6"></a>dslite.server &lt;-<span class="st"> </span><span class="kw">newDSLiteServer</span>(<span class="dt">tables=</span><span class="kw">list</span>(<span class="dt">CNSIM1=</span>CNSIM1, <span class="dt">CNSIM2=</span>CNSIM2, <span class="dt">CNSIM3=</span>CNSIM3))</span>
-<span id="cb230-7"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-7"></a><span class="co"># load corresponding DataSHIELD login data</span></span>
-<span id="cb230-8"><a href="dslite-datashield-implementation-on-local-datasets.html#cb230-8"></a><span class="kw">data</span>(<span class="st">&quot;logindata.dslite.cnsim&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-1"></a><span class="kw">library</span>(DSLite)</span>
+<span id="cb248-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-2"></a><span class="co"># prepare test data in a light DS server</span></span>
+<span id="cb248-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-3"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM1&quot;</span>)</span>
+<span id="cb248-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-4"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM2&quot;</span>)</span>
+<span id="cb248-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-5"></a><span class="kw">data</span>(<span class="st">&quot;CNSIM3&quot;</span>)</span>
+<span id="cb248-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-6"></a>dslite.server &lt;-<span class="st"> </span><span class="kw">newDSLiteServer</span>(<span class="dt">tables=</span><span class="kw">list</span>(<span class="dt">CNSIM1=</span>CNSIM1, <span class="dt">CNSIM2=</span>CNSIM2, <span class="dt">CNSIM3=</span>CNSIM3))</span>
+<span id="cb248-7"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-7"></a><span class="co"># load corresponding DataSHIELD login data</span></span>
+<span id="cb248-8"><a href="dslite-datashield-implementation-on-local-datasets.html#cb248-8"></a><span class="kw">data</span>(<span class="st">&quot;logindata.dslite.cnsim&quot;</span>)</span></code></pre></div>
 <p>The previous example can be simplified using the set-up functions based on the provided test datasets:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb231-1"></a><span class="kw">library</span>(DSLite)</span>
-<span id="cb231-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb231-2"></a><span class="co"># load CNSIM test data</span></span>
-<span id="cb231-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb231-3"></a>logindata.dslite.cnsim &lt;-<span class="st"> </span><span class="kw">setupCNSIMTest</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb249-1"></a><span class="kw">library</span>(DSLite)</span>
+<span id="cb249-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb249-2"></a><span class="co"># load CNSIM test data</span></span>
+<span id="cb249-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb249-3"></a>logindata.dslite.cnsim &lt;-<span class="st"> </span><span class="kw">setupCNSIMTest</span>()</span></code></pre></div>
 </div>
 <div id="datashield-configuration" class="section level3" number="14.2.2">
 <h3><span class="header-section-number">14.2.2</span> DataSHIELD Configuration</h3>
 <p>The DataSHIELD configuration (aggregate and assign functions, R options) is automatically discovered by inspecting the R packages installed and having some DataSHIELD settings defined, either in their <code>DESCRIPTION</code> file or in a <code>DATASHIELD</code> file.</p>
 <p>This default configuration extracting function is:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb232-1"></a>DSLite<span class="op">::</span><span class="kw">defaultDSConfiguration</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb250-1"></a>DSLite<span class="op">::</span><span class="kw">defaultDSConfiguration</span>()</span></code></pre></div>
 <p>The list of the DataSHIELD R packages to be inspected (or excluded) when building the default configuration can be specified as parameters of <code>defaultDSConfiguration()</code>.</p>
 <p>The DataSHIELD configuration can be specified at DSLiteServer creation time or afterwards with some DSLiteServer methods that can be used to verify or modify the DSLiteServer configuration:</p>
 <ul>
@@ -363,8 +365,8 @@ datasets that are being analyzed must be fully accessible in the local environme
 </ul>
 <p>See the R documentation of the DSLiteServer class for details.</p>
 <p>As an example:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb233-1"></a><span class="co"># verify configuration</span></span>
-<span id="cb233-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb233-2"></a>dslite.server<span class="op">$</span><span class="kw">config</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb251-1"></a><span class="co"># verify configuration</span></span>
+<span id="cb251-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb251-2"></a>dslite.server<span class="op">$</span><span class="kw">config</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="datashield-sessions" class="section level2" number="14.3">
@@ -375,26 +377,26 @@ datasets that are being analyzed must be fully accessible in the local environme
 <p class="caption">DSLite architecture</p>
 </div>
 <p>After performing the login DataSHIELD phase, the DSLiteServer holds the different DataSHIELD server side sessions, i.e. R environments identified by an ID. These IDs are also stored within the DataSHIELD connection objects that are the result of the <code>datashield.login()</code> call. The folllowing example shows how to access these session IDs:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-1"></a><span class="co"># datashield logins and assignments</span></span>
-<span id="cb234-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-2"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata.dslite.cnsim, <span class="dt">assign=</span><span class="ot">TRUE</span>)</span>
-<span id="cb234-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-3"></a><span class="co"># get the session ID of &quot;sim1&quot; node connection object</span></span>
-<span id="cb234-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-4"></a>conns<span class="op">$</span>sim1<span class="op">@</span>sid</span>
-<span id="cb234-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-5"></a><span class="co"># the same ID is in the DSLiteServer</span></span>
-<span id="cb234-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb234-6"></a>dslite.server<span class="op">$</span><span class="kw">hasSession</span>(conns<span class="op">$</span>sim1<span class="op">@</span>sid)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-1"></a><span class="co"># datashield logins and assignments</span></span>
+<span id="cb252-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-2"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata.dslite.cnsim, <span class="dt">assign=</span><span class="ot">TRUE</span>)</span>
+<span id="cb252-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-3"></a><span class="co"># get the session ID of &quot;sim1&quot; node connection object</span></span>
+<span id="cb252-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-4"></a>conns<span class="op">$</span>sim1<span class="op">@</span>sid</span>
+<span id="cb252-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-5"></a><span class="co"># the same ID is in the DSLiteServer</span></span>
+<span id="cb252-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb252-6"></a>dslite.server<span class="op">$</span><span class="kw">hasSession</span>(conns<span class="op">$</span>sim1<span class="op">@</span>sid)</span></code></pre></div>
 </div>
 <div id="debugging" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Debugging</h2>
-<p>Thanks to the DSLiteServer capability to have its configuration modified at any time, it is possible to add some debugging functions without polluting in the DataSHIELD package you are developping.</p>
+<p>Thanks to the DSLiteServer capability of allowing its configuration to be modified at any time, it is possible to add some debugging functions without polluting the DataSHIELD package you are developing.</p>
 <p>For instance, this code adds an aggregate function <code>print()</code>:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb235-1"></a><span class="co"># add a print method to configuration</span></span>
-<span id="cb235-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb235-2"></a>dslite.server<span class="op">$</span><span class="kw">aggregateMethod</span>(<span class="st">&quot;print&quot;</span>, <span class="cf">function</span>(x){ <span class="kw">print</span>(x) })</span>
-<span id="cb235-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb235-3"></a><span class="co"># and use it to print the D symbol</span></span>
-<span id="cb235-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb235-4"></a><span class="kw">datashield.aggregate</span>(conns, <span class="kw">quote</span>(<span class="kw">print</span>(D)))</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb253-1"></a><span class="co"># add a print method to configuration</span></span>
+<span id="cb253-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb253-2"></a>dslite.server<span class="op">$</span><span class="kw">aggregateMethod</span>(<span class="st">&quot;print&quot;</span>, <span class="cf">function</span>(x){ <span class="kw">print</span>(x) })</span>
+<span id="cb253-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb253-3"></a><span class="co"># and use it to print the D symbol</span></span>
+<span id="cb253-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb253-4"></a><span class="kw">datashield.aggregate</span>(conns, <span class="kw">quote</span>(<span class="kw">print</span>(D)))</span></code></pre></div>
 <p>Another option is to get a symbol value from the server into the client environment. This can be very helpful for complex data structures. The following example illustrates usage of a shortcut function that iterates over all the connection objects and get the corresponding symbol value:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb236-1"></a><span class="co"># get data represented by symbol D for each DataSHIELD connection</span></span>
-<span id="cb236-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb236-2"></a>data &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns, <span class="st">&quot;D&quot;</span>)</span>
-<span id="cb236-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb236-3"></a><span class="co"># get data represented by symbol D from a specific DataSHIELD connection</span></span>
-<span id="cb236-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb236-4"></a>data1 &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns<span class="op">$</span>sim1, <span class="st">&quot;D&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb254-1"></a><span class="co"># get data represented by symbol D for each DataSHIELD connection</span></span>
+<span id="cb254-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb254-2"></a>data &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns, <span class="st">&quot;D&quot;</span>)</span>
+<span id="cb254-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb254-3"></a><span class="co"># get data represented by symbol D from a specific DataSHIELD connection</span></span>
+<span id="cb254-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb254-4"></a>data1 &lt;-<span class="st"> </span><span class="kw">getDSLiteData</span>(conns<span class="op">$</span>sim1, <span class="st">&quot;D&quot;</span>)</span></code></pre></div>
 </div>
 <div id="limitations" class="section level2" number="14.5">
 <h2><span class="header-section-number">14.5</span> Limitations</h2>
@@ -402,14 +404,14 @@ datasets that are being analyzed must be fully accessible in the local environme
 <h3><span class="header-section-number">14.5.1</span> Function Parameters Parser</h3>
 <p>The main difference with a regular DSI implementation (such as the one of DSOpal) is that the arguments of the DataSHIELD functional calls are not parsed in DSLite. The only R language element that is inspected and handled is the name of the functions, that are replaced by the ones defined in the DataSHIELD configuration.</p>
 <p>For instance the following expression, which includes a function call in the formula, is valid for the DSLiteServer but not for Opal:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb237-1"></a><span class="kw">someregression</span>(D<span class="op">$</span>height <span class="op">~</span><span class="st"> </span>D<span class="op">$</span>diameter <span class="op">+</span><span class="st"> </span><span class="kw">poly</span>(D<span class="op">$</span>length,<span class="dv">3</span>,<span class="dt">raw=</span><span class="ot">TRUE</span>))</span></code></pre></div>
-<p>As a consequence, DataSHIELD R package development can take advantage of DSLite flexibility for speeding development but will never replace testing on a regular DataSHIELD infrastructure using DSOpal.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb255-1"></a><span class="kw">someregression</span>(D<span class="op">$</span>height <span class="op">~</span><span class="st"> </span>D<span class="op">$</span>diameter <span class="op">+</span><span class="st"> </span><span class="kw">poly</span>(D<span class="op">$</span>length,<span class="dv">3</span>,<span class="dt">raw=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<p>As a consequence, DataSHIELD R package development can take advantage of DSLite flexibility for rapid development but will never replace testing on regular DataSHIELD infrastructure using DSOpal.</p>
 </div>
 <div id="server-side-environments" class="section level3" number="14.5.2">
 <h3><span class="header-section-number">14.5.2</span> Server Side Environments</h3>
-<p>For each of the DataSHIELD node, the server side code is evaluated within an environment that has no parent, i.e. detached from the global environment where the client code is executed. Some R functions have a parameter that allows to specify to which environment they apply, for instance <code>assign()</code>, <code>get()</code>, <code>eval()</code>, <code>as.formula()</code>, etc. Their <code>env</code> (or <code>envir</code>) parameter default value is <code>parent.frame()</code> which is the global environment when executed in Opal’s R server, because it is the parent frame of the package’s namespace where the function is defined. In DSLiteServer, the parent frame must be the environment where the server code is evaluated. In order to be consistent between these two execution contexts (Opal R server and DSLiteServer), you must specify the <code>env</code> (or <code>envir</code>) value explicitly to be <code>parent.frame()</code>, which is the parent frame of the block being executed (either the global environment in Opal context, or the environment defined in DSLiteServer).</p>
+<p>For each of the DataSHIELD nodes, the server side code is evaluated within an environment that has no parent, i.e. detached from the global environment where the client code is executed. Some R functions have a parameter that allows to specify to which environment they apply, for instance <code>assign()</code>, <code>get()</code>, <code>eval()</code>, <code>as.formula()</code>, etc. Their <code>env</code> (or <code>envir</code>) parameter default value is <code>parent.frame()</code> which is the global environment when executed in Opal’s R server, because it is the parent frame of the package’s namespace where the function is defined. In DSLiteServer, the parent frame must be the environment where the server code is evaluated. In order to be consistent between these two execution contexts (Opal R server and DSLiteServer), you must specify the <code>env</code> (or <code>envir</code>) value explicitly to be <code>parent.frame()</code>, which is the parent frame of the block being executed (either the global environment in Opal context, or the environment defined in DSLiteServer).</p>
 <p>Example of a valid server side piece of code that assigns a value to a symbol in the DataSHIELD server’s environment (being the Opal R server’s global environment or a DSLiteServer’s environment):</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb238-1"></a>base<span class="op">::</span><span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">value =</span> someValue, <span class="dt">envir =</span> <span class="kw">parent.frame</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb256-1"></a>base<span class="op">::</span><span class="kw">assign</span>(<span class="dt">x =</span> <span class="st">&quot;D&quot;</span>, <span class="dt">value =</span> someValue, <span class="dt">envir =</span> <span class="kw">parent.frame</span>())</span></code></pre></div>
 <p>See also the <a href="http://adv-r.had.co.nz/Environments.html">Advanced R - Environments</a> documentation to learn more about environments.</p>
 
 </div>

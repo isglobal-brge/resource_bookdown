@@ -4,7 +4,7 @@ The procedure for the development of a client-side or a server-side package in D
 
 (1) [Create](https://www.rdocumentation.org/packages/devtools/versions/2.2.2/topics/create) the package directory: this will create the R and the man folders and the DESCRIPTION file in a specified directory. 
 
-(2) Add functions: copy the R scripts of the developed functions in the R folder created at step (1).
+(2) Add functions: copy the R scripts of the functions developed in the R folder created at step (1).
 
 (3) Add documentation: add comments at the beginning of each function to give information to the user on what the function does and how the arguments of the function are used. Those comments are compiled into the correct format for the package documentation. More details can be found in the roxygen2 [documentation](https://roxygen2.r-lib.org).
 

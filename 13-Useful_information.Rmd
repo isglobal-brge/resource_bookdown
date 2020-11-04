@@ -1,7 +1,93 @@
 # Tips and tricks
 
+The user can see in [this link](http://opaldoc.obiba.org/en/latest/admin/installation.html) how to create and install an Opal server. Next we illustrate how to deal with some of the basics for setting up a server to be used within DataSHIELD environment. 
+
+In order to do that, we are using our Opal demo server available here: https://opal-demo.obiba.org/
+
+
+This is the how an Opal looks like once the user enters the credentials:
+
+- username: `administrator`
+- password: `password`
+
+![Opal demo main page](fig/opal_1.png)
+
+
+## How to create a new project into OPAL
+
+The tab `Projects` (top-left) goes to the projects available in the Opal demo
+
+![Opal demo projects](fig/opal_2.png)
+
+A new project can be created by clicking on `+Add Project` tab. Then this information must be filled in 
+
+![Adding a new project to Opal](fig/opal_3.png)
+
+
+## How to upload a new resource into OPAL
+
+Once a new project has been created, a new resource can be uploaded by clicking on project's name. In this case, let us assume that we are working on RSRC project that has been created to illustrate the main examples in this bookdown. After clicking on that project this window will appear
+
+![Tables, variables and resources from an Opal project](fig/opal_4.png)
+
+Here we can observe that this project contains 16 resources a no tables or variables. We can add a new resource by clicking on the "link tab" (see red circle)
+
+![Going to the resources of a given project](fig/opal_4b.png)
+
+Then a new resource can be added by clicking on the `+Add Resource` tab
+
+![Adding a resource of a given project](fig/opal_5.png)
+
+Then this window will appear and information for your resource must be filled in
+
+![Adding a resource of a given project](fig/opal_6.png)
+
+The different types of resources have been described Chapter \@ref(resourcer)
+
+## How to install DataSHIELD packages into OPAL server
+
+![Administration tab at Opal](fig/opal_1_administration.png)
+
+The tab `Administration` (red circle in the previous figure) allows the user access to the administration page
+
+
+![Administration tab at Opal](fig/opal_7.png)
+
+The `DataSHIELD` tab goes to the DataSHIELD administration details
+
+![Managing DataSHIELD packages in Opal](fig/opal_8.png)
+
+The tab `+Add Pacakge` allow the user to install a DataSHIELD package either from the DataSHIELD repository or any other GitHub site
+
+![Install DataSHIELD packages in Opal](fig/opal_9.png)
+
+
+
+## How to install R packages into OPAL server
+
+All the dependencies in a DataSHIELD package are automatically installed when installing it on the Opal Server. If necessary the user can also use the `+Install` button from the Administration/R tab
+
+![Install DataSHIELD packages in Opal](fig/opal_10.png)
+
+
+
 ## How to install R packages into OPAL server from R
 
-## How to check whether there are open R sesions in the OPAL server
+The user can also install R packages from CRAN/Bioconductor using the following R code:
 
-## How 
+```{r eval=FALSE}
+library(opalr)
+o <- opal.login(username="administrator", password="password",
+                url="https://opal-test.obiba.org")
+opal.execute(o, "BiocManager::install('packageName', ask=FALSE)")
+```
+
+A package from GitHub can also be installed by
+
+```{r eval=FALSE}
+library(opalr)
+o <- opal.login(username="administrator", password="password",
+                url="https://opal-test.obiba.org")
+opal.execute(o, "devtools::install_github('packageName', ask=FALSE)")
+```
+

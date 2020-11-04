@@ -1,6 +1,8 @@
 # Basic statistical analyses
 
-Let us start by illustrating how to perform simple statistical data analyses using different resources. Here, we will use data from three studies that are available in our OPAL demo repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 that are available as three different resources: mySQL database, SPSS file and CSV file (see Figure \@ref(fig:testResources)). This example mimics real situations were different hospital or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different number of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of the obesity methodological development project. This dataset does contain some NA values. The available variables are:
+
+Let us start by illustrating how to peform simple statistical data analyses using different resources. Here, we will use data from three studies that are available in our Opal demo repository. The three databases are called CNSIM1, CNSIM2, CNSIM3 and are available as three different resources: mySQL database, SPSS file and CSV file (see Figure \@ref(fig:testResources)). This example mimics real situations where different hospitals or research centers manage their own databases containing harmonized data. Data correspond to three simulated datasets with different numbers of observations of 11 harmonized variables. They contain synthetic data based on a model derived from the participants of the 1958 Birth Cohort, as part of an obesity methodological development project. This dataset does contain some NA values. The available variables are:
+
 
 ```{r insert_table_variables, echo=FALSE}
 vars <- read_delim("fig/table_variables_cnsim.txt", delim=",")
@@ -8,7 +10,7 @@ kable(vars)
 ```
 
 
-The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources where uploaded into the Opal server as three tables, a much worse approach since data have to be moved from original repositories.  
+The analyses that are described here, can also be found in the [DataSHIELD Tutorial](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/714571780/Tutorial+for+DataSHIELD+users+v5+-+http+bit.ly+intro-DS) where these resources here uploaded to the Opal server as three tables, an inferior approach since data have to be moved from their original repositories.  
 
 ## Analysis from a single study
 
@@ -66,7 +68,7 @@ datashield.logout(conns)
 
 ## Analysis from a multiple studies
 
-Now, let us illustrate ....
+Now, let us illustrate a similar analysis with multiple studies. In this case we see results aggregated across all three studies.
 
 ```{r cnsim_multiple}
 library(DSOpal)
