@@ -1,0 +1,127 @@
+# Exposome data analysis {#exposome}
+
+## Loading the Exposome Set
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/loading_data.Rmd", "rmd_exposome/loading_data.Rmd")
+```
+
+```{r child='/rmd_exposome/loading_data.Rmd', include=TRUE}
+```
+
+### From tables to `ExposomeSet`
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/tables_to_exposome.Rmd",  "rmd_exposome/tables_to_exposome.Rmd")
+```
+
+```{r child='/rmd_exposome/tables_to_exposome.Rmd', include=TRUE}
+```
+
+### From resource to `ExposomeSet`
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/resource_to_exposome.Rmd",  "rmd_exposome/resource_to_exposome.Rmd")
+```
+
+```{r child='/rmd_exposome/resource_to_exposome.Rmd', include=TRUE}
+```
+
+## Exploring the loaded dataset
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exploring_dataset.Rmd",  "rmd_exposome/exploring_dataset.Rmd")
+```
+
+```{r child='/rmd_exposome/exploring_dataset.Rmd', include=TRUE}
+```
+
+### Family names
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/family_names.Rmd",  "rmd_exposome/family_names.Rmd")
+```
+
+```{r child='/rmd_exposome/family_names.Rmd', include=TRUE}
+```
+
+### Exposures and phenotypes names
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exp_pheno_names.Rmd",  "rmd_exposome/exp_pheno_names.Rmd")
+```
+
+```{r child='/rmd_exposome/exp_pheno_names.Rmd', include=TRUE}
+```
+
+### Summary of variables
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/summary_variables.Rmd",  "rmd_exposome/summary_variables.Rmd")
+```
+
+```{r child='/rmd_exposome/summary_variables.Rmd', include=TRUE}
+```
+
+### Missing data
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/missing_data.Rmd",  "rmd_exposome/missing_data.Rmd")
+```
+
+```{r child='/rmd_exposome/missing_data.Rmd', include=TRUE}
+```
+
+### Exposures Normality
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exposures_normality.Rmd",  "rmd_exposome/exposures_normality.Rmd")
+```
+
+```{r child='/rmd_exposome/exposures_normality.Rmd', include=TRUE}
+```
+
+### Exposures Behaviour
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exposures_behaviour.Rmd",  "rmd_exposome/exposures_behaviour.Rmd")
+```
+
+```{r child='/rmd_exposome/exposures_behaviour.Rmd', include=TRUE}
+```
+
+## Exposures Imputation
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exposures_imputation.Rmd",  "rmd_exposome/exposures_imputation.Rmd")
+```
+
+```{r child='/rmd_exposome/exposures_imputation.Rmd', include=TRUE}
+```
+
+## Performing an ExWAS
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/exwas.Rmd",  "rmd_exposome/exwas.Rmd")
+```
+
+```{r child='/rmd_exposome/exwas.Rmd', include=TRUE}
+```
+
+## Exposures PCA
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/pca.Rmd",  "rmd_exposome/pca.Rmd")
+```
+
+```{r child='/rmd_exposome/pca.Rmd', include=TRUE}
+```
+
+## Exposures Correlation
+
+```{r include = FALSE}
+download.file("https://github.com/isglobal-brge/dsExposomeClient/raw/master/vignettes/rmd/correlation.Rmd",  "rmd_exposome/correlation.Rmd")
+```
+
+```{r child='/rmd_exposome/correlation.Rmd', include=TRUE}
+```
