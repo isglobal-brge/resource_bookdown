@@ -1,6 +1,6 @@
 # Creating DataSHIELD packages
 
-The procedure for the development of a client-side or a server-side package in DataSHIELD is similar as the procedure of creating packages in native R and RStudio. For the devevelopment of a package, the developer will need the R packages [devtools](https://cran.r-project.org/web/packages/devtools/readme/README.html) and [roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html). Having those packages installed and loaded in the R session, the developer should follow five basic steps:
+The procedure for the development of a client-side or a server-side package in DataSHIELD is similar as the procedure of creating packages in native R and RStudio. For the development of a package, the developer will need the R packages [devtools](https://cran.r-project.org/web/packages/devtools/readme/README.html) and [roxygen2](https://cran.r-project.org/web/packages/roxygen2/index.html). Having those packages installed and loaded in the R session, the developer should follow five basic steps:
 
 (1) [Create](https://www.rdocumentation.org/packages/devtools/versions/2.2.2/topics/create) the package directory: this will create the R and the man folders and the DESCRIPTION file in a specified directory. 
 

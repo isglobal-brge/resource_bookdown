@@ -1,6 +1,6 @@
 # Learning R {#learnR}
 
-R is a free, open-source software and programming language developed in 1995 at the University of Auckland as an environment for statistical computing and graphics [(Ikaha and Gentleman, 1996)](https://www.stat.auckland.ac.nz/~ihaka/downloads/R-paper.pdf). Since then R has become one of the dominant software environments for data analysis and is used by a variety of scientific disiplines, including biomedicine, environmental epidemioloy, social sciences, ecology, genetics and geoinformatics among others. CRAN Tasks provides an excellent overview of existing R packages for a given discipline (see for instance [Genetics Task View](https://cran.r-project.org/web/views/Genetics.html) ; [Envirometrics Task View](https://cran.r-project.org/web/views/Environmetrics.html); [Spatial Task View](https://cran.r-project.org/web/views/Spatial.html)). 
+R is a free, open-source software and programming language developed in 1995 at the University of Auckland as an environment for statistical computing and graphics [(Ikaha and Gentleman, 1996)](https://www.stat.auckland.ac.nz/~ihaka/downloads/R-paper.pdf). Since then R has become one of the dominant software environments for data analysis and is used by a variety of scientific disciplines, including biomedicine, environmental epidemiology, social sciences, ecology, genetics and geoinformatics among others. CRAN Tasks provides an excellent overview of existing R packages for a given discipline (see for instance [Genetics Task View](https://cran.r-project.org/web/views/Genetics.html) ; [Envirometrics Task View](https://cran.r-project.org/web/views/Environmetrics.html); [Spatial Task View](https://cran.r-project.org/web/views/Spatial.html)). 
 
 
 R offers numerous advantages, such as:
@@ -24,4 +24,4 @@ R offers numerous advantages, such as:
     + [(Free Online) R Books](https://bookdown.org/)
     
 
-While some people find the use of a commandline environment daunting, it is becoming a necessary skill for scientists as the volume and variety of data has grown. Additionaly GUI interfaces can easily be implemented in R (see [this review](http://r4stats.com/articles/software-reviews/r-gui-comparison/)) being [Shiny](https://shiny.rstudio.com/) a widely used  R package that makes it easy to build interactive web apps straight from R.
+While some people find the use of a command line environment daunting, it is becoming a necessary skill for scientists as the volume and variety of data has grown. Additionally, GUI interfaces can easily be implemented in R (see [this review](http://r4stats.com/articles/software-reviews/r-gui-comparison/)) being [Shiny](https://shiny.rstudio.com/) a widely used R package that makes it easy to build interactive web apps straight from R.

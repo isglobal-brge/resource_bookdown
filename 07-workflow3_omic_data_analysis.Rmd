@@ -1,6 +1,8 @@
 # Omic data analysis {#Omic}
 
+
 In this part we will provide some real data anlyses of 'omics data including transcriptomic, epigenomic and genomic data that covers how to perform three of the widely used data analyses: [differential gene expression](https://htmlpreview.github.io/?https://github.com/isglobal-brge/post_omic/blob/master/Session_1b_limma.html) (DGE), [epigenome-wide association](https://en.wikipedia.org/wiki/Epigenome-wide_association_study) (EWAS) and [genome-wide association](https://en.wikipedia.org/wiki/Genome-wide_association_study) (GWAS) analyses. We provide examples of how to perform data analyses using [Bioconductor](https://bioconductor.org/) packages. For genomic data we also illustrate how to carry out analyses using [PLINK](http://zzz.bwh.harvard.edu/plink/).
+
 
 
 ## Types of analyses implemented
@@ -12,9 +14,11 @@ The Figure \@ref(fig:opalOmic) describes the different types of 'omic associatio
 knitr::include_graphics("fig/dsOmics_A.jpg")
 ```
 
+
 Then, `dsOmicsClient` package allows different types of analyses: pooled and meta-analysis. Both methods are based on fitting different Generalized Linear Models (GLMs) for each feature when assesing association between 'omic data and the phenotype/trait/condition of interest. Of course, non-disclosive 'omic data analysis from a single study can also be performed.
 
 The **pooled approach** (Figure \@ref(fig:omicAnal1)) is recommended when the user wants to analyze 'omic data from different sources and obtain results as if the data were located in a single computer. It should be noted that this can be very time consuming when analyzing multiple features since it calls a base function in DataSHIELD (`ds.glm`) repeatedly. It also cannot be recommended when data are not properly harmonized (e.g. gene expression normalized using different methods, GWAS data having different platforms, ...). Furthermore when it is necesary to remove unwanted variability (for transcriptomic and epigenomica analysis) or control for population stratification (for GWAS analysis), this approach cannot be used since we need to develop methods to compute surrogate variables (to remove unwanted variability) or PCAs (to to address population stratification) in a non-disclosive way. 
+
 
 The **meta-analysis approach** Figure \@ref(fig:omicAnal2) overcomes the limitations raised when performing pooled analyses. First, the computation issue is addressed by using scalable and fast methods to perform data analysis at whole-genome level at each location The transcriptomic and epigenomic data analyses make use of the widely used `r BiocStyle::Biocpkg("limma")` package that uses `ExpressionSet` or `RangedSummarizedExperiment` Bioc infrastructures to deal with 'omic and phenotypic (e.g covariates). The genomic data are analyzed using `r BiocStyle::Biocpkg("GWASTools")` and `r BiocStyle::Biocpkg("GENESIS")` that are designed to perform quality control (QC) and GWAS using GDS infrastructure.
 
@@ -39,7 +43,9 @@ knitr::include_graphics("fig/dsOmics_C.jpg")
 
 ## Differential gene expression (DGE) analysis
 
+
 Let us start by illustrating a simple example where a researcher may be interested in perfoming differential gene expression analysis (DGE) with data in a single repository (e.g. one study). To this end, we will use bulk transcriptomic data from [TCGA project](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga). We have uploaded to the demo Opal server a resource called `tcga_liver` whose URL is http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata which is available through the [recount project](https://jhubiostatistics.shinyapps.io/recount/). This resource contains the `RangeSummarizedExperiment` with the RNAseq profiling of liver cancer data from TCGA. Next, we illustrate how to run a differential expression analysis to compare RNAseq profiling of women vs men (variable `gdc_cases.demographic.gender`). The DGE analysis is normally performed using the `r BiocStyle::Biocpkg("limma")` package. In that case, as we are analyzing RNA-seq data, the `limma + voom` method will be required. 
+
 
 Let us start by creating the connection to the opal server:
 
@@ -173,7 +179,9 @@ ds.varLabels("methy")
 
 ### Single CpG analysis
 
+
 Once the methylation data have been loaded to the Opal, we can perform different type of analyses using functions from the `dsOmicsClient` package. Let us start by illustrating how to analyze a single CpG from two studies by using an approach that is mathematically equivalent to placing all individual-level.
+
 
 ```{r one_cpg}
 ans <- ds.lmFeature(feature = "cg07363416", 
@@ -196,7 +204,7 @@ ans <- ds.lmFeature(model = ~ diagnosis + Sex,
 ```
 
 
-This method corresponds to the **pooled analysis** approach and can be very time consiming since the function repeatedly calls the DataSHIELD function `ds.glm()`. We can adopt another strategy that is to run a glm of each feature independently at each study using `limma` package (which is really fast) and then combine the results (i.e. **meta-analysis** approach). 
+This method corresponds to the **pooled analysis** approach and can be very time consuming since the function repeatedly calls the DataSHIELD function `ds.glm()`. We can adopt another strategy that is to run a glm of each feature independently at each study using `limma` package (which is really fast) and then combine the results (i.e. **meta-analysis** approach). 
 
 
 ```{r limma_methy}
@@ -238,14 +246,16 @@ lapply(ans.limma.annot, head)
 ```
 
 
+
 Then, the last step is to meta-analyze the results. Different methods can be used to this end. We have implemented a method that meta-analyzea the p-values of each study as follows:
+
 
 ```{r meta_p}
 ans.meta <- metaPvalues(ans.limma)
 ans.meta
 ``` 
 
-This is a genreal method that can be used ... We can verify that the results are pretty similar to those obtained using pooled analyses. Here we compute the association for two of the top-CpGs:
+This is a general method that can be used ... We can verify that the results are pretty similar to those obtained using pooled analyses. Here we compute the association for two of the top-CpGs:
 
 ```{r one_cpg_val}
 res1 <- ds.lmFeature(feature = "cg13138089", 
@@ -411,7 +421,9 @@ ans.bioC
 ```
 
 
+
 This closes the DataSHIELD session 
+
 
 ```{r close_conns3}
 datashield.logout(conns)
@@ -421,7 +433,7 @@ datashield.logout(conns)
 
 ## GWAS with PLINK
 
-Here we illustrate how to perform the same GWAS analyses on the asthma using PLINK secure shell commands. This can be performed thanks to the posibility of having ssh resources as described [here](#shell_extension).
+Here we illustrate how to perform the same GWAS analyses on the asthma using PLINK secure shell commands. This can be performed thanks to the possibility of having ssh resources as described [here](#shell_extension).
 
 It is worth noting that this workflow and the new R functions implemented in `r Githubpkg("isglobal-brge/dsOmicsClient")` could be used as a guideline to carry out similar analyses using existing analysis tools in genomics such as IMPUTE, SAMtools or BEDtools among many others. 
 
@@ -464,7 +476,7 @@ the analyses are then performed by
 ans.plink <- ds.PLINK("client", plink.arguments)
 ```
 
-The object `ans` contains the PLINK results at each server as well as the outuput provided by PLINK
+The object `ans` contains the PLINK results at each server as well as the output provided by PLINK
 
 ```{r GWAS_shell_result1}
 lapply(ans.plink, names)
@@ -490,9 +502,11 @@ left_join(plink, bioC, by=c("SNP" = "rs"))
 ```
 
 
+
 As expected, the p-values are in the same order of magnitude having little variation due to the methods implemented by the different software. 
 
-We can do the same comparions of minor allele frequency (MAF) estimation performed with Bioconductor and PLINK. To this end, we need first to estimate MAF using PLINK
+
+We can do the same comparisons of minor allele frequency (MAF) estimation performed with Bioconductor and PLINK. To this end, we need first to estimate MAF using PLINK
 
 ```{r maf_plink}
 plink.arguments <- "--bfile brge --freq"

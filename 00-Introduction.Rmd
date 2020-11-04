@@ -4,7 +4,9 @@
 
 ## What you will learn
 
+
 The goal of this book is to provide a solid foundation to non-disclosive data analysis using [R](https://www.r-project.org/) and [DataSHIELD](http://www.datashield.ac.uk/)/[Opal](https://www.obiba.org/pages/products/opal/) through the [resourcer](https://github.com/obiba/resourcer) R package. We illustrate how to preform such data analyses in two settings ('omics and geospatial) where the use of resources allows users to handle Big Data problems. We also present workflows of how to perform statistical analyses using data in formats other than simple tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.
+
 
 ## Preliminaries
 
@@ -14,8 +16,11 @@ For those interested in 'omic data analyses we recommend the book [Omic associat
 
 [Omic data infrastructure][Bioconductor data infrastructures] deserves a mention here since understanding common data containers is an essential part of Bioconductor workflows that are used in our DataSHIELD packages designed for 'omic data analyses. This enables interoperability across packages, allowing for “plug and play” usage of cutting-edge methods. Geospatial data also requires specific data managment that is described the [Geospatial Workflow] {#GIS}
 
+
 ## Acknowledgments
 
 Firstly, we would like to thank [OBiBa](https://www.obiba.org/) and [DataSHIELD](http://www.datashield.ac.uk/) developers for providing such an impressive framework for non-disclosive data analysis. We would also like to thank all [Bioconductor](http://bioconductor.org/) contributors for giving access to their packages for dealing with different omic and performing state-of-the-art data analyses. This has allowed us to create DataSHIELD packages easily without the need to re-program most of the 'omic association analyses. We also thank R package developers since their work will allow the community to implement other DataSHIELD packages specifically designed to address other biomedical, epidemiological and social science problems as we did with geospatial data. 
 
+
 Finally, we would like to thank the Bioconductor core team for inspiring us to write this book. We are happy to follow the two succesful works describing how to orchestrate [High-Throughput Genomic Analysis](https://pubmed.ncbi.nlm.nih.gov/25633503/) and [Single Cell Analysis](https://pubmed.ncbi.nlm.nih.gov/31792435/) with Bioconductor. 
+
