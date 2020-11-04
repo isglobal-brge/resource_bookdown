@@ -1,6 +1,6 @@
 # Contributors
 
 - Juan R Gonzalez, Associate Research Professor at Barcelona Institute for Global Health (ISGlobal) and Adjunct Professor at Department of Mathematics at Autonomous University of Barcelona (UAB).
-- Yannick Marcon, Data Scientist at Epigeny.
+- Yannick Marcon, Software Engineer at Epigeny.
 - Tom Bishop, Senior Data Scientist at the MRC Epidemiology Unit, University of Cambridge.
 - Demetris Avraam, Data Scientist at the Population Health Sciences Institute, Newcastle University.
