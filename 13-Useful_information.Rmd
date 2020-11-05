@@ -33,7 +33,13 @@ A project can be created using the following R code:
 library(opalr)
 o <- opal.login(username="administrator", password="password",
                 url="https://opal-demo.obiba.org")
-opal.project_create(o, "test", database="opal_data", title="This is a test", tags=list("Test"))
+
+# A general purpose project, with a data storage
+opal.project_create(o, "projectName", database="dbName")
+
+# A project that can hold only resources and views (no persisted data)
+opal.project_create(o, "projectName")
+
 opal.logout(o)
 ```
 
@@ -69,12 +75,15 @@ A resource can be added to a project by a simple function call, assuming that yo
 library(opalr)
 o <- opal.login("administrator","password", 
                 url="https://opal-demo.obiba.org")
+
 opal.resource_create(o, "RSRC", "CNSIM3", 
   url = "opal+https://opal-demo.obiba.org/ws/files/projects/RSRC/CNSIM3.zip", 
   format = "csv", secret = "EeTtQGIob6haio5bx6FUfVvIGkeZJfGq")
+
 # to test the resource assignment
 opal.assign.resource(o, "client", "RSRC.CNSIM3")
 opal.execute(o, "class(client)")
+
 opal.logout(o)
 ```
 
@@ -101,23 +110,32 @@ The tab `+Add Package` allow the user to install a DataSHIELD package either fro
 
 ### Using R
 
-The user can also install DataSHIELD R packages from CRAN using the following R code:
+The user can install DataSHIELD R packages from CRAN or GitHub using the following R code:
 
 ```{r eval=FALSE}
 library(opalr)
 o <- opal.login(username="administrator", password="password",
                 url="https://opal-demo.obiba.org")
+
+# CRAN
 dsadmin.install_package(o, "dsBase")
+# GitHub
+dsadmin.install_github_package(o, "packageName", username="orgOrUserName")
+
 opal.logout(o)
 ```
 
-A package from GitHub can also be installed by:
+When developing a new DataSHIELD package, it can be convenient to directly upload the built package archive for being installed on the R server side. This can be done as follow:
 
 ```{r eval=FALSE}
 library(opalr)
 o <- opal.login(username="administrator", password="password",
                 url="https://opal-demo.obiba.org")
-dsadmin.install_github_package(o, "packageName", username="orgOrUserName")
+
+# build and install the package archive
+packageArchivePath <- devtools::build(pkg="/path/to/the/packageName")
+dsadmin.install_local_package(o, path=packageArchivePath)
+
 opal.logout(o)
 ```
 
@@ -129,25 +147,21 @@ All the dependencies in a DataSHIELD package are automatically installed when in
 
 ![Install DataSHIELD packages in Opal](fig/opal_10.png)
 
-## Using R
+### Using R
 
-The user can also install R packages from CRAN/Bioconductor using the following R code:
-
-```{r eval=FALSE}
-library(opalr)
-o <- opal.login(username="administrator", password="password",
-                url="https://opal-demo.obiba.org")
-oadmin.install_bioconductor_package(o, "packageName")
-opal.logout(o)
-```
-
-A package from GitHub can also be installed by:
+The user can install R packages from CRAN, Bioconductor or GitHub using the following R code:
 
 ```{r eval=FALSE}
 library(opalr)
 o <- opal.login(username="administrator", password="password",
                 url="https://opal-demo.obiba.org")
-oadmin.install_github_package(o, "packageName", username="orgOrUserName")
+
+# CRAN
+oadmin.install_package(o, "cranPackageName")
+# Bioconductor
+oadmin.install_bioconductor_package(o, "biocPackageName")
+# GitHub
+oadmin.install_github_package(o, "packageName", username="orgOrUserName", ref = "branchOrTagName")
+
 opal.logout(o)
 ```
-
