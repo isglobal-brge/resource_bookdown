@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It resuse many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package's role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
+The `r BiocStyle::CRANpkg("resourcer")` package is an R implementation of the data and computation resources description and connection. It resuses many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package's role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the [R6 library](https://r6.r-lib.org/).
 
 The purpose of the package is to allow access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.
 
@@ -142,7 +142,7 @@ In order to simplify the usage of these resource client classes, the resourcer p
 
 For implementing _ResourceClient_ factories the resourcer package provides different _ResourceResolver_ classes (see Figure \@ref(fig:resourceResolver)):
 
-* for file resources, which will discriminate the resources based on the URL property (checking if any _FileResourceGetter_ exists for that resource) and the data format property (for getting additional information about how to read the data). The _FileResourceGetter_ can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.
+* for file resources, which will discriminate the resources based on the URL property (checking if any _FileResourceGetter_ exists for that resource) and the data format property (for getting additional information about how to read the data). The _FileResourceGetter_ can be extended to new file locations: as an example, the [s3.resourcer](https://github.com/obiba/s3.resourcer) R package is able to get resource files from Amazon Web Service S3 file stores.
 * for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any _DBIResourceConnector_ can be found or whether a nodbi connector can be created). The _DBIResourceConnector_ can be extended to new DBI implementations. For instance, using [bigrquery](https://cran.r-project.org/package=bigrquery) R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.
 * for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).
 
@@ -249,15 +249,33 @@ A real example of how to create this file for the `{r Githubpkg("isglobal-brge",
 
 ## Examples of Resources
 
+The `r BiocStyle::CRANpkg("resourcer")` package provides some common resources, out of the box. Additional resource extensions are also available as separate R packages. The following table lists some known resource implementations.
+
+Resource               R Package                                                  Description
+---------------------- ---------------------------------------------------------- ---------------------
+Tidy data files        `resourcer`                                                Data files that have a reader from the [tidyverse](https://www.tidyverse.org/) ecosystem.
+R data files           `resourcer`                                                Any R objects stored in files in Rdata or RDS formats.
+SQL databases          `resourcer`                                                Main open source SQL databases vendors are supported: MySQL, MariaDB, Pos
+Apache Spark           `resourcer`                                                Big data analytics system, accessible as a SQL database, with also additional computation capabilities (machine leaning API).
+SSH server             `resourcer`                                                Command based remote computation service.
+MongoDB                `resourcer`                                                A NoSQL database.
+HL7 FHIR resource      [fhir.resourcer](https://github.com/obiba/fhir.resourcer)  Data extractions from [HL7 FIHR](http://hl7.org/fhir/) compliant servers, the standard for clinical data management systems.
+Dremio dataset         [odbc.resourcer](https://github.com/obiba/odbc.resourcer)  [Dremio](https://www.dremio.com/) is a data lake engine, tailored for integrating big data. Dremio is accessible as a SQL database.
+GDS data files         [dsOmics](https://github.com/isglobal-brge/dsOmics)        Reads omics data stored in Genomic Data Structure (GDS) format or in a format that can be converted to GDS (such as VCF).
+
+Whenever a data access format or protocol is defined by a standard API specification, there is most likely an R implementation of this API and then a corresponding **resourcer** extension can be easily implemented. For instance developing a resourcer extension to access genomic data stored in a [GA4GH](https://www.ga4gh.org/) system should be possible and would be very powerful.
+
+## Using Resources with DataSHIELD
+
 Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal demo example (RSRC project) available at https://opal-demo.obiba.org which has the following resources 
 
 ```{r testResources2, echo=FALSE, fig.cap="Resources from a demo enviroment available at https://opal-demo.obiba.org", fig.align='center'}
 knitr::include_graphics("fig/opal_resources.png", dpi=NA)
 ```
 
-Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.
-
 ### TSV File into a tibble or data.frame
+
+We start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.
 
 This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is secure access since a user name and password must be provided
 
