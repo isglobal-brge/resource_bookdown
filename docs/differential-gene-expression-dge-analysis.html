@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 The Resources | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="6 The Resources | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>13 Differential gene expression (DGE) analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="13 Differential gene expression (DGE) analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 The Resources | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="13 Differential gene expression (DGE) analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 The Resources | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="13 Differential gene expression (DGE) analysis | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="datashield.html"/>
-<link rel="next" href="resourcer.html"/>
+<link rel="prev" href="Omic.html"/>
+<link rel="next" href="epigenome-wide-association-analysis-ewas.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -323,61 +323,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="resources" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> The Resources</h1>
-<p>Developing and implementing new algorithms to perform advanced data analyses under the DataSHIELD framework is a current active line of research. However, the analysis of big data within DataSHIELD has some limitations. Some of them are related to how data is managed in Opal’s database and others are related to how to perform statistical analyses of big data within the R environment. Opal databases are for general purpose and do not manage large amounts of information properly and, second, it requires data to be moved from original repositories into Opal which is inefficient (this is a time, CPU and memory intensive operation) and is difficult to maintain when data are updated. We have overcome the problem related to DataSHIELD big data management by developing a new data infrastructure within Opal: <strong>the resources</strong>.</p>
-<div id="concept" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Concept</h2>
-<p>Resources are datasets or computation units whose location is described by a URL and access is protected by credentials. When assigned to a R/DataSHIELD server session, remote big/complex datasets or high performance computers are made accessible to data analysts.</p>
-<p>Instead of storing the data in Opal’s database, only the way to access it is defined: the datasets are kept in their original format and location (a SQL database, a SPSS file, R object, etc.) and are read directly from the R/DataSHIELD server-side session. Then as soon as there is a R reader for the dataset or a connector for the analysis services, a resource can be defined. Opal takes care of the DataSHIELD permissions (a DataSHIELD user cannot see the resource’s credentials) and of the resources assignment to a R/DataSHIELD session (see Figure <a href="resources.html#fig:resources">6.1</a>)</p>
-<div class="figure" style="text-align: center"><span id="fig:resources"></span>
-<p class="caption">
-Figure 6.1: Resources: a new DataSHIELD infrastructure
-</p>
-<img src="fig/resourcer_fig.jpg" alt="Resources: a new DataSHIELD infrastructure" width="40%" />
-</div>
-</div>
-<div id="types" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Types</h2>
-<p>The data format refers to the intrinsic structure of the data. A very common family of data formats is the <a href="https://en.wikipedia.org/wiki/Table_(information)">tabular format</a> which is made of rows (entities, records, observations etc.) and columns (variables, fields, vectors etc.). Examples of tabular formats are the <a href="https://en.wikipedia.org/wiki/Delimiter-separated_values">delimiter-separated values formats</a> (CSV, TSV etc.), the <a href="https://en.wikipedia.org/wiki/Spreadsheet">spreadsheet</a> data formats (Microsoft Excel, LibreOffice Calc, Google Sheets etc.), some proprietary statistical software data formats (SPSS, SAS, Stata etc.), the <a href="https://en.wikipedia.org/wiki/Table_(database)">database tables</a> that can be stored in structured database management systems that are row-oriented (MySQL, MariaDB, PostgreSQL, Oracle, SQLite etc.) or column-oriented (Apache Cassandra, Apache Parquet, MariaDB ColumnStore, BigTable etc.), or in semi-structured database management systems such as the documented-oriented databases (MongoDB, Redis, CouchDB, Elasticsearch etc.).</p>
-<p>When the data model is more complex (data types and objects relationships), a domain-specific data format is sometimes designed to handle this complexity so that statistical analysis and data retrieval can be executed as efficiently as possible. Examples of domain-specific data formats that are encountered in the ’omic or geospatial fields of research that are described in the Workflows section: <a href="Omic.html#Omic">Omic</a> and <a href="GIS.html#GIS">Geospatial</a>. A data format can also include some additional features such as data compression, encoding or encryption. Each data format requires an appropriate reader software library or application to extract the information or perform data aggregation or filtering operations.</p>
-<p>We have prepared a demo environment, with the Opal implementation of Resources and an appropriate R/DataSHIELD configuration that is available at: <a href="https://opal-demo.obiba.org">opal-demo.obiba.org</a> in a project called <code>RSRC</code>. This figure illustrate the resources which are available for this project and can serve as a starting example of the different types of resources that can be dealt with</p>
-<div class="figure" style="text-align: center"><span id="fig:testResources"></span>
-<p class="caption">
-Figure 6.2: Resources from a test enviroment (project called RSRC) available at <a href="https://opal-demo.obiba.org" class="uri">https://opal-demo.obiba.org</a>
-</p>
-<img src="fig/opal_resources.png" alt="Resources from a test enviroment (project called RSRC) available at https://opal-demo.obiba.org"  />
-</div>
-<p>As shown in this example, the data storage can simply be a file accessed directly from the host’s file system or downloaded from a remote location. More advanced data storage systems are software applications that expose an interface to query, extract or analyse the data. These applications can make use of a standard programming interface (e.g. SQL) or expose specific web services (e.g. based on the HTTP communication protocol) or provide a software library (in different programming languages) to access the data. These different ways of accessing the data are not exclusive from each other. In some cases the micro-data cannot be extracted, only computation services that return aggregated data are provided. The data storage system can also apply security rules, requiring authentication and proper authorisations to access or analyse the data.</p>
-</div>
-<div id="definition" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Definition</h2>
-<p>We define a resource to be a data or computation access description. A resource will have the following properties:</p>
-<ul>
-<li>the <strong>location</strong> of the data or of the computation services,</li>
-<li>the <strong>data format</strong> (if this information cannot be inferred from the location property),</li>
-<li>the <strong>access credentials</strong> (if some apply).</li>
-</ul>
-<p>The resource location description will make use of the web standard described in the <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> “Uniform Resource Identifier (URI): Generic Syntax”. More specifically, the Uniform Resource Locator (URL) specification is what we need for defining the location of the data or computation resource: the term Uniform allows to describe the resource the same way, independently of its type, location and usage context; the term Resource does not limit the scope of what might be a resource, e.g. a document, a service, a collection of resources, or even abstract concepts (operations, relationships, etc.); the term Locator both identifies the resource and provides a means of locating it by describing its access mechanism (e.g. the network location). The URL syntax is composed of several parts:</p>
-<ul>
-<li>a <em>scheme</em>, that describes how to access the resource, e.g. the communication protocols “https” (secured HTTP communication), “ssh” (secured shell, for issuing commands on a remote server), or “s3” (for accessing Amazon Web Service S3 file store services),</li>
-<li>an <em>authority</em> (optional), e.g. a server name address,</li>
-<li>a <em>path</em> that identifies/locates the resource in a hierarchical way and that can be altered by query parameters.</li>
-</ul>
-<p>The resource’s data format might be inferred from the path part of the URL, by using the file name suffix for instance. Nevertheless, sometimes it is not possible to identify the data format because the path might only descripbe the data storage system, for example when a file store designates a document using an obfuscated string identifier or when a text-based data format is compressed as a zip archive. The format property can provide this information.</p>
-<p>Although the authority section of the URL can contain some user information (such as the username and password), it is discouraged to use this capability for security considerations. The resource’s credentials property will be used instead, and will be composed of an identifier sub-property and a secret sub-property, which can be used for authenticating with a username/password, or an access token, or any other credentials encoded string. The advantage of separating the credentials property from the resource location property is that a user with limited permissions could have access to the resource’s location information while the credentials are kept secret.</p>
-<p>Once a resource has been formally defined, it should be possible to build programmatically a connection object that will make use of the data or computation services described. This resource description is not bound to a specific programmatic language (the URL property is a web standard, other properties are simple strings) and does not enforce the use of a specific software application for building, storing and interpreting a resource object.</p>
-<p><a href="resourcer.html#resourcer">Next Section</a> describes the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package which is an R implementation of the data and computation resources description and connection. There the reader can see some examples of how dealing with different resources in DataSHIELD.</p>
+<div id="differential-gene-expression-dge-analysis" class="section level1" number="13">
+<h1><span class="header-section-number">13</span> Differential gene expression (DGE) analysis</h1>
+<p>Let us illustrate how to perform transcriptomic data analysis using data from <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">TCGA project</a>. We have uploaded to the opal server a resource called <code>tcga_liver</code> whose URL is <a href="http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata" class="uri">http://duffel.rail.bio/recount/TCGA/rse_gene_liver.Rdata</a> which is available through the <a href="https://jhubiostatistics.shinyapps.io/recount/">recount project</a>. This resource contains the <code>RangeSummarizedExperiment</code> with the RNAseq profiling of liver cancer data from TCGA. Next, we illustrate how a differential expression analysis to compare RNAseq profiling of women vs men (variable <code>gdc_cases.demographic.gender</code>). The DGE analysis is normally performed using <em><a href="https://bioconductor.org/packages/3.11/limma">limma</a></em> package. In that case, as we are analyzing RNA-seq data, <code>limma + voom</code> method will be required.</p>
+<p>Let us start by creating the connection to the opal server:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="differential-gene-expression-dge-analysis.html#cb145-1"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb145-2"><a href="differential-gene-expression-dge-analysis.html#cb145-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb145-3"><a href="differential-gene-expression-dge-analysis.html#cb145-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb145-4"><a href="differential-gene-expression-dge-analysis.html#cb145-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.tcga_liver&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb145-5"><a href="differential-gene-expression-dge-analysis.html#cb145-5"></a></span>
+<span id="cb145-6"><a href="differential-gene-expression-dge-analysis.html#cb145-6"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb145-7"><a href="differential-gene-expression-dge-analysis.html#cb145-7"></a></span>
+<span id="cb145-8"><a href="differential-gene-expression-dge-analysis.html#cb145-8"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb145-9"><a href="differential-gene-expression-dge-analysis.html#cb145-9"></a>                          <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span></code></pre></div>
+<p>Then, let us coerce the resource to a <code>RangedSummarizedExperiment</code> which is the type of object that is available in the <a href="https://jhubiostatistics.shinyapps.io/recount/">recount project</a>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="differential-gene-expression-dge-analysis.html#cb146-1"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;rse&quot;</span>, </span>
+<span id="cb146-2"><a href="differential-gene-expression-dge-analysis.html#cb146-2"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span>
+<span id="cb146-3"><a href="differential-gene-expression-dge-analysis.html#cb146-3"></a><span class="kw">ds.class</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;RangedSummarizedExperiment&quot;
+attr(,&quot;package&quot;)
+[1] &quot;SummarizedExperiment&quot;</code></pre>
+<p>The number of features and samples can be inspected by</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="differential-gene-expression-dge-analysis.html#cb148-1"></a><span class="kw">ds.dim</span>(<span class="st">&quot;rse&quot;</span>)</span></code></pre></div>
+<pre><code>$`dimensions of rse in study1`
+[1] 58037   424
 
-</div>
+$`dimensions of rse in combined studies`
+[1] 58037   424</code></pre>
+<p>And the names of the features using the same function used in the case of analyzing an <code>ExpressionSet</code></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="differential-gene-expression-dge-analysis.html#cb150-1"></a>name.features &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;rse&quot;</span>)</span>
+<span id="cb150-2"><a href="differential-gene-expression-dge-analysis.html#cb150-2"></a><span class="kw">lapply</span>(name.features, head)</span></code></pre></div>
+<pre><code>$study1
+[1] &quot;ENSG00000000003.14&quot; &quot;ENSG00000000005.5&quot;  &quot;ENSG00000000419.12&quot; &quot;ENSG00000000457.13&quot; &quot;ENSG00000000460.16&quot; &quot;ENSG00000000938.12&quot;</code></pre>
+<p>Also the covariate names can be inspected by</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="differential-gene-expression-dge-analysis.html#cb152-1"></a>name.vars &lt;-<span class="st"> </span><span class="kw">ds.featureData</span>(<span class="st">&quot;rse&quot;</span>)</span>
+<span id="cb152-2"><a href="differential-gene-expression-dge-analysis.html#cb152-2"></a><span class="kw">lapply</span>(name.vars, head, <span class="dt">n=</span><span class="dv">15</span>)</span></code></pre></div>
+<pre><code>$study1
+ [1] &quot;project&quot;                                        &quot;sample&quot;                                        
+ [3] &quot;experiment&quot;                                     &quot;run&quot;                                           
+ [5] &quot;read_count_as_reported_by_sra&quot;                  &quot;reads_downloaded&quot;                              
+ [7] &quot;proportion_of_reads_reported_by_sra_downloaded&quot; &quot;paired_end&quot;                                    
+ [9] &quot;sra_misreported_paired_end&quot;                     &quot;mapped_read_count&quot;                             
+[11] &quot;auc&quot;                                            &quot;sharq_beta_tissue&quot;                             
+[13] &quot;sharq_beta_cell_type&quot;                           &quot;biosample_submission_date&quot;                     
+[15] &quot;biosample_publication_date&quot;                    </code></pre>
+<p>We can visualize the levels of the variable having gender information</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="differential-gene-expression-dge-analysis.html#cb154-1"></a><span class="kw">ds.table</span>(<span class="st">&quot;rse$gdc_cases.demographic.gender&quot;</span>)</span></code></pre></div>
+<pre><code>
+ Data in all studies were valid 
+
+Study 1 :  No errors reported from this study</code></pre>
+<pre><code>$output.list
+$output.list$TABLE_rvar.by.study_row.props
+                                study
+rse$gdc_cases.demographic.gender 1
+                          female 1
+                          male   1
+
+$output.list$TABLE_rvar.by.study_col.props
+                                study
+rse$gdc_cases.demographic.gender         1
+                          female 0.3372642
+                          male   0.6627358
+
+$output.list$TABLE_rvar.by.study_counts
+                                study
+rse$gdc_cases.demographic.gender   1
+                          female 143
+                          male   281
+
+$output.list$TABLES.COMBINED_all.sources_proportions
+rse$gdc_cases.demographic.gender
+female   male 
+ 0.337  0.663 
+
+$output.list$TABLES.COMBINED_all.sources_counts
+rse$gdc_cases.demographic.gender
+female   male 
+   143    281 
+
+
+$validity.message
+[1] &quot;Data in all studies were valid&quot;</code></pre>
+<p>The differential expression analysis is then performed by:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="differential-gene-expression-dge-analysis.html#cb157-1"></a>ans.gender &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span>  <span class="op">~</span><span class="st"> </span>gdc_cases.demographic.gender, </span>
+<span id="cb157-2"><a href="differential-gene-expression-dge-analysis.html#cb157-2"></a>                       <span class="dt">Set =</span> <span class="st">&quot;rse&quot;</span>, <span class="dt">type.data =</span> <span class="st">&quot;RNAseq&quot;</span>, </span>
+<span id="cb157-3"><a href="differential-gene-expression-dge-analysis.html#cb157-3"></a>                       <span class="dt">sva =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Notice that we have set <code>type.data='RNAseq'</code> to consider that our data are counts obtained from a RNA-seq experiment. By indicating so, the differential analysis is performed by using <code>voom</code> + <code>limma</code> as previously mention.</p>
+<p>The top differentially expressed genes can be visualized by:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="differential-gene-expression-dge-analysis.html#cb158-1"></a>ans.gender</span></code></pre></div>
+<pre><code>$study1
+# A tibble: 58,037 x 10
+   id                  logFC   CI.L   CI.R AveExpr     t   P.Value adj.P.Val     B     SE
+   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 ENSG00000233070.1   10.9   10.5   11.3   -5.59   53.6 7.05e-191 4.09e-186  402. 0.0761
+ 2 ENSG00000213318.4   11.4   10.9   11.8   -4.35   49.4 5.93e-178 1.72e-173  376. 0.462 
+ 3 ENSG00000067048.16   9.63   9.24  10.0    0.856  47.9 5.05e-173 9.78e-169  366. 0.0608
+ 4 ENSG00000260197.1   10.2    9.76  10.6   -5.88   46.3 5.27e-168 7.65e-164  355. 0.0654
+ 5 ENSG00000012817.15  11.3   10.8   11.8   -0.226  44.7 1.29e-162 1.50e-158  344. 0.0880
+ 6 ENSG00000131002.11  11.4   10.9   11.9   -1.10   44.5 7.80e-162 7.55e-158  343. 0.120 
+ 7 ENSG00000198692.9   12.3   11.8   12.9   -0.882  44.4 1.62e-161 1.34e-157  342. 0.129 
+ 8 ENSG00000183878.15   8.66   8.27   9.05  -0.781  43.9 9.83e-160 7.13e-156  338. 0.0813
+ 9 ENSG00000129824.15  11.4   10.8   11.9    2.37   43.3 1.44e-157 9.29e-154  334. 0.0896
+10 ENSG00000274655.1  -12.4  -12.9  -11.8   -7.71  -43.1 5.20e-157 3.02e-153  333. 0.0931
+# ... with 58,027 more rows
+
+attr(,&quot;class&quot;)
+[1] &quot;dsLimma&quot; &quot;list&quot;   </code></pre>
+<p>We have also implemented two other functions <code>ds.DESeq2</code> and <code>ds.edgeR</code> that perform DGE analysis using <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">DESeq2</a> and <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf">edgeR</a> methods. This is the R code used to that purpose:</p>
+<p>…. <strong>To be supplied</strong></p>
+<p>We close the DataSHIELD session by:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="differential-gene-expression-dge-analysis.html#cb160-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="datashield.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="resourcer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Omic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="epigenome-wide-association-analysis-ewas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

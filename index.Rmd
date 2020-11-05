@@ -11,7 +11,7 @@ link-citations: yes
 
 ```{r, setup, include=FALSE}
 knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE,
-                      fig.topcaption=TRUE)
+                      fig.topcaption=TRUE, fig.path = "fig/")
 library(BiocStyle)
 library(kableExtra)
 library(tidyverse)
@@ -32,7 +32,7 @@ The second part, Focus Topic, dive into information for non-disclosive analyses 
 
 The third part, Resources Extensions, provides examples illustrating how to extend existing resources. We describe how to create functions to deal with omic data in [Variant Calling Format](https://en.wikipedia.org/wiki/Variant_Call_Format) (VCF files) which specifies the format of a text file used in bioinformatics for storing [gene sequence](https://en.wikipedia.org/wiki/Gene) variations. It also shows how to perform genomic data analysis using secure shell commands. This can be consider as an illustrative example for using shell programs to perform Big Data analyses that could be extend to other frameworks of Big Data such as “Apache Spark”. 
 
-The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidentiality is an important issue. 
+The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidentiality is an important issue. Exposome data analysis has also been added as another example of using *resources*.
 
 The fifth part, Developers, provides information about how to develop DataSHIELD packages using specific R packages devoted to Big Data analyses as well as using shell programs. It also provides some useful trips and trick that developers or end users may face when using our proposed infrastructure.
 
