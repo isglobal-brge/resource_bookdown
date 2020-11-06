@@ -196,10 +196,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>7.5</b> Interacting with R Resources</a></li>
 <li class="chapter" data-level="7.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>7.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="7.7" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>7.7</b> Resource Forms</a></li>
-<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a>
+<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a></li>
+<li class="chapter" data-level="7.9" data-path="resourcer.html"><a href="resourcer.html#using-resources-with-datashield"><i class="fa fa-check"></i><b>7.9</b> Using Resources with DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.8.1</b> TSV File into a tibble or data.frame</a></li>
-<li class="chapter" data-level="7.8.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.8.2</b> R Data File into a R object</a></li>
+<li class="chapter" data-level="7.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.9.1</b> TSV File into a tibble or data.frame</a></li>
+<li class="chapter" data-level="7.9.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.9.2</b> R Data File into a R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -300,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>20.4</b> How to install R packages into OPAL server</a>
 <ul>
 <li class="chapter" data-level="20.4.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#manually-3"><i class="fa fa-check"></i><b>20.4.1</b> Manually</a></li>
+<li class="chapter" data-level="20.4.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#using-r-3"><i class="fa fa-check"></i><b>20.4.2</b> Using R</a></li>
 </ul></li>
-<li class="chapter" data-level="20.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#using-r-3"><i class="fa fa-check"></i><b>20.5</b> Using R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="21" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>21</b> Session Info</a></li>
@@ -327,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> The resourcer Package</h1>
 <div id="introduction" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Introduction</h2>
-<p>The <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package is an R implementation of the data and computation resources description and connection. It resuse many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package’s role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the <a href="https://r6.r-lib.org/">R6 library</a>.</p>
+<p>The <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package is an R implementation of the data and computation resources description and connection. It resuses many existing R packages for reading various data formats and connecting to external data storage or computation servers. The resourcer package’s role is to interpret a resource description object to build the appropriate resource connection object. Because the bestiary of resources is very wide, the resourcer package provides a framework for dynamically extending the interpretation capabilities to new types of resources. This framework uses the object-oriented paradigm provided by the <a href="https://r6.r-lib.org/">R6 library</a>.</p>
 <p>The purpose of the package is to allow access resources identified by a URL in a uniform way whether it references a dataset (stored in a file, a SQL table, a MongoDB collection etc.) or a computation unit (system commands, web services etc.). Usually some credentials will be defined, and an additional data format information can be provided to help dataset coercing to a data.frame object.</p>
 <p>The main concepts are:</p>
 <table>
@@ -467,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>For implementing <em>ResourceClient</em> factories the resourcer package provides different <em>ResourceResolver</em> classes (see Figure <a href="resourcer.html#fig:resourceResolver">7.1</a>):</p>
 <ul>
-<li>for file resources, which will discriminate the resources based on the URL property (checking if any <em>FileResourceGetter</em> exists for that resource) and the data format property (for getting additional information about how to read the data). The <em>FileResourceGetter</em> can be extended to new file locations: as an example, the aws.resourcer R package is able to get resource files from Amazon Web Service S3 file stores.</li>
+<li>for file resources, which will discriminate the resources based on the URL property (checking if any <em>FileResourceGetter</em> exists for that resource) and the data format property (for getting additional information about how to read the data). The <em>FileResourceGetter</em> can be extended to new file locations: as an example, the <a href="https://github.com/obiba/s3.resourcer">s3.resourcer</a> R package is able to get resource files from Amazon Web Service S3 file stores.</li>
 <li>for database resources, which will discriminate the resources based on the scheme part of the URL (checking if any <em>DBIResourceConnector</em> can be found or whether a nodbi connector can be created). The <em>DBIResourceConnector</em> can be extended to new DBI implementations. For instance, using <a href="https://cran.r-project.org/package=bigrquery">bigrquery</a> R package, it would be easy to implement access to a resource stored in a Google’s BigQuery database.</li>
 <li>for command-based computation resources, which will discriminate the resources based on the scheme part of the URL, indicating how to issue commands (local shell or secure remote shell).</li>
 </ul>
@@ -644,6 +645,67 @@ Figure 7.1: ResourceResolver class diagram
 </div>
 <div id="examples-of-resources" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> Examples of Resources</h2>
+<p>The <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> package provides some common resources, out of the box. Additional resource extensions are also available as separate R packages. The following table lists some known resource implementations.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Resource</th>
+<th align="left">R Package</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Tidy data files</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">Data files that have a reader from the <a href="https://www.tidyverse.org/">tidyverse</a> ecosystem.</td>
+</tr>
+<tr class="even">
+<td align="left">R data files</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">Any R objects stored in files in Rdata or RDS formats.</td>
+</tr>
+<tr class="odd">
+<td align="left">SQL databases</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">Main open source SQL databases vendors are supported: MySQL, MariaDB, Pos</td>
+</tr>
+<tr class="even">
+<td align="left">Apache Spark</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">Big data analytics system, accessible as a SQL database, with also additional computation capabilities (machine leaning API).</td>
+</tr>
+<tr class="odd">
+<td align="left">SSH server</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">Command based remote computation service.</td>
+</tr>
+<tr class="even">
+<td align="left">MongoDB</td>
+<td align="left"><code>resourcer</code></td>
+<td align="left">A NoSQL database.</td>
+</tr>
+<tr class="odd">
+<td align="left">HL7 FHIR resource</td>
+<td align="left"><a href="https://github.com/obiba/fhir.resourcer">fhir.resourcer</a></td>
+<td align="left">Data extractions from <a href="http://hl7.org/fhir/">HL7 FIHR</a> compliant servers, the standard for clinical data management systems.</td>
+</tr>
+<tr class="even">
+<td align="left">Dremio dataset</td>
+<td align="left"><a href="https://github.com/obiba/odbc.resourcer">odbc.resourcer</a></td>
+<td align="left"><a href="https://www.dremio.com/">Dremio</a> is a data lake engine, tailored for integrating big data. Dremio is accessible as a SQL database.</td>
+</tr>
+<tr class="odd">
+<td align="left">GDS data files</td>
+<td align="left"><a href="https://github.com/isglobal-brge/dsOmics">dsOmics</a></td>
+<td align="left">Reads omics data stored in Genomic Data Structure (GDS) format or in a format that can be converted to GDS (such as VCF).</td>
+</tr>
+</tbody>
+</table>
+<p>Whenever a data access format or protocol is defined by a standard API specification, there is most likely an R implementation of this API and then a corresponding <strong>resourcer</strong> extension can be easily implemented. For instance developing a resourcer extension to access genomic data stored in a <a href="https://www.ga4gh.org/">GA4GH</a> system should be possible and would be very powerful.</p>
+</div>
+<div id="using-resources-with-datashield" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Using Resources with DataSHIELD</h2>
 <p>Let us illustrate how to deal with different types of resources within DataSHIELD. To this end, let use our Opal demo example (RSRC project) available at <a href="https://opal-demo.obiba.org" class="uri">https://opal-demo.obiba.org</a> which has the following resources</p>
 <div class="figure" style="text-align: center"><span id="fig:testResources2"></span>
 <p class="caption">
@@ -651,9 +713,9 @@ Figure 7.2: Resources from a demo enviroment available at <a href="https://opal-
 </p>
 <img src="fig/opal_resources.png" alt="Resources from a demo enviroment available at https://opal-demo.obiba.org"  />
 </div>
-<p>Let us start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: <a href="https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt" class="uri">https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt</a> and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.</p>
-<div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="7.8.1">
-<h3><span class="header-section-number">7.8.1</span> TSV File into a tibble or data.frame</h3>
+<div id="tsv-file-into-a-tibble-or-data.frame" class="section level3" number="7.9.1">
+<h3><span class="header-section-number">7.9.1</span> TSV File into a tibble or data.frame</h3>
+<p>We start by illustrating how to get a simple TSV file (brge.txt) into the R server. This file is located at a GitHub repository: <a href="https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt" class="uri">https://raw.githubusercontent.com/isglobal-brge/brgedata/master/inst/extdata/brge.txt</a> and it is not necesary to be moved from there. This is one of the main strenght of the resources implementation.</p>
 <p>This code describes how to get the resource (a TSV file) as a data.frame into the R Server. Note that this is secure access since a user name and password must be provided</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="resourcer.html#cb81-1"></a><span class="kw">library</span>(DSOpal)</span>
 <span id="cb81-2"><a href="resourcer.html#cb81-2"></a><span class="kw">library</span>(dsBaseClient)</span>
@@ -681,8 +743,8 @@ Figure 7.2: Resources from a demo enviroment available at <a href="https://opal-
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="resourcer.html#cb83-1"></a><span class="co"># logout the connection</span></span>
 <span id="cb83-2"><a href="resourcer.html#cb83-2"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
-<div id="r-data-file-into-a-r-object" class="section level3" number="7.8.2">
-<h3><span class="header-section-number">7.8.2</span> R Data File into a R object</h3>
+<div id="r-data-file-into-a-r-object" class="section level3" number="7.9.2">
+<h3><span class="header-section-number">7.9.2</span> R Data File into a R object</h3>
 <p>Now let us describe how to get a specific type of R object into the R server. Our Opal demo contains a resource called GSE80970 which is located on a local machine (see Figure <a href="resourcer.html#fig:testResources2">7.2</a>). The resource is an R object of class <a href="https://kasperdanielhansen.github.io/genbioconductor/html/ExpressionSet.html">ExpressionSet</a> which is normally used to jointly encapsulate gene expression, metadata and annotation. In general, we can retrieve any R object in its original format and if a method to coerce the specific object into a data.frame exists, we can also retrieve it as a tibble/data.frame.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="resourcer.html#cb84-1"></a><span class="co"># prepare login data and resource to assign</span></span>
 <span id="cb84-2"><a href="resourcer.html#cb84-2"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>

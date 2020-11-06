@@ -196,10 +196,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="resourcer.html"><a href="resourcer.html#interacting-with-r-resources"><i class="fa fa-check"></i><b>7.5</b> Interacting with R Resources</a></li>
 <li class="chapter" data-level="7.6" data-path="resourcer.html"><a href="resourcer.html#extending_resources"><i class="fa fa-check"></i><b>7.6</b> Extending Resources</a></li>
 <li class="chapter" data-level="7.7" data-path="resourcer.html"><a href="resourcer.html#resource-forms"><i class="fa fa-check"></i><b>7.7</b> Resource Forms</a></li>
-<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a>
+<li class="chapter" data-level="7.8" data-path="resourcer.html"><a href="resourcer.html#examples-of-resources"><i class="fa fa-check"></i><b>7.8</b> Examples of Resources</a></li>
+<li class="chapter" data-level="7.9" data-path="resourcer.html"><a href="resourcer.html#using-resources-with-datashield"><i class="fa fa-check"></i><b>7.9</b> Using Resources with DataSHIELD</a>
 <ul>
-<li class="chapter" data-level="7.8.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.8.1</b> TSV File into a tibble or data.frame</a></li>
-<li class="chapter" data-level="7.8.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.8.2</b> R Data File into a R object</a></li>
+<li class="chapter" data-level="7.9.1" data-path="resourcer.html"><a href="resourcer.html#tsv-file-into-a-tibble-or-data.frame"><i class="fa fa-check"></i><b>7.9.1</b> TSV File into a tibble or data.frame</a></li>
+<li class="chapter" data-level="7.9.2" data-path="resourcer.html"><a href="resourcer.html#r-data-file-into-a-r-object"><i class="fa fa-check"></i><b>7.9.2</b> R Data File into a R object</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Resources Extensions</b></span></li>
@@ -300,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="20.4" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-install-r-packages-into-opal-server"><i class="fa fa-check"></i><b>20.4</b> How to install R packages into OPAL server</a>
 <ul>
 <li class="chapter" data-level="20.4.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#manually-3"><i class="fa fa-check"></i><b>20.4.1</b> Manually</a></li>
+<li class="chapter" data-level="20.4.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#using-r-3"><i class="fa fa-check"></i><b>20.4.2</b> Using R</a></li>
 </ul></li>
-<li class="chapter" data-level="20.5" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#using-r-3"><i class="fa fa-check"></i><b>20.5</b> Using R</a></li>
 </ul></li>
 <li class="part"><span><b>VI Appendix</b></span></li>
 <li class="chapter" data-level="21" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>21</b> Session Info</a></li>
@@ -477,7 +478,7 @@ whistling_chest             flu        rhinitis        wheezing             sex 
 <p>Optionally, there’s also the <code>ds.plotMissings</code> function which returns a <code>ggplot</code> object with a barplot of missings for exposures or phenotypes, there’s the option of displaying the percentage of missings as well as total counts, check the function documentation for further information.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="exposome.html#cb288-1"></a><span class="kw">ds.plotMissings</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="st">&quot;exposures&quot;</span>, <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
 <pre><code>$server1</code></pre>
-<p><img src="fig/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-72-1.png" width="672" /></p>
 <p>Please note that since this function call returns a <code>ggplot</code> object, it can be plotted properly to avoid squished Y axis when there are lots of exposures, read the <a href="https://ggplot2.tidyverse.org/reference/ggsave.html">official documentation</a> for information on how to do that.</p>
 </div>
 <div id="exposures-normality" class="section level3" number="17.2.5">
@@ -498,18 +499,18 @@ FALSE  TRUE
 <p>The <code>ds.normalityTest</code> function has some extra input arguments to tune the normality test, check the function documentation for further information.</p>
 <p>The exposures can be visualized using non-disclosive histograms to see their distribution along their <em>Shapiro-Wilk</em> Normality Test p-value.</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="exposome.html#cb294-1"></a><span class="kw">ds.exposure_histogram</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="st">&quot;BDE209&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-75-1.png" width="672" /></p>
 <p>If the selected exposure is not following a normal distribution, the function <code>ds.exposure_histogram</code> accepts the argument <code>show.trans</code> to visualize the raw data histogram plus three typical transformations (<code>exp</code>, <code>log</code> and <code>sqrt</code>), the <em>Shapiro-Wilk</em> Normality Test p-value is shown for all the transformations.</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="exposome.html#cb295-1"></a><span class="kw">ds.exposure_histogram</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="st">&quot;BDE209&quot;</span>, <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-76-1.png" width="672" /></p>
 </div>
 <div id="exposures-behaviour" class="section level3" number="17.2.6">
 <h3><span class="header-section-number">17.2.6</span> Exposures Behaviour</h3>
 <p>We can get a snapshot of the behaviour of the full exposome using the <code>ds.plotFamily</code> function. This function draws a mosaic of boxplots with all the numeric families of exposures, it can also plot single families and perform grouping inside of them. This function makes use of the <code>ggplot2</code> library to generate the plots. Future plans include displaying non-disclosive plots for non-numeric families.</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="exposome.html#cb296-1"></a><span class="kw">ds.plotFamily</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-78-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-77-1.png" width="672" /></p>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="exposome.html#cb297-1"></a><span class="kw">ds.plotFamily</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;Phthalates&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;sex&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-78-2.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-77-2.png" width="672" /></p>
 </div>
 </div>
 <div id="exposures-imputation" class="section level2" number="17.3">
@@ -532,10 +533,10 @@ FALSE  TRUE
 <p>The model is inputted as a string, where the left side term is the objective phenotype, and the right term are the covariates, in the case of wanting more covariates proceed as: <code>objective ~ cov1 + cov2 + ... + covN</code>. It’s important noting that if the output family (third argument) does not match the objective family, the ExWAS will fail (Example: The objective family is <code>binomial</code> and the user sets it to <code>gaussian</code>).</p>
 <p>To visualize the results from the ExWAS, the function <code>ds.plotExwas</code> takes the output of <code>ds.exwas</code> and creates two different visualizations. A Manhattan-like plot with the p-values of the association between each exposure and asthma, coloured by families of exposures:</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="exposome.html#cb301-1"></a><span class="kw">ds.plotExwas</span>(exwas_results, <span class="st">&quot;manhattan&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-81-1.png" width="960" /></p>
+<p><img src="fig/unnamed-chunk-80-1.png" width="960" /></p>
 <p>Also, a plot for the effects of a given model can be obtained with:</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="exposome.html#cb302-1"></a><span class="kw">ds.plotExwas</span>(exwas_results, <span class="st">&quot;effect&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-82-1.png" width="960" /></p>
+<p><img src="fig/unnamed-chunk-81-1.png" width="960" /></p>
 </div>
 <div id="exposures-pca" class="section level2" number="17.5">
 <h2><span class="header-section-number">17.5</span> Exposures PCA</h2>
@@ -546,20 +547,20 @@ FALSE  TRUE
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="exposome.html#cb305-1"></a><span class="kw">ds.exposome_pca</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="dt">fam =</span> <span class="kw">c</span>(<span class="st">&quot;Metals&quot;</span>, <span class="st">&quot;Noise&quot;</span>), <span class="dt">standar =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The PCA function saves the results on the study server to prevent any dislosures, the default variable they take is called <code>"ds.exposome_pca.Results"</code>, which has to be passed to the visualization function. To visualize the results of the PCA there is the function <code>ds.exposome_pca_plot</code>, this function relies on the visualization methods already implemented on <code>rexposome</code> for the PCA analysis, it does it however on a non-disclosive way, by passing the scatter plot points through an anonimization process, hence the arguments <code>k</code>, <code>method</code> and <code>noise</code>. The visualization is controlled with the <code>set</code> argument, which takes <code>"all"</code> (mosaic of plots of the PCA), <code>"exposures"</code> (plot of the exposures space on the first two principal components, color coded by family), <code>"samples"</code> (plot of the individuals space on the first two principal components, this plot can take the <code>phenotype</code> argument to color code the individuals by phenotypes), <code>"variance"</code> and <code>"variance_explained"</code>, the two variance plots are quite self explanatory, the color code on the <code>"variance"</code> highlights the first two principal components as they are the ones shown on the other drawings.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="exposome.html#cb306-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">method =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">noise =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-85-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-84-1.png" width="672" /></p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="exposome.html#cb307-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;samples&quot;</span>, <span class="dt">phenotype =</span> <span class="st">&quot;sex&quot;</span>, <span class="dt">method =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">noise =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-85-2.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-84-2.png" width="672" /></p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="exposome.html#cb308-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;exposures&quot;</span>, <span class="dt">method =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">noise =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-85-3.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-84-3.png" width="672" /></p>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="exposome.html#cb309-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;variance&quot;</span>, <span class="dt">method =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">noise =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-85-4.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-84-4.png" width="672" /></p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="exposome.html#cb310-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;variance_explained&quot;</span>, <span class="dt">method =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">noise =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-85-5.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-84-5.png" width="672" /></p>
 <p>Furthermore, the <code>ds.exposome_pca_plot</code> function can plot the correlations betweeen the principal components and the exposures and the association of the phenotypes with the principal components. This two visualizations can be obtained by setting the <code>set</code> argument to <code>"exposures_correlation"</code> and <code>"phenotypes_correlation"</code> respectively.</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="exposome.html#cb311-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;exposures_correlation&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-85-1.png" width="672" /></p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="exposome.html#cb312-1"></a><span class="kw">ds.exposome_pca_plot</span>(<span class="st">&quot;ds.exposome_pca.Results&quot;</span>, <span class="dt">set =</span> <span class="st">&quot;phenotypes_correlation&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-86-2.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-85-2.png" width="672" /></p>
 </div>
 <div id="exposures-correlation" class="section level2" number="17.6">
 <h2><span class="header-section-number">17.6</span> Exposures Correlation</h2>
@@ -584,10 +585,10 @@ FALSE  TRUE
 <p>The output from the <code>ds.correlation</code> consists of the correlation matrix and a vector that contains the names of exposures and families on the correlation table, this second item is used by the <code>corPlot</code> function to display the results of the correlation study.</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="exposome.html#cb319-1"></a>corr_data &lt;-<span class="st"> </span><span class="kw">ds.correlation</span>(<span class="st">&quot;exposome_object&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Metals&quot;</span>, <span class="st">&quot;Noise&quot;</span>))</span>
 <span id="cb319-2"><a href="exposome.html#cb319-2"></a><span class="kw">corPlot</span>(corr_data)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-88-1.png" width="672" /></p>
 <p>The best option to see the inter-family correlations is the <em>circos of correlations</em> while the <em>matrix of correlations</em> is a better way for studying the intra-family correlations.</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="exposome.html#cb320-1"></a><span class="kw">corPlot</span>(corr_data, <span class="dt">type =</span> <span class="st">&quot;circos&quot;</span>)</span></code></pre></div>
-<p><img src="fig/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="fig/unnamed-chunk-89-1.png" width="672" /></p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="exposome.html#cb321-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 
 </div>
