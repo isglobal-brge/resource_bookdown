@@ -255,7 +255,7 @@ Resource               R Package                                                
 ---------------------- ---------------------------------------------------------- ---------------------
 Tidy data files        `resourcer`                                                Data files that have a reader from the [tidyverse](https://www.tidyverse.org/) ecosystem.
 R data files           `resourcer`                                                Any R objects stored in files in Rdata or RDS formats.
-SQL databases          `resourcer`                                                Main open source SQL databases vendors are supported: MySQL, MariaDB, Pos
+SQL databases          `resourcer`                                                Main open source SQL databases vendors are supported: MySQL, MariaDB and PostgreSQL
 Apache Spark           `resourcer`                                                Big data analytics system, accessible as a SQL database, with also additional computation capabilities (machine leaning API).
 SSH server             `resourcer`                                                Command based remote computation service.
 MongoDB                `resourcer`                                                A NoSQL database.
