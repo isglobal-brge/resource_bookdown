@@ -1,4 +1,4 @@
-# Secure shell programs: GWAS with PLINK {#shell_extension}
+# Extension to secure shell programs: GWAS with PLINK {#shell_extension}
 
 GWAS can also be performed using programs that are executed using shell commands. This is the case for [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that require efficient and scalable pipelines. 
 

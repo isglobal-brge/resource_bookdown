@@ -1,6 +1,6 @@
 # (PART) Resources Extensions {-}
 
-# VCF files to GDS to peform GWAS with Bioconductor {#omic_extension}
+# Extension to VCF files to peform GWAS with Bioconductor {#omic_extension}
 
 Genomic data can be stored in different formats. [PLINK](http://zzz.bwh.harvard.edu/plink/) and [VCF](https://www.internationalgenome.org/wiki/Analysis/vcf4.0/) files are commonly used in genetic epidemiology studies. In order to deal with this type of data, we have extended the resources available at the `r Githubpkg("obiba/resourcer")` package to VCF files. **NOTE**: PLINK files can be translated into VCF files using different pipelines. In R you can use `r Biocpkg("SeqArray")` to get VCF files. 
 
