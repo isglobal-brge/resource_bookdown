@@ -1,3 +1,33 @@
 # Extension to GA4GH and EGA (BAM/VCF files)
 
-To be supplied
+The Global Alliance for Genomics and Health (GA4GH) has a wide [toolkit](https://www.ga4gh.org/genomic-data-toolkit/) focused on many aspects of the study of the genome. One of the aspects is the distribution of data, which ensures safe transfer protocols for data providers to grant access to their data. 
+
+The [htsget API](https://samtools.github.io/hts-specs/htsget.html) is a standard developed by GA4GH which focuses on the streaming of BAM (Binary version of a SAM file) and VCF (Variant Call Format) files. In order to connect to open data servers that have the htsget API implemented, a [Client and a Resolver](#extending_resources) have been located in the `r Biocpkg("dsOmics")` package. In order to integrate this resource into the `r Biocpkg("dsOmics")` analysis pipeline, the BAM and VCF files are treated using the functions `snpgdsVCF2GDS` and `BAM2VCF` to finally obtain a [Genomic Data Storage](https://bioconductor.org/packages/release/bioc/vignettes/gdsfmt/inst/doc/gdsfmt.html#introduction) (GDS) object.
+
+The Opal server API allows us to incorporate this new type of resource as illustrated in Figures \@ref(fig:htsget1) and \@ref(fig:htsget2).
+
+```{r htsget1, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_htsget1.png")
+```
+
+```{r htsget2, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_htsget2.png")
+```
+
+The generic resource implemented for the GA4GH htsget API allows the connection to open databases, federated databases that have the same protocol implemented rely on different authentication processes in order to allow the streaming of data files, for that reason they have to be implemented on a case to case basis.
+
+The European Genome-Phenome Archive (EGA) is a federated database that has the htsget API implemented. In order to stream data, an authentication using [OAuth2.0](https://oauth.net/2/) is required. Following the general htsget resource implementation, a [Client and a Resolver](#extending_resources) have been located in the `r Biocpkg("dsOmics")` package. The difference to use this resource is that it does not require an URL, as the EGA-htsget endpoint is static, and that a user and password has to be provided to perform the authentication to EGA.
+
+The resource is illustrated in Figures \@ref(fig:htsgetEGA1), \@ref(fig:htsgetEGA2) and \@ref(fig:htsgetEGA3).
+
+```{r htsgetEGA1, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_htsgetEGA1.png")
+```
+
+```{r htsgetEGA2, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_htsgetEGA2.png")
+```
+
+```{r htsgetEGA3, echo=FALSE, fig.cap="Description of how a VCF file can be added to the opal resources", out.height= '5%', fig.align='center'}
+knitr::include_graphics("fig/opal_resource_htsgetEGA3.png")
+```
