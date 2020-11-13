@@ -358,7 +358,7 @@ conns <- datashield.login(logins = logindata, assign = TRUE,
 In this case we have to assign two different resources. One for the VCF (obesity_vcf) and another one for the phenotypic data (obesity). To this end, the `datashield.assign.resource` function is required before assigning any object to the specific resource. Notice that the VCF resource can be loaded into R as a GDS thanks to [our extension](#ext_VCF) of existing resources in the `r BiocStyle::CRANpkg("reourcer")` 
 
 
-```{r assign_vcf}
+```{r assign_vcf_brge}
 datashield.assign.resource(conns, symbol = "vcf.res", 
                            resource = list(study1 = "RSRC.brge_vcf"))
 datashield.assign.expr(conns, symbol = "gds", 

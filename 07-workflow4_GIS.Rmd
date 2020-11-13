@@ -118,3 +118,10 @@ result <- ds.glm(formula = 'BMI ~ age + sex + inc + fsmoke + fedu + counts',
                 data = 'geo.df', family = 'gaussian')
 result$coefficients
 ```
+
+
+This closes the access to the resources
+
+```{r close_gis}
+datashield.logout(conns)
+```

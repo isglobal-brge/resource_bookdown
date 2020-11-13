@@ -12,7 +12,7 @@ The European Genome-Phenome Archive (EGA) is a federated database that has the h
 
 ### Manually
 
-#### GA4GH
+#### GA4GH {#Manual-GA4GH}
 
 To upload a GA4GH htsget resource into OPAL, the first steps to follow are already described [here](#create_manually). The particularities of GA4GH htsget resources come to the last step, when inputing the resource parameters. 
 
@@ -39,7 +39,7 @@ This parameters are illustrated on the Figure \@ref(fig:htsget2)
 knitr::include_graphics("fig/opal_resource_htsget2.png")
 ```
 
-#### EGA
+#### EGA {#Manual-EGA}
 
 To upload a EGA htsget resource into OPAL, the first steps to follow are already described [here](#create_manually). The particularities of EGA htsget resources come to the last step, when inputing the resource parameters. 
 
@@ -75,18 +75,25 @@ knitr::include_graphics("fig/opal_resource_htsgetEGA3.png")
 
 #### GA4GH
 
-A GA4GH htsget can be added to a project by a simple function call, building the URL as:
 
-```{}
+A GA4GH htsget  can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL where the genomic data file is located that in our case is:
+
+```{r eval=FALSE}
 # VCF FILES
 hostURL/reads/fileID?format=BAM&referenceName=regName&start=start&end=end
 
 Example: https://htsget.ga4gh.org/reads/giab.NA12878.NIST7035.2?format=BAM&referenceName=chr21&start=1&end=20000000
+
 # BAM FILES
 hostURL/variants/fileID?format=VCF&referenceName=regName&start=start&end=end
 
 Example: https://htsget.ga4gh.org/variants/1000genomes.phase1.chr1?format=VCF&referenceName=1&start=15000&end=16000
 ```
+
+This can be a little bit tricky. If so, this can be done using the [API as previously described](#Manual-GA4GH).
+
+
+Then, the R code to create this resource from the VCF file in OPAL is:
 
 
 ```{r eval = FALSE}
@@ -94,12 +101,12 @@ library(opalr)
 o <- opal.login("administrator","password", 
                 url="https://opal-demo.obiba.org")
 
-opal.resource_create(o, "RSRC", "GA4GH", 
+opal.resource_create(o, "RSRC", " ga4gh_1000g", 
   url = "https://htsget.ga4gh.org/variants/1000genomes.phase1.chr1?format=VCF&referenceName=1&start=15000&end=16000", 
   format = "GA4GHVCF")
 
 # to test the resource assignment
-opal.assign.resource(o, "client", "RSRC.GA4GH")
+opal.assign.resource(o, "client", "RSRC. ga4gh_1000g")
 opal.execute(o, "class(client)")
 
 opal.logout(o)
@@ -107,15 +114,19 @@ opal.logout(o)
 
 #### EGA
 
-A EGA database can be added to a project by a simple function call, building the URL as:
+A EGA database can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL where the genomic data file is located that in our case is:
 
-```{}
+```{r eval=FALSE}
 # Same URL style for BAM and VCF
 https://ega.ebi.ac.uk:8052/elixir/tickets/tickets/fileID?referenceName=refName&start=start&end=end
 
 Example: https://ega.ebi.ac.uk:8052/elixir/tickets/tickets/EGAF00001753756?referenceName=chr21&start=1&end=100
 ```
 
+This can be a little bit tricky. If so, this can be done using the [API as previously described](#Manual-EGA).
+
+
+Then, the R code to create this resource in OPAL is:
 
 ```{r eval = FALSE}
 library(opalr)
@@ -138,9 +149,9 @@ opal.logout(o)
 
 ## Adding a genomic resource
 
-To load the presented resources into the study servers, the standard procedure already presented on this Bookdown has to be followed.
+To load the presented resources into the study servers, the standard procedure already presented on this Bookdown has to be followed (see [here]()).
 
-```{r}
+```{r load_opal_ga4gh}
 library(DSI)
 library(DSOpal)
 library(dsBaseClient)
@@ -149,27 +160,33 @@ library(dsOmicsClient)
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "RSRC.ga4gh_1000G", driver = "OpalDriver")
+               resource = "RSRC.ga4gh_1000g", driver = "OpalDriver")
 logindata <- builder$build()
 
 conns <- datashield.login(logins = logindata, assign = TRUE,
-                          symbol = "gagh")
-datashield.assign.expr(conns, symbol = "gagh_gds", 
-                       expr = quote(as.resource.object(gagh)))
+                          symbol = "ga4gh")
+datashield.assign.expr(conns, symbol = "ga4gh_gds", 
+                       expr = quote(as.resource.object(ga4gh)))
 ```
 
 Now we can see that the resource is loaded in the study server as a GDS
 
-```{r}
-ds.class("gagh_gds")
+```{r clasgagh}
+ds.class("ga4gh_gds")
 ```
 
 ## Descriptive omic data analysis
 
 Since the presented resources load GDS objects into the study servers, the same procedures introduced on [this same bookdown](#gwasBioc) can be applied. As an example, a PCA can be performed on the loaded data from a GA4GH htsget server that holds the 1000 Genome dataset. This example resource contains SNPs of the first human chromosome ranging from the start of it to the position 100000.
 
-```{r}
-ds.PCASNPS("gds")
+```{r pcaGA4GH, fig.cap='PCA over the 1000 genomes dataset available at GA4GH '}
+ds.PCASNPS("ga4gh_gds")
 ```
 
 For further descriptive analysis such as Hardy-Weinberg Equilibrium testing and Allelic frequency, a phenotypes (or covariates) table has to be provided and bundled through the `ds.GenotypeData` function, this table has to have at least information about the gender of the individuals.
+
+This closes the access to the resources
+
+```{r close_ga4gh}
+datashield.logout(conns)
+```
