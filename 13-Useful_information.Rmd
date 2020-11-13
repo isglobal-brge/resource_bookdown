@@ -15,7 +15,7 @@ This is the how an Opal looks like once the user enters the credentials:
 
 ## How to create a new project into OPAL
 
-### Manually
+### Manually 
 
 The tab `Projects` (top-left) goes to the projects available in the Opal demo
 
@@ -47,7 +47,7 @@ See also the other `opal.project_*` functions.
 
 ## How to upload a new resource into OPAL
 
-### Manually
+### Manually {#create_manually}
 
 Once a new project has been created, a new resource can be uploaded by clicking on project's name. In this case, let us assume that we are working on RSRC project that has been created to illustrate the main examples in this bookdown. After clicking on that project this window will appear
 
