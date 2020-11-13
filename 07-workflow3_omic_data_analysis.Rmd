@@ -95,7 +95,7 @@ Genomic data can be stored in different formats. [VCF](https://www.international
 Here we illustrate how to perform GWAS using R and Bioconductor packages or PLINK shell command line. 
 
 
-## GWAS with Bioconductor
+## GWAS with Bioconductor {#gwasBioc}
 
 ```{r include = FALSE}
 download.file("https://github.com/isglobal-brge/dsOmicsClient/raw/master/vignettes/rmd/gwas_BioC.Rmd", "rmd_omic/gwas_BioC.Rmd")
