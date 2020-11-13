@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>10 Extension to GA4GH and EGA (BAM/VCF files) | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="10 Extension to GA4GH and EGA (BAM/VCF files) | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="10 Extension to GA4GH and EGA (BAM/VCF files) | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Setup | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="10 Extension to GA4GH and EGA (BAM/VCF files) | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="extension-to-ga4gh-and-ega-bamvcf-files.html"/>
-<link rel="next" href="basic-statistical-analyses.html"/>
+<link rel="prev" href="shell-extension.html"/>
+<link rel="next" href="setup.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -325,63 +325,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Setup</h1>
-<p>As described in <a href="resourcer.html#resourcer">a previous Chapter</a> the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> R package allows users to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.RData</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
-<p>In order to achieve this <code>resourcer</code> extension, two <code>R6</code> classes have been implemented:</p>
-<ul>
-<li><code>GDSFileResourceResolver</code> class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a <code>GDSFileResourceClient</code> object instance from an assigned resource.</li>
-<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it is this connection handle to the GDS file that will be used.</li>
-</ul>
-<div id="providing-datashield-packages-in-the-opal-server" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Providing DataSHIELD packages in the opal server</h2>
-<p>The required DataSHIELD packages must be uploaded to Opal through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal"></span>
+<div id="extension-to-ga4gh-and-ega-bamvcf-files" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Extension to GA4GH and EGA (BAM/VCF files)</h1>
+<p>The Global Alliance for Genomics and Health (GA4GH) has a wide <a href="https://www.ga4gh.org/genomic-data-toolkit/">toolkit</a> focused on many aspects of the study of the genome. One of the aspects is the distribution of data, which ensures safe transfer protocols for data providers to grant access to their data.</p>
+<p>The <a href="https://samtools.github.io/hts-specs/htsget.html">htsget API</a> is a standard developed by GA4GH which focuses on the streaming of BAM (Binary version of a SAM file) and VCF (Variant Call Format) files. In order to connect to open data servers that have the htsget API implemented, a <a href="resourcer.html#extending_resources">Client and a Resolver</a> have been located in the <em><a href="https://bioconductor.org/packages/3.11/dsOmics">dsOmics</a></em> package. In order to integrate this resource into the <em><a href="https://bioconductor.org/packages/3.11/dsOmics">dsOmics</a></em> analysis pipeline, the BAM and VCF files are treated using the functions <code>snpgdsVCF2GDS</code> and <code>BAM2VCF</code> to finally obtain a <a href="https://bioconductor.org/packages/release/bioc/vignettes/gdsfmt/inst/doc/gdsfmt.html#introduction">Genomic Data Storage</a> (GDS) object.</p>
+<p>The Opal server API allows us to incorporate this new type of resource as illustrated in Figures <a href="extension-to-ga4gh-and-ega-bamvcf-files.html#fig:htsget1">10.1</a> and <a href="extension-to-ga4gh-and-ega-bamvcf-files.html#fig:htsget2">10.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:htsget1"></span>
 <p class="caption">
-Figure 11.1: Installed packages in the demo opal server
+Figure 10.1: Description of how a VCF file can be added to the opal resources
 </p>
-<img src="fig/add_packages_opal.png" alt="Installed packages in the demo opal server" width="921" />
+<img src="fig/opal_resource_htsget1.png" alt="Description of how a VCF file can be added to the opal resources" width="282" height="5%" />
 </div>
-<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled on Opal</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal2"></span>
+<div class="figure" style="text-align: center"><span id="fig:htsget2"></span>
 <p class="caption">
-Figure 11.2: Description how <code>dsOmics</code> package was intalled into the demo opal server
+Figure 10.2: Description of how a VCF file can be added to the opal resources
 </p>
-<img src="fig/add_packages_opal_2.png" alt="Description how `dsOmics` package was intalled into the demo opal server" width="415" />
+<img src="fig/opal_resource_htsget2.png" alt="Description of how a VCF file can be added to the opal resources" width="281" height="5%" />
 </div>
-<p>For reproducing this book the following packages must be installed on Opal</p>
-<pre><code>From CRAN: 
-   - resourcer
-From Github: 
-   - datashield/dsBase
-   - datashield/dsGeo (tombisho/dsGeo)
-   - isglobal-brge/dsOmics</code></pre>
-<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes in <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
-<pre><code>sudo apt-get update
-sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
+<p>The generic resource implemented for the GA4GH htsget API allows the connection to open databases, federated databases that have the same protocol implemented rely on different authentication processes in order to allow the streaming of data files, for that reason they have to be implemented on a case to case basis.</p>
+<p>The European Genome-Phenome Archive (EGA) is a federated database that has the htsget API implemented. In order to stream data, an authentication using <a href="https://oauth.net/2/">OAuth2.0</a> is required. Following the general htsget resource implementation, a <a href="resourcer.html#extending_resources">Client and a Resolver</a> have been located in the <em><a href="https://bioconductor.org/packages/3.11/dsOmics">dsOmics</a></em> package. The difference to use this resource is that it does not require an URL, as the EGA-htsget endpoint is static, and that a user and password has to be provided to perform the authentication to EGA.</p>
+<p>The resource is illustrated in Figures <a href="extension-to-ga4gh-and-ega-bamvcf-files.html#fig:htsgetEGA1">10.3</a>, <a href="extension-to-ga4gh-and-ega-bamvcf-files.html#fig:htsgetEGA2">10.4</a> and <a href="extension-to-ga4gh-and-ega-bamvcf-files.html#fig:htsgetEGA3">10.5</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:htsgetEGA1"></span>
+<p class="caption">
+Figure 10.3: Description of how a VCF file can be added to the opal resources
+</p>
+<img src="fig/opal_resource_htsgetEGA1.png" alt="Description of how a VCF file can be added to the opal resources" width="282" height="5%" />
 </div>
-<div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Required R Packages in the client site (e.g. local machine)</h2>
-<p>Using DataSHIELD also requires some R packages to be installed on the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="setup.html#cb114-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb114-2"><a href="setup.html#cb114-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBaseClient&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb114-3"><a href="setup.html#cb114-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb114-4"><a href="setup.html#cb114-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="setup.html#cb115-1"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb115-2"><a href="setup.html#cb115-2"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb115-3"><a href="setup.html#cb115-3"></a><span class="kw">library</span>(dsOmicsClient)</span>
-<span id="cb115-4"><a href="setup.html#cb115-4"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:htsgetEGA2"></span>
+<p class="caption">
+Figure 10.4: Description of how a VCF file can be added to the opal resources
+</p>
+<img src="fig/opal_resource_htsgetEGA2.png" alt="Description of how a VCF file can be added to the opal resources" width="282" height="5%" />
+</div>
+<div class="figure" style="text-align: center"><span id="fig:htsgetEGA3"></span>
+<p class="caption">
+Figure 10.5: Description of how a VCF file can be added to the opal resources
+</p>
+<img src="fig/opal_resource_htsgetEGA3.png" alt="Description of how a VCF file can be added to the opal resources" width="280" height="5%" />
+</div>
 
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="extension-to-ga4gh-and-ega-bamvcf-files.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basic-statistical-analyses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shell-extension.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
