@@ -55,6 +55,6 @@ Answer: ??
 
 **Comment 13**: It would be nice to have some way of enforcing the metadata which is tight toi the data to be correct. This is often the problem with longitudinal data that metadata over all columns should be correct. It is likely that this also yields for big data structures that are analysed in a pooled manner. How do you handle multiple versions of VCF for example?
 
-**Answer**: This is a good question without a clear answer. We will work on this in the future and provide examples when possible.
+**Answer**: This is a good question without a clear answer so far. We will work on this in the future and provide examples when possible.
 --------------------------------------------------------------------
 

@@ -34,11 +34,13 @@ The third part, Resources Extensions, provides examples illustrating how to exte
 
 The fourth part, Workflows, provides primarily code detailing the analysis of various datasets throughout the book. Initially, we provide examples from transcriptomic, epigenomic and genomic association studies, as well as examples linking geospatial data where data confidentiality is an important issue. Exposome data analysis has also been added as another example of using *resources*.
 
-The fifth part, Developers, provides information about how to develop DataSHIELD packages using specific R packages devoted to Big Data analyses as well as using shell programs. It also provides some useful trips and trick that developers or end users may face when using our proposed infrastructure.
+The fifth part, Developers, provides information about how to develop DataSHIELD packages using specific R packages devoted to Big Data analyses as well as using shell programs. It also provides some useful trips and trick that developers or end users may face when using our proposed infrastructure. Technical questions raised by one of the reviewers when submitting the paper to Plos Comp Biol are also available in another chapter.
 
 Finally, the Appendix highlights our contributors.
 
-If you would like to cite this work, please use the reference “Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD”.
+# Citation {-}
+
+If you would like to cite this work, please use the reference “Yannick Marcon, Tom Bishop, Demetris Avraam, Xavier Escribà-Montagut, Patricia Ryser-Welch, Stuart Wheater, Paul Burton, Juan R González. Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD. *Plos Comp Biol*. 2020”.
 
 ```{r include=FALSE}
 ## automatically create a bib database for R packages
