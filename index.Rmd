@@ -1,5 +1,5 @@
 --- 
-title: "Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD"
+title: "Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
