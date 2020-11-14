@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="1 Introduction | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>22 Advanced/technical questions | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="22 Advanced/technical questions | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="22 Advanced/technical questions | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="22 Advanced/technical questions | Orchestrating non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="learnR.html"/>
+<link rel="prev" href="tips-and-tricks.html"/>
+<link rel="next" href="session-info.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -335,32 +335,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="what-you-will-learn" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> What you will learn</h2>
-<p>The goal of this book is to provide a solid foundation to non-disclosive data analysis using <a href="https://www.r-project.org/">R</a> and <a href="http://www.datashield.ac.uk/">DataSHIELD</a>/<a href="https://www.obiba.org/pages/products/opal/">Opal</a> through the <a href="https://github.com/obiba/resourcer">resourcer</a> R package. We illustrate how to preform such data analyses in two settings (’omics and geospatial) where the use of resources allows users to handle Big Data problems. We also present workflows of how to perform statistical analyses using data in formats other than simple tables. We aim to tackle key concepts covered in the manuscript, “Orchestrating non-disclosive big data analyses of shared data from different resources with R and DataSHIELD”, with each workflow covering these in varying detail, as well as essential preliminaries that are important for following along with the workflows on your own.</p>
-</div>
-<div id="preliminaries" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Preliminaries</h2>
-<p>For those unfamiliar with R (and those looking to learn more), in the <a href="#R">R section</a> we provide some links to R books. Also there are several R on-line courses such as this one at <a href="https://www.datacamp.com/courses/free-introduction-to-r">DataCamp</a> or this at <a href="https://www.codecademy.com/learn/learn-r">CodeAcademy</a> that can help to introduce the main R concepts. Nonetheless, we assume that the readers of this book are already familiar with R.</p>
-<p>For those interested in ’omic data analyses we recommend the book <a href="https://www.routledge.com/Omic-Association-Studies-with-R-and-Bioconductor/Gonzalez-Caceres/p/book/9781138340565?utm_source=crcpress.com&amp;utm_medium=referral">Omic association analysis with R and Bioconductor</a> which provides a global overview of how to perform genomic, transcriptomic, epigenomic and multi-omic data analyses using R and Bioconductor packages. <a href="https://bioconductor.org/help/support/">Bioconductor support</a> provides the primary way to contact both Bioconductor developers and users and it is a great way to search for answers to your questions. <a href="https://bioconductor.org/help/course-materials/">Bioconductor courses</a> provide excellent material to learn most of the Bioconductor basics as well as other advanced methods and R related topics.</p>
-<p>[Omic data infrastructure][Bioconductor data infrastructures] deserves a mention here since understanding common data containers is an essential part of Bioconductor workflows that are used in our DataSHIELD packages designed for ’omic data analyses. This enables interoperability across packages, allowing for “plug and play” usage of cutting-edge methods. Geospatial data also requires specific data managment that is described the [Geospatial Workflow] {#GIS}</p>
-</div>
-<div id="acknowledgments" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Acknowledgments</h2>
-<p>Firstly, we would like to thank <a href="https://www.obiba.org/">OBiBa</a> and <a href="http://www.datashield.ac.uk/">DataSHIELD</a> developers for providing such an impressive framework for non-disclosive data analysis. We would also like to thank all <a href="http://bioconductor.org/">Bioconductor</a> contributors for giving access to their packages for dealing with different omic and performing state-of-the-art data analyses. This has allowed us to create DataSHIELD packages easily without the need to re-program most of the ’omic association analyses. We also thank R package developers since their work will allow the community to implement other DataSHIELD packages specifically designed to address other biomedical, epidemiological and social science problems as we did with geospatial data.</p>
-<p>Finally, we would like to thank the Bioconductor core team for inspiring us to write this book. We are happy to follow the two succesful works describing how to orchestrate <a href="https://pubmed.ncbi.nlm.nih.gov/25633503/">High-Throughput Genomic Analysis</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/31792435/">Single Cell Analysis</a> with Bioconductor.</p>
+<div id="advancedtechnical-questions" class="section level1" number="22">
+<h1><span class="header-section-number">22</span> Advanced/technical questions</h1>
+<p>We received a number of question when submitting our paper to Plos Comp Biology by the reviewers. Most of them were addressed into the manuscript. However, there were some raised by one of the reviewers that focused on technical aspects or technical details of the resources. These are reproduced here just in case some of the readers are also interested in such advanced aspects.</p>
+<table style="width:96%;">
+<colgroup>
+<col width="95%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Comment 1</strong>: Resources credentials are fixed and managed by Opal which implies you do not have a refresh token or something like that, that will expire over time. The policy decision and enforcement is now located in the DataSHIELD engine. This means that the resource owner can not decide anymore if someone has access to the resource. Audit logging at the resource side is hard to do this way.</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: it is true that a more elaborated authentication/authorization policy cannot be handled on the DataSHIELD server side. Any token must be valid for a programmatic usage, and if it happens to expire or be invalidated, it needs to be renewed and updated in the Opal’s definition of the resource. Regarding the auditing, all DataSHIELD user commands are logged by the Opal server. The data owner has both control on the resource data access credentials and the permissions to use this resource.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 2</strong>: If the computational resource needs to do a lot, you need to program that either in the ResourceExtension or as given commands. When you program an extension you are dependent on the person’s choices regarding the interface he/she exposes and when you give it as parameters in the resource you need to parse it in the resourcer package. For example, how do you prevent malicious SQL injection? We would expect that you would not open up such resources to the external source but only a pre-packaged analysis.</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: The DataSHIELD R analysis procedure that makes use of a resource is responsible for interacting in a secure way with the underlying resource system (database or ssh server for instance), like any application that makes use of a database. The best practice is to expose an API that is “business” oriented by defining a limited number of parameters that are easy to validate for each specific operations. This is also facilitated by the DataSHIELD infrastructure built-in feature which consists of allowing a limited syntax for expressing the server side function call parameters.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 3</strong>: You are still bound to the limitations of R in terms of memory and CPU usage when you want to correlate data in R against the data that is available in the resource. You need to either push the data you want to correlate against into the resource or extract it from the resource in the R-environment.</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: The resource API offers the possibility to work with the dplyr package which delegates as much as possible the work to the underlying database. More generally, R is only required as an entry point and real data analysis can happen in any system that is accessible by R (for instance ML analysis can be launched from R in a Apache Spark cluster). The DataSHIELD analysis procedures must be programmed in that way, to support large to big datasets analysis. Another improvement that is currently being developed (EUCAN-Connect) is the capability of having multiple R servers for a single DataSHIELD data node, in order to address the case of multiple users accessing concurrently the memory and CPU of a server.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 4</strong>: What is going to happen when you want to finish the analysis on another moment. Or the analysis is taking days how do you retrieve the result.</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: A plain R server is probably not the most suitable system for handling long running blocking tasks. Usually this kind of situation is addressed by submitting a task execution request to a worker, which will run the task in the background and will make available the progress of the task and its result for latter retrieval. This type of architecture is available in many languages and systems and could be implemented in a DataSHIELD analysis procedure.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 5</strong>: When the analysis is taking a lot of resources in terms of memory and CPU how do you limit this per DataSHIELD-user? Who is responsible for this, DataSHIELD or the resource owner?</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: It is possible in R to limit the memory and CPU usage (and much more) using the package RAppArmor. One possible improvement would be the ability to define an AppArmor profile per user or group of users (this profile would be applied at the start of a DataSHIELD session in each data node). The data owner would have the control of the definition of the profiles and which one apply to each user.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 6</strong>: The resource owner needs to implement a way to be easily accessible for the resourcer-package. Especially when you want to run more complex jobs it usually takes a complex interface to work with.</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: Building access to a resource is one complexity, that is in practice limited. Allowing multiple/complex parameters for the analysis of a resource is another one, that takes place in the definition of the DataSHIELD R server analysis functions, not in the definition of the resource.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 7</strong>: In the shell and ssh resource the Opal administrator is managing the actions that may be performed by the resource handler (researcher in general). When you host Opal on different infrastructure than the resource and is managed by someone who is not in charge of managing the resource the list of possible commands can be freely added to the resource. This possible allows</td>
+</tr>
+<tr class="even">
+<td><strong>Answer</strong>: The example of the PLINK resource (i.e. running PLINK through SSH) is put in practive by a using a SSH server in a docker container: the possible actions are limited to the available commands and data in this container for the user that connects to the SSH server (which itself has limited rights). Extra security could be added with setting up an AppArmor constrained environment. This illustrates that the security enforcement is possible but needs to be thought ahead of deploying access to such a resource.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comment 8</strong>: You state that the disclosure control on big data is often more relaxed. In practice we do not encounter this relaxation. We are very keen on analysing data outside our facility but are bound to the current contracts regarding data transfer or access agreements which take a lot of time to arrange.
+How can we make sure when you offer more open data in a way that it will be legally feasible to access the data without signing a data transfer or large access agreement?
+In other words, is it practically feasible to do analysis in this way regarding the juridical implications?
+Answer: ??</td>
+</tr>
+<tr class="even">
+<td><strong>Comment 9</strong>: Maybe less dependencies in the resourcer package?</td>
+</tr>
+<tr class="odd">
+<td><strong>Answer</strong>: We have tried to find a balance between showing out-of-the-box capabilities of various types of resources and not overloading the package. Note that most of the dependencies are suggestions and are not required at installation time. Since the review of the paper, several additional resource extensions have been developed to access less common or more specific resources (Dremio, HL7 FHIR, S3).</td>
+</tr>
+<tr class="even">
+<td><strong>Comment 10</strong>: When the interface of a dependency is changed the package needs to be changed as well.</td>
+</tr>
+<tr class="odd">
+<td><strong>Answer</strong>: The resourcer package dependencies are well established packages (DBI, tidyverse etc.) that should not change in the near future. More experimental ones (ODBC, aws.s3) are proposed as additional packages.</td>
+</tr>
+<tr class="even">
+<td><strong>Comment 11</strong>: Think of a way to delegate the authorisation and authentication back to the resource owner. We would propose to change the way of passing credentials in the resource.</td>
+</tr>
+<tr class="odd">
+<td><strong>Answer</strong>: The resource owner also owns the resource definition in the Opal server.</td>
+</tr>
+<tr class="even">
+<td><strong>Comment 12</strong>: Is it possible to restrict the usage of certain resources? For example, prohibit the use of resources.</td>
+</tr>
+<tr class="odd">
+<td><strong>Answer</strong>: The resource usage requires user/group permission to be set up in Opal. In addition to that, the credentials used to access the resource can be permanently or temporarily invalidated by the resource owner.</td>
+</tr>
+<tr class="even">
+<td><strong>Comment 13</strong>: It would be nice to have some way of enforcing the metadata which is tight toi the data to be correct. This is often the problem with longitudinal data that metadata over all columns should be correct. It is likely that this also yields for big data structures that are analysed in a pooled manner. How do you handle multiple versions of VCF for example?</td>
+</tr>
+<tr class="odd">
+<td><strong>Answer</strong>: This is a good question without a clear answer. We will work on this in the future and provide examples when possible.</td>
+</tr>
+</tbody>
+</table>
 
 </div>
+
+
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="learnR.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tips-and-tricks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="session-info.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
