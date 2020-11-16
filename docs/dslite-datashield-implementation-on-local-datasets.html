@@ -293,10 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.6" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#environment-setup-for-datashield-package-development.-a-proposition"><i class="fa fa-check"></i><b>19.6</b> Environment setup for DataSHIELD package development. A proposition</a>
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#fandfiles"><i class="fa fa-check"></i><b>19.6.1</b> Folders and files</a></li>
-</ul></li>
-<li class="chapter" data-level="19.7" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-of-a-function"><i class="fa fa-check"></i><b>19.7</b> Development of a function</a>
-<ul>
-<li class="chapter" data-level="19.7.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#testing-of-the-function"><i class="fa fa-check"></i><b>19.7.1</b> Testing of the function</a></li>
+<li class="chapter" data-level="19.6.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-of-a-function"><i class="fa fa-check"></i><b>19.6.2</b> Development of a function</a></li>
+<li class="chapter" data-level="19.6.3" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#testing-of-the-function"><i class="fa fa-check"></i><b>19.6.3</b> Testing of the function</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="package-info.html"><a href="package-info.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a></li>
@@ -482,15 +480,14 @@ the behavior of a distant (virtualized or barebone) data repository server (see 
 <p class="caption">
 (#fig:development_proposition1)Folders and files proposal
 </p>
-<img src="fig/dsliteexample.png" alt="Folders and files proposal" width="96" height="5%" />
+<img src="fig/dsliteexample.png" alt="Folders and files proposal" width="96" height="25%" />
 </div>
 <p>Inside each folder, a typical R package structure is to be found. This is further detailed <a href="package-info.html#package_info">here</a> and <a href="https://r-pkgs.org/">here</a>. If the reader does not have prior experience on R package development, there is the option of setting up a package folder through:</p>
 <pre><code>RStudio -&gt; File -&gt; New Project... -&gt; New Directory -&gt; R Package </code></pre>
 <p>The typical style convention for DataSHIELD is to name the client package as <em>dsXClient</em> and the associated server package as <em>dsX</em>. The client package will contain the functions that the user will use, those functions will be basically triggers to the server functions, more information about that on the following lines.</p>
 </div>
-</div>
-<div id="development-of-a-function" class="section level2" number="19.7">
-<h2><span class="header-section-number">19.7</span> Development of a function</h2>
+<div id="development-of-a-function" class="section level3" number="19.6.2">
+<h3><span class="header-section-number">19.6.2</span> Development of a function</h3>
 <p>There is many information about <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD</a> and how it works. A very brief introduction will be provided on this section to help.</p>
 <p>When developing a function, we have to develop both the server function and the client function. The aim of the client function (your RStudio instance) is to send an instruction to the server that will or will not have a return to you; and the aim of the server function is to perform an action(s) on an object that it contains, and make sure that if there is an output to the client, it is non disclosive.</p>
 <p>We have already described a classification between functions that do and do not have outputs to the client, in DataSHIELD they are called <code>AGGREGATE</code> functions (output to the client) and <code>ASSIGN</code> functions (NO output to the client).</p>
@@ -525,8 +522,7 @@ the behavior of a distant (virtualized or barebone) data repository server (see 
 <span id="cb347-2"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-2"></a>DSI<span class="op">::</span><span class="kw">datashield.aggregate</span>(conns, <span class="kw">as.symbol</span>(cally))</span>
 <span id="cb347-3"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-3"></a></span>
 <span id="cb347-4"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-4"></a><span class="co"># ASSIGN</span></span>
-<span id="cb347-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-5"></a>DSI<span class="op">::</span><span class="kw">datashield.assign.expr</span>(conns, name, <span class="kw">as.symbol</span>(cally))</span>
-<span id="cb347-6"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-6"></a><span class="er">}</span></span></code></pre></div>
+<span id="cb347-5"><a href="dslite-datashield-implementation-on-local-datasets.html#cb347-5"></a>DSI<span class="op">::</span><span class="kw">datashield.assign.expr</span>(conns, name, <span class="kw">as.symbol</span>(cally))</span></code></pre></div>
 <p>The return of the server function will be passed to the client on a <code>AGGREGATE</code> function and it will be assigned to a new object (on the server) on a <code>ASSIGN</code> function.</p>
 <p>If we want to create a function that will have an output to the client, we use <code>DSI::datashield.aggregate</code>, this function needs a connection object and the previously formatted string; while if we just want to create a new object on the server we use <code>DSI::datashield.assign.expr</code>, this function also needs the connection object as well as a string (<code>name</code> on the example) that indicates the name the new object will have on the server. Let’s say for this example we are creating a <code>AGGREGATE</code> function, our final function will look like this:</p>
 <div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="dslite-datashield-implementation-on-local-datasets.html#cb348-1"></a>ds.basicFunction &lt;-<span class="st"> </span><span class="cf">function</span>(object, option, <span class="dt">datasources =</span> <span class="ot">NULL</span>) {</span>
@@ -564,8 +560,9 @@ AssignMethods:
 <pre><code>AggregateMethods:
    basicFunctionDS
 AssignMethods:</code></pre>
-<div id="testing-of-the-function" class="section level3" number="19.7.1">
-<h3><span class="header-section-number">19.7.1</span> Testing of the function</h3>
+</div>
+<div id="testing-of-the-function" class="section level3" number="19.6.3">
+<h3><span class="header-section-number">19.6.3</span> Testing of the function</h3>
 <p>We are now ready to test our new function using DSLite. This will be done from the testing script that we described when talking about the <a href="dslite-datashield-implementation-on-local-datasets.html#fandfiles">folders and files</a>.</p>
 <p>On this script, we have to achieve the following:</p>
 <ol style="list-style-type: decimal">
