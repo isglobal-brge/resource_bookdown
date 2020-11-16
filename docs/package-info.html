@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Setup | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="11 Setup | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>20 Creating DataSHIELD packages | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="20 Creating DataSHIELD packages | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Setup | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="20 Creating DataSHIELD packages | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Setup | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="20 Creating DataSHIELD packages | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="extension-to-ga4gh-and-ega-bamvcf-files.html"/>
-<link rel="next" href="basic-statistical-analyses.html"/>
+<link rel="prev" href="dslite-datashield-implementation-on-local-datasets.html"/>
+<link rel="next" href="tips-and-tricks.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -344,63 +344,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Setup</h1>
-<p>As described in <a href="resourcer.html#resourcer">a previous Chapter</a> the <em><a href="https://CRAN.R-project.org/package=resourcer">resourcer</a></em> R package allows users to deal with the main data sources (using tidyverse, DBI, dplyr, sparklyr, MongoDB, AWS S3, SSH etc.) and is easily extensible to new ones including specific data infrastructure in R or Bioconductor. So far <code>ExpressionSet</code> and <code>RangedSummarizedExperiment</code> objects saved in <code>.RData</code> files are accesible through the <code>resourcer</code> package. The <code>dsOmics</code> package contains a new extension that deals with VCF (Variant Calling Format) files which are coerced to a GDS (Genomic Data Storage) format (VCF2GDS).</p>
-<p>In order to achieve this <code>resourcer</code> extension, two <code>R6</code> classes have been implemented:</p>
-<ul>
-<li><code>GDSFileResourceResolver</code> class which handles file-base resources with data in GDS or VCF formats. This class is responsible for creating a <code>GDSFileResourceClient</code> object instance from an assigned resource.</li>
-<li><code>GDSFileResourceClient</code> class which is responsible for getting the referenced file and making a connection (created by <code>GWASTools</code>) to the GDS file (will also convert the VCF file to a GDS file on the fly, using <code>SNPRelate</code>). For the subsequent analysis, it is this connection handle to the GDS file that will be used.</li>
-</ul>
-<div id="providing-datashield-packages-in-the-opal-server" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Providing DataSHIELD packages in the opal server</h2>
-<p>The required DataSHIELD packages must be uploaded to Opal through the Administration site by accessing to DataSHIELD tab. In our case, both <code>dsBase</code> and <code>dsOmics</code> and <code>resourcer</code> packages must be installed as is illustrated in the figure.</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal"></span>
-<p class="caption">
-Figure 11.1: Installed packages in the demo opal server
-</p>
-<img src="fig/add_packages_opal.png" alt="Installed packages in the demo opal server" width="921" />
-</div>
-<p>The tab <strong>+Add package</strong> can be used to install a new package. The figure depicts how <code>dsOmics</code> was intalled on Opal</p>
-<div class="figure" style="text-align: center"><span id="fig:installPackagesOpal2"></span>
-<p class="caption">
-Figure 11.2: Description how <code>dsOmics</code> package was intalled into the demo opal server
-</p>
-<img src="fig/add_packages_opal_2.png" alt="Description how `dsOmics` package was intalled into the demo opal server" width="415" />
-</div>
-<p>For reproducing this book the following packages must be installed on Opal</p>
-<pre><code>From CRAN: 
-   - resourcer
-From Github: 
-   - datashield/dsBase
-   - datashield/dsGeo (tombisho/dsGeo)
-   - isglobal-brge/dsOmics</code></pre>
-<p>Note that the <code>dsGeo</code> package imports the <code>sp</code>, <code>rgeos</code> and <code>rgdal</code> R packages. <code>rgeos</code> and <code>rgdal</code> in turn require some additional libraries which can be installed as follows (on Ubuntu systems - see the notes in <code>rgeos</code> and <code>rgdal</code> for other operating systems):</p>
-<pre><code>sudo apt-get update
-sudo apt-get install libgdal-dev libproj-dev libgeos++dev</code></pre>
-</div>
-<div id="required-r-packages-in-the-client-site-e.g.-local-machine" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Required R Packages in the client site (e.g. local machine)</h2>
-<p>Using DataSHIELD also requires some R packages to be installed on the client site. So far, the following R packages must be installed (in their development version):</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="setup.html#cb123-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;DSOpal&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb123-2"><a href="setup.html#cb123-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;dsBaseClient&quot;</span>, <span class="dt">repos =</span> <span class="kw">c</span>(<span class="st">&quot;https://cloud.r-project.org&quot;</span>, <span class="st">&quot;https://cran.obiba.org&quot;</span>), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb123-3"><a href="setup.html#cb123-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;isglobal-brge/dsOmicsClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb123-4"><a href="setup.html#cb123-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tombisho/dsGeoClient&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>The package dependencies are then loaded as follows:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="setup.html#cb124-1"></a><span class="kw">library</span>(DSOpal)</span>
-<span id="cb124-2"><a href="setup.html#cb124-2"></a><span class="kw">library</span>(dsBaseClient)</span>
-<span id="cb124-3"><a href="setup.html#cb124-3"></a><span class="kw">library</span>(dsOmicsClient)</span>
-<span id="cb124-4"><a href="setup.html#cb124-4"></a><span class="kw">library</span>(dsGeoClient)</span></code></pre></div>
+<div id="package_info" class="section level1" number="20">
+<h1><span class="header-section-number">20</span> Creating DataSHIELD packages</h1>
+<p>The procedure for the development of a client-side or a server-side package in DataSHIELD is similar as the procedure of creating packages in native R and RStudio. For the development of a package, the developer will need the R packages <a href="https://cran.r-project.org/web/packages/devtools/readme/README.html">devtools</a> and <a href="https://cran.r-project.org/web/packages/roxygen2/index.html">roxygen2</a>. Having those packages installed and loaded in the R session, the developer should follow five basic steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.2.2/topics/create">Create</a> the package directory: this will create the R and the man folders and the DESCRIPTION file in a specified directory.</p></li>
+<li><p>Add functions: copy the R scripts of the functions developed in the R folder created at step (1).</p></li>
+<li><p>Add documentation: add comments at the beginning of each function to give information to the user on what the function does and how the arguments of the function are used. Those comments are compiled into the correct format for the package documentation. More details can be found in the roxygen2 <a href="https://roxygen2.r-lib.org">documentation</a>.</p></li>
+<li><p>Create the documentation: this automatically adds in the .Rd files to the man directory and a NAMESPACE file to the main package directory. (see the function <a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/document">document</a> in devtools)</p></li>
+<li><p><a href="https://www.rdocumentation.org/packages/devtools/versions/2.3.0/topics/install">Install</a> the development package.</p></li>
+</ol>
+<p>In addition to those steps, the developer can make the package a GitHub repo and allows other developers to commit any further developments and improvements. For more details the reader can have a look on a Git/GitHub <a href="https://kbroman.org/github_tutorial/">guide</a>.</p>
+<p>After the development of a client-server pair of DataSHIELD packages the DataSHIELD Development Team can provide a testing framework where the developed functions and packages are tested including tests related to disclosure protection and if all tests are passed, then the package can be become publicly available for use by the DataSHIELD users. Details for the DataSHIELD testing framework can be found in the DataSHIELD <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/658505761/Testing">Wiki</a>.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="extension-to-ga4gh-and-ega-bamvcf-files.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basic-statistical-analyses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dslite-datashield-implementation-on-local-datasets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tips-and-tricks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

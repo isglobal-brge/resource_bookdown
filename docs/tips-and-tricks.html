@@ -23,14 +23,14 @@
 
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="creating-datashield-packages.html"/>
+<link rel="prev" href="package-info.html"/>
 <link rel="next" href="advancedtechnical-questions.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -290,8 +290,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.5.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#function-parameters-parser"><i class="fa fa-check"></i><b>19.5.1</b> Function Parameters Parser</a></li>
 <li class="chapter" data-level="19.5.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#server-side-environments"><i class="fa fa-check"></i><b>19.5.2</b> Server Side Environments</a></li>
 </ul></li>
+<li class="chapter" data-level="19.6" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#environment-setup-for-datashield-package-development.-a-proposition"><i class="fa fa-check"></i><b>19.6</b> Environment setup for DataSHIELD package development. A proposition</a>
+<ul>
+<li class="chapter" data-level="19.6.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#fandfiles"><i class="fa fa-check"></i><b>19.6.1</b> Folders and files</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="creating-datashield-packages.html"><a href="creating-datashield-packages.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a></li>
+<li class="chapter" data-level="19.7" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-of-a-function"><i class="fa fa-check"></i><b>19.7</b> Development of a function</a>
+<ul>
+<li class="chapter" data-level="19.7.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#testing-of-the-function"><i class="fa fa-check"></i><b>19.7.1</b> Testing of the function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="package-info.html"><a href="package-info.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="21" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>21</b> Tips and tricks</a>
 <ul>
 <li class="chapter" data-level="21.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>21.1</b> How to create a new project into OPAL</a>
@@ -367,17 +375,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r" class="section level3" number="21.1.2">
 <h3><span class="header-section-number">21.1.2</span> Using R</h3>
 <p>A project can be created using the following R code:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="tips-and-tricks.html#cb342-1"></a><span class="kw">library</span>(opalr)</span>
-<span id="cb342-2"><a href="tips-and-tricks.html#cb342-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
-<span id="cb342-3"><a href="tips-and-tricks.html#cb342-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
-<span id="cb342-4"><a href="tips-and-tricks.html#cb342-4"></a></span>
-<span id="cb342-5"><a href="tips-and-tricks.html#cb342-5"></a><span class="co"># A general purpose project, with a data storage</span></span>
-<span id="cb342-6"><a href="tips-and-tricks.html#cb342-6"></a><span class="kw">opal.project_create</span>(o, <span class="st">&quot;projectName&quot;</span>, <span class="dt">database=</span><span class="st">&quot;dbName&quot;</span>)</span>
-<span id="cb342-7"><a href="tips-and-tricks.html#cb342-7"></a></span>
-<span id="cb342-8"><a href="tips-and-tricks.html#cb342-8"></a><span class="co"># A project that can hold only resources and views (no persisted data)</span></span>
-<span id="cb342-9"><a href="tips-and-tricks.html#cb342-9"></a><span class="kw">opal.project_create</span>(o, <span class="st">&quot;projectName&quot;</span>)</span>
-<span id="cb342-10"><a href="tips-and-tricks.html#cb342-10"></a></span>
-<span id="cb342-11"><a href="tips-and-tricks.html#cb342-11"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="tips-and-tricks.html#cb353-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb353-2"><a href="tips-and-tricks.html#cb353-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb353-3"><a href="tips-and-tricks.html#cb353-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
+<span id="cb353-4"><a href="tips-and-tricks.html#cb353-4"></a></span>
+<span id="cb353-5"><a href="tips-and-tricks.html#cb353-5"></a><span class="co"># A general purpose project, with a data storage</span></span>
+<span id="cb353-6"><a href="tips-and-tricks.html#cb353-6"></a><span class="kw">opal.project_create</span>(o, <span class="st">&quot;projectName&quot;</span>, <span class="dt">database=</span><span class="st">&quot;dbName&quot;</span>)</span>
+<span id="cb353-7"><a href="tips-and-tricks.html#cb353-7"></a></span>
+<span id="cb353-8"><a href="tips-and-tricks.html#cb353-8"></a><span class="co"># A project that can hold only resources and views (no persisted data)</span></span>
+<span id="cb353-9"><a href="tips-and-tricks.html#cb353-9"></a><span class="kw">opal.project_create</span>(o, <span class="st">&quot;projectName&quot;</span>)</span>
+<span id="cb353-10"><a href="tips-and-tricks.html#cb353-10"></a></span>
+<span id="cb353-11"><a href="tips-and-tricks.html#cb353-11"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
 <p>See also the other <code>opal.project_*</code> functions.</p>
 </div>
 </div>
@@ -410,19 +418,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r-1" class="section level3" number="21.2.2">
 <h3><span class="header-section-number">21.2.2</span> Using R</h3>
 <p>A resource can be added to a project by a simple function call, assuming that you know how to express the URL to the resource:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="tips-and-tricks.html#cb343-1"></a><span class="kw">library</span>(opalr)</span>
-<span id="cb343-2"><a href="tips-and-tricks.html#cb343-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="st">&quot;administrator&quot;</span>,<span class="st">&quot;password&quot;</span>, </span>
-<span id="cb343-3"><a href="tips-and-tricks.html#cb343-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
-<span id="cb343-4"><a href="tips-and-tricks.html#cb343-4"></a></span>
-<span id="cb343-5"><a href="tips-and-tricks.html#cb343-5"></a><span class="kw">opal.resource_create</span>(o, <span class="st">&quot;RSRC&quot;</span>, <span class="st">&quot;CNSIM3&quot;</span>, </span>
-<span id="cb343-6"><a href="tips-and-tricks.html#cb343-6"></a>  <span class="dt">url =</span> <span class="st">&quot;opal+https://opal-demo.obiba.org/ws/files/projects/RSRC/CNSIM3.zip&quot;</span>, </span>
-<span id="cb343-7"><a href="tips-and-tricks.html#cb343-7"></a>  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="dt">secret =</span> <span class="st">&quot;EeTtQGIob6haio5bx6FUfVvIGkeZJfGq&quot;</span>)</span>
-<span id="cb343-8"><a href="tips-and-tricks.html#cb343-8"></a></span>
-<span id="cb343-9"><a href="tips-and-tricks.html#cb343-9"></a><span class="co"># to test the resource assignment</span></span>
-<span id="cb343-10"><a href="tips-and-tricks.html#cb343-10"></a><span class="kw">opal.assign.resource</span>(o, <span class="st">&quot;client&quot;</span>, <span class="st">&quot;RSRC.CNSIM3&quot;</span>)</span>
-<span id="cb343-11"><a href="tips-and-tricks.html#cb343-11"></a><span class="kw">opal.execute</span>(o, <span class="st">&quot;class(client)&quot;</span>)</span>
-<span id="cb343-12"><a href="tips-and-tricks.html#cb343-12"></a></span>
-<span id="cb343-13"><a href="tips-and-tricks.html#cb343-13"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tips-and-tricks.html#cb354-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb354-2"><a href="tips-and-tricks.html#cb354-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="st">&quot;administrator&quot;</span>,<span class="st">&quot;password&quot;</span>, </span>
+<span id="cb354-3"><a href="tips-and-tricks.html#cb354-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
+<span id="cb354-4"><a href="tips-and-tricks.html#cb354-4"></a></span>
+<span id="cb354-5"><a href="tips-and-tricks.html#cb354-5"></a><span class="kw">opal.resource_create</span>(o, <span class="st">&quot;RSRC&quot;</span>, <span class="st">&quot;CNSIM3&quot;</span>, </span>
+<span id="cb354-6"><a href="tips-and-tricks.html#cb354-6"></a>  <span class="dt">url =</span> <span class="st">&quot;opal+https://opal-demo.obiba.org/ws/files/projects/RSRC/CNSIM3.zip&quot;</span>, </span>
+<span id="cb354-7"><a href="tips-and-tricks.html#cb354-7"></a>  <span class="dt">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="dt">secret =</span> <span class="st">&quot;EeTtQGIob6haio5bx6FUfVvIGkeZJfGq&quot;</span>)</span>
+<span id="cb354-8"><a href="tips-and-tricks.html#cb354-8"></a></span>
+<span id="cb354-9"><a href="tips-and-tricks.html#cb354-9"></a><span class="co"># to test the resource assignment</span></span>
+<span id="cb354-10"><a href="tips-and-tricks.html#cb354-10"></a><span class="kw">opal.assign.resource</span>(o, <span class="st">&quot;client&quot;</span>, <span class="st">&quot;RSRC.CNSIM3&quot;</span>)</span>
+<span id="cb354-11"><a href="tips-and-tricks.html#cb354-11"></a><span class="kw">opal.execute</span>(o, <span class="st">&quot;class(client)&quot;</span>)</span>
+<span id="cb354-12"><a href="tips-and-tricks.html#cb354-12"></a></span>
+<span id="cb354-13"><a href="tips-and-tricks.html#cb354-13"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
 <p>See also the other <code>opal.resource_*</code>functions.</p>
 </div>
 </div>
@@ -453,26 +461,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r-2" class="section level3" number="21.3.2">
 <h3><span class="header-section-number">21.3.2</span> Using R</h3>
 <p>The user can install DataSHIELD R packages from CRAN or GitHub using the following R code:</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="tips-and-tricks.html#cb344-1"></a><span class="kw">library</span>(opalr)</span>
-<span id="cb344-2"><a href="tips-and-tricks.html#cb344-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
-<span id="cb344-3"><a href="tips-and-tricks.html#cb344-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
-<span id="cb344-4"><a href="tips-and-tricks.html#cb344-4"></a></span>
-<span id="cb344-5"><a href="tips-and-tricks.html#cb344-5"></a><span class="co"># CRAN</span></span>
-<span id="cb344-6"><a href="tips-and-tricks.html#cb344-6"></a><span class="kw">dsadmin.install_package</span>(o, <span class="st">&quot;dsBase&quot;</span>)</span>
-<span id="cb344-7"><a href="tips-and-tricks.html#cb344-7"></a><span class="co"># GitHub</span></span>
-<span id="cb344-8"><a href="tips-and-tricks.html#cb344-8"></a><span class="kw">dsadmin.install_github_package</span>(o, <span class="st">&quot;packageName&quot;</span>, <span class="dt">username=</span><span class="st">&quot;orgOrUserName&quot;</span>)</span>
-<span id="cb344-9"><a href="tips-and-tricks.html#cb344-9"></a></span>
-<span id="cb344-10"><a href="tips-and-tricks.html#cb344-10"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="tips-and-tricks.html#cb355-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb355-2"><a href="tips-and-tricks.html#cb355-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb355-3"><a href="tips-and-tricks.html#cb355-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
+<span id="cb355-4"><a href="tips-and-tricks.html#cb355-4"></a></span>
+<span id="cb355-5"><a href="tips-and-tricks.html#cb355-5"></a><span class="co"># CRAN</span></span>
+<span id="cb355-6"><a href="tips-and-tricks.html#cb355-6"></a><span class="kw">dsadmin.install_package</span>(o, <span class="st">&quot;dsBase&quot;</span>)</span>
+<span id="cb355-7"><a href="tips-and-tricks.html#cb355-7"></a><span class="co"># GitHub</span></span>
+<span id="cb355-8"><a href="tips-and-tricks.html#cb355-8"></a><span class="kw">dsadmin.install_github_package</span>(o, <span class="st">&quot;packageName&quot;</span>, <span class="dt">username=</span><span class="st">&quot;orgOrUserName&quot;</span>)</span>
+<span id="cb355-9"><a href="tips-and-tricks.html#cb355-9"></a></span>
+<span id="cb355-10"><a href="tips-and-tricks.html#cb355-10"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
 <p>When developing a new DataSHIELD package, it can be convenient to directly upload the built package archive for being installed on the R server side. This can be done as follow:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="tips-and-tricks.html#cb345-1"></a><span class="kw">library</span>(opalr)</span>
-<span id="cb345-2"><a href="tips-and-tricks.html#cb345-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
-<span id="cb345-3"><a href="tips-and-tricks.html#cb345-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
-<span id="cb345-4"><a href="tips-and-tricks.html#cb345-4"></a></span>
-<span id="cb345-5"><a href="tips-and-tricks.html#cb345-5"></a><span class="co"># build and install the package archive</span></span>
-<span id="cb345-6"><a href="tips-and-tricks.html#cb345-6"></a>packageArchivePath &lt;-<span class="st"> </span>devtools<span class="op">::</span><span class="kw">build</span>(<span class="dt">pkg=</span><span class="st">&quot;/path/to/the/packageName&quot;</span>)</span>
-<span id="cb345-7"><a href="tips-and-tricks.html#cb345-7"></a><span class="kw">dsadmin.install_local_package</span>(o, <span class="dt">path=</span>packageArchivePath)</span>
-<span id="cb345-8"><a href="tips-and-tricks.html#cb345-8"></a></span>
-<span id="cb345-9"><a href="tips-and-tricks.html#cb345-9"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="tips-and-tricks.html#cb356-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb356-2"><a href="tips-and-tricks.html#cb356-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb356-3"><a href="tips-and-tricks.html#cb356-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
+<span id="cb356-4"><a href="tips-and-tricks.html#cb356-4"></a></span>
+<span id="cb356-5"><a href="tips-and-tricks.html#cb356-5"></a><span class="co"># build and install the package archive</span></span>
+<span id="cb356-6"><a href="tips-and-tricks.html#cb356-6"></a>packageArchivePath &lt;-<span class="st"> </span>devtools<span class="op">::</span><span class="kw">build</span>(<span class="dt">pkg=</span><span class="st">&quot;/path/to/the/packageName&quot;</span>)</span>
+<span id="cb356-7"><a href="tips-and-tricks.html#cb356-7"></a><span class="kw">dsadmin.install_local_package</span>(o, <span class="dt">path=</span>packageArchivePath)</span>
+<span id="cb356-8"><a href="tips-and-tricks.html#cb356-8"></a></span>
+<span id="cb356-9"><a href="tips-and-tricks.html#cb356-9"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
 </div>
 </div>
 <div id="how-to-install-r-packages-into-opal-server" class="section level2" number="21.4">
@@ -488,18 +496,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r-3" class="section level3" number="21.4.2">
 <h3><span class="header-section-number">21.4.2</span> Using R</h3>
 <p>The user can install R packages from CRAN, Bioconductor or GitHub using the following R code:</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="tips-and-tricks.html#cb346-1"></a><span class="kw">library</span>(opalr)</span>
-<span id="cb346-2"><a href="tips-and-tricks.html#cb346-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
-<span id="cb346-3"><a href="tips-and-tricks.html#cb346-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
-<span id="cb346-4"><a href="tips-and-tricks.html#cb346-4"></a></span>
-<span id="cb346-5"><a href="tips-and-tricks.html#cb346-5"></a><span class="co"># CRAN</span></span>
-<span id="cb346-6"><a href="tips-and-tricks.html#cb346-6"></a><span class="kw">oadmin.install_package</span>(o, <span class="st">&quot;cranPackageName&quot;</span>)</span>
-<span id="cb346-7"><a href="tips-and-tricks.html#cb346-7"></a><span class="co"># Bioconductor</span></span>
-<span id="cb346-8"><a href="tips-and-tricks.html#cb346-8"></a><span class="kw">oadmin.install_bioconductor_package</span>(o, <span class="st">&quot;biocPackageName&quot;</span>)</span>
-<span id="cb346-9"><a href="tips-and-tricks.html#cb346-9"></a><span class="co"># GitHub</span></span>
-<span id="cb346-10"><a href="tips-and-tricks.html#cb346-10"></a><span class="kw">oadmin.install_github_package</span>(o, <span class="st">&quot;packageName&quot;</span>, <span class="dt">username=</span><span class="st">&quot;orgOrUserName&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;branchOrTagName&quot;</span>)</span>
-<span id="cb346-11"><a href="tips-and-tricks.html#cb346-11"></a></span>
-<span id="cb346-12"><a href="tips-and-tricks.html#cb346-12"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="tips-and-tricks.html#cb357-1"></a><span class="kw">library</span>(opalr)</span>
+<span id="cb357-2"><a href="tips-and-tricks.html#cb357-2"></a>o &lt;-<span class="st"> </span><span class="kw">opal.login</span>(<span class="dt">username=</span><span class="st">&quot;administrator&quot;</span>, <span class="dt">password=</span><span class="st">&quot;password&quot;</span>,</span>
+<span id="cb357-3"><a href="tips-and-tricks.html#cb357-3"></a>                <span class="dt">url=</span><span class="st">&quot;https://opal-demo.obiba.org&quot;</span>)</span>
+<span id="cb357-4"><a href="tips-and-tricks.html#cb357-4"></a></span>
+<span id="cb357-5"><a href="tips-and-tricks.html#cb357-5"></a><span class="co"># CRAN</span></span>
+<span id="cb357-6"><a href="tips-and-tricks.html#cb357-6"></a><span class="kw">oadmin.install_package</span>(o, <span class="st">&quot;cranPackageName&quot;</span>)</span>
+<span id="cb357-7"><a href="tips-and-tricks.html#cb357-7"></a><span class="co"># Bioconductor</span></span>
+<span id="cb357-8"><a href="tips-and-tricks.html#cb357-8"></a><span class="kw">oadmin.install_bioconductor_package</span>(o, <span class="st">&quot;biocPackageName&quot;</span>)</span>
+<span id="cb357-9"><a href="tips-and-tricks.html#cb357-9"></a><span class="co"># GitHub</span></span>
+<span id="cb357-10"><a href="tips-and-tricks.html#cb357-10"></a><span class="kw">oadmin.install_github_package</span>(o, <span class="st">&quot;packageName&quot;</span>, <span class="dt">username=</span><span class="st">&quot;orgOrUserName&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;branchOrTagName&quot;</span>)</span>
+<span id="cb357-11"><a href="tips-and-tricks.html#cb357-11"></a></span>
+<span id="cb357-12"><a href="tips-and-tricks.html#cb357-12"></a><span class="kw">opal.logout</span>(o)</span></code></pre></div>
 
 </div>
 </div>
@@ -509,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="creating-datashield-packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="package-info.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="advancedtechnical-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
