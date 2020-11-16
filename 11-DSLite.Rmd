@@ -180,7 +180,7 @@ The following section contains a proposition on how to setup a whole environment
 
 To speed up the development process, the most practical approach to setting up the folders and files is illustrated on the Figure \@ref(fig:development_proposition1). The idea is to have two folders that contain each one a package, that means one to be used in the client and one on the server (virtualized server on this development approach); outside those two folders there is the testing script that will be used to call the new functions.
 
-```{r development_proposition1, echo=FALSE, fig.cap="Folders and files proposal", out.height= '5%', fig.align='center'}
+```{r development_proposition1, echo=FALSE, fig.cap="Folders and files proposal", out.height= '25%', fig.align='center'}
 knitr::include_graphics("fig/dsliteexample.png")
 ```
 
@@ -192,7 +192,7 @@ RStudio -> File -> New Project... -> New Directory -> R Package
 
 The typical style convention for DataSHIELD is to name the client package as *dsXClient* and the associated server package as *dsX*. The client package will contain the functions that the user will use, those functions will be basically triggers to the server functions, more information about that on the following lines.
 
-## Development of a function
+### Development of a function
 
 There is many information about [DataSHIELD](https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview) and how it works. A very brief introduction will be provided on this section to help.
 
@@ -247,7 +247,6 @@ DSI::datashield.aggregate(conns, as.symbol(cally))
 
 # ASSIGN
 DSI::datashield.assign.expr(conns, name, as.symbol(cally))
-}
 ```
 
 The return of the server function will be passed to the client on a `AGGREGATE` function and it will be assigned to a new object (on the server) on a `ASSIGN` function.
