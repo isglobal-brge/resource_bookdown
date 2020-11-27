@@ -23,9 +23,9 @@ The following section contains an example on how to setup a whole environment to
 
 ### Folders and files {#fandfiles}
 
-To speed up the development process, the most practical approach to setting up the folders and files is illustrated on the Figure \@ref(fig:development_proposition1). The idea is to have two folders that contain each one a package, that means one to be used in the client and one on the server (virtualized server on this development approach); outside those two folders there is the testing script that will be used to call the new functions.
+To speed up the development process, the most practical approach to setting up the folders and files is illustrated on the Figure \@ref(fig:developmentproposition1). The idea is to have two folders that contain each one a package, that means one to be used in the client and one on the server (virtualized server on this development approach); outside those two folders there is the testing script that will be used to call the new functions.
 
-```{r development_proposition1, echo=FALSE, fig.cap="Folders and files proposal", out.height= '55%', fig.align='center'}
+```{r developmentproposition1, echo=FALSE, fig.cap="Folders and files proposal", out.height= '55%', fig.align='center'}
 knitr::include_graphics("fig/dsliteexample.png")
 ```
 
