@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -290,16 +290,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.5.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#function-parameters-parser"><i class="fa fa-check"></i><b>19.5.1</b> Function Parameters Parser</a></li>
 <li class="chapter" data-level="19.5.2" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#server-side-environments"><i class="fa fa-check"></i><b>19.5.2</b> Server Side Environments</a></li>
 </ul></li>
-<li class="chapter" data-level="19.6" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#environment-setup-for-datashield-package-development.-a-proposition"><i class="fa fa-check"></i><b>19.6</b> Environment setup for DataSHIELD package development. A proposition</a>
+</ul></li>
+<li class="chapter" data-level="20" data-path="package-info.html"><a href="package-info.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a>
 <ul>
-<li class="chapter" data-level="19.6.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#fandfiles"><i class="fa fa-check"></i><b>19.6.1</b> Folders and files</a></li>
-</ul></li>
-<li class="chapter" data-level="19.7" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#development-of-a-function"><i class="fa fa-check"></i><b>19.7</b> Development of a function</a>
+<li class="chapter" data-level="20.1" data-path="package-info.html"><a href="package-info.html#example-of-datashield-package-development"><i class="fa fa-check"></i><b>20.1</b> Example of DataSHIELD package development</a>
 <ul>
-<li class="chapter" data-level="19.7.1" data-path="dslite-datashield-implementation-on-local-datasets.html"><a href="dslite-datashield-implementation-on-local-datasets.html#testing-of-the-function"><i class="fa fa-check"></i><b>19.7.1</b> Testing of the function</a></li>
+<li class="chapter" data-level="20.1.1" data-path="package-info.html"><a href="package-info.html#fandfiles"><i class="fa fa-check"></i><b>20.1.1</b> Folders and files</a></li>
+<li class="chapter" data-level="20.1.2" data-path="package-info.html"><a href="package-info.html#development-of-a-function"><i class="fa fa-check"></i><b>20.1.2</b> Development of a function</a></li>
+<li class="chapter" data-level="20.1.3" data-path="package-info.html"><a href="package-info.html#testing-of-the-function"><i class="fa fa-check"></i><b>20.1.3</b> Testing of the function</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="package-info.html"><a href="package-info.html"><i class="fa fa-check"></i><b>20</b> Creating DataSHIELD packages</a></li>
 <li class="chapter" data-level="21" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>21</b> Tips and tricks</a>
 <ul>
 <li class="chapter" data-level="21.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#how-to-create-a-new-project-into-opal"><i class="fa fa-check"></i><b>21.1</b> How to create a new project into OPAL</a>
@@ -356,7 +356,144 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>In addition to those steps, the developer can make the package a GitHub repo and allows other developers to commit any further developments and improvements. For more details the reader can have a look on a Git/GitHub <a href="https://kbroman.org/github_tutorial/">guide</a>.</p>
 <p>After the development of a client-server pair of DataSHIELD packages the DataSHIELD Development Team can provide a testing framework where the developed functions and packages are tested including tests related to disclosure protection and if all tests are passed, then the package can be become publicly available for use by the DataSHIELD users. Details for the DataSHIELD testing framework can be found in the DataSHIELD <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/pages/658505761/Testing">Wiki</a>.</p>
+<div id="example-of-datashield-package-development" class="section level2" number="20.1">
+<h2><span class="header-section-number">20.1</span> Example of DataSHIELD package development</h2>
+<p>The following section contains an example on how to setup a whole environment to develop DataSHIELD packages using DSLite and RStudio, as well as a guided illustration of how to create a new functionality. It is targeted at new developers of DataSHIELD packages that need some guidance on the first steps. Please note that anything described on this section is just a template and can be modified and adapted to anyone liking, take it as a starting point.</p>
+<div id="fandfiles" class="section level3" number="20.1.1">
+<h3><span class="header-section-number">20.1.1</span> Folders and files</h3>
+<p>To speed up the development process, the most practical approach to setting up the folders and files is illustrated on the Figure @ref(fig:development_proposition1). The idea is to have two folders that contain each one a package, that means one to be used in the client and one on the server (virtualized server on this development approach); outside those two folders there is the testing script that will be used to call the new functions.</p>
+<div class="figure" style="text-align: center">
+<p class="caption">
+(#fig:development_proposition1)Folders and files proposal
+</p>
+<img src="fig/dsliteexample.png" alt="Folders and files proposal" width="96" height="55%" />
+</div>
+<p>Inside each folder, a typical R package structure is to be found. This is further detailed <a href="package-info.html#package_info">here</a> and <a href="https://r-pkgs.org/">here</a>. If the reader does not have prior experience on R package development, there is the option of setting up a package folder through:</p>
+<pre><code>RStudio -&gt; File -&gt; New Project... -&gt; New Directory -&gt; R Package </code></pre>
+<p>The typical style convention for DataSHIELD is to name the client package as <em>dsXClient</em> and the associated server package as <em>dsX</em>. The client package will contain the functions that the user will use, those functions will be basically triggers to the server functions, more information about that on the following lines.</p>
+</div>
+<div id="development-of-a-function" class="section level3" number="20.1.2">
+<h3><span class="header-section-number">20.1.2</span> Development of a function</h3>
+<p>There is many information about <a href="https://data2knowledge.atlassian.net/wiki/spaces/DSDEV/overview">DataSHIELD</a> and how it works. A very brief introduction will be provided on this section to help.</p>
+<p>When developing a function, we have to develop both the server function and the client function. The aim of the client function (your RStudio instance) is to send an instruction to the server that will or will not have a return to you; and the aim of the server function is to perform an action(s) on an object that it contains, and make sure that if there is an output to the client, it is non disclosive.</p>
+<p>We have already described a classification between functions that do and do not have outputs to the client, in DataSHIELD they are called <code>AGGREGATE</code> functions (output to the client) and <code>ASSIGN</code> functions (NO output to the client).</p>
+<p>It is important to always have in mind that the objects that are being manipulated only exist on the servers, and not on the client, with that in mind let’s take a look at a basic client function.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="package-info.html#cb343-1"></a>ds.basicFunction &lt;-<span class="st"> </span><span class="cf">function</span>(object, option) {</span>
+<span id="cb343-2"><a href="package-info.html#cb343-2"></a>  </span>
+<span id="cb343-3"><a href="package-info.html#cb343-3"></a>}</span></code></pre></div>
+<p>This is a basic function that will modify an object on the server that has one option parameter. Before writing any more code, let’s take a minute to understand that the <code>object</code> variable and <code>option</code> variable will be strings, since they do not exist on the client side. The <code>object</code> variable is the name of the object that we want to modify on the server, and the <code>option</code> variable is a string that in this example will refer to a bool (TRUE/FALSE).</p>
+<p>Let’s now build the function call that will be done on the client.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="package-info.html#cb344-1"></a>ds.basicFunction &lt;-<span class="st"> </span><span class="cf">function</span>(object, option) {</span>
+<span id="cb344-2"><a href="package-info.html#cb344-2"></a> </span>
+<span id="cb344-3"><a href="package-info.html#cb344-3"></a>  cally &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;basicFunctionDS(&quot;</span>, object, <span class="st">&quot;, &quot;</span>, option, <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb344-4"><a href="package-info.html#cb344-4"></a>  <span class="kw">return</span>(cally)</span>
+<span id="cb344-5"><a href="package-info.html#cb344-5"></a>   </span>
+<span id="cb344-6"><a href="package-info.html#cb344-6"></a>}</span>
+<span id="cb344-7"><a href="package-info.html#cb344-7"></a></span>
+<span id="cb344-8"><a href="package-info.html#cb344-8"></a><span class="kw">ds.basicFunction</span>(<span class="st">&quot;dataset1&quot;</span>, <span class="st">&quot;FALSE&quot;</span>)</span></code></pre></div>
+<pre><code>[1] &quot;basicFunctionDS(dataset1, FALSE)&quot;</code></pre>
+<p>As it can be seen, we have now created a string that contains a function call that we want to execute on the server, the only thing left to do is to send this instruction to the server. Before doing that let’s make clear the style used here. For the client functions we use ds.X and the associated server function is named XDS. Now we can use as example the following function that we have created on our server package.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="package-info.html#cb346-1"></a>basicFunctionDS &lt;-<span class="st"> </span><span class="cf">function</span>(object, option){</span>
+<span id="cb346-2"><a href="package-info.html#cb346-2"></a>  <span class="cf">if</span>(option){</span>
+<span id="cb346-3"><a href="package-info.html#cb346-3"></a>    object &lt;-<span class="st"> </span><span class="kw">sum</span>(object)</span>
+<span id="cb346-4"><a href="package-info.html#cb346-4"></a>  }</span>
+<span id="cb346-5"><a href="package-info.html#cb346-5"></a>  <span class="cf">else</span>{</span>
+<span id="cb346-6"><a href="package-info.html#cb346-6"></a>    object &lt;-<span class="st"> </span><span class="kw">mean</span>(object)</span>
+<span id="cb346-7"><a href="package-info.html#cb346-7"></a>  }</span>
+<span id="cb346-8"><a href="package-info.html#cb346-8"></a>  <span class="kw">return</span>(object)</span>
+<span id="cb346-9"><a href="package-info.html#cb346-9"></a>}</span></code></pre></div>
+<p>What needs to be noted about the example server function is 1) Here we are using the input arguments of the functions as R objects, since this will be executed on a server that is expected to have them. On this particular example <code>object</code> must be a numerical vector and <code>option</code> a bool (this is a very simple example with no class checking of the arguments); 2) We have a return, so this can be an <code>AGGREGATE</code> or <code>ASSIGN</code> function, more information on that in the following lines, no need to worry at this stage.</p>
+<p>Having explained the server function, let’s now retake the client function. We now have our server function defined and what is left to be done is to actually call it. To do so we make use of the DSI package, at this point is when we have to decide if the function call will be <code>AGGREGATE</code> or <code>ASSIGN</code>.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="package-info.html#cb347-1"></a><span class="co"># AGGREGATE</span></span>
+<span id="cb347-2"><a href="package-info.html#cb347-2"></a>DSI<span class="op">::</span><span class="kw">datashield.aggregate</span>(conns, <span class="kw">as.symbol</span>(cally))</span>
+<span id="cb347-3"><a href="package-info.html#cb347-3"></a></span>
+<span id="cb347-4"><a href="package-info.html#cb347-4"></a><span class="co"># ASSIGN</span></span>
+<span id="cb347-5"><a href="package-info.html#cb347-5"></a>DSI<span class="op">::</span><span class="kw">datashield.assign.expr</span>(conns, name, <span class="kw">as.symbol</span>(cally))</span></code></pre></div>
+<p>The return of the server function will be passed to the client on a <code>AGGREGATE</code> function and it will be assigned to a new object (on the server) on a <code>ASSIGN</code> function.</p>
+<p>If we want to create a function that will have an output to the client, we use <code>DSI::datashield.aggregate</code>, this function needs a connection object and the previously formatted string; while if we just want to create a new object on the server we use <code>DSI::datashield.assign.expr</code>, this function also needs the connection object as well as a string (<code>name</code> on the example) that indicates the name the new object will have on the server. Let’s say for this example we are creating a <code>AGGREGATE</code> function, our final function will look like this:</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="package-info.html#cb348-1"></a>ds.basicFunction &lt;-<span class="st"> </span><span class="cf">function</span>(object, option, <span class="dt">datasources =</span> <span class="ot">NULL</span>) {</span>
+<span id="cb348-2"><a href="package-info.html#cb348-2"></a> </span>
+<span id="cb348-3"><a href="package-info.html#cb348-3"></a>  <span class="cf">if</span> (<span class="kw">is.null</span>(datasources)) {</span>
+<span id="cb348-4"><a href="package-info.html#cb348-4"></a>    datasources &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.connections_find</span>()</span>
+<span id="cb348-5"><a href="package-info.html#cb348-5"></a>  }</span>
+<span id="cb348-6"><a href="package-info.html#cb348-6"></a>  </span>
+<span id="cb348-7"><a href="package-info.html#cb348-7"></a>  cally &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;basicFunctionDS(&quot;</span>, object, <span class="st">&quot;, &quot;</span>, option, <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb348-8"><a href="package-info.html#cb348-8"></a>  result &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.aggregate</span>(datasources, <span class="kw">as.symbol</span>(cally))</span>
+<span id="cb348-9"><a href="package-info.html#cb348-9"></a>  </span>
+<span id="cb348-10"><a href="package-info.html#cb348-10"></a>  <span class="kw">return</span>(result)</span>
+<span id="cb348-11"><a href="package-info.html#cb348-11"></a>  </span>
+<span id="cb348-12"><a href="package-info.html#cb348-12"></a>}</span></code></pre></div>
+<p>On this final example, there is already the handling of the connection object, which is done using the DSI package as well.</p>
+<p>Now that we have both our client and server functions ready, we are almost ready to test them using DSLite, before doing that there are still a couple of steps to be done.</p>
+<p>Document using roxygen both functions, to do so go to:</p>
+<pre><code>Code -&gt; Insert Roxygen Skeleton</code></pre>
+<p>And complete the header that has been added to the funcion (this step has to be done for both client and server functions).</p>
+<p>For both the client and server packages, the NAMESPACE has to be updated to declare this new functions, to do so, find both folders on the RStudio Files panel and do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Go inside dsX folder on the files panel in RStudio.</li>
+<li><code>More -&gt; Set As Working Directory</code></li>
+<li>On the RStudio Console run the following command: <code>devtools::document()</code></li>
+<li>Repeat 1, 2 and 3 on the dsXClient folder</li>
+</ol>
+<p>There is just one step left to be done, on DataSHIELD server packages there has to be a file that states all the funcions of the package and whether they are <code>AGGREGATE</code> or <code>ASSIGN</code> functions. This file has to be named <code>DATASHIELD</code> (no extension) and has to be placed on <code>dsX/inst/</code>. The structure of this file is the following:</p>
+<pre><code>AggregateMethods:
+   basicFunctionDS,
+   basicFunction2DS
+AssignMethods:
+   assignFunctionDS,
+   assignFunction2DS</code></pre>
+<p>On our example it would just be:</p>
+<pre><code>AggregateMethods:
+   basicFunctionDS
+AssignMethods:</code></pre>
+</div>
+<div id="testing-of-the-function" class="section level3" number="20.1.3">
+<h3><span class="header-section-number">20.1.3</span> Testing of the function</h3>
+<p>We are now ready to test our new function using DSLite. This will be done from the testing script that we described when talking about the <a href="package-info.html#fandfiles">folders and files</a>.</p>
+<p>On this script, we have to achieve the following:</p>
+<ol style="list-style-type: decimal">
+<li>Install the packages we are developing</li>
+<li>Create (or load) test data</li>
+<li>Create a virtualized server using DSLite</li>
+<li>Put the base DataSHIELD package and our new package inside the server</li>
+<li>Put the test data inside the server</li>
+<li>Login into the virtualized server</li>
+<li>Execute the new function and see how it behaves</li>
+</ol>
+<p>To simplify the explanation, an example script will now be shown with some comments on it to guide the reader.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="package-info.html#cb352-1"></a><span class="co"># Make sure the working directory is the test script</span></span>
+<span id="cb352-2"><a href="package-info.html#cb352-2"></a><span class="kw">setwd</span>(<span class="kw">dirname</span>(rstudioapi<span class="op">::</span><span class="kw">getActiveDocumentContext</span>()<span class="op">$</span>path))</span>
+<span id="cb352-3"><a href="package-info.html#cb352-3"></a><span class="co"># Install the current version of both the client and server packages found locally</span></span>
+<span id="cb352-4"><a href="package-info.html#cb352-4"></a>devtools<span class="op">::</span><span class="kw">install</span>(<span class="st">&quot;./dsX&quot;</span>)</span>
+<span id="cb352-5"><a href="package-info.html#cb352-5"></a>devtools<span class="op">::</span><span class="kw">install</span>(<span class="st">&quot;./dsXClient&quot;</span>)</span>
+<span id="cb352-6"><a href="package-info.html#cb352-6"></a></span>
+<span id="cb352-7"><a href="package-info.html#cb352-7"></a><span class="co"># Load all the required packages</span></span>
+<span id="cb352-8"><a href="package-info.html#cb352-8"></a><span class="kw">library</span>(dsBase)</span>
+<span id="cb352-9"><a href="package-info.html#cb352-9"></a><span class="kw">library</span>(dsBaseClient)</span>
+<span id="cb352-10"><a href="package-info.html#cb352-10"></a><span class="kw">library</span>(resourcer)</span>
+<span id="cb352-11"><a href="package-info.html#cb352-11"></a><span class="kw">library</span>(DSLite)</span>
+<span id="cb352-12"><a href="package-info.html#cb352-12"></a><span class="kw">library</span>(dsX)</span>
+<span id="cb352-13"><a href="package-info.html#cb352-13"></a><span class="kw">library</span>(dsXClient)</span>
+<span id="cb352-14"><a href="package-info.html#cb352-14"></a></span>
+<span id="cb352-15"><a href="package-info.html#cb352-15"></a><span class="co"># Create test numerical vector</span></span>
+<span id="cb352-16"><a href="package-info.html#cb352-16"></a>test_data &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">lambda =</span> <span class="dv">10</span>)</span>
+<span id="cb352-17"><a href="package-info.html#cb352-17"></a></span>
+<span id="cb352-18"><a href="package-info.html#cb352-18"></a><span class="co"># Create virtualized server with DSLite, assign everything needed on it</span></span>
+<span id="cb352-19"><a href="package-info.html#cb352-19"></a>dslite.server &lt;-<span class="st"> </span><span class="kw">newDSLiteServer</span>(<span class="dt">tables=</span><span class="kw">list</span>(<span class="dt">exposures =</span> test_data),</span>
+<span id="cb352-20"><a href="package-info.html#cb352-20"></a>                                 <span class="dt">config =</span> DSLite<span class="op">::</span><span class="kw">defaultDSConfiguration</span>(<span class="dt">include=</span><span class="kw">c</span>(<span class="st">&quot;dsBase&quot;</span>, <span class="st">&quot;dsX&quot;</span>)))</span>
+<span id="cb352-21"><a href="package-info.html#cb352-21"></a></span>
+<span id="cb352-22"><a href="package-info.html#cb352-22"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb352-23"><a href="package-info.html#cb352-23"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;server1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;dslite.server&quot;</span>, <span class="dt">table =</span> <span class="st">&quot;exposures&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;DSLiteDriver&quot;</span>)</span>
+<span id="cb352-24"><a href="package-info.html#cb352-24"></a>logindata.dslite &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb352-25"><a href="package-info.html#cb352-25"></a><span class="co"># Login to the virtualized server</span></span>
+<span id="cb352-26"><a href="package-info.html#cb352-26"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata.dslite, <span class="dt">assign=</span>T, <span class="dt">symbol =</span> <span class="st">&quot;exposures&quot;</span>)</span>
+<span id="cb352-27"><a href="package-info.html#cb352-27"></a></span>
+<span id="cb352-28"><a href="package-info.html#cb352-28"></a><span class="co"># Test the function</span></span>
+<span id="cb352-29"><a href="package-info.html#cb352-29"></a><span class="kw">ds.basicFunction</span>(<span class="st">&quot;exposures&quot;</span>, <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>With this complete example understood, one must feel now ready to start developing new features for DataSHIELD. Once a package has been developed using DSLite, it should be tested on a real instance of Opal before releasing it.</p>
 
+</div>
+</div>
 </div>
             </section>
 
