@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-01" />
+<meta name="date" content="2020-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -527,21 +527,17 @@ Figure 5.3: Tables available in the SURVIVAL project from our Opal example (<a h
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="datashield.html#cb55-1"></a><span class="kw">library</span>(DSOpal)</span>
 <span id="cb55-2"><a href="datashield.html#cb55-2"></a>builder &lt;-<span class="st"> </span><span class="kw">newDSLoginBuilder</span>()</span>
 <span id="cb55-3"><a href="datashield.html#cb55-3"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb55-4"><a href="datashield.html#cb55-4"></a>               <span class="dt">user =</span> <span class="st">&quot;administrator&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
+<span id="cb55-4"><a href="datashield.html#cb55-4"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
 <span id="cb55-5"><a href="datashield.html#cb55-5"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb55-6"><a href="datashield.html#cb55-6"></a>               <span class="dt">user =</span> <span class="st">&quot;administrator&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
+<span id="cb55-6"><a href="datashield.html#cb55-6"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
 <span id="cb55-7"><a href="datashield.html#cb55-7"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study3&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb55-8"><a href="datashield.html#cb55-8"></a>               <span class="dt">user =</span> <span class="st">&quot;administrator&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
+<span id="cb55-8"><a href="datashield.html#cb55-8"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>)</span>
 <span id="cb55-9"><a href="datashield.html#cb55-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
 <span id="cb55-10"><a href="datashield.html#cb55-10"></a>logindata</span></code></pre></div>
-<pre><code>  server                         url table resource     driver
-1 study1 https://opal-demo.obiba.org                OpalDriver
-2 study2 https://opal-demo.obiba.org                OpalDriver
-3 study3 https://opal-demo.obiba.org                OpalDriver
-           user password token options
-1 administrator password              
-2 administrator password              
-3 administrator password              </code></pre>
+<pre><code>  server                         url table resource     driver   user password token options
+1 study1 https://opal-demo.obiba.org                OpalDriver dsuser password              
+2 study2 https://opal-demo.obiba.org                OpalDriver dsuser password              
+3 study3 https://opal-demo.obiba.org                OpalDriver dsuser password              </code></pre>
 <p>Then we perform login into each of the analysis servers and assign for each of them a different table with the same R symbol name:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="datashield.html#cb57-1"></a>conns &lt;-<span class="st"> </span><span class="kw">datashield.login</span>(logindata)</span>
 <span id="cb57-2"><a href="datashield.html#cb57-2"></a><span class="kw">datashield.assign.table</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;D&quot;</span>, </span>
