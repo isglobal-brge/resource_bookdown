@@ -113,11 +113,11 @@ First we build a connection object with user credentials and the location of the
 library(DSOpal)
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
-               user = "administrator", password = "password")
+               user = "dsuser", password = "password")
 builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
-               user = "administrator", password = "password")
+               user = "dsuser", password = "password")
 builder$append(server = "study3", url = "https://opal-demo.obiba.org", 
-               user = "administrator", password = "password")
+               user = "dsuser", password = "password")
 logindata <- builder$build()
 logindata
 ```
