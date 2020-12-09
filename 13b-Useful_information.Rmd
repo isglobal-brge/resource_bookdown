@@ -32,29 +32,24 @@ We received a number of question when submitting our paper to Plos Comp Biology 
 
 **Answer**: The example of the PLINK resource (i.e. running PLINK through SSH) is put in practive by a using a SSH server in a docker container: the possible actions are limited to the available commands and data in this container for the user that connects to the SSH server (which itself has limited rights). Extra security could be added with setting up an AppArmor constrained environment. This illustrates that the security enforcement is possible but needs to be thought ahead of deploying access to such a resource.
 
-**Comment 8**: You state that the disclosure control on big data is often more relaxed. In practice we do not encounter this relaxation. We are very keen on analysing data outside our facility but are bound to the current contracts regarding data transfer or access agreements which take a lot of time to arrange.
-How can we make sure when you offer more open data in a way that it will be legally feasible to access the data without signing a data transfer or large access agreement?
-In other words, is it practically feasible to do analysis in this way regarding the juridical implications?
-Answer: ??
-
-**Comment 9**: Maybe less dependencies in the resourcer package?
+**Comment 8**: Maybe less dependencies in the resourcer package?
 
 **Answer**: We have tried to find a balance between showing out-of-the-box capabilities of various types of resources and not overloading the package. Note that most of the dependencies are suggestions and are not required at installation time. Since the review of the paper, several additional resource extensions have been developed to access less common or more specific resources (Dremio, HL7 FHIR, S3).
 
-**Comment 10**: When the interface of a dependency is changed the package needs to be changed as well.
+**Comment 9**: When the interface of a dependency is changed the package needs to be changed as well.
 
 **Answer**: The resourcer package dependencies are well established packages (DBI, tidyverse etc.) that should not change in the near future. More experimental ones (ODBC, aws.s3) are proposed as additional packages.
 
-**Comment 11**: Think of a way to delegate the authorisation and authentication back to the resource owner. We would propose to change the way of passing credentials in the resource.
+**Comment 10**: Think of a way to delegate the authorisation and authentication back to the resource owner. We would propose to change the way of passing credentials in the resource.
 
 **Answer**: The resource owner also owns the resource definition in the Opal server.
 
-**Comment 12**: Is it possible to restrict the usage of certain resources? For example, prohibit the use of resources.
+**Comment 11**: Is it possible to restrict the usage of certain resources? For example, prohibit the use of resources.
 
 **Answer**: The resource usage requires user/group permission to be set up in Opal. In addition to that, the credentials used to access the resource can be permanently or temporarily invalidated by the resource owner.
 
-**Comment 13**: It would be nice to have some way of enforcing the metadata which is tight toi the data to be correct. This is often the problem with longitudinal data that metadata over all columns should be correct. It is likely that this also yields for big data structures that are analysed in a pooled manner. How do you handle multiple versions of VCF for example?
+**Comment 12**: It would be nice to have some way of enforcing the metadata which is tight toi the data to be correct. This is often the problem with longitudinal data that metadata over all columns should be correct. It is likely that this also yields for big data structures that are analysed in a pooled manner. How do you handle multiple versions of VCF for example?
 
-**Answer**: This is a good question without a clear answer so far. We will work on this in the future and provide examples when possible.
+**Answer**: This is a data harmonization issue that is usually  addressed before the analysis. Data format validation, if needed, can also be performed by the analyst using DataSHIELD functions. Considering having different versions of VCF we aim to harmonize data by first doing imputation and solving issues concerning genomic strand and file format (PMID: 25495213).
 --------------------------------------------------------------------
 
