@@ -145,9 +145,6 @@ ega_url <- get_EGA_url("EGAF00001753756", "chr21", 1, 100)
 ega_url
 ```
 
-This can be a little bit tricky. If so, this can be done using the [API as previously described](#Manual-EGA).
-
-
 Then, the R code to create this resource in OPAL is:
 
 ```{r eval = FALSE}
