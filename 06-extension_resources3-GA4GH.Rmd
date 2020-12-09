@@ -76,21 +76,34 @@ knitr::include_graphics("fig/opal_resource_htsgetEGA3.png")
 #### GA4GH
 
 
-A GA4GH htsget  can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL where the genomic data file is located that in our case is:
+A GA4GH htsget  can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL. To automate this, a function exists on `dsOmicsClient` that creates the URLs, this function takes the following parameters:
+
++ url: URL of the server
++ id: ID of the file on the server
++ chr: Chromosome to filter (encoding is server dependant)
++ start: Start position to filter
++ end: End position to filter
++ type: Type of file (VCF/BAM)
 
 ```{r eval=FALSE}
-# VCF FILES
-hostURL/reads/fileID?format=BAM&referenceName=regName&start=start&end=end
-
-Example: https://htsget.ga4gh.org/reads/giab.NA12878.NIST7035.2?format=BAM&referenceName=chr21&start=1&end=20000000
-
 # BAM FILES
-hostURL/variants/fileID?format=VCF&referenceName=regName&start=start&end=end
+bam_url <- get_ga4gh_url(url = "https://htsget.ga4gh.org",
+              id = "giab.NA12878.NIST7035.2",
+              chr = "chr21",
+              start = 1,
+              end = 20000000,
+              type = "BAM")
+bam_url
 
-Example: https://htsget.ga4gh.org/variants/1000genomes.phase1.chr1?format=VCF&referenceName=1&start=15000&end=16000
+# VCF FILES
+vcf_url <- get_ga4gh_url(url = "https://htsget.ga4gh.org",
+              id = "1000genomes.phase1.chr1",
+              chr = "1",
+              start = 15000,
+              end = 16000,
+              type = "VCF")
+vcf_url
 ```
-
-This can be a little bit tricky. If so, this can be done using the [API as previously described](#Manual-GA4GH).
 
 
 Then, the R code to create this resource from the VCF file in OPAL is:
@@ -101,12 +114,17 @@ library(opalr)
 o <- opal.login("administrator","password", 
                 url="https://opal-demo.obiba.org")
 
-opal.resource_create(o, "RSRC", " ga4gh_1000g", 
-  url = "https://htsget.ga4gh.org/variants/1000genomes.phase1.chr1?format=VCF&referenceName=1&start=15000&end=16000", 
+opal.resource_create(o, "RSRC", "ga4gh_1000g", 
+  url = vcf_url
   format = "GA4GHVCF")
 
+opal.resource_create(o, "RSRC", "giab", 
+  url = bam_url
+  format = "GA4GHBAM")
+
 # to test the resource assignment
-opal.assign.resource(o, "client", "RSRC. ga4gh_1000g")
+opal.assign.resource(o, "client", "RSRC.ga4gh_1000g")
+opal.assign.resource(o, "client", "RSRC.giab")
 opal.execute(o, "class(client)")
 
 opal.logout(o)
@@ -114,13 +132,17 @@ opal.logout(o)
 
 #### EGA
 
-A EGA database can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL where the genomic data file is located that in our case is:
+A EGA database can be added to a given OPAL project by a simple function call. This process requires to exactly write the the URL where the genomic data file is located. To automate this, a function exists on `dsOmicsClient` that creates the URLs, this function takes the following parameters:
+
++ id: ID of the EGA file
++ chr: Chromosome to filter (encoding is file dependant)
++ start: Start position to filter
++ end: End position to filter
 
 ```{r eval=FALSE}
 # Same URL style for BAM and VCF
-https://ega.ebi.ac.uk:8052/elixir/tickets/tickets/fileID?referenceName=refName&start=start&end=end
-
-Example: https://ega.ebi.ac.uk:8052/elixir/tickets/tickets/EGAF00001753756?referenceName=chr21&start=1&end=100
+ega_url <- get_EGA_url("EGAF00001753756", "chr21", 1, 100)
+ega_url
 ```
 
 This can be a little bit tricky. If so, this can be done using the [API as previously described](#Manual-EGA).
@@ -134,7 +156,7 @@ o <- opal.login("administrator","password",
                 url="https://opal-demo.obiba.org")
 
 opal.resource_create(o, "RSRC", "EGA", 
-  url = "https://ega.ebi.ac.uk:8052/elixir/tickets/tickets/EGAF00001753756?referenceName=chr21&start=1&end=100", 
+  url = ega_url
   format = "EGAhtsgetBAM", # format = "EGAhtsgetVCF" for VCF files
   identity = "ega-test-data@ebi.ac.uk", # This is the test user
   secret = "egarocks" # This is the test password
