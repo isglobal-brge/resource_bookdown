@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD</title>
-  <meta name="description" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <title>15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD</title>
+  <meta name="description" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta property="og:title" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD" />
+  <meta name="twitter:title" content="15 Epigenome-wide association analysis (EWAS) | Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD" />
   
   
   
 
 
 
-<meta name="date" content="2020-12-03" />
+<meta name="date" content="2021-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating privacy-protected non-disclosive big data analyses of data from different resources with R and DataSHIELD</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Orchestrating privacy-protected big data analyses of data from different resources with R and DataSHIELD</a>
           </h1>
         </div>
 
@@ -350,25 +350,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have downloaded data from <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> corresponding to the accesion number GSE66351 which includes DNA methylation profiling (Illumina 450K array) of 190 individuals. Data corresponds to CpGs beta values measured in the superior temporal gyrus and prefrontal cortex brain regions of patients with Alzheimer’s. Data have been downloaded using <em><a href="https://bioconductor.org/packages/3.11/GEOquery">GEOquery</a></em> package that gets GEO data as <code>ExpressionSet</code> objects. Researchers who are not familiar with <code>ExpressionSet</code>s can read <a href="BioC.html#BioC">this Section</a>. Notice that data are encoded as beta-values that ensure data harmonization across studies.</p>
 <p>In order to illustrate how to perform data analyses using federated data, we have split the data into two <code>ExpressionSet</code>s having 100 and 90 samples as if they were two different studies. Figure <a href="resources.html#fig:testResources">6.2</a> shows the two resources defined for both studies (GSE66351_1 and GSE66351_2)</p>
 <p>In order to perform omic data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the <code>as.resource.object()</code> function</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="epigenome-wide-association-analysis-ewas.html#cb170-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
-<span id="cb170-2"><a href="epigenome-wide-association-analysis-ewas.html#cb170-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb170-3"><a href="epigenome-wide-association-analysis-ewas.html#cb170-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb170-4"><a href="epigenome-wide-association-analysis-ewas.html#cb170-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb170-5"><a href="epigenome-wide-association-analysis-ewas.html#cb170-5"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
-<span id="cb170-6"><a href="epigenome-wide-association-analysis-ewas.html#cb170-6"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
-<span id="cb170-7"><a href="epigenome-wide-association-analysis-ewas.html#cb170-7"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
-<span id="cb170-8"><a href="epigenome-wide-association-analysis-ewas.html#cb170-8"></a></span>
-<span id="cb170-9"><a href="epigenome-wide-association-analysis-ewas.html#cb170-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
-<span id="cb170-10"><a href="epigenome-wide-association-analysis-ewas.html#cb170-10"></a></span>
-<span id="cb170-11"><a href="epigenome-wide-association-analysis-ewas.html#cb170-11"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb170-12"><a href="epigenome-wide-association-analysis-ewas.html#cb170-12"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
-<span id="cb170-13"><a href="epigenome-wide-association-analysis-ewas.html#cb170-13"></a></span>
-<span id="cb170-14"><a href="epigenome-wide-association-analysis-ewas.html#cb170-14"></a></span>
-<span id="cb170-15"><a href="epigenome-wide-association-analysis-ewas.html#cb170-15"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
-<span id="cb170-16"><a href="epigenome-wide-association-analysis-ewas.html#cb170-16"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb170-17"><a href="epigenome-wide-association-analysis-ewas.html#cb170-17"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="epigenome-wide-association-analysis-ewas.html#cb174-1"></a>builder &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">newDSLoginBuilder</span>()</span>
+<span id="cb174-2"><a href="epigenome-wide-association-analysis-ewas.html#cb174-2"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study1&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb174-3"><a href="epigenome-wide-association-analysis-ewas.html#cb174-3"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb174-4"><a href="epigenome-wide-association-analysis-ewas.html#cb174-4"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_1&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb174-5"><a href="epigenome-wide-association-analysis-ewas.html#cb174-5"></a>builder<span class="op">$</span><span class="kw">append</span>(<span class="dt">server =</span> <span class="st">&quot;study2&quot;</span>, <span class="dt">url =</span> <span class="st">&quot;https://opal-demo.obiba.org&quot;</span>, </span>
+<span id="cb174-6"><a href="epigenome-wide-association-analysis-ewas.html#cb174-6"></a>               <span class="dt">user =</span> <span class="st">&quot;dsuser&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;password&quot;</span>, </span>
+<span id="cb174-7"><a href="epigenome-wide-association-analysis-ewas.html#cb174-7"></a>               <span class="dt">resource =</span> <span class="st">&quot;RSRC.GSE66351_2&quot;</span>, <span class="dt">driver =</span> <span class="st">&quot;OpalDriver&quot;</span>)</span>
+<span id="cb174-8"><a href="epigenome-wide-association-analysis-ewas.html#cb174-8"></a></span>
+<span id="cb174-9"><a href="epigenome-wide-association-analysis-ewas.html#cb174-9"></a>logindata &lt;-<span class="st"> </span>builder<span class="op">$</span><span class="kw">build</span>()</span>
+<span id="cb174-10"><a href="epigenome-wide-association-analysis-ewas.html#cb174-10"></a></span>
+<span id="cb174-11"><a href="epigenome-wide-association-analysis-ewas.html#cb174-11"></a>conns &lt;-<span class="st"> </span>DSI<span class="op">::</span><span class="kw">datashield.login</span>(<span class="dt">logins =</span> logindata, <span class="dt">assign =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb174-12"><a href="epigenome-wide-association-analysis-ewas.html#cb174-12"></a>                               <span class="dt">symbol =</span> <span class="st">&quot;res&quot;</span>)</span>
+<span id="cb174-13"><a href="epigenome-wide-association-analysis-ewas.html#cb174-13"></a></span>
+<span id="cb174-14"><a href="epigenome-wide-association-analysis-ewas.html#cb174-14"></a></span>
+<span id="cb174-15"><a href="epigenome-wide-association-analysis-ewas.html#cb174-15"></a><span class="co"># Assign to the original R class (e.g ExpressionSet)</span></span>
+<span id="cb174-16"><a href="epigenome-wide-association-analysis-ewas.html#cb174-16"></a><span class="kw">datashield.assign.expr</span>(conns, <span class="dt">symbol =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb174-17"><a href="epigenome-wide-association-analysis-ewas.html#cb174-17"></a>                       <span class="dt">expr =</span> <span class="kw">quote</span>(<span class="kw">as.resource.object</span>(res)))</span></code></pre></div>
 <p>Now, we can see that the resources are actually loaded into the R servers as their original class</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="epigenome-wide-association-analysis-ewas.html#cb171-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="epigenome-wide-association-analysis-ewas.html#cb175-1"></a><span class="kw">ds.class</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;ExpressionSet&quot;
 attr(,&quot;package&quot;)
@@ -379,69 +379,43 @@ $study2
 attr(,&quot;package&quot;)
 [1] &quot;Biobase&quot;</code></pre>
 <p>Then, some Bioconductor-type functions can be use to return non-disclosive information of <code>ExpressionSet</code>s from each server to the client, using similar functions as those defined in the <code>dsBaseClient</code> package. For example, feature names can be returned by</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="epigenome-wide-association-analysis-ewas.html#cb173-1"></a>fn &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;methy&quot;</span>)</span>
-<span id="cb173-2"><a href="epigenome-wide-association-analysis-ewas.html#cb173-2"></a><span class="kw">lapply</span>(fn, head)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="epigenome-wide-association-analysis-ewas.html#cb177-1"></a>fn &lt;-<span class="st"> </span><span class="kw">ds.featureNames</span>(<span class="st">&quot;methy&quot;</span>)</span>
+<span id="cb177-2"><a href="epigenome-wide-association-analysis-ewas.html#cb177-2"></a><span class="kw">lapply</span>(fn, head)</span></code></pre></div>
 <pre><code>$study1
-[1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot;
-[6] &quot;cg00000289&quot;
+[1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot; &quot;cg00000289&quot;
 
 $study2
-[1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot;
-[6] &quot;cg00000289&quot;</code></pre>
+[1] &quot;cg00000029&quot; &quot;cg00000108&quot; &quot;cg00000109&quot; &quot;cg00000165&quot; &quot;cg00000236&quot; &quot;cg00000289&quot;</code></pre>
 <p>Experimental phenotypes variables can be obtained by</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="epigenome-wide-association-analysis-ewas.html#cb175-1"></a><span class="kw">ds.varLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="epigenome-wide-association-analysis-ewas.html#cb179-1"></a><span class="kw">ds.varLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;title&quot;                   &quot;geo_accession&quot;          
- [3] &quot;status&quot;                  &quot;submission_date&quot;        
- [5] &quot;last_update_date&quot;        &quot;type&quot;                   
- [7] &quot;channel_count&quot;           &quot;source_name_ch1&quot;        
- [9] &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;    
-[11] &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
-[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;  
-[15] &quot;characteristics_ch1.5&quot;   &quot;characteristics_ch1.6&quot;  
-[17] &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;  
-[19] &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
-[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;     
-[23] &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
-[25] &quot;scan_protocol&quot;           &quot;description&quot;            
-[27] &quot;data_processing&quot;         &quot;platform_id&quot;            
-[29] &quot;contact_name&quot;            &quot;contact_email&quot;          
-[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;     
-[33] &quot;contact_institute&quot;       &quot;contact_address&quot;        
-[35] &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
-[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;     
-[39] &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
-[41] &quot;age&quot;                     &quot;braak_stage&quot;            
-[43] &quot;brain_region&quot;            &quot;cell type&quot;              
-[45] &quot;diagnosis&quot;               &quot;donor_id&quot;               
-[47] &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
+ [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                  &quot;submission_date&quot;        
+ [5] &quot;last_update_date&quot;        &quot;type&quot;                    &quot;channel_count&quot;           &quot;source_name_ch1&quot;        
+ [9] &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;     &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
+[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;   &quot;characteristics_ch1.6&quot;  
+[17] &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;   &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
+[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
+[25] &quot;scan_protocol&quot;           &quot;description&quot;             &quot;data_processing&quot;         &quot;platform_id&quot;            
+[29] &quot;contact_name&quot;            &quot;contact_email&quot;           &quot;contact_phone&quot;           &quot;contact_laboratory&quot;     
+[33] &quot;contact_institute&quot;       &quot;contact_address&quot;         &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
+[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
+[41] &quot;age&quot;                     &quot;braak_stage&quot;             &quot;brain_region&quot;            &quot;cell type&quot;              
+[45] &quot;diagnosis&quot;               &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
 [49] &quot;Sex&quot;                    
 
 $study2
- [1] &quot;title&quot;                   &quot;geo_accession&quot;          
- [3] &quot;status&quot;                  &quot;submission_date&quot;        
- [5] &quot;last_update_date&quot;        &quot;type&quot;                   
- [7] &quot;channel_count&quot;           &quot;source_name_ch1&quot;        
- [9] &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;    
-[11] &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
-[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;  
-[15] &quot;characteristics_ch1.5&quot;   &quot;characteristics_ch1.6&quot;  
-[17] &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;  
-[19] &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
-[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;     
-[23] &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
-[25] &quot;scan_protocol&quot;           &quot;description&quot;            
-[27] &quot;data_processing&quot;         &quot;platform_id&quot;            
-[29] &quot;contact_name&quot;            &quot;contact_email&quot;          
-[31] &quot;contact_phone&quot;           &quot;contact_laboratory&quot;     
-[33] &quot;contact_institute&quot;       &quot;contact_address&quot;        
-[35] &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
-[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;     
-[39] &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
-[41] &quot;age&quot;                     &quot;braak_stage&quot;            
-[43] &quot;brain_region&quot;            &quot;cell type&quot;              
-[45] &quot;diagnosis&quot;               &quot;donor_id&quot;               
-[47] &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
+ [1] &quot;title&quot;                   &quot;geo_accession&quot;           &quot;status&quot;                  &quot;submission_date&quot;        
+ [5] &quot;last_update_date&quot;        &quot;type&quot;                    &quot;channel_count&quot;           &quot;source_name_ch1&quot;        
+ [9] &quot;organism_ch1&quot;            &quot;characteristics_ch1&quot;     &quot;characteristics_ch1.1&quot;   &quot;characteristics_ch1.2&quot;  
+[13] &quot;characteristics_ch1.3&quot;   &quot;characteristics_ch1.4&quot;   &quot;characteristics_ch1.5&quot;   &quot;characteristics_ch1.6&quot;  
+[17] &quot;characteristics_ch1.7&quot;   &quot;characteristics_ch1.8&quot;   &quot;molecule_ch1&quot;            &quot;extract_protocol_ch1&quot;   
+[21] &quot;label_ch1&quot;               &quot;label_protocol_ch1&quot;      &quot;taxid_ch1&quot;               &quot;hyb_protocol&quot;           
+[25] &quot;scan_protocol&quot;           &quot;description&quot;             &quot;data_processing&quot;         &quot;platform_id&quot;            
+[29] &quot;contact_name&quot;            &quot;contact_email&quot;           &quot;contact_phone&quot;           &quot;contact_laboratory&quot;     
+[33] &quot;contact_institute&quot;       &quot;contact_address&quot;         &quot;contact_city&quot;            &quot;contact_zip/postal_code&quot;
+[37] &quot;contact_country&quot;         &quot;supplementary_file&quot;      &quot;supplementary_file.1&quot;    &quot;data_row_count&quot;         
+[41] &quot;age&quot;                     &quot;braak_stage&quot;             &quot;brain_region&quot;            &quot;cell type&quot;              
+[45] &quot;diagnosis&quot;               &quot;donor_id&quot;                &quot;sentrix_id&quot;              &quot;sentrix_position&quot;       
 [49] &quot;Sex&quot;                    
 
 attr(,&quot;class&quot;)
@@ -449,11 +423,11 @@ attr(,&quot;class&quot;)
 <div id="single-cpg-analysis" class="section level2" number="15.1">
 <h2><span class="header-section-number">15.1</span> Single CpG analysis</h2>
 <p>Once the methylation data have been loaded into the opal server, we can perform different type of analyses using functions from the <code>dsOmicsClient</code> package. Let us start by illustrating how to analyze a single CpG from two studies by using an approach that is mathematically equivalent to placing all individual-level.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="epigenome-wide-association-analysis-ewas.html#cb177-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg07363416&quot;</span>, </span>
-<span id="cb177-2"><a href="epigenome-wide-association-analysis-ewas.html#cb177-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb177-3"><a href="epigenome-wide-association-analysis-ewas.html#cb177-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb177-4"><a href="epigenome-wide-association-analysis-ewas.html#cb177-4"></a>                    <span class="dt">datasources =</span> conns)</span>
-<span id="cb177-5"><a href="epigenome-wide-association-analysis-ewas.html#cb177-5"></a>ans</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="epigenome-wide-association-analysis-ewas.html#cb181-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg07363416&quot;</span>, </span>
+<span id="cb181-2"><a href="epigenome-wide-association-analysis-ewas.html#cb181-2"></a>                    <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb181-3"><a href="epigenome-wide-association-analysis-ewas.html#cb181-3"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb181-4"><a href="epigenome-wide-association-analysis-ewas.html#cb181-4"></a>                    <span class="dt">datasources =</span> conns)</span>
+<span id="cb181-5"><a href="epigenome-wide-association-analysis-ewas.html#cb181-5"></a>ans</span></code></pre></div>
 <pre><code>             Estimate Std. Error   p-value
 cg07363416 0.03459886 0.02504291 0.1670998
 attr(,&quot;class&quot;)
@@ -462,119 +436,101 @@ attr(,&quot;class&quot;)
 <div id="multiple-cpg-analysis" class="section level2" number="15.2">
 <h2><span class="header-section-number">15.2</span> Multiple CpG analysis</h2>
 <p>The same analysis can be performed for all features (e.g. CpGs) just avoiding the <code>feature</code> argument. This process can be parallelized using <code>mclapply</code> function from the <code>multicore</code> package.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="epigenome-wide-association-analysis-ewas.html#cb179-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb179-2"><a href="epigenome-wide-association-analysis-ewas.html#cb179-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb179-3"><a href="epigenome-wide-association-analysis-ewas.html#cb179-3"></a>                    <span class="dt">datasources =</span> conns,</span>
-<span id="cb179-4"><a href="epigenome-wide-association-analysis-ewas.html#cb179-4"></a>                    <span class="dt">mc.cores =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="epigenome-wide-association-analysis-ewas.html#cb183-1"></a>ans &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb183-2"><a href="epigenome-wide-association-analysis-ewas.html#cb183-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb183-3"><a href="epigenome-wide-association-analysis-ewas.html#cb183-3"></a>                    <span class="dt">datasources =</span> conns,</span>
+<span id="cb183-4"><a href="epigenome-wide-association-analysis-ewas.html#cb183-4"></a>                    <span class="dt">mc.cores =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p>This method corresponds to the <strong>pooled analysis</strong> approach and can be very time consiming since the function repeatedly calls the DataSHIELD function <code>ds.glm()</code>. We can adopt another strategy that is to run a glm of each feature independently at each study using <code>limma</code> package (which is really fast) and then combine the results (i.e. <strong>meta-analysis</strong> approach).</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="epigenome-wide-association-analysis-ewas.html#cb180-1"></a>ans.limma &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
-<span id="cb180-2"><a href="epigenome-wide-association-analysis-ewas.html#cb180-2"></a>                      <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb180-3"><a href="epigenome-wide-association-analysis-ewas.html#cb180-3"></a>                      <span class="dt">datasources =</span> conns)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="epigenome-wide-association-analysis-ewas.html#cb184-1"></a>ans.limma &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
+<span id="cb184-2"><a href="epigenome-wide-association-analysis-ewas.html#cb184-2"></a>                      <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb184-3"><a href="epigenome-wide-association-analysis-ewas.html#cb184-3"></a>                      <span class="dt">datasources =</span> conns)</span></code></pre></div>
 <p>Then, we can visualize the top genes at each study (i.e server) by</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="epigenome-wide-association-analysis-ewas.html#cb181-1"></a><span class="kw">lapply</span>(ans.limma, head)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="epigenome-wide-association-analysis-ewas.html#cb185-1"></a><span class="kw">lapply</span>(ans.limma, head)</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 6 x 10
-  id      logFC    CI.L    CI.R AveExpr     t P.Value adj.P.Val     B
-  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-1 cg13~ -0.147  -0.191  -0.103    0.380 -6.62 1.90e-9  0.000466 10.6 
-2 cg23~ -0.0569 -0.0741 -0.0397   0.200 -6.58 2.32e-9  0.000466 10.4 
-3 cg13~ -0.0820 -0.107  -0.0570   0.437 -6.50 3.27e-9  0.000466 10.0 
-4 cg12~ -0.0519 -0.0678 -0.0359   0.145 -6.45 4.25e-9  0.000466  9.76
-5 cg24~ -0.0452 -0.0593 -0.0312   0.139 -6.39 5.47e-9  0.000466  9.51
-6 cg02~ -0.125  -0.165  -0.0860   0.247 -6.33 7.31e-9  0.000466  9.23
-# ... with 1 more variable: SE &lt;dbl&gt;
+  id           logFC    CI.L    CI.R AveExpr     t       P.Value adj.P.Val     B      SE
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg13138089 -0.147  -0.191  -0.103    0.380 -6.62 0.00000000190  0.000466 10.6  0.0122 
+2 cg23859635 -0.0569 -0.0741 -0.0397   0.200 -6.58 0.00000000232  0.000466 10.4  0.00520
+3 cg13772815 -0.0820 -0.107  -0.0570   0.437 -6.50 0.00000000327  0.000466 10.0  0.0135 
+4 cg12706938 -0.0519 -0.0678 -0.0359   0.145 -6.45 0.00000000425  0.000466  9.76 0.00872
+5 cg24724506 -0.0452 -0.0593 -0.0312   0.139 -6.39 0.00000000547  0.000466  9.51 0.00775
+6 cg02812891 -0.125  -0.165  -0.0860   0.247 -6.33 0.00000000731  0.000466  9.23 0.0163 
 
 $study2
 # A tibble: 6 x 10
-  id      logFC    CI.L    CI.R AveExpr     t P.Value adj.P.Val     B
-  &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-1 cg04~ -0.101  -0.135  -0.0669  0.345  -5.91 6.21e-8    0.0172  7.18
-2 cg07~ -0.0431 -0.0577 -0.0284  0.776  -5.85 8.22e-8    0.0172  6.90
-3 cg27~ -0.0688 -0.0924 -0.0452  0.277  -5.79 1.07e-7    0.0172  6.64
-4 cg08~ -0.0461 -0.0627 -0.0296  0.166  -5.55 2.98e-7    0.0360  5.64
-5 cg18~ -0.0491 -0.0671 -0.0311  0.157  -5.42 5.07e-7    0.0489  5.12
-6 cg02~ -0.0199 -0.0272 -0.0125  0.0947 -5.36 6.70e-7    0.0538  4.84
-# ... with 1 more variable: SE &lt;dbl&gt;</code></pre>
+  id           logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg04046629 -0.101  -0.135  -0.0669  0.345  -5.91 0.0000000621    0.0172  7.18 0.0128 
+2 cg07664323 -0.0431 -0.0577 -0.0284  0.776  -5.85 0.0000000822    0.0172  6.90 0.00390
+3 cg27098804 -0.0688 -0.0924 -0.0452  0.277  -5.79 0.000000107     0.0172  6.64 0.0147 
+4 cg08933615 -0.0461 -0.0627 -0.0296  0.166  -5.55 0.000000298     0.0360  5.64 0.00791
+5 cg18349298 -0.0491 -0.0671 -0.0311  0.157  -5.42 0.000000507     0.0489  5.12 0.00848
+6 cg02182795 -0.0199 -0.0272 -0.0125  0.0947 -5.36 0.000000670     0.0538  4.84 0.0155 </code></pre>
 <p>The annotation can be added by using the argument <code>annotCols</code>. It should be a vector with the columns of the annotation available in the <code>ExpressionSet</code> or <code>RangedSummarizedExperiment</code> that want to be showed. The columns of the annotation can be obtained by</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="epigenome-wide-association-analysis-ewas.html#cb183-1"></a><span class="kw">ds.fvarLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="epigenome-wide-association-analysis-ewas.html#cb187-1"></a><span class="kw">ds.fvarLabels</span>(<span class="st">&quot;methy&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
- [1] &quot;ID&quot;                          &quot;Name&quot;                       
- [3] &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
- [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
- [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
- [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;           
-[11] &quot;Genome_Build&quot;                &quot;CHR&quot;                        
-[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                  
-[15] &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
-[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
-[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
-[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;          
-[23] &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
-[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot;
-[27] &quot;Phantom&quot;                     &quot;DMR&quot;                        
-[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
-[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
-[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                
-[35] &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
+ [1] &quot;ID&quot;                          &quot;Name&quot;                        &quot;AddressA_ID&quot;                
+ [4] &quot;AlleleA_ProbeSeq&quot;            &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
+ [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                   &quot;Color_Channel&quot;              
+[10] &quot;Forward_Sequence&quot;            &quot;Genome_Build&quot;                &quot;CHR&quot;                        
+[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                   &quot;Chromosome_36&quot;              
+[16] &quot;Coordinate_36&quot;               &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
+[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                 &quot;Methyl27_Loci&quot;              
+[22] &quot;UCSC_RefGene_Name&quot;           &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
+[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot; &quot;Phantom&quot;                    
+[28] &quot;DMR&quot;                         &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
+[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;    &quot;DHS&quot;                        
+[34] &quot;RANGE_START&quot;                 &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
 [37] &quot;SPOT_ID&quot;                    
 
 $study2
- [1] &quot;ID&quot;                          &quot;Name&quot;                       
- [3] &quot;AddressA_ID&quot;                 &quot;AlleleA_ProbeSeq&quot;           
- [5] &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
- [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                  
- [9] &quot;Color_Channel&quot;               &quot;Forward_Sequence&quot;           
-[11] &quot;Genome_Build&quot;                &quot;CHR&quot;                        
-[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                  
-[15] &quot;Chromosome_36&quot;               &quot;Coordinate_36&quot;              
-[17] &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
-[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                
-[21] &quot;Methyl27_Loci&quot;               &quot;UCSC_RefGene_Name&quot;          
-[23] &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
-[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot;
-[27] &quot;Phantom&quot;                     &quot;DMR&quot;                        
-[29] &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
-[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;   
-[33] &quot;DHS&quot;                         &quot;RANGE_START&quot;                
-[35] &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
+ [1] &quot;ID&quot;                          &quot;Name&quot;                        &quot;AddressA_ID&quot;                
+ [4] &quot;AlleleA_ProbeSeq&quot;            &quot;AddressB_ID&quot;                 &quot;AlleleB_ProbeSeq&quot;           
+ [7] &quot;Infinium_Design_Type&quot;        &quot;Next_Base&quot;                   &quot;Color_Channel&quot;              
+[10] &quot;Forward_Sequence&quot;            &quot;Genome_Build&quot;                &quot;CHR&quot;                        
+[13] &quot;MAPINFO&quot;                     &quot;SourceSeq&quot;                   &quot;Chromosome_36&quot;              
+[16] &quot;Coordinate_36&quot;               &quot;Strand&quot;                      &quot;Probe_SNPs&quot;                 
+[19] &quot;Probe_SNPs_10&quot;               &quot;Random_Loci&quot;                 &quot;Methyl27_Loci&quot;              
+[22] &quot;UCSC_RefGene_Name&quot;           &quot;UCSC_RefGene_Accession&quot;      &quot;UCSC_RefGene_Group&quot;         
+[25] &quot;UCSC_CpG_Islands_Name&quot;       &quot;Relation_to_UCSC_CpG_Island&quot; &quot;Phantom&quot;                    
+[28] &quot;DMR&quot;                         &quot;Enhancer&quot;                    &quot;HMM_Island&quot;                 
+[31] &quot;Regulatory_Feature_Name&quot;     &quot;Regulatory_Feature_Group&quot;    &quot;DHS&quot;                        
+[34] &quot;RANGE_START&quot;                 &quot;RANGE_END&quot;                   &quot;RANGE_GB&quot;                   
 [37] &quot;SPOT_ID&quot;                    
 
 attr(,&quot;class&quot;)
 [1] &quot;dsfvarLabels&quot; &quot;list&quot;        </code></pre>
 <p>Then we can run the analysis and obtain the output with the chromosome and gene symbol by:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="epigenome-wide-association-analysis-ewas.html#cb185-1"></a>ans.limma.annot &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
-<span id="cb185-2"><a href="epigenome-wide-association-analysis-ewas.html#cb185-2"></a>                            <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
-<span id="cb185-3"><a href="epigenome-wide-association-analysis-ewas.html#cb185-3"></a>                            <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>),</span>
-<span id="cb185-4"><a href="epigenome-wide-association-analysis-ewas.html#cb185-4"></a>                            <span class="dt">datasources =</span> conns)</span></code></pre></div>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="epigenome-wide-association-analysis-ewas.html#cb186-1"></a><span class="kw">lapply</span>(ans.limma.annot, head)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="epigenome-wide-association-analysis-ewas.html#cb189-1"></a>ans.limma.annot &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex,</span>
+<span id="cb189-2"><a href="epigenome-wide-association-analysis-ewas.html#cb189-2"></a>                            <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>, </span>
+<span id="cb189-3"><a href="epigenome-wide-association-analysis-ewas.html#cb189-3"></a>                            <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>),</span>
+<span id="cb189-4"><a href="epigenome-wide-association-analysis-ewas.html#cb189-4"></a>                            <span class="dt">datasources =</span> conns)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="epigenome-wide-association-analysis-ewas.html#cb190-1"></a><span class="kw">lapply</span>(ans.limma.annot, head)</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 6 x 12
-  id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t
-  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-1 cg13~ 2     &quot;ECEL1P2&quot;        -0.147  -0.191  -0.103    0.380 -6.62
-2 cg23~ 2     &quot;MTA3&quot;           -0.0569 -0.0741 -0.0397   0.200 -6.58
-3 cg13~ 17    &quot;&quot;               -0.0820 -0.107  -0.0570   0.437 -6.50
-4 cg12~ 19    &quot;MEX3D&quot;          -0.0519 -0.0678 -0.0359   0.145 -6.45
-5 cg24~ 19    &quot;ISOC2;ISOC2;IS~ -0.0452 -0.0593 -0.0312   0.139 -6.39
-6 cg02~ 2     &quot;ECEL1P2&quot;        -0.125  -0.165  -0.0860   0.247 -6.33
-# ... with 4 more variables: P.Value &lt;dbl&gt;, adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;,
-#   SE &lt;dbl&gt;
+  id        CHR   UCSC_RefGene_Name     logFC    CI.L    CI.R AveExpr     t     P.Value adj.P.Val     B      SE
+  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg131380~ 2     &quot;ECEL1P2&quot;           -0.147  -0.191  -0.103    0.380 -6.62     1.90e-9  0.000466 10.6  0.0122 
+2 cg238596~ 2     &quot;MTA3&quot;              -0.0569 -0.0741 -0.0397   0.200 -6.58     2.32e-9  0.000466 10.4  0.00520
+3 cg137728~ 17    &quot;&quot;                  -0.0820 -0.107  -0.0570   0.437 -6.50     3.27e-9  0.000466 10.0  0.0135 
+4 cg127069~ 19    &quot;MEX3D&quot;             -0.0519 -0.0678 -0.0359   0.145 -6.45     4.25e-9  0.000466  9.76 0.00872
+5 cg247245~ 19    &quot;ISOC2;ISOC2;ISOC2&quot; -0.0452 -0.0593 -0.0312   0.139 -6.39     5.47e-9  0.000466  9.51 0.00775
+6 cg028128~ 2     &quot;ECEL1P2&quot;           -0.125  -0.165  -0.0860   0.247 -6.33     7.31e-9  0.000466  9.23 0.0163 
 
 $study2
 # A tibble: 6 x 12
-  id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t
-  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-1 cg04~ 11    &quot;CD6&quot;            -0.101  -0.135  -0.0669  0.345  -5.91
-2 cg07~ 6     &quot;MUC21&quot;          -0.0431 -0.0577 -0.0284  0.776  -5.85
-3 cg27~ 11    &quot;CD6&quot;            -0.0688 -0.0924 -0.0452  0.277  -5.79
-4 cg08~ 1     &quot;&quot;               -0.0461 -0.0627 -0.0296  0.166  -5.55
-5 cg18~ 3     &quot;RARRES1;RARRES~ -0.0491 -0.0671 -0.0311  0.157  -5.42
-6 cg02~ 8     &quot;&quot;               -0.0199 -0.0272 -0.0125  0.0947 -5.36
-# ... with 4 more variables: P.Value &lt;dbl&gt;, adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;,
-#   SE &lt;dbl&gt;</code></pre>
+  id         CHR   UCSC_RefGene_Name   logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
+  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 cg04046629 11    &quot;CD6&quot;             -0.101  -0.135  -0.0669  0.345  -5.91 0.0000000621    0.0172  7.18 0.0128 
+2 cg07664323 6     &quot;MUC21&quot;           -0.0431 -0.0577 -0.0284  0.776  -5.85 0.0000000822    0.0172  6.90 0.00390
+3 cg27098804 11    &quot;CD6&quot;             -0.0688 -0.0924 -0.0452  0.277  -5.79 0.000000107     0.0172  6.64 0.0147 
+4 cg08933615 1     &quot;&quot;                -0.0461 -0.0627 -0.0296  0.166  -5.55 0.000000298     0.0360  5.64 0.00791
+5 cg18349298 3     &quot;RARRES1;RARRES1&quot; -0.0491 -0.0671 -0.0311  0.157  -5.42 0.000000507     0.0489  5.12 0.00848
+6 cg02182795 8     &quot;&quot;                -0.0199 -0.0272 -0.0125  0.0947 -5.36 0.000000670     0.0538  4.84 0.0155 </code></pre>
 <p>Then, the last step is to meta-analyze the results. Different methods can be used to this end. We have implemented a method that meta-analyze the p-pvalues of each study as follows:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="epigenome-wide-association-analysis-ewas.html#cb188-1"></a>ans.meta &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.limma)</span>
-<span id="cb188-2"><a href="epigenome-wide-association-analysis-ewas.html#cb188-2"></a>ans.meta</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="epigenome-wide-association-analysis-ewas.html#cb192-1"></a>ans.meta &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.limma)</span>
+<span id="cb192-2"><a href="epigenome-wide-association-analysis-ewas.html#cb192-2"></a>ans.meta</span></code></pre></div>
 <pre><code># A tibble: 481,868 x 4
    id                study1      study2   p.meta
    &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
@@ -590,26 +546,26 @@ $study2
 10 cg21488617 0.0000000186  0.0000299   1.62e-11
 # ... with 481,858 more rows</code></pre>
 <p>We can verify that the results are pretty similar to those obtained using pooled analyses. Here we compute the association for two of the top-CpGs:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="epigenome-wide-association-analysis-ewas.html#cb190-1"></a>res1 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13138089&quot;</span>, </span>
-<span id="cb190-2"><a href="epigenome-wide-association-analysis-ewas.html#cb190-2"></a>                     <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb190-3"><a href="epigenome-wide-association-analysis-ewas.html#cb190-3"></a>                     <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb190-4"><a href="epigenome-wide-association-analysis-ewas.html#cb190-4"></a>                     <span class="dt">datasources =</span> conns)</span>
-<span id="cb190-5"><a href="epigenome-wide-association-analysis-ewas.html#cb190-5"></a>res1</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="epigenome-wide-association-analysis-ewas.html#cb194-1"></a>res1 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13138089&quot;</span>, </span>
+<span id="cb194-2"><a href="epigenome-wide-association-analysis-ewas.html#cb194-2"></a>                     <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb194-3"><a href="epigenome-wide-association-analysis-ewas.html#cb194-3"></a>                     <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb194-4"><a href="epigenome-wide-association-analysis-ewas.html#cb194-4"></a>                     <span class="dt">datasources =</span> conns)</span>
+<span id="cb194-5"><a href="epigenome-wide-association-analysis-ewas.html#cb194-5"></a>res1</span></code></pre></div>
 <pre><code>             Estimate Std. Error      p-value
 cg13138089 -0.1373348 0.01712405 1.057482e-15
 attr(,&quot;class&quot;)
 [1] &quot;dsLmFeature&quot; &quot;matrix&quot;      &quot;array&quot;      </code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="epigenome-wide-association-analysis-ewas.html#cb192-1"></a>res2 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13772815&quot;</span>, </span>
-<span id="cb192-2"><a href="epigenome-wide-association-analysis-ewas.html#cb192-2"></a>                     <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb192-3"><a href="epigenome-wide-association-analysis-ewas.html#cb192-3"></a>                     <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb192-4"><a href="epigenome-wide-association-analysis-ewas.html#cb192-4"></a>                     <span class="dt">datasources =</span> conns)</span>
-<span id="cb192-5"><a href="epigenome-wide-association-analysis-ewas.html#cb192-5"></a>res2</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="epigenome-wide-association-analysis-ewas.html#cb196-1"></a>res2 &lt;-<span class="st"> </span><span class="kw">ds.lmFeature</span>(<span class="dt">feature =</span> <span class="st">&quot;cg13772815&quot;</span>, </span>
+<span id="cb196-2"><a href="epigenome-wide-association-analysis-ewas.html#cb196-2"></a>                     <span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb196-3"><a href="epigenome-wide-association-analysis-ewas.html#cb196-3"></a>                     <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb196-4"><a href="epigenome-wide-association-analysis-ewas.html#cb196-4"></a>                     <span class="dt">datasources =</span> conns)</span>
+<span id="cb196-5"><a href="epigenome-wide-association-analysis-ewas.html#cb196-5"></a>res2</span></code></pre></div>
 <pre><code>              Estimate  Std. Error      p-value
 cg13772815 -0.06786137 0.009128915 1.056225e-13
 attr(,&quot;class&quot;)
 [1] &quot;dsLmFeature&quot; &quot;matrix&quot;      &quot;array&quot;      </code></pre>
 <p>We can create a QQ-plot by using the function <code>qqplot</code> available in our package.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="epigenome-wide-association-analysis-ewas.html#cb194-1"></a><span class="kw">qqplot</span>(ans.meta<span class="op">$</span>p.meta)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="epigenome-wide-association-analysis-ewas.html#cb198-1"></a><span class="kw">qqplot</span>(ans.meta<span class="op">$</span>p.meta)</span></code></pre></div>
 <p><img src="fig/qqplot-1.png" width="672" /></p>
 <p>Here In some cases inflation can be observed, so that, correction for cell-type or surrogate variables must be performed. We describe how we can do that in the next two sections.</p>
 </div>
@@ -617,49 +573,47 @@ attr(,&quot;class&quot;)
 <h2><span class="header-section-number">15.3</span> Adjusting for Surrogate Variables</h2>
 <p>The vast majority of omic studies require to control for unwanted variability. The surrogate variable analysis (SVA) can address this issue by estimating some hidden covariates that capture differences across individuals due to some artifacts such as batch effects or sample quality sam among others. The method is implemented in <em><a href="https://bioconductor.org/packages/3.11/SVA">SVA</a></em> package.</p>
 <p>Performing this type of analysis using the <code>ds.lmFeature</code> function is not allowed since estimating SVA would require to implement a non-disclosive method that computes SVA from the different servers. This will be a future topic of the <code>dsOmicsClient</code>. NOTE that, estimating SVA separately at each server would not be a good idea since the aim of SVA is to capture differences mainly due to experimental issues among ALL individuals. What we can do instead is to use the <code>ds.limma</code> function to perform the analyses adjusted for SVA at each study.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="epigenome-wide-association-analysis-ewas.html#cb195-1"></a>ans.sva &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
-<span id="cb195-2"><a href="epigenome-wide-association-analysis-ewas.html#cb195-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
-<span id="cb195-3"><a href="epigenome-wide-association-analysis-ewas.html#cb195-3"></a>                    <span class="dt">sva =</span> <span class="ot">TRUE</span>, <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>))</span>
-<span id="cb195-4"><a href="epigenome-wide-association-analysis-ewas.html#cb195-4"></a>ans.sva</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="epigenome-wide-association-analysis-ewas.html#cb199-1"></a>ans.sva &lt;-<span class="st"> </span><span class="kw">ds.limma</span>(<span class="dt">model =</span> <span class="op">~</span><span class="st"> </span>diagnosis <span class="op">+</span><span class="st"> </span>Sex, </span>
+<span id="cb199-2"><a href="epigenome-wide-association-analysis-ewas.html#cb199-2"></a>                    <span class="dt">Set =</span> <span class="st">&quot;methy&quot;</span>,</span>
+<span id="cb199-3"><a href="epigenome-wide-association-analysis-ewas.html#cb199-3"></a>                    <span class="dt">sva =</span> <span class="ot">TRUE</span>, <span class="dt">annotCols =</span> <span class="kw">c</span>(<span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;UCSC_RefGene_Name&quot;</span>))</span>
+<span id="cb199-4"><a href="epigenome-wide-association-analysis-ewas.html#cb199-4"></a>ans.sva</span></code></pre></div>
 <pre><code>$study1
 # A tibble: 481,868 x 12
-   id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t
-   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
- 1 cg10~ 19    &quot;GNG7&quot;           -0.0547 -0.0721 -0.0373   0.338 -6.25
- 2 cg13~ 17    &quot;&quot;               -0.0569 -0.0757 -0.0381   0.437 -6.00
- 3 cg11~ 19    &quot;PODNL1;PODNL1;~  0.0334  0.0223  0.0445   0.568  5.97
- 4 cg27~ 17    &quot;SLC47A2;SLC47A~  0.0274  0.0182  0.0365   0.548  5.95
- 5 cg21~ 6     &quot;&quot;               -0.0453 -0.0609 -0.0297   0.799 -5.78
- 6 cg23~ 2     &quot;MTA3&quot;           -0.0327 -0.0440 -0.0215   0.200 -5.77
- 7 cg10~ 16    &quot;SALL1;SALL1&quot;     0.0366  0.0240  0.0492   0.137  5.77
- 8 cg24~ 1     &quot;&quot;                0.0317  0.0208  0.0427   0.821  5.76
- 9 cg13~ 9     &quot;&quot;               -0.0326 -0.0440 -0.0213   0.367 -5.72
-10 cg13~ 2     &quot;ECEL1P2&quot;        -0.106  -0.144  -0.0686   0.380 -5.61
-# ... with 481,858 more rows, and 4 more variables: P.Value &lt;dbl&gt;,
-#   adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;, SE &lt;dbl&gt;
+   id        CHR   UCSC_RefGene_Name     logFC    CI.L    CI.R AveExpr     t    P.Value adj.P.Val     B      SE
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 cg101814~ 19    &quot;GNG7&quot;              -0.0547 -0.0721 -0.0373   0.338 -6.25    1.31e-8   0.00591  8.51 0.0103 
+ 2 cg137728~ 17    &quot;&quot;                  -0.0569 -0.0757 -0.0381   0.437 -6.00    3.91e-8   0.00591  7.43 0.00425
+ 3 cg118020~ 19    &quot;PODNL1;PODNL1;POD~  0.0334  0.0223  0.0445   0.568  5.97    4.53e-8   0.00591  7.29 0.00897
+ 4 cg272310~ 17    &quot;SLC47A2;SLC47A2&quot;    0.0274  0.0182  0.0365   0.548  5.95    4.91e-8   0.00591  7.21 0.00696
+ 5 cg210789~ 6     &quot;&quot;                  -0.0453 -0.0609 -0.0297   0.799 -5.78    1.05e-7   0.00666  6.46 0.00733
+ 6 cg238596~ 2     &quot;MTA3&quot;              -0.0327 -0.0440 -0.0215   0.200 -5.77    1.09e-7   0.00666  6.42 0.0149 
+ 7 cg102974~ 16    &quot;SALL1;SALL1&quot;        0.0366  0.0240  0.0492   0.137  5.77    1.10e-7   0.00666  6.42 0.00688
+ 8 cg249245~ 1     &quot;&quot;                   0.0317  0.0208  0.0427   0.821  5.76    1.11e-7   0.00666  6.41 0.00969
+ 9 cg136631~ 9     &quot;&quot;                  -0.0326 -0.0440 -0.0213   0.367 -5.72    1.32e-7   0.00705  6.24 0.00562
+10 cg131380~ 2     &quot;ECEL1P2&quot;           -0.106  -0.144  -0.0686   0.380 -5.61    2.15e-7   0.00835  5.76 0.00137
+# ... with 481,858 more rows
 
 $study2
 # A tibble: 481,868 x 12
-   id    CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t
-   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
- 1 cg16~ 12    &quot;LRP1&quot;           -0.0418 -0.0548 -0.0289   0.388 -6.42
- 2 cg25~ 1     &quot;&quot;               -0.0664 -0.0874 -0.0453   0.569 -6.27
- 3 cg12~ 11    &quot;NRXN2;NRXN2&quot;    -0.0273 -0.0367 -0.0179   0.728 -5.81
- 4 cg07~ 3     &quot;&quot;               -0.0393 -0.0529 -0.0258   0.160 -5.78
- 5 cg07~ 6     &quot;MUC21&quot;          -0.0427 -0.0579 -0.0276   0.776 -5.61
- 6 cg00~ 1     &quot;CR1L&quot;           -0.0568 -0.0771 -0.0365   0.350 -5.56
- 7 cg11~ 12    &quot;CNTN1;CNTN1&quot;    -0.0443 -0.0601 -0.0284   0.152 -5.56
- 8 cg03~ 7     &quot;PGAM2;PGAM2&quot;    -0.0442 -0.0600 -0.0283   0.211 -5.56
- 9 cg07~ 1     &quot;KCNAB2;KCNAB2&quot;   0.0611  0.0392  0.0831   0.659  5.54
-10 cg25~ 17    &quot;WNK4&quot;           -0.0392 -0.0533 -0.0251   0.512 -5.52
-# ... with 481,858 more rows, and 4 more variables: P.Value &lt;dbl&gt;,
-#   adj.P.Val &lt;dbl&gt;, B &lt;dbl&gt;, SE &lt;dbl&gt;
+   id         CHR   UCSC_RefGene_Na~   logFC    CI.L    CI.R AveExpr     t      P.Value adj.P.Val     B      SE
+   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 cg16766632 12    &quot;LRP1&quot;           -0.0418 -0.0548 -0.0289   0.388 -6.42      7.82e-9   0.00374  9.05 0.00917
+ 2 cg25036710 1     &quot;&quot;               -0.0664 -0.0874 -0.0453   0.569 -6.27      1.55e-8   0.00374  8.37 0.00373
+ 3 cg12938128 11    &quot;NRXN2;NRXN2&quot;    -0.0273 -0.0367 -0.0179   0.728 -5.81      1.13e-7   0.0149   6.42 0.00901
+ 4 cg07349815 3     &quot;&quot;               -0.0393 -0.0529 -0.0258   0.160 -5.78      1.24e-7   0.0149   6.32 0.00737
+ 5 cg07664323 6     &quot;MUC21&quot;          -0.0427 -0.0579 -0.0276   0.776 -5.61      2.63e-7   0.0163   5.59 0.00682
+ 6 cg00228891 1     &quot;CR1L&quot;           -0.0568 -0.0771 -0.0365   0.350 -5.56      3.18e-7   0.0163   5.40 0.0139 
+ 7 cg11743675 12    &quot;CNTN1;CNTN1&quot;    -0.0443 -0.0601 -0.0284   0.152 -5.56      3.18e-7   0.0163   5.40 0.00786
+ 8 cg03470754 7     &quot;PGAM2;PGAM2&quot;    -0.0442 -0.0600 -0.0283   0.211 -5.56      3.26e-7   0.0163   5.38 0.00790
+ 9 cg07015749 1     &quot;KCNAB2;KCNAB2&quot;   0.0611  0.0392  0.0831   0.659  5.54      3.47e-7   0.0163   5.31 0.00469
+10 cg25647784 17    &quot;WNK4&quot;           -0.0392 -0.0533 -0.0251   0.512 -5.52      3.70e-7   0.0163   5.25 0.00157
+# ... with 481,858 more rows
 
 attr(,&quot;class&quot;)
 [1] &quot;dsLimma&quot; &quot;list&quot;   </code></pre>
 <p>Then, data can be combined meta-anlyzed as follows:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="epigenome-wide-association-analysis-ewas.html#cb197-1"></a>ans.meta.sv &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.sva)</span>
-<span id="cb197-2"><a href="epigenome-wide-association-analysis-ewas.html#cb197-2"></a>ans.meta.sv</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="epigenome-wide-association-analysis-ewas.html#cb201-1"></a>ans.meta.sv &lt;-<span class="st"> </span><span class="kw">metaPvalues</span>(ans.sva)</span>
+<span id="cb201-2"><a href="epigenome-wide-association-analysis-ewas.html#cb201-2"></a>ans.meta.sv</span></code></pre></div>
 <pre><code># A tibble: 481,868 x 4
    id               study1      study2   p.meta
    &lt;chr&gt;             &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;
@@ -675,7 +629,7 @@ attr(,&quot;class&quot;)
 10 cg21212881 0.000000340  0.000248    2.04e- 9
 # ... with 481,858 more rows</code></pre>
 <p>The DataSHIELD session must by closed by:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="epigenome-wide-association-analysis-ewas.html#cb199-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="epigenome-wide-association-analysis-ewas.html#cb203-1"></a><span class="kw">datashield.logout</span>(conns)</span></code></pre></div>
 </div>
 </div>
             </section>

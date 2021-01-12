@@ -284,7 +284,7 @@ library(DSOpal)
 library(dsBaseClient)
 
 # access to the 'brge' resource (NOTE: RSRC.brge is need since the project
-# is called test)
+# is called RSRC)
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 

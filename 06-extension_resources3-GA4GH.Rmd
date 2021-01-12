@@ -86,6 +86,7 @@ A GA4GH htsget  can be added to a given OPAL project by a simple function call. 
 + type: Type of file (VCF/BAM)
 
 ```{r ga4ghURL}
+library(dsOmicsClient)
 # BAM FILES
 bam_url <- get_ga4gh_url(url = "https://htsget.ga4gh.org",
               id = "giab.NA12878.NIST7035.2",
@@ -140,6 +141,7 @@ A EGA database can be added to a given OPAL project by a simple function call. T
 + end: End position to filter
 
 ```{r egaURL}
+library(dsOmicsClient)
 # Same URL style for BAM and VCF
 ega_url <- get_EGA_url("EGAF00001753756", "chr21", 1, 100)
 ega_url
