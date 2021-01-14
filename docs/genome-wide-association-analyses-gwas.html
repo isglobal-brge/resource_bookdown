@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-12" />
+<meta name="date" content="2021-01-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -513,17 +513,17 @@ attr(,&quot;class&quot;)
 <span id="cb230-3"><a href="genome-wide-association-analyses-gwas.html#cb230-3"></a>  <span class="kw">ds.class</span>(<span class="st">&quot;client&quot;</span>)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;SshResourceClient&quot;     &quot;CommandResourceClient&quot; &quot;ResourceClient&quot;        &quot;R6&quot;                   </code></pre>
-<p>Now, we are ready to run any PLINK command from the client site. Notice that in this case we want to assess association between the genotype data in bed format and use as phenotype the variable ‘obese’ that is in the file ‘obesity.phe’. The sentence in a PLINK command would be (NOTE: we avoid –out to indicate the output file since the file will be available in R as a tibble).</p>
-<pre><code>  plink --bfile obesity --assoc --pheno obesity.phe --pheno-name obese </code></pre>
-<p>The arguments musth be encapsulated in a single character without the command ‘plink’</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="genome-wide-association-analyses-gwas.html#cb233-1"></a>  plink.arguments &lt;-<span class="st"> &quot;--bfile brge --logistic --covar brge.phe --covar-name gender,age&quot;</span></span></code></pre></div>
+<p>Now, we are ready to run any PLINK command from the client site. Notice that in this case we want to assess association between the genotype data in bed format and use as phenotype the variable ‘asthma’ that is in the file ‘brge.phe’ in the 6th column. The sentence in a PLINK command would be (NOTE: we avoid –out to indicate the output file since the file will be available in R as a tibble).</p>
+<pre><code>  plink --bfile brge --logistic --pheno brge.phe --mpheno 6 --covar brge.phe --covar-name gender,age </code></pre>
+<p>The arguments must be encapsulated in a single character without the command ‘plink’</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="genome-wide-association-analyses-gwas.html#cb233-1"></a>  plink.arguments &lt;-<span class="st"> &quot;--bfile brge --logistic --pheno brge.phe --mpheno 6 --covar brge.phe --covar-name gender,age&quot;</span></span></code></pre></div>
 <p>the analyses are then performed by</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="genome-wide-association-analyses-gwas.html#cb234-1"></a>  ans.plink &lt;-<span class="st"> </span><span class="kw">ds.PLINK</span>(<span class="st">&quot;client&quot;</span>, plink.arguments)</span></code></pre></div>
-<p>The object <code>ans</code> contains the PLINK results at each server as well as the outuput provided by PLINK</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="genome-wide-association-analyses-gwas.html#cb235-1"></a>  <span class="kw">lapply</span>(ans.plink, names)</span></code></pre></div>
+<p>The object <code>ans.plink</code> contains the PLINK results at each server as well as the outuput provided by PLINK</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="genome-wide-association-analyses-gwas.html#cb235-1"></a><span class="kw">lapply</span>(ans.plink, names)</span></code></pre></div>
 <pre><code>$study1
 [1] &quot;results&quot;   &quot;plink.out&quot;</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="genome-wide-association-analyses-gwas.html#cb237-1"></a>  <span class="kw">head</span>(ans.plink<span class="op">$</span>study1<span class="op">$</span>results)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="genome-wide-association-analyses-gwas.html#cb237-1"></a><span class="kw">head</span>(ans.plink<span class="op">$</span>study1<span class="op">$</span>results)</span></code></pre></div>
 <pre><code># A tibble: 6 x 9
     CHR SNP           BP A1    TEST   NMISS    OR   STAT        P
   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
@@ -533,7 +533,7 @@ attr(,&quot;class&quot;)
 4     0 MitoG4821A  4821 A     ADD     2282 2.68   1.71  0.0879  
 5     0 MitoG4821A  4821 A     gender  2282 0.740 -3.31  0.000940
 6     0 MitoG4821A  4821 A     age     2282 1.00   0.465 0.642   </code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="genome-wide-association-analyses-gwas.html#cb239-1"></a>  ans.plink<span class="op">$</span>study<span class="op">$</span>plink.out</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="genome-wide-association-analyses-gwas.html#cb239-1"></a>ans.plink<span class="op">$</span>study<span class="op">$</span>plink.out</span></code></pre></div>
 <pre><code>$status
 [1] 0
 
@@ -602,15 +602,15 @@ $command
 attr(,&quot;class&quot;)
 [1] &quot;resource.exec&quot;</code></pre>
 <p>We can compare the p-values obtained using PLINK with Bioconductor-based packages for the top-10 SNPs as follows:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="genome-wide-association-analyses-gwas.html#cb241-1"></a>  <span class="kw">library</span>(tidyverse)</span>
-<span id="cb241-2"><a href="genome-wide-association-analyses-gwas.html#cb241-2"></a>  <span class="co"># get SNP p.values (additive model - ADD)</span></span>
-<span id="cb241-3"><a href="genome-wide-association-analyses-gwas.html#cb241-3"></a>  res.plink &lt;-<span class="st"> </span>ans.plink<span class="op">$</span>study1<span class="op">$</span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(TEST<span class="op">==</span><span class="st">&quot;ADD&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb241-4"><a href="genome-wide-association-analyses-gwas.html#cb241-4"></a><span class="st">    </span><span class="kw">arrange</span>(P)</span>
-<span id="cb241-5"><a href="genome-wide-association-analyses-gwas.html#cb241-5"></a>  <span class="co"># compare top-10 with Biocoductor&#39;s results</span></span>
-<span id="cb241-6"><a href="genome-wide-association-analyses-gwas.html#cb241-6"></a>  snps &lt;-<span class="st"> </span>res.plink<span class="op">$</span>SNP[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
-<span id="cb241-7"><a href="genome-wide-association-analyses-gwas.html#cb241-7"></a>  plink &lt;-<span class="st"> </span>res.plink <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(SNP<span class="op">%in%</span>snps) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(SNP, P)</span>
-<span id="cb241-8"><a href="genome-wide-association-analyses-gwas.html#cb241-8"></a>  bioC &lt;-<span class="st"> </span>ans.bioC<span class="op">$</span>study1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(rs<span class="op">%in%</span>snps) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(rs, Score.pval)</span>
-<span id="cb241-9"><a href="genome-wide-association-analyses-gwas.html#cb241-9"></a>  <span class="kw">left_join</span>(plink, bioC, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;SNP&quot;</span> =<span class="st"> &quot;rs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="genome-wide-association-analyses-gwas.html#cb241-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb241-2"><a href="genome-wide-association-analyses-gwas.html#cb241-2"></a><span class="co"># get SNP p.values (additive model - ADD)</span></span>
+<span id="cb241-3"><a href="genome-wide-association-analyses-gwas.html#cb241-3"></a>res.plink &lt;-<span class="st"> </span>ans.plink<span class="op">$</span>study1<span class="op">$</span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(TEST<span class="op">==</span><span class="st">&quot;ADD&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb241-4"><a href="genome-wide-association-analyses-gwas.html#cb241-4"></a><span class="kw">arrange</span>(P)</span>
+<span id="cb241-5"><a href="genome-wide-association-analyses-gwas.html#cb241-5"></a><span class="co"># compare top-10 with Biocoductor&#39;s results</span></span>
+<span id="cb241-6"><a href="genome-wide-association-analyses-gwas.html#cb241-6"></a>snps &lt;-<span class="st"> </span>res.plink<span class="op">$</span>SNP[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb241-7"><a href="genome-wide-association-analyses-gwas.html#cb241-7"></a>plink &lt;-<span class="st"> </span>res.plink <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(SNP<span class="op">%in%</span>snps) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(SNP, P)</span>
+<span id="cb241-8"><a href="genome-wide-association-analyses-gwas.html#cb241-8"></a>bioC &lt;-<span class="st"> </span>ans.bioC<span class="op">$</span>study1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(rs<span class="op">%in%</span>snps) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(rs, Score.pval)</span>
+<span id="cb241-9"><a href="genome-wide-association-analyses-gwas.html#cb241-9"></a><span class="kw">left_join</span>(plink, bioC, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;SNP&quot;</span> =<span class="st"> &quot;rs&quot;</span>))</span></code></pre></div>
 <pre><code># A tibble: 10 x 3
    SNP                 P  Score.pval
    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;
