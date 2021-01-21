@@ -114,6 +114,10 @@ The analysis of all available SNPs is performed when the argument `snps.fit` is 
 ans.bioC <- ds.GWAS('gds.Data', model=asthma~age+country)
 ```
 
+```{r showGWAS}
+ans.bioC
+```
+
 
 This close the DataSHIELD session 
 
