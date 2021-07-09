@@ -1,6 +1,6 @@
 # Extension to secure shell programs: GWAS with PLINK {#shell_extension}
 
-GWAS can also be performed using programs that are executed using shell commands. This is the case for [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that require efficient and scalable pipelines. 
+GWAS can also be performed using programs that are executed using shell commands. This is the case for [PLINK](http://zzz.bwh.harvard.edu/plink/), one of the state-of-the-art programs to run GWAS and other genomic data analyses such gene-enviroment interactions or polygenic risc score analyses that require efficient and scalable pipelines.
 
 Resources also allow the use of secure SSH service to run programs on a remote server accessible through SSH containing data and analysis tools where R is just used for launching the analyses and aggregating results. This feature allows us to create functions to analyze data using specific shell programs.
 
@@ -14,8 +14,8 @@ We access the ssh resource called `brge_plink` (Figure \@ref(fig:testResources2)
 
 ```{r plink_resource}
 library(resourcer)
-brge_plink <- resourcer::newResource(url="ssh://plink-demo.obiba.org:2222/home/master/brge?exec=ls,plink,plink1", 
-                                     identity = "master", secret = "master")
+brge_plink <- resourcer::newResource(url="ssh://plink-demo.obiba.org:2222/home/master/brge?exec=ls,plink,plink1",
+                                     identity = "master", secret = "nSATfSy9Y8JAo5zK")
 client <- resourcer::newResourceClient(brge_plink)
 ```
 
@@ -73,4 +73,3 @@ Finally temporary directories are removed and the session closed
 client$removeTempDir()
 client$close()
 ```
-
