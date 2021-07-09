@@ -8,7 +8,7 @@ library(DSOpal)
 builder <- newDSLoginBuilder()
 builder$append(server = "server1", url = "https://opal-demo.obiba.org/",
                user = "administrator", password = "password",
-               driver = "OpalDriver")
+               profile="exposome", driver = "OpalDriver")
 logindata <- builder$build()
 conns <- datashield.login(logins = logindata)
 
@@ -29,7 +29,7 @@ ds.ls()
 If the tables are on the Opal server as tables instead of resources, the lines after the `datashield.login` would look like this
 
 ```{r eval = FALSE}
-# Don't run this code, the tables are not on the demo Opal server, it's just for demostration purposes
+# Don't run this code, the tables are not on the demo Opal server, it's just for demonstration purposes
 datashield.assign.table(conns, symbol = 'description', table = list(server1 = 'EXPOSOME.description_table'))
 
 # Repeat for the other two tables

@@ -19,10 +19,15 @@ Note that in this example, the data are held in a single resource. There is scop
 In order to perform geospatial data analyses, we need first to login and assign resources to DataSHIELD. This can be performed using the `as.resource.object()` function. The data have been uploaded to the server and configured as resources.
 
 ```{r login_assign_GIS}
+library(dsBaseClient)
+library(dsGeoClient)
+library(DSOpal)
+
 builder <- DSI::newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.gps_data", driver = "OpalDriver")
+               resource = "RSRC.gps_data", 
+               profile = "geo", driver = "OpalDriver")
 
 logindata <- builder$build()
 

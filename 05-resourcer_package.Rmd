@@ -316,7 +316,7 @@ Now let us describe how to get a specific type of R object into the R server. Ou
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.GSE80970", driver = "OpalDriver")
+               resource = "RSRC.GSE80970", profile="omics", driver = "OpalDriver")
 logindata <- builder$build()
 
 # login and assign resource (to 'res' symbol)

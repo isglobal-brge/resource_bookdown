@@ -113,14 +113,18 @@ Then, the R code to create this resource from the VCF file in OPAL is:
 ```{r eval = FALSE}
 library(opalr)
 o <- opal.login("administrator","password", 
-                url="https://opal-demo.obiba.org")
+                url="https://opal-demo.obiba.org", profile = "omics")
 
+if (opal.resource_exists(o, "RSRC", "ga4gh_1000g"))
+  opal.resource_delete(o, "RSRC", "ga4gh_1000g")
 opal.resource_create(o, "RSRC", "ga4gh_1000g", 
-  url = vcf_url
+  url = vcf_url,
   format = "GA4GHVCF")
 
+if (opal.resource_exists(o, "RSRC", "giab"))
+  opal.resource_delete(o, "RSRC", "giab")
 opal.resource_create(o, "RSRC", "giab", 
-  url = bam_url
+  url = bam_url,
   format = "GA4GHBAM")
 
 # to test the resource assignment
@@ -152,10 +156,13 @@ Then, the R code to create this resource in OPAL is:
 ```{r eval = FALSE}
 library(opalr)
 o <- opal.login("administrator","password", 
-                url="https://opal-demo.obiba.org")
+                url="https://opal-demo.obiba.org", profile = "omics")
 
+
+if (opal.resource_exists(o, "RSRC", "EGA"))
+  opal.resource_delete(o, "RSRC", "EGA")
 opal.resource_create(o, "RSRC", "EGA", 
-  url = ega_url
+  url = ega_url,
   format = "EGAhtsgetBAM", # format = "EGAhtsgetVCF" for VCF files
   identity = "ega-test-data@ebi.ac.uk", # This is the test user
   secret = "egarocks" # This is the test password
@@ -181,7 +188,8 @@ library(dsOmicsClient)
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "RSRC.ga4gh_1000g", driver = "OpalDriver")
+               resource = "RSRC.ga4gh_1000g",
+               profile = "omics", driver = "OpalDriver")
 logindata <- builder$build()
 
 conns <- datashield.login(logins = logindata, assign = TRUE,
