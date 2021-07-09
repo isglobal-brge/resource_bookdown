@@ -35,7 +35,7 @@ o <- opal.login(username="administrator", password="password",
                 url="https://opal-demo.obiba.org")
 
 # A general purpose project, with a data storage
-opal.project_create(o, "projectName", database="dbName")
+opal.project_create(o, "projectName", database=TRUE)
 
 # A project that can hold only resources and views (no persisted data)
 opal.project_create(o, "projectName")

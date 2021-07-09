@@ -50,10 +50,15 @@ Let us start by illustrating a simple example where a researcher may be interest
 Let us start by creating the connection to the opal server:
 
 ```{r pipeline_gene_expr}
+library(dsBaseClient)
+library(dsOmicsClient)
+library(DSOpal)
+
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.tcga_liver", driver = "OpalDriver")
+               resource = "RSRC.tcga_liver",
+               profile = "omics", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -139,10 +144,12 @@ In order to perform 'omic data analyses, we need first to login and assign resou
 builder <- DSI::newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.GSE66351_1", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_1",
+               profile = "omics", driver = "OpalDriver")
 builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.GSE66351_2", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_2",
+               profile = "omics", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -295,10 +302,12 @@ datashield.logout(conns)
 builder <- DSI::newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.GSE66351_1", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_1",
+               profile = "omics", driver = "OpalDriver")
 builder$append(server = "study2", url = "https://opal-demo.obiba.org", 
                user = "dsuser", password = "password", 
-               resource = "RSRC.GSE66351_2", driver = "OpalDriver")
+               resource = "RSRC.GSE66351_2",
+               profile = "omics", driver = "OpalDriver")
 
 logindata <- builder$build()
 
@@ -348,7 +357,8 @@ The GWAS analysis is then performed as follows. We first start by preparing logi
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "RSRC.brge_vcf", driver = "OpalDriver")
+               resource = "RSRC.brge_vcf",
+               profile = "omics", driver = "OpalDriver")
 logindata <- builder$build()
 
 conns <- datashield.login(logins = logindata, assign = TRUE,
@@ -446,7 +456,8 @@ library(dsOmicsClient)
 builder <- newDSLoginBuilder()
 builder$append(server = "study1", url = "https://opal-demo.obiba.org",
                user = "dsuser", password = "password",
-               resource = "RSRC.brge_plink", driver = "OpalDriver")
+               resource = "RSRC.brge_plink",
+               profile = "omics", driver = "OpalDriver")
 logindata <- builder$build()
 ```
 
